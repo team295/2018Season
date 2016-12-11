@@ -34,14 +34,14 @@ public class SysShooter extends Subsystem
         // ==========================================================
         // SYS SHOOTER 
         // ==========================================================
-    	_escLeft = new CANTalon(RobotMap.PORT_SHOOTER_ESC_LEFT);
+    	_escLeft = new CANTalon(RobotMap.PWM_SHOOTER_ESC_LEFT);
     	_escLeft.changeControlMode(CANTalon.TalonControlMode.PercentVbus);
     	_escLeft.enableBrakeMode(true);
     	_escLeft.reverseOutput(false);
     	_escLeft.enable();
         LiveWindow.addActuator("SysShooter", "Esc Left", _escLeft);
 
-        _escRight = new CANTalon(RobotMap.PORT_SHOOTER_ESC_RIGHT);
+        _escRight = new CANTalon(RobotMap.PWM_SHOOTER_ESC_RIGHT);
         _escRight.changeControlMode(CANTalon.TalonControlMode.PercentVbus);
         _escRight.enableBrakeMode(true);
         _escRight.reverseOutput(false);

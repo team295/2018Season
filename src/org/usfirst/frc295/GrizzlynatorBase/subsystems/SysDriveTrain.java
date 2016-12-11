@@ -66,16 +66,16 @@ public class SysDriveTrain extends Subsystem
         // ==========================================================
         // SYS DRIVE TRAIN 
         // ==========================================================
-    	_escLeftFront = new CANTalon(RobotMap.PORT_DRIVE_ESC_LEFT_FRONT);
+    	_escLeftFront = new CANTalon(RobotMap.CAN_DRIVE_ESC_LEFT_FRONT);
         LiveWindow.addActuator("SysDriveTrain", "Esc Left Front",  (CANTalon) _escLeftFront);
         
-        _escLeftBack = new CANTalon(RobotMap.PORT_DRIVE_ESC_LEFT_BACK);
+        _escLeftBack = new CANTalon(RobotMap.CAN_DRIVE_ESC_LEFT_BACK);
         LiveWindow.addActuator("SysDriveTrain", "Esc Left Back",   (CANTalon) _escLeftBack);
         
-        _escRightFront = new CANTalon(RobotMap.PORT_DRIVE_ESC_RIGHT_FRONT);
+        _escRightFront = new CANTalon(RobotMap.CAN_DRIVE_ESC_RIGHT_FRONT);
         LiveWindow.addActuator("SysDriveTrain", "Esc Right Front", (CANTalon) _escRightFront);
         
-        _escRightBack = new CANTalon(RobotMap.PORT_DRIVE_ESC_RIGHT_BACK);
+        _escRightBack = new CANTalon(RobotMap.CAN_DRIVE_ESC_RIGHT_BACK);
         LiveWindow.addActuator("SysDriveTrain", "Esc Right Back",  (CANTalon) _escRightBack);
 
         
@@ -111,12 +111,12 @@ public class SysDriveTrain extends Subsystem
         _robotDrive.setMaxOutput(1.0);
 
 
-        _encoDriveRight = new Encoder(RobotMap.PORT_DRIVE_ENC_RIGHT_CHAN1, RobotMap.PORT_DRIVE_ENC_RIGHT_CHAN2, false, EncodingType.k4X);
+        _encoDriveRight = new Encoder(RobotMap.DIO_DRIVE_ENC_RIGHT_CHAN1, RobotMap.DIO_DRIVE_ENC_RIGHT_CHAN2, false, EncodingType.k4X);
         LiveWindow.addSensor("SysDriveTrain", "Enco Drive Right", _encoDriveRight);
         _encoDriveRight.setDistancePerPulse(1.0);
         _encoDriveRight.setPIDSourceType(PIDSourceType.kRate);
 
-        _encoDriveLeft = new Encoder(RobotMap.PORT_DRIVE_ENC_LEFT_CHAN1, RobotMap.PORT_DRIVE_ENC_LEFT_CHAN2, false, EncodingType.k4X);
+        _encoDriveLeft = new Encoder(RobotMap.DIO_DRIVE_ENC_LEFT_CHAN1, RobotMap.DIO_DRIVE_ENC_LEFT_CHAN2, false, EncodingType.k4X);
         LiveWindow.addSensor("SysDriveTrain", "Enco Drive Left", _encoDriveLeft);
         _encoDriveLeft.setDistancePerPulse(1.0);
         _encoDriveLeft.setPIDSourceType(PIDSourceType.kRate);

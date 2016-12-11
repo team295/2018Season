@@ -31,7 +31,7 @@ public class SysFlashLight extends Subsystem
 	{
 		super();
 
-		_relayFlashlight = new Relay(RobotMap.PORT_FLASHLIGHT_RELAY);
+		_relayFlashlight = new Relay(RobotMap.RLY_FLASHLIGHT);
 	    LiveWindow.addActuator("SysFlashlight", "Relay", _relayFlashlight);
 	}
 

@@ -21,24 +21,33 @@ package org.usfirst.frc295.GrizzlynatorBase;
 public class RobotMap 
 {
 	
-    public static final   short  PORT_DRIVE_ESC_LEFT_FRONT             = 11;
-    public static final   short  PORT_DRIVE_ESC_LEFT_BACK              = 22;
-    public static final   short  PORT_DRIVE_ESC_RIGHT_FRONT            = 15;
-    public static final   short  PORT_DRIVE_ESC_RIGHT_BACK             = 10;
-    
-    public static final   short  PORT_DRIVE_ENC_RIGHT_CHAN1            = 15;
-    public static final   short  PORT_DRIVE_ENC_RIGHT_CHAN2            = 16;
-    public static final   short  PORT_DRIVE_ENC_LEFT_CHAN1             = 17;
-    public static final   short  PORT_DRIVE_ENC_LEFT_CHAN2             = 18;
+    public static final   short  CAN_DRIVE_ESC_LEFT_FRONT             = 11;
+    public static final   short  CAN_DRIVE_ESC_LEFT_BACK              = 22;
+    public static final   short  CAN_DRIVE_ESC_RIGHT_FRONT            = 15;
+    public static final   short  CAN_DRIVE_ESC_RIGHT_BACK             = 10;	
 
     
-    public static final   int    PORT_SHOOTER_ESC_LEFT                 = 17;
-    public static final   int    PORT_SHOOTER_ESC_RIGHT                = 22; //17
-    public static final   int    PORT_SHOOTER_AIMER_ESC                = 15; //22
-    public static final   int    PORT_SHOOTER_PADDLE_ESC               = 6;
-    public static final   int    PORT_SHOOTER_PADDLE_RETRACTED_SWITCH  = 1;
+    public static final   short  PWM_DRIVE_ESC_LEFT_FRONT             = 1;
+    public static final   short  PWM_DRIVE_ESC_LEFT_BACK              = 2;
+    public static final   short  PWM_DRIVE_ESC_RIGHT_FRONT            = 3;
+    public static final   short  PWM_DRIVE_ESC_RIGHT_BACK             = 4;
+    
+    public static final   short  PWM_SHOOTER_PADDLE_ESC               = 6;
+    public static final   short  PWM_SHOOTER_AIMER_ESC                = 15; //22
+    public static final   short  PWM_SHOOTER_ESC_LEFT                 = 17;
+    public static final   short  PWM_SHOOTER_ESC_RIGHT                = 22; //17
 
-    public static final   int    PORT_FLASHLIGHT_RELAY                 = 7;
+    
+    public static final   short  DIO_SHOOTER_PADDLE_RETRACTED_SWITCH  = 1;
+
+    public static final   short  DIO_DRIVE_ENC_RIGHT_CHAN1            = 15;
+    public static final   short  DIO_DRIVE_ENC_RIGHT_CHAN2            = 16;
+    public static final   short  DIO_DRIVE_ENC_LEFT_CHAN1             = 17;
+    public static final   short  DIO_DRIVE_ENC_LEFT_CHAN2             = 18;
+
+    
+
+    public static final   short  RLY_FLASHLIGHT                       = 7;
 
     public static void init()
     {
