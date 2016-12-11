@@ -23,6 +23,7 @@ import edu.wpi.first.wpilibj.RobotDrive;
 import edu.wpi.first.wpilibj.SpeedController;
 import edu.wpi.first.wpilibj.Talon;
 import edu.wpi.first.wpilibj.VictorSP;
+import edu.wpi.first.wpilibj.CANTalon;
 import edu.wpi.first.wpilibj.CounterBase.EncodingType;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
@@ -65,17 +66,17 @@ public class SysDriveTrain extends Subsystem
         // ==========================================================
         // SYS DRIVE TRAIN 
         // ==========================================================
-    	_escLeftFront = new Talon(RobotMap.PORT_DRIVE_ESC_LEFT_FRONT);
-        LiveWindow.addActuator("SysDriveTrain", "Esc Left Front",  (Talon) _escLeftFront);
+    	_escLeftFront = new CANTalon(RobotMap.PORT_DRIVE_ESC_LEFT_FRONT);
+        LiveWindow.addActuator("SysDriveTrain", "Esc Left Front",  (CANTalon) _escLeftFront);
         
-        _escLeftBack = new Talon(RobotMap.PORT_DRIVE_ESC_LEFT_BACK);
-        LiveWindow.addActuator("SysDriveTrain", "Esc Left Back",   (Talon) _escLeftBack);
+        _escLeftBack = new CANTalon(RobotMap.PORT_DRIVE_ESC_LEFT_BACK);
+        LiveWindow.addActuator("SysDriveTrain", "Esc Left Back",   (CANTalon) _escLeftBack);
         
-        _escRightFront = new Talon(RobotMap.PORT_DRIVE_ESC_RIGHT_FRONT);
-        LiveWindow.addActuator("SysDriveTrain", "Esc Right Front", (Talon) _escRightFront);
+        _escRightFront = new CANTalon(RobotMap.PORT_DRIVE_ESC_RIGHT_FRONT);
+        LiveWindow.addActuator("SysDriveTrain", "Esc Right Front", (CANTalon) _escRightFront);
         
-        _escRightBack = new Talon(RobotMap.PORT_DRIVE_ESC_RIGHT_BACK);
-        LiveWindow.addActuator("SysDriveTrain", "Esc Right Back",  (Talon) _escRightBack);
+        _escRightBack = new CANTalon(RobotMap.PORT_DRIVE_ESC_RIGHT_BACK);
+        LiveWindow.addActuator("SysDriveTrain", "Esc Right Back",  (CANTalon) _escRightBack);
 
         
 
