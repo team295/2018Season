@@ -1,5 +1,8 @@
 *.class
 
+# Backup files from RobotBuilder (file names end in ~)
+*~
+
 # Mobile Tools for Java (J2ME)
 .mtj.tmp/
 
