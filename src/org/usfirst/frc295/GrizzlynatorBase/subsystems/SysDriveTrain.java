@@ -23,7 +23,7 @@ import edu.wpi.first.wpilibj.RobotDrive;
 import edu.wpi.first.wpilibj.SpeedController;
 import edu.wpi.first.wpilibj.Talon;
 import edu.wpi.first.wpilibj.VictorSP;
-import edu.wpi.first.wpilibj.CANTalon;
+import edu.wpi.first.wpilibj.Talon;
 import edu.wpi.first.wpilibj.CounterBase.EncodingType;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
@@ -35,17 +35,15 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  */
 public class SysDriveTrain extends Subsystem 
 {
-    // ROBOT MAP INSTANTIATED OBJECTS REFERNCED HERE FOR EASY ACCESS
-    // Note (Mentor 2016): Not the best practice to do this but will play along
-    //                     Since these are just DriveTrain's "HAS A" objects, they should be created here
-    //                     I suspect that this is done so all configuration can be done in one place
-    //                     Therefore, don't configure and create configurable things anywhere but in RoboMap
+	// DECLARE COMPONENTS OF THE DRIVETRAIN
     private SpeedController     _escLeftFront;
     private SpeedController     _escLeftBack;
     private SpeedController     _escRightFront;
     private SpeedController     _escRightBack;
+    
     private Encoder             _encoDriveRight;
     private Encoder             _encoDriveLeft;
+    
     private RobotDrive          _robotDrive;
 
 
@@ -66,17 +64,17 @@ public class SysDriveTrain extends Subsystem
         // ==========================================================
         // SYS DRIVE TRAIN 
         // ==========================================================
-    	_escLeftFront = new CANTalon(RobotMap.CAN_DRIVE_ESC_LEFT_FRONT);
-        LiveWindow.addActuator("SysDriveTrain", "Esc Left Front",  (CANTalon) _escLeftFront);
+    	_escLeftFront = new Talon(RobotMap.CAN_DRIVE_ESC_LEFT_FRONT);
+        LiveWindow.addActuator("SysDriveTrain", "Esc Left Front",  (Talon) _escLeftFront);
         
-        _escLeftBack = new CANTalon(RobotMap.CAN_DRIVE_ESC_LEFT_BACK);
-        LiveWindow.addActuator("SysDriveTrain", "Esc Left Back",   (CANTalon) _escLeftBack);
+        _escLeftBack = new Talon(RobotMap.CAN_DRIVE_ESC_LEFT_BACK);
+        LiveWindow.addActuator("SysDriveTrain", "Esc Left Back",   (Talon) _escLeftBack);
         
-        _escRightFront = new CANTalon(RobotMap.CAN_DRIVE_ESC_RIGHT_FRONT);
-        LiveWindow.addActuator("SysDriveTrain", "Esc Right Front", (CANTalon) _escRightFront);
+        _escRightFront = new Talon(RobotMap.CAN_DRIVE_ESC_RIGHT_FRONT);
+        LiveWindow.addActuator("SysDriveTrain", "Esc Right Front", (Talon) _escRightFront);
         
-        _escRightBack = new CANTalon(RobotMap.CAN_DRIVE_ESC_RIGHT_BACK);
-        LiveWindow.addActuator("SysDriveTrain", "Esc Right Back",  (CANTalon) _escRightBack);
+        _escRightBack = new Talon(RobotMap.CAN_DRIVE_ESC_RIGHT_BACK);
+        LiveWindow.addActuator("SysDriveTrain", "Esc Right Back",  (Talon) _escRightBack);
 
         
 
@@ -111,15 +109,17 @@ public class SysDriveTrain extends Subsystem
         _robotDrive.setMaxOutput(1.0);
 
 
-        _encoDriveRight = new Encoder(RobotMap.DIO_DRIVE_ENC_RIGHT_CHAN1, RobotMap.DIO_DRIVE_ENC_RIGHT_CHAN2, false, EncodingType.k4X);
-        LiveWindow.addSensor("SysDriveTrain", "Enco Drive Right", _encoDriveRight);
-        _encoDriveRight.setDistancePerPulse(1.0);
-        _encoDriveRight.setPIDSourceType(PIDSourceType.kRate);
-
         _encoDriveLeft = new Encoder(RobotMap.DIO_DRIVE_ENC_LEFT_CHAN1, RobotMap.DIO_DRIVE_ENC_LEFT_CHAN2, false, EncodingType.k4X);
-        LiveWindow.addSensor("SysDriveTrain", "Enco Drive Left", _encoDriveLeft);
         _encoDriveLeft.setDistancePerPulse(1.0);
         _encoDriveLeft.setPIDSourceType(PIDSourceType.kRate);
+        LiveWindow.addSensor("SysDriveTrain", "Enco Drive Left", _encoDriveLeft);
+
+        
+        _encoDriveRight = new Encoder(RobotMap.DIO_DRIVE_ENC_RIGHT_CHAN1, RobotMap.DIO_DRIVE_ENC_RIGHT_CHAN2, false, EncodingType.k4X);
+        _encoDriveRight.setDistancePerPulse(1.0);
+        _encoDriveRight.setPIDSourceType(PIDSourceType.kRate);
+        LiveWindow.addSensor("SysDriveTrain", "Enco Drive Right", _encoDriveRight);
+
     }
     
     
@@ -159,6 +159,7 @@ public class SysDriveTrain extends Subsystem
             _dRotationScale      = 1.0;
         }
     }
+    
     public boolean getSlowMode()
     {
         return(_bSlowMode);
@@ -178,6 +179,7 @@ public class SysDriveTrain extends Subsystem
             _dDirectionScale     =  1.0;
         }
     }
+
     public boolean getBackwardMode()
     {
         return(_bBackwardMode);
@@ -217,11 +219,11 @@ public class SysDriveTrain extends Subsystem
     {
 		if(_bBackwardMode == true) 
         {
-			_robotDrive.tankDrive(_dDirectionScale * _dRotationScale * deadbandAdjust(right), 
-                                 -1*_dDirectionScale * _dRotationScale * deadbandAdjust(left));
+			_robotDrive.tankDrive(   _dDirectionScale * _dRotationScale * deadbandAdjust(right), 
+                                  -1*_dDirectionScale * _dRotationScale * deadbandAdjust(left));
 		} else {
-			_robotDrive.tankDrive(_dDirectionScale * _dRotationScale * deadbandAdjust(left),
-                                 -1* _dDirectionScale * _dRotationScale * deadbandAdjust(right));
+			_robotDrive.tankDrive(   _dDirectionScale * _dRotationScale * deadbandAdjust(left),
+                                  -1*_dDirectionScale * _dRotationScale * deadbandAdjust(right));
 		}
 	}	
 	

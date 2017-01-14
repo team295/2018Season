@@ -87,19 +87,19 @@ public class OI
         //=====================================================================
         // OPERATOR JOYSTICK BUTTON COMMANDS 
         //=====================================================================
-        JoystickButton _btnOperator9 = new JoystickButton(_joystickOperator, 9);
-		_btnOperator9.whenPressed(new CmdShooterPaddleActivate());
-        SmartDashboard.putData("Cmd Shooter Paddle Activate", new CmdShooterPaddleActivate());
+        //JoystickButton _btnOperator9 = new JoystickButton(_joystickOperator, 9);
+		//_btnOperator9.whenPressed(new CmdShooterPaddleActivate());
+        //SmartDashboard.putData("Cmd Shooter Paddle Activate", new CmdShooterPaddleActivate());
 		
 		
-        JoystickButton _btnOperator10 = new JoystickButton(_joystickOperator, 10);
-		_btnOperator10.whileHeld(new CmdShooterShootHigh());
-        SmartDashboard.putData("Cmd Shooter Spin Shoot", new CmdShooterShootHigh());
+        //JoystickButton _btnOperator10 = new JoystickButton(_joystickOperator, 10);
+		//_btnOperator10.whileHeld(new CmdShooterShootHigh());
+        //SmartDashboard.putData("Cmd Shooter Spin Shoot", new CmdShooterShootHigh());
 		
 		
-        JoystickButton _btnOperator13 = new JoystickButton(_joystickOperator, 13);
-		_btnOperator13.whileHeld(new CmdShooterLoadHigh());
-        SmartDashboard.putData("Cmd Shooter Spin Load",   new CmdShooterLoadHigh());
+        //JoystickButton _btnOperator13 = new JoystickButton(_joystickOperator, 13);
+		//_btnOperator13.whileHeld(new CmdShooterLoadHigh());
+        //SmartDashboard.putData("Cmd Shooter Spin Load",   new CmdShooterLoadHigh());
 
     }
 

@@ -27,17 +27,17 @@ public class CmdShooterPaddleActivate extends Command
 	
 	public CmdShooterPaddleActivate() 
 	{
-		requires(Robot.sysShooterPaddle);
-        setTimeout(.5);
+		//requires(Robot.sysShooterPaddle);
+        //setTimeout(.5);
 	}
 	
     // Called just before this Command runs the first time
     protected void initialize() 
     {
-    	if (Robot.sysShooterPaddle.isRetracted() == true)
-    	{
-    		Robot.sysShooterPaddle.startShoot();;
-    	}
+    	//if (Robot.sysShooterPaddle.isRetracted() == true)
+    	//{
+    	//	Robot.sysShooterPaddle.startShoot();;
+    	//}
     }
 
     
@@ -56,7 +56,7 @@ public class CmdShooterPaddleActivate extends Command
     // Called once after isFinished returns true
     protected void end() 
     {
-    	Robot.sysShooterPaddle.stopPaddle();
+    	//Robot.sysShooterPaddle.stopPaddle();
     }
 
     // Called when another command which requires one or more of the same

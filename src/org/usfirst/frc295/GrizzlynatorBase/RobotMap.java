@@ -13,42 +13,45 @@ package org.usfirst.frc295.GrizzlynatorBase;
 
 
 /**
- * The RobotMap is a mapping from the ports sensors and actuators are wired into
- * to a variable name. This provides flexibility changing wiring, makes checking
- * the wiring easier and significantly reduces the number of magic numbers
- * floating around.
+ * The RobotMap is used to organize constants used in the program.
+ * Provides easily recognizable names for the values
+ * Constants will usually map the pins for sensors and actuators
+ * This provides flexibility in changing the wiring, 
+ * Significantly reduces the possibility of multiple allocation.
  */
 public class RobotMap 
 {
-	
-    public static final   short  CAN_DRIVE_ESC_LEFT_FRONT             = 11;
-    public static final   short  CAN_DRIVE_ESC_LEFT_BACK              = 22;
-    public static final   short  CAN_DRIVE_ESC_RIGHT_FRONT            = 15;
-    public static final   short  CAN_DRIVE_ESC_RIGHT_BACK             = 10;	
+	// CAN IDs
+    public static final   short  CAN_DRIVE_ESC_LEFT_FRONT             = 1;
+    public static final   short  CAN_DRIVE_ESC_LEFT_BACK              = 2;
+    public static final   short  CAN_DRIVE_ESC_RIGHT_FRONT            = 3;
+    public static final   short  CAN_DRIVE_ESC_RIGHT_BACK             = 4;	
 
-    
-    public static final   short  PWM_DRIVE_ESC_LEFT_FRONT             = 1;
-    public static final   short  PWM_DRIVE_ESC_LEFT_BACK              = 2;
-    public static final   short  PWM_DRIVE_ESC_RIGHT_FRONT            = 3;
-    public static final   short  PWM_DRIVE_ESC_RIGHT_BACK             = 4;
+    // PWM PINS (0 - 20)
+    public static final   short  PWM_DRIVE_ESC_LEFT_FRONT             = 0;
+    public static final   short  PWM_DRIVE_ESC_LEFT_BACK              = 1;
+    public static final   short  PWM_DRIVE_ESC_RIGHT_FRONT            = 2;
+    public static final   short  PWM_DRIVE_ESC_RIGHT_BACK             = 3;
     
     public static final   short  PWM_SHOOTER_PADDLE_ESC               = 6;
     public static final   short  PWM_SHOOTER_AIMER_ESC                = 15; //22
     public static final   short  PWM_SHOOTER_ESC_LEFT                 = 17;
-    public static final   short  PWM_SHOOTER_ESC_RIGHT                = 22; //17
+    public static final   short  PWM_SHOOTER_ESC_RIGHT                = 20; //17
+
+    // DIGITAL IO PINS
+    public static final   short  DIO_DRIVE_ENC_RIGHT_CHAN1            = 0;
+    public static final   short  DIO_DRIVE_ENC_RIGHT_CHAN2            = 1;
+    public static final   short  DIO_DRIVE_ENC_LEFT_CHAN1             = 2;
+    public static final   short  DIO_DRIVE_ENC_LEFT_CHAN2             = 3;
+ 
+    public static final   short  DIO_SHOOTER_PADDLE_RETRACTED_SWITCH  = 4;
 
     
-    public static final   short  DIO_SHOOTER_PADDLE_RETRACTED_SWITCH  = 1;
-
-    public static final   short  DIO_DRIVE_ENC_RIGHT_CHAN1            = 15;
-    public static final   short  DIO_DRIVE_ENC_RIGHT_CHAN2            = 16;
-    public static final   short  DIO_DRIVE_ENC_LEFT_CHAN1             = 17;
-    public static final   short  DIO_DRIVE_ENC_LEFT_CHAN2             = 18;
+    // RELAY PINS
+    public static final   short  RLY_GREENLIGHT                       = 0;
+    public static final   short  RLY_FLASHLIGHT                       = 1;
 
     
-
-    public static final   short  RLY_FLASHLIGHT                       = 7;
-
     public static void init()
     {
     }

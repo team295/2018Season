@@ -22,7 +22,7 @@ public class CmdAimAutoPickup extends Command
 
     public CmdAimAutoPickup() 
     {
-        requires(Robot.sysShooterAimer);
+        //requires(Robot.sysShooterAimer);
     }
 
     // Called just before this Command runs the first time

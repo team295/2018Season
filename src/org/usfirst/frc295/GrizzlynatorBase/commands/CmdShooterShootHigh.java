@@ -23,13 +23,13 @@ public class CmdShooterShootHigh extends Command
 	public CmdShooterShootHigh() 
 	{
         // Use requires() here to declare subsystem dependencies
-		requires(Robot.sysShooter);
+		//requires(Robot.sysShooter);
 	}
 	
     // Called just before this Command runs the first time
     protected void initialize() 
     {
-    	Robot.sysShooter.speedShootHigh();
+    	//Robot.sysShooter.speedShootHigh();
     }
 
     
@@ -48,7 +48,7 @@ public class CmdShooterShootHigh extends Command
     // Called once after isFinished returns true
     protected void end() 
     {
-    	Robot.sysShooter.stop();
+    	//Robot.sysShooter.stop();
     }
 
     // Called when another command which requires one or more of the same

@@ -13,10 +13,9 @@ package org.usfirst.frc295.GrizzlynatorBase.subsystems;
 
 import org.usfirst.frc295.GrizzlynatorBase.RobotMap;
 import org.usfirst.frc295.GrizzlynatorBase.commands.*;
-import edu.wpi.first.wpilibj.CANTalon;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
-
+import com.ctre.CANTalon; 
 
 /**
  *

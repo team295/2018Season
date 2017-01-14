@@ -25,7 +25,7 @@ public class CmdShooterPaddleDefaultRetract extends Command
 	
 	public CmdShooterPaddleDefaultRetract() 
 	{
-		requires(Robot.sysShooterPaddle);
+		//requires(Robot.sysShooterPaddle);
 	}
 	
     // Called just before this Command runs the first time
@@ -38,7 +38,7 @@ public class CmdShooterPaddleDefaultRetract extends Command
     // Called repeatedly when no other command requires() the SysShooterPaddle
     protected void execute() 
     {
-   		Robot.sysShooterPaddle.retractPaddle();
+   		//Robot.sysShooterPaddle.retractPaddle();
 	}
 
 	
@@ -51,7 +51,7 @@ public class CmdShooterPaddleDefaultRetract extends Command
     // Called once after isFinished returns true
     protected void end() 
     {
-   		Robot.sysShooterPaddle.stopPaddle();
+   		//Robot.sysShooterPaddle.stopPaddle();
     }
 
     // Called when another command which requires one or more of the same

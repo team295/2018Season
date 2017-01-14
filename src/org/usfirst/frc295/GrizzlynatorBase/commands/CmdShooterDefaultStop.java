@@ -24,14 +24,14 @@ public class CmdShooterDefaultStop extends Command
 	
 	public CmdShooterDefaultStop() 
 	{
-		requires(Robot.sysShooter);
+		//requires(Robot.sysShooter);
 	}
 	
 	
     // Called just before this Command runs the first time
     protected void initialize() 
     {
-    	Robot.sysShooter.stop();
+    	//Robot.sysShooter.stop();
     }
 
     

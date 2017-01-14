@@ -21,7 +21,7 @@ public class CmdAimAutoHigh extends Command
 {
     public CmdAimAutoHigh() 
     {
-        requires(Robot.sysShooterAimer);
+        //requires(Robot.sysShooterAimer);
     }
 
     // Called just before this Command runs the first time

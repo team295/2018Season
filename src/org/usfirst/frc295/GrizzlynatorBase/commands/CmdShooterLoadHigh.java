@@ -22,7 +22,7 @@ public class CmdShooterLoadHigh extends Command
 	
 	public CmdShooterLoadHigh() 
 	{
-		requires(Robot.sysShooter);
+		//requires(Robot.sysShooter);
 	}
 	
     // Called just before this Command runs the first time
@@ -34,7 +34,7 @@ public class CmdShooterLoadHigh extends Command
     // Called repeatedly when this Command is scheduled to run
     protected void execute() 
     {
-    	Robot.sysShooter.speedLoadHigh();
+    	//Robot.sysShooter.speedLoadHigh();
 	}
 
 	
@@ -47,7 +47,7 @@ public class CmdShooterLoadHigh extends Command
     // Called once after isFinished returns true
     protected void end() 
     {
-    	Robot.sysShooter.stop();
+    	//Robot.sysShooter.stop();
     }
 
     // Called when another command which requires one or more of the same

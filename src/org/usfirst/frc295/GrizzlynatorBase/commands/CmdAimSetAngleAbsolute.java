@@ -24,7 +24,7 @@ public class CmdAimSetAngleAbsolute extends Command
 	
     public CmdAimSetAngleAbsolute(double dAngle) 
     {
-    	requires(Robot.sysShooter);
+    	//requires(Robot.sysShooter);
 		_dAngle = dAngle;	
     }
 
@@ -36,7 +36,7 @@ public class CmdAimSetAngleAbsolute extends Command
     // Called repeatedly when this Command is scheduled to run
     protected void execute() 
     {
-    	Robot.sysShooterAimer.setAngleAbsolute(_dAngle);
+    	//Robot.sysShooterAimer.setAngleAbsolute(_dAngle);
     }
 
     // Make this return true when this Command no longer needs to run execute()
