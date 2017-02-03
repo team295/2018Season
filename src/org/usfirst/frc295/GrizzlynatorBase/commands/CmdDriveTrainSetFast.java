@@ -12,7 +12,6 @@
 package org.usfirst.frc295.GrizzlynatorBase.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
-import org.usfirst.frc295.GrizzlynatorBase.Robot;
 
 /**
  *
@@ -26,7 +25,7 @@ public class CmdDriveTrainSetFast extends Command
     // Called just before this Command runs the first time
     protected void initialize() 
     {
-		Robot.sysDriveTrain.setSlowMode(false);
+		//Robot.sysDriveTrain.setSlowMode(false);
     }
 
     // Called repeatedly when this Command is scheduled to run

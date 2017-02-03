@@ -12,18 +12,15 @@
 package org.usfirst.frc295.GrizzlynatorBase.subsystems;
 
 import org.usfirst.frc295.GrizzlynatorBase.RobotMap;
+import org.usfirst.frc295.GrizzlynatorBase.Drive.DriveSignal;
 import org.usfirst.frc295.GrizzlynatorBase.commands.*;
 
 import edu.wpi.first.wpilibj.Encoder;
-import edu.wpi.first.wpilibj.Jaguar;
-import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.PIDSourceType;
-import edu.wpi.first.wpilibj.Joystick.AxisType;
 import edu.wpi.first.wpilibj.RobotDrive;
 import edu.wpi.first.wpilibj.SpeedController;
 import edu.wpi.first.wpilibj.Talon;
 import edu.wpi.first.wpilibj.VictorSP;
-import edu.wpi.first.wpilibj.Talon;
 import edu.wpi.first.wpilibj.CounterBase.EncodingType;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
@@ -40,23 +37,25 @@ public class SysDriveTrain extends Subsystem
     private SpeedController     _escLeftBack;
     private SpeedController     _escRightFront;
     private SpeedController     _escRightBack;
-    
-    private Encoder             _encoDriveRight;
-    private Encoder             _encoDriveLeft;
-    
     private RobotDrive          _robotDrive;
 
-
-    // SCALE THE SPEED: IN SLOW MODE, SCALE THE INPUT DOWN SO IT IS NOT AS FAST 
-    private boolean             _bSlowMode           = false;
-    private double              _dMoveScale          = 1.0;
-    private double              _dRotationScale      = 1.0;
-
-    // SCALE THE DIRECTION: 1 IS WHEN FRONT IS THE FRONT, -1 IS WHEN THE BACK IS THE FRONT 
-    private boolean             _bBackwardMode       = false;
-    private double              _dDirectionScale     = 1.0;
-
-
+    // SENSORS
+    private Encoder             _encoDriveRight;
+    private Encoder             _encoDriveLeft;
+    private NavX_Gyro           _gyro = new NavX_Gyro();
+    
+    // THE ROBOT DRIVETRAIN'S VARIOUS STATES
+    private enum DriveControlState 
+    {
+        OPEN_LOOP, 
+        BASE_LOCKED, 
+        VELOCITY_SETPOINT, 
+        VELOCITY_HEADING_CONTROL, 
+        PATH_FOLLOWING_CONTROL
+    }
+    private DriveControlState   _stateDriveControl = DriveControlState.OPEN_LOOP;
+    
+    
     public SysDriveTrain()
     {
 		super();
@@ -64,20 +63,31 @@ public class SysDriveTrain extends Subsystem
         // ==========================================================
         // SYS DRIVE TRAIN 
         // ==========================================================
-    	_escLeftFront = new Talon(RobotMap.CAN_DRIVE_ESC_LEFT_FRONT);
-        LiveWindow.addActuator("SysDriveTrain", "Esc Left Front",  (Talon) _escLeftFront);
+    	_escLeftFront = new Talon(RobotMap.PWM_ESC_DRIVE_LEFT_FRONT);
+        LiveWindow.addActuator("SysDriveTrain", "Esc Left Front", (Talon) _escLeftFront);
         
-        _escLeftBack = new Talon(RobotMap.CAN_DRIVE_ESC_LEFT_BACK);
-        LiveWindow.addActuator("SysDriveTrain", "Esc Left Back",   (Talon) _escLeftBack);
+        _escLeftBack = new Talon(RobotMap.PWM_ESC_DRIVE_LEFT_BACK);
+        LiveWindow.addActuator("SysDriveTrain", "Esc Left Back", (Talon)  _escLeftBack);
         
-        _escRightFront = new Talon(RobotMap.CAN_DRIVE_ESC_RIGHT_FRONT);
+        _escRightFront = new Talon(RobotMap.PWM_ESC_DRIVE_RIGHT_FRONT);
         LiveWindow.addActuator("SysDriveTrain", "Esc Right Front", (Talon) _escRightFront);
         
-        _escRightBack = new Talon(RobotMap.CAN_DRIVE_ESC_RIGHT_BACK);
-        LiveWindow.addActuator("SysDriveTrain", "Esc Right Back",  (Talon) _escRightBack);
+        _escRightBack = new Talon(RobotMap.PWM_ESC_DRIVE_RIGHT_BACK);
+        LiveWindow.addActuator("SysDriveTrain", "Esc Right Back", (Talon)  _escRightBack);
 
+        /*
+    	_escLeftFront = new VictorSP(RobotMap.PWM_ESC_DRIVE_LEFT_FRONT);
+        LiveWindow.addActuator("SysDriveTrain", "Esc Left Front", (VictorSP) _escLeftFront);
+
+        _escLeftBack = new VictorSP(RobotMap.PWM_ESC_DRIVE_LEFT_BACK);
+        LiveWindow.addActuator("SysDriveTrain", "Esc Left Back", (VictorSP)  _escLeftBack);
         
+        _escRightFront = new VictorSP(RobotMap.PWM_ESC_DRIVE_RIGHT_FRONT);
+        LiveWindow.addActuator("SysDriveTrain", "Esc Right Front", (VictorSP) _escRightFront);
 
+        _escRightBack = new VictorSP(RobotMap.PWM_ESC_DRIVE_RIGHT_BACK);
+        LiveWindow.addActuator("SysDriveTrain", "Esc Right Back", (VictorSP)  _escRightBack);
+        */
         _robotDrive = new RobotDrive(_escLeftFront,  _escLeftBack,
         							 _escRightFront, _escRightBack);
 
@@ -95,7 +105,7 @@ public class SysDriveTrain extends Subsystem
         // allows the robot to keep running without stopping or responding to 
         // driver controls.
         _robotDrive.setSafetyEnabled(true);
-        _robotDrive.setExpiration(1.0);
+        _robotDrive.setExpiration(0.25);
 
         // When using drive() -- The algorithm for steering provides a constant 
         // turn radius for any normal speed range, both forward and backward. 
@@ -108,14 +118,14 @@ public class SysDriveTrain extends Subsystem
         // by the value passed.
         _robotDrive.setMaxOutput(1.0);
 
-
-        _encoDriveLeft = new Encoder(RobotMap.DIO_DRIVE_ENC_LEFT_CHAN1, RobotMap.DIO_DRIVE_ENC_LEFT_CHAN2, false, EncodingType.k4X);
+        // DEFINE ENCODERS FOR THE DRIVETRAIN
+        _encoDriveLeft = new Encoder(RobotMap.DIO_ENC_DRIVE_LEFT_CHAN1, RobotMap.DIO_ENC_DRIVE_LEFT_CHAN2, false, EncodingType.k4X);
         _encoDriveLeft.setDistancePerPulse(1.0);
         _encoDriveLeft.setPIDSourceType(PIDSourceType.kRate);
         LiveWindow.addSensor("SysDriveTrain", "Enco Drive Left", _encoDriveLeft);
 
         
-        _encoDriveRight = new Encoder(RobotMap.DIO_DRIVE_ENC_RIGHT_CHAN1, RobotMap.DIO_DRIVE_ENC_RIGHT_CHAN2, false, EncodingType.k4X);
+        _encoDriveRight = new Encoder(RobotMap.DIO_ENC_DRIVE_RIGHT_CHAN1, RobotMap.DIO_ENC_DRIVE_RIGHT_CHAN2, false, EncodingType.k4X);
         _encoDriveRight.setDistancePerPulse(1.0);
         _encoDriveRight.setPIDSourceType(PIDSourceType.kRate);
         LiveWindow.addSensor("SysDriveTrain", "Enco Drive Right", _encoDriveRight);
@@ -132,128 +142,45 @@ public class SysDriveTrain extends Subsystem
     }
 
 
-	/**
-     *  If the input is within the +- the deadband range, then ignore the input
+    /**
+     * In Open Loop, Control directly the left and right motor values
+     * just like tankDrive.
+     * 
+     * @param signal
      */
-	private double deadbandAdjust(double dInput) 
+    public synchronized void setOpenLoop(DriveSignal signal) 
     {
-    	double dDeadbandRange = 0.025;
-		return (Math.abs(dInput) < dDeadbandRange) ? 0 : dInput;
-	}
-
-
-
-    // PUT METHODS FOR CONTROLLING THIS SUBSYSTEM HERE.  GENERALLY CALLED FROM THE COMMANDS
-    public void setSlowMode(boolean bSlowMode)   
-    {
-        if (bSlowMode == true)
+        if (_stateDriveControl != DriveControlState.OPEN_LOOP) 
         {
-            _bSlowMode           = true;
-            _dMoveScale          = 0.8;
-            _dRotationScale      = 0.6;
+        	//_escLeftFront.changeControlMode(CANTalon.TalonControlMode.PercentVbus);
+        	//_escRightFront.changeControlMode(CANTalon.TalonControlMode.PercentVbus);
+            _stateDriveControl = DriveControlState.OPEN_LOOP;
         }
-        else
-        {
-            _bSlowMode           = false;
-            _dMoveScale          = 1.0;
-            _dRotationScale      = 1.0;
-        }
+
+        // IF OPERATING THE JOYSTICK TO GO STRAIGHT SPINS THE ROBOT, 
+        // ADD A "-1*" TO signal.leftMotor or signal.rightMotor
+        _robotDrive.tankDrive(signal.leftMotor, -1*signal.rightMotor);
     }
     
-    public boolean getSlowMode()
-    {
-        return(_bSlowMode);
-    }   
-
-
-    public void setBackwardMode(boolean bBackwardMode)   
-    {
-        if (bBackwardMode == true)
-        {
-            _bBackwardMode       = true;
-            _dDirectionScale     = -1.0;
-        }
-        else
-        {
-            _bBackwardMode       = false;
-            _dDirectionScale     =  1.0;
-        }
-    }
-
-    public boolean getBackwardMode()
-    {
-        return(_bBackwardMode);
-    }   
-
-
-    public void setSpeed(double left, double right) 
-    {
-		_robotDrive.setLeftRightMotorOutputs(_dDirectionScale * _dRotationScale * deadbandAdjust(left), 
-                                             _dDirectionScale * _dRotationScale * deadbandAdjust(right));
-	}
-
-
-	public void drive(double magnitiude, double curve)
-    {
-		_robotDrive.drive(_dDirectionScale * _dMoveScale     * deadbandAdjust(magnitiude), 
-                          _dDirectionScale * _dRotationScale * deadbandAdjust(curve));
-	}
-
-    /**
-	 * @param joy The ps3 style joystick to use to drive tank style.
-	 */
-	public void drive(Joystick joy) 
-    {
-		drive(_dDirectionScale * _dMoveScale     * deadbandAdjust(-joy.getY()),
-              _dDirectionScale * _dRotationScale * deadbandAdjust(-joy.getAxis(AxisType.kThrottle)));
-	}
-
-
-
-    /**
-	 * Tank style driving for the DriveTrain.
-	 * @param left Speed in range [-1,1]
-	 * @param right Speed in range [-1,1]
-	 */
-	public void tankDrive(double left, double right) 
-    {
-		if(_bBackwardMode == true) 
-        {
-			_robotDrive.tankDrive(   _dDirectionScale * _dRotationScale * deadbandAdjust(right), 
-                                  -1*_dDirectionScale * _dRotationScale * deadbandAdjust(left));
-		} else {
-			_robotDrive.tankDrive(   _dDirectionScale * _dRotationScale * deadbandAdjust(left),
-                                  -1*_dDirectionScale * _dRotationScale * deadbandAdjust(right));
-		}
-	}	
-	
-    
-	public void arcadeDrive(double move, double rotation) 
-    {
-		_robotDrive.arcadeDrive(_dDirectionScale * _dMoveScale     * deadbandAdjust(move), 
-                                _dDirectionScale * _dRotationScale * deadbandAdjust(rotation));
-	}
-
+  
 	/**
 	 * Reset the robots sensors to the zero states.
 	 */
 	public void reset() 
     {
-//		_gyro.reset();
 		_encoDriveRight.reset();
 		_encoDriveLeft.reset();
+		_gyro.reset();
 	}
-
 
     /**
 	 * @return The robots heading in degrees.
 	 */
-	public double getHeading() 
+	public double getGyroAngle() 
     {
-//		return gyro.getAngle();
-		return (0);
+		return _gyro.getAngle();
 	}
-
+	
 	/**
 	 * @return The distance driven (average of left and right encoders).
 	 */

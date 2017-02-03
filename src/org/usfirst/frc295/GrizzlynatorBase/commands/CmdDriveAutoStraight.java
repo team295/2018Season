@@ -13,6 +13,7 @@ package org.usfirst.frc295.GrizzlynatorBase.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
 import org.usfirst.frc295.GrizzlynatorBase.Robot;
+import org.usfirst.frc295.GrizzlynatorBase.Drive.DriveSignal;
 
 /**
  *
@@ -43,7 +44,8 @@ public class CmdDriveAutoStraight extends Command
     // Called repeatedly when this Command is scheduled to run
     protected void execute() 
     {
-        Robot.sysDriveTrain.drive(_dMove, _dRotation);
+        //Robot.sysDriveTrain.drive(_dMove, _dRotation);
+    	/* FIXME */ Robot.sysDriveTrain.setOpenLoop(new DriveSignal(0, 0));
     }
 
     // Make this return true when this Command no longer needs to run execute()
@@ -55,7 +57,7 @@ public class CmdDriveAutoStraight extends Command
     // Called once after isFinished returns true
     protected void end() 
     {
-    	Robot.sysDriveTrain.drive(0, 0);
+    	Robot.sysDriveTrain.setOpenLoop(new DriveSignal(0, 0));;
     }
 
     // Called when another command which requires one or more of the same

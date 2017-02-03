@@ -12,16 +12,26 @@
 package org.usfirst.frc295.GrizzlynatorBase.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+
+import org.usfirst.frc295.GrizzlynatorBase.JoystickDriver;
 import org.usfirst.frc295.GrizzlynatorBase.Robot;
+import org.usfirst.frc295.GrizzlynatorBase.Drive.CheesyDriveHelper;
+import org.usfirst.frc295.GrizzlynatorBase.Drive.DriveSignal;
 
 /**
  *
  */
 public class CmdDriveWithJoystick extends Command 
 {
+	private JoystickDriver      _joystickDriver;
+	private CheesyDriveHelper   _helperCheesyDrive;
+	
     public CmdDriveWithJoystick() 
     {
         requires(Robot.sysDriveTrain);
+        _joystickDriver = Robot.oi.getJoystickDriver();
+        _helperCheesyDrive = new CheesyDriveHelper();
     }
 
     // Called just before this Command runs the first time
@@ -32,8 +42,14 @@ public class CmdDriveWithJoystick extends Command
     // Called repeatedly when this Command is scheduled to run
     protected void execute() 
     {
-    	Robot.sysDriveTrain.tankDrive(Robot.oi.getJoystickDriver().getRawAxis(1), Robot.oi.getJoystickDriver().getRawAxis(5));
+        double dThrottle   = _joystickDriver.getDriveTrainThrottleValue();
+        double dTurn       = _joystickDriver.getDriveTrainTurnValue();
+        boolean bQuickTurn = _joystickDriver.getDriveTrainQuickTurnValue();
 
+        DriveSignal oDriveSignal = _helperCheesyDrive.cheesyDrive(dThrottle, dTurn, bQuickTurn);
+        Robot.sysDriveTrain.setOpenLoop(oDriveSignal);
+
+    	SmartDashboard.putNumber("Drivetrain Distance", Robot.sysDriveTrain.getDistance());
     }
 
     // Make this return true when this Command no longer needs to run execute()
@@ -45,7 +61,7 @@ public class CmdDriveWithJoystick extends Command
     // Called once after isFinished returns true
     protected void end() 
     {
-        Robot.sysDriveTrain.drive(0, 0);
+        Robot.sysDriveTrain.setOpenLoop(new DriveSignal(0, 0));
     }
 
     // Called when another command which requires one or more of the same

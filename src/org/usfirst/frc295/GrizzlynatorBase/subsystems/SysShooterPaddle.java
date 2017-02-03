@@ -38,10 +38,10 @@ public class SysShooterPaddle extends Subsystem
 		// ==========================================================
         // SYS SHOOTER PADDLE 
         // ==========================================================
-    	_escPaddle = new VictorSP(RobotMap.PWM_SHOOTER_PADDLE_ESC);
+    	_escPaddle = new VictorSP(RobotMap.TBD);
         LiveWindow.addActuator("Sys Shooter Paddle", "Esc Paddle", _escPaddle);
         
-        _switchPaddleRetractDetect = new DigitalInput(RobotMap.DIO_SHOOTER_PADDLE_RETRACTED_SWITCH);
+        _switchPaddleRetractDetect = new DigitalInput(RobotMap.TBD);
         LiveWindow.addActuator("Sys Shooter Paddle", "Retract Switch", _switchPaddleRetractDetect);
     	
     }

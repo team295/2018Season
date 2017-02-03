@@ -17,17 +17,20 @@ import org.usfirst.frc295.GrizzlynatorBase.Robot;
 /**
  *
  */
-public class CmdDriveTrainSetForwardArm extends Command 
+public class CmdFlywheelSetSpeed extends Command 
 {
-
-    public CmdDriveTrainSetForwardArm() 
+	private double _dSpeed = 0;
+	
+    public CmdFlywheelSetSpeed(double dSpeed) 
     {
+    	_dSpeed = dSpeed;
     }
 
     // Called just before this Command runs the first time
     protected void initialize() 
     {
-		Robot.sysDriveTrain.setBackwardMode(false);
+		Robot.sysFlywheel.setOpenLoop(_dSpeed);
+		System.out.println("Started CmdFlyWheelSetSpeed");
     }
 
     // Called repeatedly when this Command is scheduled to run
@@ -38,12 +41,13 @@ public class CmdDriveTrainSetForwardArm extends Command
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() 
     {
-        return true;
+        return false;
     }
 
     // Called once after isFinished returns true
     protected void end() 
     {
+		Robot.sysFlywheel.stop();
     }
 
     // Called when another command which requires one or more of the same

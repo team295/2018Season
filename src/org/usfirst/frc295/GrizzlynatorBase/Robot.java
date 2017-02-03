@@ -18,8 +18,11 @@ import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
+import org.usfirst.frc295.GrizzlynatorBase.Logger.Logger;
+import org.usfirst.frc295.GrizzlynatorBase.Looper.Looper;
 import org.usfirst.frc295.GrizzlynatorBase.commands.*;
 import org.usfirst.frc295.GrizzlynatorBase.subsystems.*;
+import org.usfirst.frc295.GrizzlynatorBase.subsystems.SysDriveTrainShifter;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -31,15 +34,25 @@ import org.usfirst.frc295.GrizzlynatorBase.subsystems.*;
 public class Robot extends IterativeRobot 
 {
 
+    // Enabled looper is called at 50Hz whenever the robot is enabled
+    public static Looper _EnabledLooper = new Looper(RobotMap.LOOPER_PERIOD_HZ);
+
+    // Disabled looper is called at 50Hz whenever the robot is disabled
+    public static Looper _DisabledLooper = new Looper(RobotMap.LOOPER_PERIOD_HZ);
+	
+	
+    
     Command autonomousCommand;
     SendableChooser chooser;
 
     // Operator Interface from OJ.java 
     public static OI oi;
 
-    // MAJOR SYSTEMS
+    // MAJOR SUBSYSTEMS
     public static SysDriveTrain sysDriveTrain;
-
+    public static SysDriveTrainShifter sysDriveTrainShifter;
+    public static SysCompressor sysCompressor;
+    public static SysFlywheel sysFlywheel;
 
     /**
      * This function is run when the robot is first started up and should be
@@ -47,29 +60,38 @@ public class Robot extends IterativeRobot
      */
     public void robotInit() 
     {
-        RobotMap.init();
-
-        // Instantiate Subsystems needed by the OI
-        sysDriveTrain = new SysDriveTrain();
-
-
-        // OI must be constructed after subsystems. If the OI creates Commands
-        //(which it very likely will), subsystems are not guaranteed to be
-        // constructed yet. Thus, their requires() statements may grab null
-
-        // pointers. Bad news. Don't move it.
-        oi = new OI();
-
-        // TODO: Need to know how SendableChooser work
-        /*
-        chooser = new SendableChooser();
-        chooser.addDefault("Default Auto", new AutonomousCommand());
-        //chooser.addObject("My Auto", new MyAutoCommand());
-        SmartDashboard.putData("Auto mode", chooser);
-        */
-        
-        // Show what command your subsystem is running on the SmartDashboard
-        SmartDashboard.putData(sysDriveTrain);
+        try 
+        {
+        	Logger.logRobotInit();
+	        RobotMap.init();
+	
+	        // Instantiate Subsystems needed by the OI
+	        sysDriveTrain = new SysDriveTrain();
+	        sysDriveTrainShifter = new SysDriveTrainShifter();
+	        sysFlywheel = new SysFlywheel();
+	
+	        // OI must be constructed after subsystems. If the OI creates Commands
+	        //(which it very likely will), subsystems are not guaranteed to be
+	        // constructed yet. Thus, their requires() statements may grab null
+	        // pointers. Bad news. Don't move it.
+	        oi = new OI();
+	
+	        // TODO: Need to know how SendableChooser work
+	        /*
+	        chooser = new SendableChooser();
+	        chooser.addDefault("Default Auto", new AutonomousCommand());
+	        //chooser.addObject("My Auto", new MyAutoCommand());
+	        SmartDashboard.putData("Auto mode", chooser);
+	        */
+	        
+	        // Show what command your subsystem is running on the SmartDashboard
+	        SmartDashboard.putData(sysDriveTrain);
+        }
+        catch (Throwable t) 
+        {
+        	Logger.logThrowable(t);
+            throw t;
+        }
     }
 
 
@@ -79,13 +101,33 @@ public class Robot extends IterativeRobot
      */
     public void disabledInit()
     {
-
+        try 
+        {
+        	Logger.logDisabledInit();
+            
+            // CONFIGURE LOOPERS
+            _EnabledLooper.stop();
+            _DisabledLooper.start();
+		} 
+        catch (Throwable t) 
+        {
+        	Logger.logThrowable(t);
+		    throw t;	
+		}
     }
 
 
     public void disabledPeriodic() 
     {
-        Scheduler.getInstance().run();
+        try 
+        {
+            Scheduler.getInstance().run();
+		} 
+        catch (Throwable t) 
+        {
+        	Logger.logThrowable(t);
+		    throw t;	
+		}
     }
 
 
@@ -100,27 +142,41 @@ public class Robot extends IterativeRobot
 	 */
     public void autonomousInit() 
     {
-        // Instantiate the command used for the autonomous period
-        autonomousCommand = new AutonomousCommand();
-        
-        // TODO: How does the chooser work?
-        // autonomousCommand = (Command) chooser.getSelected();
-        
-        // TODO: How does the SmartDashboard.getString work?
-		/* String autoSelected = SmartDashboard.getString("Auto Selector", "Default");
-		switch(autoSelected) {
-		case "My Auto":
-			autonomousCommand = new MyAutoCommand();
-			break;
-		case "Default Auto":
-		default:
-			autonomousCommand = new ExampleCommand();
-			break;
-		} */
-        
-        
-        // schedule the autonomous command (example)
-        if (autonomousCommand != null) autonomousCommand.start();
+        try 
+        {
+        	Logger.logAutoInit();
+        	
+        	// Instantiate the command used for the autonomous period
+            autonomousCommand = new AutonomousCommand();
+            
+            // TODO: How does the chooser work?
+            // autonomousCommand = (Command) chooser.getSelected();
+            
+            // TODO: How does the SmartDashboard.getString work?
+    		/* String autoSelected = SmartDashboard.getString("Auto Selector", "Default");
+    		switch(autoSelected) {
+    		case "My Auto":
+    			autonomousCommand = new MyAutoCommand();
+    			break;
+    		case "Default Auto":
+    		default:
+    			autonomousCommand = new ExampleCommand();
+    			break;
+    		} */
+
+            // CONFIGURE LOOPERS
+            _EnabledLooper.stop();
+            _DisabledLooper.start();
+
+            // schedule the autonomous command (example)
+            if (autonomousCommand != null) autonomousCommand.start();
+
+        } 
+        catch (Throwable t) 
+        {
+        	Logger.logThrowable(t);
+		    throw t;	
+		}
     }
 
 
@@ -129,18 +185,42 @@ public class Robot extends IterativeRobot
      */
     public void autonomousPeriodic() 
     {
-        Scheduler.getInstance().run();
-        log();
+        try 
+        {
+            Scheduler.getInstance().run();
+            log();
+		} 
+        catch (Throwable t) 
+        {
+        	Logger.logThrowable(t);
+		    throw t;	
+		}
     }
 
 
     public void teleopInit() 
     {
-        // This makes sure that the autonomous stops running when
-        // teleop starts running. If you want the autonomous to
-        // continue until interrupted by another command, remove
-        // this line or comment it out.
-        if (autonomousCommand != null) autonomousCommand.cancel();
+        try 
+        {
+        	Logger.logTeleopInit();
+
+        	// This makes sure that the autonomous stops running when
+            // teleop starts running. If you want the autonomous to
+            // continue until interrupted by another command, remove
+            // this line or comment it out.
+            if (autonomousCommand != null) autonomousCommand.cancel();
+
+            // CONFIGURE LOOPERS
+            _EnabledLooper.stop();
+            _DisabledLooper.start();
+            
+            
+		} 
+        catch (Throwable t) 
+        {
+        	Logger.logThrowable(t);
+		    throw t;	
+		}
     }
 
 
@@ -149,8 +229,16 @@ public class Robot extends IterativeRobot
      */
     public void teleopPeriodic() 
     {
-        Scheduler.getInstance().run();
-        log();
+        try 
+        {
+            Scheduler.getInstance().run();
+            log();
+		} 
+        catch (Throwable t) 
+        {
+        	Logger.logThrowable(t);
+		    throw t;	
+		}
     }
 
 
@@ -159,7 +247,15 @@ public class Robot extends IterativeRobot
      */
     public void testPeriodic() 
     {
-        LiveWindow.run();
+        try 
+        {
+            LiveWindow.run();
+		} 
+        catch (Throwable t) 
+        {
+        	Logger.logThrowable(t);
+		    throw t;	
+		}
     }
 
     /**

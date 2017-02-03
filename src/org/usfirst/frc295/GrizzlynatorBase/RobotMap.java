@@ -21,37 +21,57 @@ package org.usfirst.frc295.GrizzlynatorBase;
  */
 public class RobotMap 
 {
-	// CAN IDs
-    public static final   short  CAN_DRIVE_ESC_LEFT_FRONT             = 1;
-    public static final   short  CAN_DRIVE_ESC_LEFT_BACK              = 2;
-    public static final   short  CAN_DRIVE_ESC_RIGHT_FRONT            = 3;
-    public static final   short  CAN_DRIVE_ESC_RIGHT_BACK             = 4;	
 
+	// CAN IDs ARE UNIQUE PER DEVICE TYPE
+    public static final   short  CAN_ESC_DRIVE_LEFT_FRONT               = 0;
+    public static final   short  CAN_ESC_DRIVE_LEFT_BACK                = 1;
+    public static final   short  CAN_ESC_DRIVE_RIGHT_FRONT              = 2;
+    public static final   short  CAN_ESC_DRIVE_RIGHT_BACK               = 3;	
+    public static final   short  CAN_ESC_FLYWHEEL                       = 15;	
+
+    public static final   short  CAN_PCM_MODULE                         = 0;	
+    public static final   short  CAN_PCM_PORT_DRIVE_SHIFTER             = 1;	
+       
     // PWM PINS (0 - 20)
-    public static final   short  PWM_DRIVE_ESC_LEFT_FRONT             = 0;
-    public static final   short  PWM_DRIVE_ESC_LEFT_BACK              = 1;
-    public static final   short  PWM_DRIVE_ESC_RIGHT_FRONT            = 2;
-    public static final   short  PWM_DRIVE_ESC_RIGHT_BACK             = 3;
+    public static final   short  PWM_ESC_DRIVE_LEFT_FRONT               = 0;
+    public static final   short  PWM_ESC_DRIVE_LEFT_BACK                = 1;
+    public static final   short  PWM_ESC_DRIVE_RIGHT_FRONT              = 2;
+    public static final   short  PWM_ESC_DRIVE_RIGHT_BACK               = 3;
     
-    public static final   short  PWM_SHOOTER_PADDLE_ESC               = 6;
-    public static final   short  PWM_SHOOTER_AIMER_ESC                = 15; //22
-    public static final   short  PWM_SHOOTER_ESC_LEFT                 = 17;
-    public static final   short  PWM_SHOOTER_ESC_RIGHT                = 20; //17
-
     // DIGITAL IO PINS
-    public static final   short  DIO_DRIVE_ENC_RIGHT_CHAN1            = 0;
-    public static final   short  DIO_DRIVE_ENC_RIGHT_CHAN2            = 1;
-    public static final   short  DIO_DRIVE_ENC_LEFT_CHAN1             = 2;
-    public static final   short  DIO_DRIVE_ENC_LEFT_CHAN2             = 3;
- 
-    public static final   short  DIO_SHOOTER_PADDLE_RETRACTED_SWITCH  = 4;
+    public static final   short  DIO_ENC_DRIVE_RIGHT_CHAN1              = 0;
+    public static final   short  DIO_ENC_DRIVE_RIGHT_CHAN2              = 1;
+    public static final   short  DIO_ENC_DRIVE_LEFT_CHAN1               = 2;
+    public static final   short  DIO_ENC_DRIVE_LEFT_CHAN2               = 3;   
 
-    
     // RELAY PINS
-    public static final   short  RLY_GREENLIGHT                       = 0;
-    public static final   short  RLY_FLASHLIGHT                       = 1;
+    public static final   short  RLY_GREENLIGHT                         = 0;
+    public static final   short  RLY_FLASHLIGHT                         = 1;
 
     
+    // SYS FLYWHEEL PARAMETERS
+    public static final   double FLYWHEEL_KP                            = 0.12; 
+    public static final   double FLYWHEEL_KI                            = 0;
+    public static final   double FLYWHEEL_KD                            = 0.5; 
+    public static final   double FLYWHEEL_KF                            = 0.014;
+    public static final   int    FLYWHEEL_IZONE                         = (int) (1023.0 / FLYWHEEL_KP); 
+    public static final   double FLYWHEEL_RAMP_RATE                     = 0; 
+    public static final   double FLYWHEEL_ONTARGET_TOLERANCE            = 100.0; 
+
+    
+    // SYS DRIVETRAIN  PARAMETERS
+    public static final   double DRIVE_WHEEL_DIAMETER                   = 5.0;
+    public static final   double DRIVE_LOW_GEAR_MAX_SPEED_INCH_PER_SEC  = 12.0 * 7.0;
+    public static final   double DRIVE_KP                               = 0.03;
+    public static final   double DRIVE_KI                               = 0.00;
+    public static final   double DRIVE_KD                               = 0.00;
+    public static final   double DRIVE_KF                               = 0.00;
+
+    // LOOPER PARAMETERS
+    public static final   double LOOPER_PERIOD_HZ                       = 50;
+    
+
+    public static final   short  TBD                                    = 0;
     public static void init()
     {
     }

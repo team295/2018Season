@@ -12,7 +12,7 @@
 package org.usfirst.frc295.GrizzlynatorBase.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
-import org.usfirst.frc295.GrizzlynatorBase.Robot;
+
 
 /**
  *  DEFAULT for SysShooter Subsystem

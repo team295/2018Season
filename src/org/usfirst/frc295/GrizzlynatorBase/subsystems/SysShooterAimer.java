@@ -63,7 +63,7 @@ public class SysShooterAimer extends Subsystem
         // ==========================================================
         // SYS SHOOTER AIMER 
         // ==========================================================
-        _escAimer = new CANTalon(RobotMap.PWM_SHOOTER_AIMER_ESC);
+        _escAimer = new CANTalon(RobotMap.TBD);
         _escAimer.setFeedbackDevice(CANTalon.FeedbackDevice.QuadEncoder);
         _escAimer.changeControlMode(CANTalon.TalonControlMode.Position);
         _escAimer.configPeakOutputVoltage(5.8, -2.2); //2.5, -4.4

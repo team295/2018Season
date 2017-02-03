@@ -38,16 +38,18 @@ public class SysFlashLight extends Subsystem
     
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
-    public void On()
+    public void On(boolean bOn)
     {
-    	_relayFlashlight.set(Relay.Value.kOn);
+    	if (bOn == true)
+    	{
+        	_relayFlashlight.set(Relay.Value.kOn);
+    	}
+    	else
+    	{
+        	_relayFlashlight.set(Relay.Value.kOff);
+    	}   		
     }
 
-    public void Off()
-    {
-    	_relayFlashlight.set(Relay.Value.kOff);
-    }
-    
     
     public void initDefaultCommand() 
     {

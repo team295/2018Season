@@ -13,7 +13,6 @@ package org.usfirst.frc295.GrizzlynatorBase;
 
 import org.usfirst.frc295.GrizzlynatorBase.commands.*;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 
 
@@ -51,8 +50,12 @@ public class OI
     // button.whenReleased(new ExampleCommand());
 
 
-    private Joystick         _joystickDriver = new Joystick(0);
-    private Joystick         _joystickOperator = new Joystick(1);
+    private JoystickDriver   _joystickDriver   
+                             = new JoystickDriver(0, JoystickDriver.JoystickType.XBOX);
+                           //  = new JoystickDriver(0, JoystickDriver.JoystickType.LOGITECH);
+    private JoystickOperator _joystickOperator; 
+    //                         = new JoystickOperator(1, JoystickOperator.JoystickType.XBOX);
+                           //  = new JoystickOperator(1, JoystickOperator.JoystickType.LOGITECH);
 
     public OI() 
     {
@@ -67,48 +70,46 @@ public class OI
         //=====================================================================
         // DRIVER JOYSTICK BUTTON COMMANDS 
         //=====================================================================
-        JoystickButton _btnDriverA = new JoystickButton(_joystickDriver,1);
-		_btnDriverA.whenPressed(new CmdDriveTrainSetSlow());
-        SmartDashboard.putData("Cmd Drive Slow", new CmdDriveTrainSetSlow());
+        JoystickButton _btnDriverA = _joystickDriver.getDriveTrainShifterSetLowButton();
+		_btnDriverA.whenPressed(new CmdDriveTrainShifterSetLow());
+        SmartDashboard.putData("CMD Shift Slow", new CmdDriveTrainShifterSetLow());
 		
-        JoystickButton _btnDriverY = new JoystickButton(_joystickDriver, 4);
-        _btnDriverY.whenPressed(new CmdDriveTrainSetFast());	
-        SmartDashboard.putData("Cmd Drive Fast", new CmdDriveTrainSetFast());
+        JoystickButton _btnDriverY = _joystickDriver.getDriveTrainShifterSetHighButton();
+        _btnDriverY.whenPressed(new CmdDriveTrainShifterSetHigh());	
+        SmartDashboard.putData("CMD Shift Fast", new CmdDriveTrainShifterSetHigh());
+
+/*
+        JoystickButton _btnDriverB = new JoystickButton(_joystickDriver, 3);
+        _btnDriverY.whenPressed(new CmdFlywheelSetSpeed(9000));	
+        SmartDashboard.putData("Cmd Flywheel", new CmdFlywheelSetSpeed(2500));
+*/
+        /*
 	
         JoystickButton _btnDriverB = new JoystickButton(_joystickDriver, 3);
-		_btnDriverB.whenPressed(new CmdDriveTrainSetForwardArm());
-        SmartDashboard.putData("Cmd Drive Forward Arm", new CmdDriveTrainSetForwardArm());	
+		_btnDriverB.whenPressed(new CmdDriveTrainSetForward());
+        SmartDashboard.putData("Cmd Drive Forward Arm", new CmdDriveTrainSetForward());	
 		
-        JoystickButton _btnDriverX = new JoystickButton(_joystickDriver, 2);
-		_btnDriverX.whenPressed(new CmdDriveTrainSetForwardShooter());
-        SmartDashboard.putData("Cmd Drive Forward Shooter", new CmdDriveTrainSetForwardShooter());
-
+        JoystickButton _btnDriverX = new JoystickButton(_joystickDriver, 4);
+		_btnDriverX.whenPressed(new CmdDriveTrainSetBackward());
+        SmartDashboard.putData("Cmd Drive Forward Shooter", new CmdDriveTrainSetBackward());
+		*/
+        
+        //JoystickButton _btnDriver5 = new JoystickButton(_joystickDriver, 1);
+		//_btnDriver5.whenPressed(new CmdFlywheelSetSpeed(0.25));
+        //SmartDashboard.putData("Cmd Flywheel Speed 0.25", new CmdFlywheelSetSpeed(0.25));
         
         //=====================================================================
         // OPERATOR JOYSTICK BUTTON COMMANDS 
         //=====================================================================
-        //JoystickButton _btnOperator9 = new JoystickButton(_joystickOperator, 9);
-		//_btnOperator9.whenPressed(new CmdShooterPaddleActivate());
-        //SmartDashboard.putData("Cmd Shooter Paddle Activate", new CmdShooterPaddleActivate());
-		
-		
-        //JoystickButton _btnOperator10 = new JoystickButton(_joystickOperator, 10);
-		//_btnOperator10.whileHeld(new CmdShooterShootHigh());
-        //SmartDashboard.putData("Cmd Shooter Spin Shoot", new CmdShooterShootHigh());
-		
-		
-        //JoystickButton _btnOperator13 = new JoystickButton(_joystickOperator, 13);
-		//_btnOperator13.whileHeld(new CmdShooterLoadHigh());
-        //SmartDashboard.putData("Cmd Shooter Spin Load",   new CmdShooterLoadHigh());
 
     }
 
-    public Joystick getJoystickDriver() 
+    public JoystickDriver getJoystickDriver() 
     {
         return _joystickDriver;
     }
 
-    public Joystick getJoystickOperator() 
+    public JoystickOperator getJoystickOperator() 
     {
         return _joystickOperator;
     }

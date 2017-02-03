@@ -12,56 +12,45 @@
 package org.usfirst.frc295.GrizzlynatorBase.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
+import org.usfirst.frc295.GrizzlynatorBase.Robot;
 
 /**
- *  Must be careful that the Paddle is fully retracted before
- *  trying to shoot again.
- *  
- *  If the Paddle is not retracted, we will not start the shooter motor.
- *  The CmdShooterPaddleDefault will resume retracting the paddle
- *  And hopefully completes before the shoot is attempted again 
+ *
  */
-public class CmdShooterPaddleActivate extends Command 
+public class CmdDriveTrainShifterSetLow extends Command 
 {
-	
-	public CmdShooterPaddleActivate() 
-	{
-		//requires(Robot.sysShooterPaddle);
-        //setTimeout(.5);
-	}
-	
+
+    public CmdDriveTrainShifterSetLow() 
+    {
+    	requires(Robot.sysDriveTrainShifter);
+    }
+
     // Called just before this Command runs the first time
     protected void initialize() 
     {
-    	//if (Robot.sysShooterPaddle.isRetracted() == true)
-    	//{
-    	//	Robot.sysShooterPaddle.startShoot();;
-    	//}
+		Robot.sysDriveTrainShifter.setLowGear();
+		System.out.println("Cmd Low Gear");
     }
 
-    
     // Called repeatedly when this Command is scheduled to run
     protected void execute() 
     {
-	}
+    }
 
-	
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() 
     {
-        return isTimedOut();
+        return true;
     }
 
     // Called once after isFinished returns true
     protected void end() 
     {
-    	//Robot.sysShooterPaddle.stopPaddle();
     }
 
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() 
     {
-        end();
-    }    
-}
+    }
+}    
