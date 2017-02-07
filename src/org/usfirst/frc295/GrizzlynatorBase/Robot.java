@@ -18,6 +18,7 @@ import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
+import org.usfirst.frc295.GrizzlynatorBase.RobotMap.RobotID;
 import org.usfirst.frc295.GrizzlynatorBase.Logger.Logger;
 import org.usfirst.frc295.GrizzlynatorBase.Looper.Looper;
 import org.usfirst.frc295.GrizzlynatorBase.commands.*;
@@ -65,8 +66,21 @@ public class Robot extends IterativeRobot
         	Logger.logRobotInit();
 	        RobotMap.init();
 	
-	        // Instantiate Subsystems needed by the OI
-	        sysDriveTrain = new SysDriveTrain();
+	        // INSTANTIATE SUB-SYSTEMS FOR THE ROBOT 	        
+	        if (RobotMap.ROBOT_ID == RobotID.BOT_COMP1)
+	        {
+		        sysDriveTrain = new SysDriveTrainCANTalon();	        	
+	        }
+	        else if (RobotMap.ROBOT_ID == RobotID.BOT_PROTO)
+	        {
+		        sysDriveTrain = new SysDriveTrainProto();	        	
+	        }
+	        else if (RobotMap.ROBOT_ID == RobotID.BOT_FORKLIFT)
+	        {
+		        sysDriveTrain = new SysDriveTrainForklift();	        	
+	        }
+	        
+
 	        sysDriveTrainShifter = new SysDriveTrainShifter();
 	        sysFlywheel = new SysFlywheel();
 	

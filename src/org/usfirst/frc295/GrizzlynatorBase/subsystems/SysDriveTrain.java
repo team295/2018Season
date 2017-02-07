@@ -11,41 +11,34 @@
 
 package org.usfirst.frc295.GrizzlynatorBase.subsystems;
 
-import org.usfirst.frc295.GrizzlynatorBase.RobotMap;
 import org.usfirst.frc295.GrizzlynatorBase.Drive.DriveSignal;
-import org.usfirst.frc295.GrizzlynatorBase.commands.*;
+import org.usfirst.frc295.GrizzlynatorBase.commands.CmdDriveWithJoystick;
 
 import edu.wpi.first.wpilibj.Encoder;
-import edu.wpi.first.wpilibj.PIDSourceType;
 import edu.wpi.first.wpilibj.RobotDrive;
-import edu.wpi.first.wpilibj.SpeedController;
-import edu.wpi.first.wpilibj.Talon;
-import edu.wpi.first.wpilibj.VictorSP;
-import edu.wpi.first.wpilibj.CounterBase.EncodingType;
 import edu.wpi.first.wpilibj.command.Subsystem;
-import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 
 /**
- *
+ * Troubleshooting:
+ * 1. OPERATING THE JOYSTICK TO GO STRAIGHT SPINS THE ROBOT
+ *    Invert the "setInvertedMotor" statements for one side
+ *    
+ * 2. OPERATING THE JOYSTICK TO TURN RIGHT TURNS THE ROBOT LEFT
+ *    Invert the "setInvertedMotor" statements for all motors
  */
-public class SysDriveTrain extends Subsystem 
+public abstract class SysDriveTrain extends Subsystem 
 {
-	// DECLARE COMPONENTS OF THE DRIVETRAIN
-    private SpeedController     _escLeftFront;
-    private SpeedController     _escLeftBack;
-    private SpeedController     _escRightFront;
-    private SpeedController     _escRightBack;
-    private RobotDrive          _robotDrive;
+    protected RobotDrive          _robotDrive;
 
     // SENSORS
-    private Encoder             _encoDriveRight;
-    private Encoder             _encoDriveLeft;
-    private NavX_Gyro           _gyro = new NavX_Gyro();
+    protected Encoder             _encoDriveRight;
+    protected Encoder             _encoDriveLeft;
+    protected NavX_Gyro           _gyro = new NavX_Gyro();
     
     // THE ROBOT DRIVETRAIN'S VARIOUS STATES
-    private enum DriveControlState 
+    protected enum DriveControlState 
     {
         OPEN_LOOP, 
         BASE_LOCKED, 
@@ -53,85 +46,15 @@ public class SysDriveTrain extends Subsystem
         VELOCITY_HEADING_CONTROL, 
         PATH_FOLLOWING_CONTROL
     }
-    private DriveControlState   _stateDriveControl = DriveControlState.OPEN_LOOP;
+    protected DriveControlState   _stateDriveControl = DriveControlState.OPEN_LOOP;
     
     
-    public SysDriveTrain()
+    
+    public SysDriveTrain() 
     {
-		super();
-    	
-        // ==========================================================
-        // SYS DRIVE TRAIN 
-        // ==========================================================
-    	_escLeftFront = new Talon(RobotMap.PWM_ESC_DRIVE_LEFT_FRONT);
-        LiveWindow.addActuator("SysDriveTrain", "Esc Left Front", (Talon) _escLeftFront);
-        
-        _escLeftBack = new Talon(RobotMap.PWM_ESC_DRIVE_LEFT_BACK);
-        LiveWindow.addActuator("SysDriveTrain", "Esc Left Back", (Talon)  _escLeftBack);
-        
-        _escRightFront = new Talon(RobotMap.PWM_ESC_DRIVE_RIGHT_FRONT);
-        LiveWindow.addActuator("SysDriveTrain", "Esc Right Front", (Talon) _escRightFront);
-        
-        _escRightBack = new Talon(RobotMap.PWM_ESC_DRIVE_RIGHT_BACK);
-        LiveWindow.addActuator("SysDriveTrain", "Esc Right Back", (Talon)  _escRightBack);
+    	super();
+	}
 
-        /*
-    	_escLeftFront = new VictorSP(RobotMap.PWM_ESC_DRIVE_LEFT_FRONT);
-        LiveWindow.addActuator("SysDriveTrain", "Esc Left Front", (VictorSP) _escLeftFront);
-
-        _escLeftBack = new VictorSP(RobotMap.PWM_ESC_DRIVE_LEFT_BACK);
-        LiveWindow.addActuator("SysDriveTrain", "Esc Left Back", (VictorSP)  _escLeftBack);
-        
-        _escRightFront = new VictorSP(RobotMap.PWM_ESC_DRIVE_RIGHT_FRONT);
-        LiveWindow.addActuator("SysDriveTrain", "Esc Right Front", (VictorSP) _escRightFront);
-
-        _escRightBack = new VictorSP(RobotMap.PWM_ESC_DRIVE_RIGHT_BACK);
-        LiveWindow.addActuator("SysDriveTrain", "Esc Right Back", (VictorSP)  _escRightBack);
-        */
-        _robotDrive = new RobotDrive(_escLeftFront,  _escLeftBack,
-        							 _escRightFront, _escRightBack);
-
-        _robotDrive.setInvertedMotor(RobotDrive.MotorType.kFrontLeft,  false);
-        _robotDrive.setInvertedMotor(RobotDrive.MotorType.kRearLeft,   false);
-        _robotDrive.setInvertedMotor(RobotDrive.MotorType.kFrontRight, true);
-        _robotDrive.setInvertedMotor(RobotDrive.MotorType.kRearRight,  true);
-
-        // If SetSafetyEnabled is false, then the SetExpiration doesn't matter.
-        // These are safeties for the drive motors that shut them down if the 
-        // code goes for too long (1 second as specified by SetExpiration) 
-        // without setting the motor power. 
-        // It's there to protect you, from infinite code loops or usually during 
-        // debugging when you could set the motor speed and have a breakpoint that 
-        // allows the robot to keep running without stopping or responding to 
-        // driver controls.
-        _robotDrive.setSafetyEnabled(true);
-        _robotDrive.setExpiration(0.25);
-
-        // When using drive() -- The algorithm for steering provides a constant 
-        // turn radius for any normal speed range, both forward and backward. 
-        // Increasing m_sensitivity causes sharper turns for fixed values of curve.
-        // This function will most likely be used in an autonomous routine.
-        // Not used in any other "drive" functions like tankDrive(), arcadeDrive() ...
-        _robotDrive.setSensitivity(0.5);
-        
-        // Used to scale the output - The values to drive the motor will be scaled
-        // by the value passed.
-        _robotDrive.setMaxOutput(1.0);
-
-        // DEFINE ENCODERS FOR THE DRIVETRAIN
-        _encoDriveLeft = new Encoder(RobotMap.DIO_ENC_DRIVE_LEFT_CHAN1, RobotMap.DIO_ENC_DRIVE_LEFT_CHAN2, false, EncodingType.k4X);
-        _encoDriveLeft.setDistancePerPulse(1.0);
-        _encoDriveLeft.setPIDSourceType(PIDSourceType.kRate);
-        LiveWindow.addSensor("SysDriveTrain", "Enco Drive Left", _encoDriveLeft);
-
-        
-        _encoDriveRight = new Encoder(RobotMap.DIO_ENC_DRIVE_RIGHT_CHAN1, RobotMap.DIO_ENC_DRIVE_RIGHT_CHAN2, false, EncodingType.k4X);
-        _encoDriveRight.setDistancePerPulse(1.0);
-        _encoDriveRight.setPIDSourceType(PIDSourceType.kRate);
-        LiveWindow.addSensor("SysDriveTrain", "Enco Drive Right", _encoDriveRight);
-
-    }
-    
     
     
     public void initDefaultCommand() 
@@ -157,9 +80,7 @@ public class SysDriveTrain extends Subsystem
             _stateDriveControl = DriveControlState.OPEN_LOOP;
         }
 
-        // IF OPERATING THE JOYSTICK TO GO STRAIGHT SPINS THE ROBOT, 
-        // ADD A "-1*" TO signal.leftMotor or signal.rightMotor
-        _robotDrive.tankDrive(signal.leftMotor, -1*signal.rightMotor);
+        _robotDrive.tankDrive(signal.leftMotor, signal.rightMotor);
     }
     
   
