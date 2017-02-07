@@ -22,6 +22,20 @@ package org.usfirst.frc295.GrizzlynatorBase;
 public class RobotMap 
 {
 
+	// ALLOW FOR ROBOT SPECIFIC CONFIGURATION
+	public static enum RobotID
+	{
+		BOT_PROTO(1), BOT_FORKLIFT(2), BOT_COMP1(3), BOT_COMP2(4);
+	    private int id;
+	    RobotID(int id) { this.id = id; }
+	    public int getId() { return id; }
+	}
+	
+	// SPECIFY WHICH ROBOT WE ARE RUNNING
+	public static final   RobotID ROBOT_ID = RobotID.BOT_COMP1; 
+	
+	
+
 	// CAN IDs ARE UNIQUE PER DEVICE TYPE
     public static final   short  CAN_ESC_DRIVE_LEFT_FRONT               = 0;
     public static final   short  CAN_ESC_DRIVE_LEFT_BACK                = 1;
