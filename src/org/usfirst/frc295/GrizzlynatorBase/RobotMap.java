@@ -37,11 +37,14 @@ public class RobotMap
 	
 
 	// CAN IDs ARE UNIQUE PER DEVICE TYPE
-    public static final   short  CAN_ESC_DRIVE_LEFT_FRONT               = 0;
-    public static final   short  CAN_ESC_DRIVE_LEFT_BACK                = 1;
-    public static final   short  CAN_ESC_DRIVE_RIGHT_FRONT              = 2;
-    public static final   short  CAN_ESC_DRIVE_RIGHT_BACK               = 3;	
-    public static final   short  CAN_ESC_FLYWHEEL                       = 15;	
+    public static final   short  CAN_ESC_DRIVE_LEFT_FRONT               = 1;
+    public static final   short  CAN_ESC_DRIVE_LEFT_BACK                = 2;
+    public static final   short  CAN_ESC_DRIVE_RIGHT_FRONT              = 3;
+    public static final   short  CAN_ESC_DRIVE_RIGHT_BACK               = 4;	
+    public static final   short  CAN_ESC_LIFT_MASTER                    = 5;	
+    public static final   short  CAN_ESC_LIFT_SLAVE                     = 6;	
+    public static final   short  CAN_ESC_FLYWHEEL_MASTER                = 10;	
+    public static final   short  CAN_ESC_FLYWHEEL_SLAVE                 = 11;	
 
     public static final   short  CAN_PCM_MODULE                         = 0;	
     public static final   short  CAN_PCM_PORT_DRIVE_SHIFTER             = 1;	
@@ -64,13 +67,21 @@ public class RobotMap
 
     
     // SYS FLYWHEEL PARAMETERS
-    public static final   double FLYWHEEL_KP                            = 0.12; 
-    public static final   double FLYWHEEL_KI                            = 0;
-    public static final   double FLYWHEEL_KD                            = 0.5; 
-    public static final   double FLYWHEEL_KF                            = 0.014;
-    public static final   int    FLYWHEEL_IZONE                         = (int) (1023.0 / FLYWHEEL_KP); 
-    public static final   double FLYWHEEL_RAMP_RATE                     = 0; 
-    public static final   double FLYWHEEL_ONTARGET_TOLERANCE            = 100.0; 
+    public static final   double FLYWHEEL_SPEED_KP                      = 0.12; 
+    public static final   double FLYWHEEL_SPEED_KI                      = 0;
+    public static final   double FLYWHEEL_SPEED_KD                      = 0.5; 
+    public static final   double FLYWHEEL_SPEED_KF                      = 0.014;
+    public static final   int    FLYWHEEL_SPEED_IZONE                   = (int) (1023.0 / FLYWHEEL_SPEED_KP); 
+    public static final   double FLYWHEEL_SPEED_RAMP_RATE               = 0; 
+    public static final   double FLYWHEEL_SPEED_ONTARGET_TOLERANCE      = 100.0; 
+
+    public static final   double FLYWHEEL_POSITION_KP                   = 0.12; 
+    public static final   double FLYWHEEL_POSITION_KI                   = 0;
+    public static final   double FLYWHEEL_POSITION_KD                   = 0.5; 
+    public static final   double FLYWHEEL_POSITION_KF                   = 0.014;
+    public static final   int    FLYWHEEL_POSITION_IZONE                = (int) (1023.0 / FLYWHEEL_POSITION_KP); 
+    public static final   double FLYWHEEL_POSITION_RAMP_RATE            = 0; 
+    public static final   double FLYWHEEL_POSITION_ONTARGET_TOLERANCE   = 100.0; 
 
     
     // SYS DRIVETRAIN  PARAMETERS

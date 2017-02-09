@@ -26,6 +26,8 @@ public class JoystickDriver extends Joystick
 	public static final   short  DRIVER_BUTTON_SHIFT_LOW_XBOX         = 2;
 	public static final   short  DRIVER_BUTTON_QUICKTURN_XBOX         = 6;
 	
+	// TODO: MOVE TO OPERATOR
+	public static final   short  DRIVER_BUTTON_LIFT_XBOX              = 4;
 	
 	// LOGITECH (IF DIFFERENT FROM XBOX) DRIVER JOYSTICK BUTTONS
 	public static final   short  DRIVER_AXIS_THROTTLE_LOGITECH        = 1;
@@ -138,4 +140,17 @@ public class JoystickDriver extends Joystick
 				return(this.getRawButton(DRIVER_BUTTON_QUICKTURN_XBOX));
 		}
 	}
+
+	public boolean getLiftClimbButtonValue()
+	{
+		switch(_eJoystickType)
+		{
+			case XBOX:
+				return(this.getRawButton(DRIVER_BUTTON_LIFT_XBOX));
+			
+			default:
+				return(this.getRawButton(DRIVER_BUTTON_LIFT_XBOX));
+		}
+	}
+
 }

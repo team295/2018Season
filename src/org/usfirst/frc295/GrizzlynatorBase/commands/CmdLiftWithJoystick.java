@@ -11,31 +11,42 @@
 
 package org.usfirst.frc295.GrizzlynatorBase.commands;
 
-import edu.wpi.first.wpilibj.command.Command;
+import org.usfirst.frc295.GrizzlynatorBase.JoystickDriver;
 import org.usfirst.frc295.GrizzlynatorBase.Robot;
+
+import edu.wpi.first.wpilibj.command.Command;
 
 /**
  *
  */
-public class CmdFlywheelSetSpeed extends Command 
+public class CmdLiftWithJoystick extends Command 
 {
-	private double _dSpeed = 0;
+	private JoystickDriver      _joystickDriver;
 	
-    public CmdFlywheelSetSpeed(double dSpeed) 
+    public CmdLiftWithJoystick() 
     {
-    	_dSpeed = dSpeed;
+        requires(Robot.sysLift);
+        _joystickDriver = Robot.oi.getJoystickDriver();
     }
 
     // Called just before this Command runs the first time
     protected void initialize() 
     {
-		Robot.sysFlywheel.setPercentVBus(_dSpeed);
-		System.out.println("Started CmdFlyWheelSetSpeed");
+    	Robot.sysLift.setPercentVBusMode();
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() 
     {
+        boolean bClimb = _joystickDriver.getLiftClimbButtonValue();
+        if (bClimb == true)
+        {
+        	Robot.sysLift.setPercentVBus(0.95);
+        }
+        else
+        {
+        	Robot.sysLift.setPercentVBus(0.0);
+        }
     }
 
     // Make this return true when this Command no longer needs to run execute()
@@ -47,12 +58,13 @@ public class CmdFlywheelSetSpeed extends Command
     // Called once after isFinished returns true
     protected void end() 
     {
-		Robot.sysFlywheel.stop();
+        Robot.sysLift.stop();
     }
 
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() 
     {
+        end();
     }
-}    
+}

@@ -25,7 +25,7 @@ import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 /**
  *
  */
-public class SysDriveTrainCANTalon extends SysDriveTrain 
+public class SysDriveTrainCANOpenLoop extends SysDriveTrain 
 {
 	// DECLARE COMPONENTS OF THE DRIVETRAIN
     private CANTalon     _escLeftFront;
@@ -34,7 +34,7 @@ public class SysDriveTrainCANTalon extends SysDriveTrain
     private CANTalon     _escRightBack;
     
     
-    public SysDriveTrainCANTalon()
+    public SysDriveTrainCANOpenLoop()
     {
 		super();
     	

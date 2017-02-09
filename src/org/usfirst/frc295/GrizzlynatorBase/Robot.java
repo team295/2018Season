@@ -54,6 +54,7 @@ public class Robot extends IterativeRobot
     public static SysDriveTrainShifter sysDriveTrainShifter;
     public static SysCompressor sysCompressor;
     public static SysFlywheel sysFlywheel;
+    public static SysLift sysLift;
 
     /**
      * This function is run when the robot is first started up and should be
@@ -69,7 +70,7 @@ public class Robot extends IterativeRobot
 	        // INSTANTIATE SUB-SYSTEMS FOR THE ROBOT 	        
 	        if (RobotMap.ROBOT_ID == RobotID.BOT_COMP1)
 	        {
-		        sysDriveTrain = new SysDriveTrainCANTalon();	        	
+		        sysDriveTrain = new SysDriveTrainCANOpenLoop();	        	
 	        }
 	        else if (RobotMap.ROBOT_ID == RobotID.BOT_PROTO)
 	        {
@@ -83,6 +84,7 @@ public class Robot extends IterativeRobot
 
 	        sysDriveTrainShifter = new SysDriveTrainShifter();
 	        sysFlywheel = new SysFlywheel();
+	        sysLift = new SysLift();
 	
 	        // OI must be constructed after subsystems. If the OI creates Commands
 	        //(which it very likely will), subsystems are not guaranteed to be

@@ -58,7 +58,8 @@ public class SysDriveTrainProto extends SysDriveTrain
         							 _escRightFront, _escRightBack);
 
 
-        _robotDrive.setInvertedMotor(RobotDrive.MotorType.kFrontLeft,  true);
+
+        _robotDrive.setInvertedMotor(RobotDrive.MotorType.kFrontLeft,  false);
         _robotDrive.setInvertedMotor(RobotDrive.MotorType.kRearLeft,   false);
         _robotDrive.setInvertedMotor(RobotDrive.MotorType.kFrontRight, false);
         _robotDrive.setInvertedMotor(RobotDrive.MotorType.kRearRight,  false);
