@@ -8,52 +8,59 @@
 // update. Deleting the comments indicating the section will prevent
 // it from being updated in the future.
 
-
 package org.usfirst.frc295.GrizzlynatorBase.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
- *  
+ *
  */
-public class CmdShooterShootHigh extends Command 
+public class CmdShooterShootHigh extends Command
 {
-	
-	public CmdShooterShootHigh() 
+
+	public CmdShooterShootHigh()
 	{
-        // Use requires() here to declare subsystem dependencies
-		//requires(Robot.sysShooter);
-	}
-	
-    // Called just before this Command runs the first time
-    protected void initialize() 
-    {
-    	//Robot.sysShooter.speedShootHigh();
-    }
-
-    
-    // Called repeatedly when this Command is scheduled to run
-    protected void execute() 
-    {
+		// Use requires() here to declare subsystem dependencies
+		// requires(Robot.sysShooter);
 	}
 
-	
-    // Make this return true when this Command no longer needs to run execute()
-    protected boolean isFinished() 
-    {
-        return isTimedOut();
-    }
 
-    // Called once after isFinished returns true
-    protected void end() 
-    {
-    	//Robot.sysShooter.stop();
-    }
+	// Called just before this Command runs the first time
+	@Override
+	protected void initialize()
+	{
+		// Robot.sysShooter.speedShootHigh();
+	}
 
-    // Called when another command which requires one or more of the same
-    // subsystems is scheduled to run
-    protected void interrupted() 
-    {
-        end();
-    }    
+
+	// Called repeatedly when this Command is scheduled to run
+	@Override
+	protected void execute()
+	{
+	}
+
+
+	// Make this return true when this Command no longer needs to run execute()
+	@Override
+	protected boolean isFinished()
+	{
+		return isTimedOut();
+	}
+
+
+	// Called once after isFinished returns true
+	@Override
+	protected void end()
+	{
+		// Robot.sysShooter.stop();
+	}
+
+
+	// Called when another command which requires one or more of the same
+	// subsystems is scheduled to run
+	@Override
+	protected void interrupted()
+	{
+		end();
+	}
 }

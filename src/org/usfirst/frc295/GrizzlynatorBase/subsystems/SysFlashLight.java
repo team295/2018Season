@@ -8,61 +8,62 @@
 // update. Deleting the comments indicating the section will prevent
 // it from being updated in the future.
 
-
 package org.usfirst.frc295.GrizzlynatorBase.subsystems;
 
 import org.usfirst.frc295.GrizzlynatorBase.RobotMap;
+
 import edu.wpi.first.wpilibj.Relay;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 
-
 /**
  *
  */
-public class SysFlashLight extends Subsystem 
+public class SysFlashLight extends Subsystem
 {
-	private Relay            _relayFlashlight;
-	                    
-    // ==========================================================
-    // SYS FLASHLIGHT 
-    // ==========================================================
+	private Relay _relayFlashlight;
+
+
+	// ==========================================================
+	// SYS FLASHLIGHT
+	// ==========================================================
 	public SysFlashLight()
 	{
 		super();
 
 		_relayFlashlight = new Relay(RobotMap.RLY_FLASHLIGHT);
-	    LiveWindow.addActuator("SysFlashlight", "Relay", _relayFlashlight);
+		LiveWindow.addActuator("SysFlashlight", "Relay", _relayFlashlight);
 	}
 
-    
-    // Put methods for controlling this subsystem
-    // here. Call these from Commands.
-    public void On(boolean bOn)
-    {
-    	if (bOn == true)
-    	{
-        	_relayFlashlight.set(Relay.Value.kOn);
-    	}
-    	else
-    	{
-        	_relayFlashlight.set(Relay.Value.kOff);
-    	}   		
-    }
 
-    
-    public void initDefaultCommand() 
-    {
-        // Set the default command for a subsystem here.
-        // setDefaultCommand(new MySpecialCommand());
-    }
+	// Put methods for controlling this subsystem
+	// here. Call these from Commands.
+	public void On(boolean bOn)
+	{
+		if (bOn == true)
+		{
+			_relayFlashlight.set(Relay.Value.kOn);
+		}
+		else
+		{
+			_relayFlashlight.set(Relay.Value.kOff);
+		}
+	}
 
-    /**
+
+	@Override
+	public void initDefaultCommand()
+	{
+		// Set the default command for a subsystem here.
+		// setDefaultCommand(new MySpecialCommand());
+	}
+
+
+	/**
 	 * The log method puts interesting information to the SmartDashboard.
 	 */
-	public void logToSmartDashboard() 
-    {
-	
-	}   
-}
+	public void logToSmartDashboard()
+	{
 
+	}
+}

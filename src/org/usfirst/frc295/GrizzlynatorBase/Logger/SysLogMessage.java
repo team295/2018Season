@@ -22,64 +22,70 @@ THE SOFTWARE.
 
 package org.usfirst.frc295.GrizzlynatorBase.Logger;
 
-import java.io.*;
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
 
 /**
  * Message for sending by worker implementation.
  *
- * No message capacity restrictions.
- * rfc5424(The Syslog Protocol) recommends supporting at least 2048 bytes
- * for messages and the capacity depends of the transport protocol.
- * rfc5426(Transmission of Syslog Messages over UDP) mentions size of 65535
- * minus the udp headers. Over the network udp messages will be truncated
- * by MTU. Localhost MTU in linux systems is 65536.
- * Although the default message size for some syslog daemons by default is 8k
+ * No message capacity restrictions. rfc5424(The Syslog Protocol) recommends
+ * supporting at least 2048 bytes for messages and the capacity depends of the
+ * transport protocol. rfc5426(Transmission of Syslog Messages over UDP)
+ * mentions size of 65535 minus the udp headers. Over the network udp messages
+ * will be truncated by MTU. Localhost MTU in linux systems is 65536. Although
+ * the default message size for some syslog daemons by default is 8k
  * (http://www.rsyslog.com/doc/v8-stable/configuration/global/index.html)
  */
-class SysLogMessage 
+class SysLogMessage
 {
-    private static final byte NON_ASCII_SYMBOL = (byte) '.';
-    private static final byte LF_SYMBOL = (byte) '\\';
-    private ByteArrayOutputStream value = new ByteArrayOutputStream();
+	private static final byte NON_ASCII_SYMBOL = (byte) '.';
+	private static final byte LF_SYMBOL = (byte) '\\';
+	private ByteArrayOutputStream value = new ByteArrayOutputStream();
 
-    public int getLength() {
-        return value.size();
-    }
 
-    public byte[] getBytes() {
-        return value.toByteArray();
-    }
+	public int getLength()
+	{
+		return value.size();
+	}
 
-    
-    public void print(String s) throws IOException 
-    {
-        byte[] b = s.getBytes();
-        for (int i = 0; i < b.length; i++) 
-        {
-            byte c = b[i];
 
-            if (c >= 32 && c <= 126)
-            {
-                continue;
-            }
+	public byte[] getBytes()
+	{
+		return value.toByteArray();
+	}
 
-            
-            if (c == 10) 
-            {
-                if(SysLog.escapeNewLines)
-                    b[i] = LF_SYMBOL;
-            } 
-            else 
-            {
-                b[i] = NON_ASCII_SYMBOL;
-            }
-        }
-        value.write(b);
-    }
 
-    @Override
-    public String toString() 
-    {
-        return value.toString();
-    }
+	public void print(String s) throws IOException
+	{
+		byte[] b = s.getBytes();
+		for (int i = 0; i < b.length; i++)
+		{
+			byte c = b[i];
+
+			if ((c >= 32) && (c <= 126))
+			{
+				continue;
+			}
+
+			if (c == 10)
+			{
+				if (SysLog.escapeNewLines)
+				{
+					b[i] = LF_SYMBOL;
+				}
+			}
+			else
+			{
+				b[i] = NON_ASCII_SYMBOL;
+			}
+		}
+		value.write(b);
+	}
+
+
+	@Override
+	public String toString()
+	{
+		return value.toString();
+	}
 }

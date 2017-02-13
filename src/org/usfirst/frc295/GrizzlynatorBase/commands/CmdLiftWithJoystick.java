@@ -8,7 +8,6 @@
 // update. Deleting the comments indicating the section will prevent
 // it from being updated in the future.
 
-
 package org.usfirst.frc295.GrizzlynatorBase.commands;
 
 import org.usfirst.frc295.GrizzlynatorBase.JoystickDriver;
@@ -19,52 +18,63 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class CmdLiftWithJoystick extends Command 
+public class CmdLiftWithJoystick extends Command
 {
-	private JoystickDriver      _joystickDriver;
-	
-    public CmdLiftWithJoystick() 
-    {
-        requires(Robot.sysLift);
-        _joystickDriver = Robot.oi.getJoystickDriver();
-    }
+	private JoystickDriver _joystickDriver;
 
-    // Called just before this Command runs the first time
-    protected void initialize() 
-    {
-    	Robot.sysLift.setPercentVBusMode();
-    }
 
-    // Called repeatedly when this Command is scheduled to run
-    protected void execute() 
-    {
-        boolean bClimb = _joystickDriver.getLiftClimbButtonValue();
-        if (bClimb == true)
-        {
-        	Robot.sysLift.setPercentVBus(0.95);
-        }
-        else
-        {
-        	Robot.sysLift.setPercentVBus(0.0);
-        }
-    }
+	public CmdLiftWithJoystick()
+	{
+		requires(Robot.sysLift);
+		_joystickDriver = Robot.oi.getJoystickDriver();
+	}
 
-    // Make this return true when this Command no longer needs to run execute()
-    protected boolean isFinished() 
-    {
-        return false;
-    }
 
-    // Called once after isFinished returns true
-    protected void end() 
-    {
-        Robot.sysLift.stop();
-    }
+	// Called just before this Command runs the first time
+	@Override
+	protected void initialize()
+	{
+		Robot.sysLift.setPercentVBusMode();
+	}
 
-    // Called when another command which requires one or more of the same
-    // subsystems is scheduled to run
-    protected void interrupted() 
-    {
-        end();
-    }
+
+	// Called repeatedly when this Command is scheduled to run
+	@Override
+	protected void execute()
+	{
+		boolean bClimb = _joystickDriver.getLiftClimbButtonValue();
+		if (bClimb == true)
+		{
+			Robot.sysLift.setPercentVBus(0.95);
+		}
+		else
+		{
+			Robot.sysLift.setPercentVBus(0.0);
+		}
+	}
+
+
+	// Make this return true when this Command no longer needs to run execute()
+	@Override
+	protected boolean isFinished()
+	{
+		return false;
+	}
+
+
+	// Called once after isFinished returns true
+	@Override
+	protected void end()
+	{
+		Robot.sysLift.stop();
+	}
+
+
+	// Called when another command which requires one or more of the same
+	// subsystems is scheduled to run
+	@Override
+	protected void interrupted()
+	{
+		end();
+	}
 }

@@ -30,90 +30,127 @@ import java.util.concurrent.BlockingQueue;
 /*
 Worker for sending syslog messages with TCP transport
  */
-class SysLogTcpSender implements Runnable {
+class SysLogTcpSender implements Runnable
+{
 
-    private static final int FAILURE_TIMEOUT = 5000;
+	private static final int FAILURE_TIMEOUT = 5000;
 
-    private final String hostName;
-    private final int port;
-    private final Thread worker;
-    private final BlockingQueue<SysLogMessage> blockingQueue;
+	private final String hostName;
+	private final int port;
+	private final Thread worker;
+	private final BlockingQueue<SysLogMessage> blockingQueue;
 
-    public SysLogTcpSender(String hostName, int port, BlockingQueue<SysLogMessage> blockingQueue) {
-        this.hostName = hostName;
-        this.port = port;
-        this.worker = new Thread(new Worker());
-        this.blockingQueue = blockingQueue;
-    }
 
-    @Override
-    public void run() {
-        worker.start();
-    }
+	public SysLogTcpSender(String hostName, int port, BlockingQueue<SysLogMessage> blockingQueue)
+	{
+		this.hostName = hostName;
+		this.port = port;
+		this.worker = new Thread(new Worker());
+		this.blockingQueue = blockingQueue;
+	}
 
-    private class Worker implements Runnable {
 
-        private Socket socket;
-        private OutputStream os;
+	@Override
+	public void run()
+	{
+		worker.start();
+	}
 
-        @Override
-        public void run() {
-            while (true) {
-                try {
-                    if (os == null) {
-                        socket = new Socket(hostName, port);
-                        os = socket.getOutputStream();
-                    }
-                    SysLogMessage message = blockingQueue.take();
-                    os.write(message.getBytes(), 0, message.getLength());
-                    os.write('\n');
-                } catch (InterruptedException e) {
-                    releaseResources();
-                    return;
-                } catch (IOException e) {
-                    releaseResources();
-                    try {
-                        Thread.sleep(FAILURE_TIMEOUT);
-                    } catch (InterruptedException ie) {
-                        return;
-                    }
-                } catch (Throwable t) {
-                    releaseResources();
-                    try {
-                        Thread.sleep(FAILURE_TIMEOUT);
-                    } catch (InterruptedException ie) {
-                        return;
-                    }
-                }
-            }
-        }
+	private class Worker implements Runnable
+	{
 
-        private void releaseResources() {
+		private Socket socket;
+		private OutputStream os;
 
-            try {
-                if (os != null) {
-                    os.flush();
-                }
-            } catch (Throwable t) {
 
-            }
+		@Override
+		public void run()
+		{
+			while (true)
+			{
+				try
+				{
+					if (os == null)
+					{
+						socket = new Socket(hostName, port);
+						os = socket.getOutputStream();
+					}
+					SysLogMessage message = blockingQueue.take();
+					os.write(message.getBytes(), 0, message.getLength());
+					os.write('\n');
+				}
+				catch (InterruptedException e)
+				{
+					releaseResources();
+					return;
+				}
+				catch (IOException e)
+				{
+					releaseResources();
+					try
+					{
+						Thread.sleep(FAILURE_TIMEOUT);
+					}
+					catch (InterruptedException ie)
+					{
+						return;
+					}
+				}
+				catch (Throwable t)
+				{
+					releaseResources();
+					try
+					{
+						Thread.sleep(FAILURE_TIMEOUT);
+					}
+					catch (InterruptedException ie)
+					{
+						return;
+					}
+				}
+			}
+		}
 
-            try {
-                if (os != null) {
-                    os.close();
-                }
-            } catch (Throwable t) {
 
-            }
-            os = null;
-            try {
-                if (socket != null) {
-                    socket.close();
-                }
-            } catch (Throwable t) {
+		private void releaseResources()
+		{
 
-            }
-            socket = null;
-        }
-    }
+			try
+			{
+				if (os != null)
+				{
+					os.flush();
+				}
+			}
+			catch (Throwable t)
+			{
+
+			}
+
+			try
+			{
+				if (os != null)
+				{
+					os.close();
+				}
+			}
+			catch (Throwable t)
+			{
+
+			}
+			os = null;
+			try
+			{
+				if (socket != null)
+				{
+					socket.close();
+				}
+			}
+			catch (Throwable t)
+			{
+
+			}
+			socket = null;
+		}
+	}
 }

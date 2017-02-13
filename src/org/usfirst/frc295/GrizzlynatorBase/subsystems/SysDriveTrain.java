@@ -8,7 +8,6 @@
 // update. Deleting the comments indicating the section will prevent
 // it from being updated in the future.
 
-
 package org.usfirst.frc295.GrizzlynatorBase.subsystems;
 
 import org.usfirst.frc295.GrizzlynatorBase.Drive.DriveSignal;
@@ -19,117 +18,114 @@ import edu.wpi.first.wpilibj.RobotDrive;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
-
 /**
- * Troubleshooting:
- * 1. OPERATING THE JOYSTICK TO GO STRAIGHT SPINS THE ROBOT
- *    Invert the "setInvertedMotor" statements for one side
- *    
- * 2. OPERATING THE JOYSTICK TO TURN RIGHT TURNS THE ROBOT LEFT
- *    Invert the "setInvertedMotor" statements for all motors
+ * Troubleshooting: 1. OPERATING THE JOYSTICK TO GO STRAIGHT SPINS THE ROBOT
+ * Invert the "setInvertedMotor" statements for one side
+ * 
+ * 2. OPERATING THE JOYSTICK TO TURN RIGHT TURNS THE ROBOT LEFT Invert the
+ * "setInvertedMotor" statements for all motors
  */
-public abstract class SysDriveTrain extends Subsystem 
+public abstract class SysDriveTrain extends Subsystem
 {
-    protected RobotDrive          _robotDrive;
+	protected RobotDrive _robotDrive;
 
-    // SENSORS
-    protected Encoder             _encoDriveRight;
-    protected Encoder             _encoDriveLeft;
-    protected NavX_Gyro           _gyro = new NavX_Gyro();
-    
-    // THE ROBOT DRIVETRAIN'S VARIOUS STATES
-    protected enum DriveControlState 
-    {
-        OPEN_LOOP, 
-        BASE_LOCKED, 
-        VELOCITY_SETPOINT, 
-        VELOCITY_HEADING_CONTROL, 
-        PATH_FOLLOWING_CONTROL
-    }
-    protected DriveControlState   _stateDriveControl = DriveControlState.OPEN_LOOP;
-    
-    
-    
-    public SysDriveTrain() 
-    {
-    	super();
+	// SENSORS
+	protected Encoder _encoDriveRight;
+	protected Encoder _encoDriveLeft;
+	protected NavX_Gyro _gyro = new NavX_Gyro();
+
+	// THE ROBOT DRIVETRAIN'S VARIOUS STATES
+	protected enum DriveControlState
+	{
+		OPEN_LOOP, BASE_LOCKED, VELOCITY_SETPOINT, VELOCITY_HEADING_CONTROL, PATH_FOLLOWING_CONTROL
 	}
 
-    
-    
-    public void initDefaultCommand() 
-    {
-        // Set the default command for a subsystem here.
-        // DEFAULT FOR THIS SUBSYSTEM IS TO DRIVE WITH JOYSTICK
-        setDefaultCommand(new CmdDriveWithJoystick());
-    }
+	protected DriveControlState _stateDriveControl = DriveControlState.OPEN_LOOP;
 
 
-    /**
-     * In Open Loop, Control directly the left and right motor values
-     * just like tankDrive.
-     * 
-     * @param signal
-     */
-    public synchronized void setOpenLoop(DriveSignal signal) 
-    {
-        if (_stateDriveControl != DriveControlState.OPEN_LOOP) 
-        {
-        	//_escLeftFront.changeControlMode(CANTalon.TalonControlMode.PercentVbus);
-        	//_escRightFront.changeControlMode(CANTalon.TalonControlMode.PercentVbus);
-            _stateDriveControl = DriveControlState.OPEN_LOOP;
-        }
+	public SysDriveTrain()
+	{
+		super();
+	}
 
-        _robotDrive.tankDrive(signal.leftMotor, signal.rightMotor);
-    }
-    
-  
+
+	@Override
+	public void initDefaultCommand()
+	{
+		// Set the default command for a subsystem here.
+		// DEFAULT FOR THIS SUBSYSTEM IS TO DRIVE WITH JOYSTICK
+		setDefaultCommand(new CmdDriveWithJoystick());
+	}
+
+
+	/**
+	 * In Open Loop, Control directly the left and right motor values just like
+	 * tankDrive.
+	 * 
+	 * @param signal
+	 */
+	public synchronized void setOpenLoop(DriveSignal signal)
+	{
+		if (_stateDriveControl != DriveControlState.OPEN_LOOP)
+		{
+			// _escLeftFront.changeControlMode(CANTalon.TalonControlMode.PercentVbus);
+			// _escRightFront.changeControlMode(CANTalon.TalonControlMode.PercentVbus);
+			_stateDriveControl = DriveControlState.OPEN_LOOP;
+		}
+
+		_robotDrive.tankDrive(signal.leftMotor, signal.rightMotor);
+	}
+
+
 	/**
 	 * Reset the robots sensors to the zero states.
 	 */
-	public void reset() 
-    {
+	public void reset()
+	{
 		_encoDriveRight.reset();
 		_encoDriveLeft.reset();
 		_gyro.reset();
 	}
 
-    /**
+
+	/**
 	 * @return The robots heading in degrees.
 	 */
-	public double getGyroAngle() 
-    {
+	public double getGyroAngle()
+	{
 		return _gyro.getAngle();
 	}
-	
+
+
 	/**
 	 * @return The distance driven (average of left and right encoders).
 	 */
-	public double getDistance() 
-    {
-		return (_encoDriveRight.getDistance() + _encoDriveLeft.getDistance())/2;
+	public double getDistance()
+	{
+		return (_encoDriveRight.getDistance() + _encoDriveLeft.getDistance()) / 2;
 	}
+
 
 	/**
 	 * @return The distance to the obstacle detected by the rangefinder.
 	 */
-	public double getDistanceToObstacle() 
-    {
+	public double getDistanceToObstacle()
+	{
 		// Really meters in simulation since it's a rangefinder...
-//		return rangefinder.getAverageVoltage();
-		return(0);
+		// return rangefinder.getAverageVoltage();
+		return (0);
 	}
 
-    /**
+
+	/**
 	 * The log method puts interesting information to the SmartDashboard.
 	 */
-	public void logToSmartDashboard() 
-    {
-		SmartDashboard.putNumber("Left Distance",  _encoDriveLeft.getDistance());
+	public void logToSmartDashboard()
+	{
+		SmartDashboard.putNumber("Left Distance", _encoDriveLeft.getDistance());
 		SmartDashboard.putNumber("Right Distance", _encoDriveRight.getDistance());
-		SmartDashboard.putNumber("Left Speed",     _encoDriveLeft.getRate());
-		SmartDashboard.putNumber("Right Speed",    _encoDriveRight.getRate());
-//		SmartDashboard.putNumber("Gyro", gyro.getAngle());
+		SmartDashboard.putNumber("Left Speed", _encoDriveLeft.getRate());
+		SmartDashboard.putNumber("Right Speed", _encoDriveRight.getRate());
+		// SmartDashboard.putNumber("Gyro", gyro.getAngle());
 	}
 }
-

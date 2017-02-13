@@ -2,10 +2,11 @@ package org.usfirst.frc295.GrizzlynatorBase.DriveAdvanced;
 
 /**
  * PID control configuration constants
- * 
+ *
  * @author Jacob Prinz
  */
-public final class PIDConstants {
+public final class PIDConstants
+{
 	/**
 	 * the default PID gains
 	 */
@@ -22,13 +23,18 @@ public final class PIDConstants {
 	 * the derivative gain
 	 */
 	public final double d;
-	
+
+
 	/**
-	 * @param p the proportional gain
-	 * @param i the integral gain
-	 * @param d the derivative gain
+	 * @param p
+	 *            the proportional gain
+	 * @param i
+	 *            the integral gain
+	 * @param d
+	 *            the derivative gain
 	 */
-	public PIDConstants(double p, double i, double d) {
+	public PIDConstants(double p, double i, double d)
+	{
 		this.p = p;
 		this.i = i;
 		this.d = d;

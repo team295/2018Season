@@ -8,7 +8,6 @@
 // update. Deleting the comments indicating the section will prevent
 // it from being updated in the future.
 
-
 package org.usfirst.frc295.GrizzlynatorBase.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
@@ -16,37 +15,47 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class CmdAimAutoLow extends Command 
+public class CmdAimAutoLow extends Command
 {
-    public CmdAimAutoLow() 
-    {
-        //requires(Robot.sysShooterAimer);
-    }
+	public CmdAimAutoLow()
+	{
+		// requires(Robot.sysShooterAimer);
+	}
 
-    // Called just before this Command runs the first time
-    protected void initialize() 
-    {
-    }
 
-    // Called repeatedly when this Command is scheduled to run
-    protected void execute() 
-    {
-    }
+	// Called just before this Command runs the first time
+	@Override
+	protected void initialize()
+	{
+	}
 
-    // Make this return true when this Command no longer needs to run execute()
-    protected boolean isFinished() 
-    {
-        return false;
-    }
 
-    // Called once after isFinished returns true
-    protected void end() 
-    {
-    }
+	// Called repeatedly when this Command is scheduled to run
+	@Override
+	protected void execute()
+	{
+	}
 
-    // Called when another command which requires one or more of the same
-    // subsystems is scheduled to run
-    protected void interrupted() 
-    {
-    }
+
+	// Make this return true when this Command no longer needs to run execute()
+	@Override
+	protected boolean isFinished()
+	{
+		return false;
+	}
+
+
+	// Called once after isFinished returns true
+	@Override
+	protected void end()
+	{
+	}
+
+
+	// Called when another command which requires one or more of the same
+	// subsystems is scheduled to run
+	@Override
+	protected void interrupted()
+	{
+	}
 }

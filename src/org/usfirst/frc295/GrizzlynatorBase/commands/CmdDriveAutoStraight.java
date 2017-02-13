@@ -8,61 +8,72 @@
 // update. Deleting the comments indicating the section will prevent
 // it from being updated in the future.
 
-
 package org.usfirst.frc295.GrizzlynatorBase.commands;
 
-import edu.wpi.first.wpilibj.command.Command;
 import org.usfirst.frc295.GrizzlynatorBase.Robot;
 import org.usfirst.frc295.GrizzlynatorBase.Drive.DriveSignal;
+
+import edu.wpi.first.wpilibj.command.Command;
 
 /**
  *
  */
-public class CmdDriveAutoStraight extends Command 
+public class CmdDriveAutoStraight extends Command
 {
-    private double _dDistanceTarget;
-    private double _dMove;
-    private double _dRotation;
- 
-    private double _dDistanceStart;
+	private double _dDistanceTarget;
+	private double _dMove;
+	private double _dRotation;
 
-    
-    public CmdDriveAutoStraight(double dDistance, double dMove, double dRotation) 
-    {
-        requires(Robot.sysDriveTrain);
-        _dDistanceTarget = dDistance;
-        _dMove = dMove;
-        _dRotation = dRotation;
-    }
+	private double _dDistanceStart;
 
-    // Called just before this Command runs the first time
-    protected void initialize() 
-    {
-    	_dDistanceStart = Robot.sysDriveTrain.getDistance();
-    }
 
-    // Called repeatedly when this Command is scheduled to run
-    protected void execute() 
-    {
-        //Robot.sysDriveTrain.drive(_dMove, _dRotation);
-    	/* FIXME */ Robot.sysDriveTrain.setOpenLoop(new DriveSignal(0, 0));
-    }
+	public CmdDriveAutoStraight(double dDistance, double dMove, double dRotation)
+	{
+		requires(Robot.sysDriveTrain);
+		_dDistanceTarget = dDistance;
+		_dMove = dMove;
+		_dRotation = dRotation;
+	}
 
-    // Make this return true when this Command no longer needs to run execute()
-    protected boolean isFinished() 
-    {
-        return ((Robot.sysDriveTrain.getDistance()- _dDistanceStart) >= _dDistanceTarget);
-    }
 
-    // Called once after isFinished returns true
-    protected void end() 
-    {
-    	Robot.sysDriveTrain.setOpenLoop(new DriveSignal(0, 0));;
-    }
+	// Called just before this Command runs the first time
+	@Override
+	protected void initialize()
+	{
+		_dDistanceStart = Robot.sysDriveTrain.getDistance();
+	}
 
-    // Called when another command which requires one or more of the same
-    // subsystems is scheduled to run
-    protected void interrupted() 
-    {
-    }
+
+	// Called repeatedly when this Command is scheduled to run
+	@Override
+	protected void execute()
+	{
+		// Robot.sysDriveTrain.drive(_dMove, _dRotation);
+		/* FIXME */ Robot.sysDriveTrain.setOpenLoop(new DriveSignal(0, 0));
+	}
+
+
+	// Make this return true when this Command no longer needs to run execute()
+	@Override
+	protected boolean isFinished()
+	{
+		return ((Robot.sysDriveTrain.getDistance() - _dDistanceStart) >= _dDistanceTarget);
+	}
+
+
+	// Called once after isFinished returns true
+	@Override
+	protected void end()
+	{
+		Robot.sysDriveTrain.setOpenLoop(new DriveSignal(0, 0));
+		;
+	}
+
+
+	// Called when another command which requires one or more of the same
+	// subsystems is scheduled to run
+	@Override
+	protected void interrupted()
+	{
+	}
 }

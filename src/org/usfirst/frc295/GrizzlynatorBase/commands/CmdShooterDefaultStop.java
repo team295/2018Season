@@ -8,56 +8,60 @@
 // update. Deleting the comments indicating the section will prevent
 // it from being updated in the future.
 
-
 package org.usfirst.frc295.GrizzlynatorBase.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
 
-
 /**
- *  DEFAULT for SysShooter Subsystem
- *  Just stop the motor
- *  Happens automatically by the DEFAULT command when no other command requires() the SysShooter
+ * DEFAULT for SysShooter Subsystem Just stop the motor Happens automatically by
+ * the DEFAULT command when no other command requires() the SysShooter
  */
-public class CmdShooterDefaultStop extends Command 
+public class CmdShooterDefaultStop extends Command
 {
-	
-	public CmdShooterDefaultStop() 
+
+	public CmdShooterDefaultStop()
 	{
-		//requires(Robot.sysShooter);
-	}
-	
-	
-    // Called just before this Command runs the first time
-    protected void initialize() 
-    {
-    	//Robot.sysShooter.stop();
-    }
-
-    
-    // DEFAULT COMMAND FOR SysShooter
-    // Called repeatedly when no other command requires() the SysShooter
-    protected void execute() 
-    {
+		// requires(Robot.sysShooter);
 	}
 
-	
-    // Make this return true when this Command no longer needs to run execute()
-    protected boolean isFinished() 
-    {
-        return false;
-    }
 
-    // Called once after isFinished returns true
-    protected void end() 
-    {
-    }
+	// Called just before this Command runs the first time
+	@Override
+	protected void initialize()
+	{
+		// Robot.sysShooter.stop();
+	}
 
-    // Called when another command which requires one or more of the same
-    // subsystems is scheduled to run
-    protected void interrupted() 
-    {
-        end();
-    }    
-    
+
+	// DEFAULT COMMAND FOR SysShooter
+	// Called repeatedly when no other command requires() the SysShooter
+	@Override
+	protected void execute()
+	{
+	}
+
+
+	// Make this return true when this Command no longer needs to run execute()
+	@Override
+	protected boolean isFinished()
+	{
+		return false;
+	}
+
+
+	// Called once after isFinished returns true
+	@Override
+	protected void end()
+	{
+	}
+
+
+	// Called when another command which requires one or more of the same
+	// subsystems is scheduled to run
+	@Override
+	protected void interrupted()
+	{
+		end();
+	}
+
 }

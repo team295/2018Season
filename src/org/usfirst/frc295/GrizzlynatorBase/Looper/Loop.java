@@ -5,10 +5,13 @@ package org.usfirst.frc295.GrizzlynatorBase.Looper;
  * code (such as periodic gyroscope calibration, etc.)
  */
 
-public interface Loop 
+public interface Loop
 {
-    public void onStart();
-    public void onLoop();
-    public void onStop();
-}
+	public void onStart();
 
+
+	public void onLoop();
+
+
+	public void onStop();
+}

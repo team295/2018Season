@@ -8,56 +8,63 @@
 // update. Deleting the comments indicating the section will prevent
 // it from being updated in the future.
 
-
 package org.usfirst.frc295.GrizzlynatorBase.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
- *  DEFAULT for SysShooterPaddle Subsystem
- *  If the switch signaling the retracted status of the paddle, is not closed
- *  Run the motor (slowly) until it is.
- *  Happens automatically by the DEFAULT command when no other command requires() the SysShooterPaddle
+ * DEFAULT for SysShooterPaddle Subsystem If the switch signaling the retracted
+ * status of the paddle, is not closed Run the motor (slowly) until it is.
+ * Happens automatically by the DEFAULT command when no other command requires()
+ * the SysShooterPaddle
  */
-public class CmdShooterPaddleDefaultRetract extends Command 
+public class CmdShooterPaddleDefaultRetract extends Command
 {
-	
-	public CmdShooterPaddleDefaultRetract() 
+
+	public CmdShooterPaddleDefaultRetract()
 	{
-		//requires(Robot.sysShooterPaddle);
-	}
-	
-    // Called just before this Command runs the first time
-    protected void initialize() 
-    {
-    }
-
-    
-    // DEFAULT COMMAND FOR SysShooterPaddle
-    // Called repeatedly when no other command requires() the SysShooterPaddle
-    protected void execute() 
-    {
-   		//Robot.sysShooterPaddle.retractPaddle();
+		// requires(Robot.sysShooterPaddle);
 	}
 
-	
-    // Make this return true when this Command no longer needs to run execute()
-    protected boolean isFinished() 
-    {
-        return false;
-    }
 
-    // Called once after isFinished returns true
-    protected void end() 
-    {
-   		//Robot.sysShooterPaddle.stopPaddle();
-    }
+	// Called just before this Command runs the first time
+	@Override
+	protected void initialize()
+	{
+	}
 
-    // Called when another command which requires one or more of the same
-    // subsystems is scheduled to run
-    protected void interrupted() 
-    {
-        end();
-    }    
-    
+
+	// DEFAULT COMMAND FOR SysShooterPaddle
+	// Called repeatedly when no other command requires() the SysShooterPaddle
+	@Override
+	protected void execute()
+	{
+		// Robot.sysShooterPaddle.retractPaddle();
+	}
+
+
+	// Make this return true when this Command no longer needs to run execute()
+	@Override
+	protected boolean isFinished()
+	{
+		return false;
+	}
+
+
+	// Called once after isFinished returns true
+	@Override
+	protected void end()
+	{
+		// Robot.sysShooterPaddle.stopPaddle();
+	}
+
+
+	// Called when another command which requires one or more of the same
+	// subsystems is scheduled to run
+	@Override
+	protected void interrupted()
+	{
+		end();
+	}
+
 }
