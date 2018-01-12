@@ -11,8 +11,8 @@
 package org.usfirst.frc295.GrizzlynatorBase;
 
 import org.usfirst.frc295.GrizzlynatorBase.commands.AutonomousCommand;
-import org.usfirst.frc295.GrizzlynatorBase.commands.CmdDriveTrainShifterSetHigh;
-import org.usfirst.frc295.GrizzlynatorBase.commands.CmdDriveTrainShifterSetLow;
+//import org.usfirst.frc295.GrizzlynatorBase.commands.CmdDriveTrainShifterSetHigh;
+//import org.usfirst.frc295.GrizzlynatorBase.commands.CmdDriveTrainShifterSetLow;
 
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -70,13 +70,13 @@ public class OI
 		// =====================================================================
 		// DRIVER JOYSTICK BUTTON COMMANDS
 		// =====================================================================
-		JoystickButton _btnDriverA = _joystickDriver.getDriveTrainShifterSetLowButton();
-		_btnDriverA.whenPressed(new CmdDriveTrainShifterSetLow());
-		SmartDashboard.putData("CMD Shift Slow", new CmdDriveTrainShifterSetLow());
-
-		JoystickButton _btnDriverY = _joystickDriver.getDriveTrainShifterSetHighButton();
-		_btnDriverY.whenPressed(new CmdDriveTrainShifterSetHigh());
-		SmartDashboard.putData("CMD Shift Fast", new CmdDriveTrainShifterSetHigh());
+//		JoystickButton _btnDriverA = _joystickDriver.getDriveTrainShifterSetLowButton();
+//		_btnDriverA.whenPressed(new CmdDriveTrainShifterSetLow());
+//		SmartDashboard.putData("CMD Shift Slow", new CmdDriveTrainShifterSetLow());
+//
+//		JoystickButton _btnDriverY = _joystickDriver.getDriveTrainShifterSetHighButton();
+//		_btnDriverY.whenPressed(new CmdDriveTrainShifterSetHigh());
+//		SmartDashboard.putData("CMD Shift Fast", new CmdDriveTrainShifterSetHigh());
 
 		/*
 		 * JoystickButton _btnDriverB = new JoystickButton(_joystickDriver, 3);
