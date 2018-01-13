@@ -17,6 +17,7 @@ import org.usfirst.frc295.GrizzlynatorBase.commands.AutonomousCommand;
 import org.usfirst.frc295.GrizzlynatorBase.subsystems.NavX_Gyro;
 import org.usfirst.frc295.GrizzlynatorBase.subsystems.SysCompressor;
 import org.usfirst.frc295.GrizzlynatorBase.subsystems.SysDriveTrain;
+import org.usfirst.frc295.GrizzlynatorBase.subsystems.SysDriveTrainCANOpenLoop;
 //import org.usfirst.frc295.GrizzlynatorBase.subsystems.SysDriveTrainCANOpenLoop;
 //import org.usfirst.frc295.GrizzlynatorBase.subsystems.SysDriveTrainForklift;
 //import org.usfirst.frc295.GrizzlynatorBase.subsystems.SysDriveTrainProto;
@@ -73,7 +74,7 @@ public class Robot extends IterativeRobot
 			// INSTANTIATE SUB-SYSTEMS FOR THE ROBOT
 			if (RobotMap.ROBOT_ID == RobotID.BOT_COMP1)
 			{
-//				sysDriveTrain = new SysDriveTrainCANOpenLoop();
+				sysDriveTrain = new SysDriveTrainCANOpenLoop();
 			}
 			else if (RobotMap.ROBOT_ID == RobotID.BOT_PROTO)
 			{
@@ -102,7 +103,7 @@ public class Robot extends IterativeRobot
 			 */
 
 			// Show what command your subsystem is running on the SmartDashboard
-			SmartDashboard.putData(sysDriveTrain);
+			
 		}
 		catch (Throwable t)
 		{
@@ -292,7 +293,7 @@ public class Robot extends IterativeRobot
 	 */
 	private void log()
 	{
-		sysDriveTrain.logToSmartDashboard();
+		
 	}
 
 }
