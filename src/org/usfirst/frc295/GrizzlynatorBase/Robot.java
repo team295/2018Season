@@ -14,6 +14,7 @@ import org.usfirst.frc295.GrizzlynatorBase.RobotMap.RobotID;
 import org.usfirst.frc295.GrizzlynatorBase.Logger.Logger;
 import org.usfirst.frc295.GrizzlynatorBase.Looper.Looper;
 import org.usfirst.frc295.GrizzlynatorBase.commands.AutonomousCommand;
+import org.usfirst.frc295.GrizzlynatorBase.subsystems.NavX_Gyro;
 import org.usfirst.frc295.GrizzlynatorBase.subsystems.SysCompressor;
 import org.usfirst.frc295.GrizzlynatorBase.subsystems.SysDriveTrain;
 //import org.usfirst.frc295.GrizzlynatorBase.subsystems.SysDriveTrainCANOpenLoop;
@@ -50,7 +51,7 @@ public class Robot extends IterativeRobot
 
 	// Operator Interface from OJ.java
 	public static OI oi;
-
+	public static NavX_Gyro ahrs;
 	// MAJOR SUBSYSTEMS
 	public static SysDriveTrain sysDriveTrain;
 	public static SysDriveTrainShifter sysDriveTrainShifter;

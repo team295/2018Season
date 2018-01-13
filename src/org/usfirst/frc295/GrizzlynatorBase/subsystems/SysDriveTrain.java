@@ -13,6 +13,9 @@ package org.usfirst.frc295.GrizzlynatorBase.subsystems;
 import org.usfirst.frc295.GrizzlynatorBase.Drive.DriveSignal;
 import org.usfirst.frc295.GrizzlynatorBase.commands.CmdDriveWithJoystick;
 
+import com.ctre.CANTalon;
+import com.ctre.CanTalonJNI;
+
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj.command.Subsystem;
@@ -21,18 +24,20 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 /**
  * Troubleshooting: 1. OPERATING THE JOYSTICK TO GO STRAIGHT SPINS THE ROBOT
  * Invert the "setInvertedMotor" statements for one side
- * 
+ *
  * 2. OPERATING THE JOYSTICK TO TURN RIGHT TURNS THE ROBOT LEFT Invert the
  * "setInvertedMotor" statements for all motors
  */
 public abstract class SysDriveTrain extends Subsystem
 {
+
 	protected DifferentialDrive _robotDrive;
 
 	// SENSORS
 	protected Encoder _encoDriveRight;
 	protected Encoder _encoDriveLeft;
-	protected NavX_Gyro _gyro = new NavX_Gyro();
+//	protected CANTalon _encoDriveRight;
+
 
 	// THE ROBOT DRIVETRAIN'S VARIOUS STATES
 	protected enum DriveControlState
@@ -58,12 +63,6 @@ public abstract class SysDriveTrain extends Subsystem
 	}
 
 
-	/**
-	 * In Open Loop, Control directly the left and right motor values just like
-	 * tankDrive.
-	 * 
-	 * @param signal
-	 */
 	public synchronized void setOpenLoop(DriveSignal signal)
 	{
 		if (_stateDriveControl != DriveControlState.OPEN_LOOP)
@@ -77,23 +76,36 @@ public abstract class SysDriveTrain extends Subsystem
 	}
 
 
+	public synchronized void stop()
+	{
+		_robotDrive.stopMotor();
+	}
+
+
+	public synchronized void arcadeDrive(double move, double rotation)
+	{
+		_robotDrive.arcadeDrive(move, rotation);
+	}
+
+
 	/**
 	 * Reset the robots sensors to the zero states.
 	 */
 	public void reset()
 	{
-		_encoDriveRight.reset();
-		_encoDriveLeft.reset();
-		_gyro.reset();
+		// _gyro.reset();
+//		_encoDriveRight.reset();
+//		_encoDriveLeft.reset();
 	}
 
 
 	/**
 	 * @return The robots heading in degrees.
 	 */
-	public double getGyroAngle()
+	public double getHeading()
 	{
-		return _gyro.getAngle();
+		// return gyro.getAngle();
+		return (0);
 	}
 
 
@@ -122,10 +134,10 @@ public abstract class SysDriveTrain extends Subsystem
 	 */
 	public void logToSmartDashboard()
 	{
-		SmartDashboard.putNumber("Left Distance", _encoDriveLeft.getDistance());
-		SmartDashboard.putNumber("Right Distance", _encoDriveRight.getDistance());
-		SmartDashboard.putNumber("Left Speed", _encoDriveLeft.getRate());
-		SmartDashboard.putNumber("Right Speed", _encoDriveRight.getRate());
-		// SmartDashboard.putNumber("Gyro", gyro.getAngle());
+		// SmartDashboard.putData("vibrate", new CmdHapticFeedback());
+		SmartDashboard.putNumber("Drive Encoder: Left Distance", _encoDriveLeft.getDistance());
+		SmartDashboard.putNumber("Drive Encoder: Right Distance", _encoDriveRight.getDistance());
+		SmartDashboard.putNumber("Drive Encoder: Left Speed", _encoDriveLeft.getRate());
+		SmartDashboard.putNumber("Drive Encoder: Right Speed", _encoDriveRight.getRate());
 	}
 }
