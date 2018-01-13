@@ -8,7 +8,7 @@ import edu.wpi.first.wpilibj.PIDSource;
 import edu.wpi.first.wpilibj.SPI;
 import edu.wpi.first.wpilibj.interfaces.Gyro;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
-import edu.wpi.first.wpilibj.livewindow.LiveWindowSendable;
+
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
@@ -40,7 +40,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  * used within a new environment (e.g., when you arrive at a FTC competition
  * event).
  */
-public class NavX_Gyro extends GyroBase implements Gyro, PIDSource, LiveWindowSendable
+public class NavX_Gyro extends GyroBase implements Gyro, PIDSource
 {
 	private AHRS m_spi;
 
