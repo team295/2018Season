@@ -14,7 +14,7 @@ import org.usfirst.frc295.GrizzlynatorBase.Drive.DriveSignal;
 import org.usfirst.frc295.GrizzlynatorBase.commands.CmdDriveWithJoystick;
 
 import edu.wpi.first.wpilibj.Encoder;
-import edu.wpi.first.wpilibj.RobotDrive;
+import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
@@ -27,7 +27,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  */
 public abstract class SysDriveTrain extends Subsystem
 {
-	protected RobotDrive _robotDrive;
+	protected DifferentialDrive _robotDrive;
 
 	// SENSORS
 	protected Encoder _encoDriveRight;

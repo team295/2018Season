@@ -16,9 +16,9 @@ import org.usfirst.frc295.GrizzlynatorBase.Looper.Looper;
 import org.usfirst.frc295.GrizzlynatorBase.commands.AutonomousCommand;
 import org.usfirst.frc295.GrizzlynatorBase.subsystems.SysCompressor;
 import org.usfirst.frc295.GrizzlynatorBase.subsystems.SysDriveTrain;
-import org.usfirst.frc295.GrizzlynatorBase.subsystems.SysDriveTrainCANOpenLoop;
-import org.usfirst.frc295.GrizzlynatorBase.subsystems.SysDriveTrainForklift;
-import org.usfirst.frc295.GrizzlynatorBase.subsystems.SysDriveTrainProto;
+//import org.usfirst.frc295.GrizzlynatorBase.subsystems.SysDriveTrainCANOpenLoop;
+//import org.usfirst.frc295.GrizzlynatorBase.subsystems.SysDriveTrainForklift;
+//import org.usfirst.frc295.GrizzlynatorBase.subsystems.SysDriveTrainProto;
 import org.usfirst.frc295.GrizzlynatorBase.subsystems.SysDriveTrainShifter;
 
 
@@ -72,15 +72,15 @@ public class Robot extends IterativeRobot
 			// INSTANTIATE SUB-SYSTEMS FOR THE ROBOT
 			if (RobotMap.ROBOT_ID == RobotID.BOT_COMP1)
 			{
-				sysDriveTrain = new SysDriveTrainCANOpenLoop();
+//				sysDriveTrain = new SysDriveTrainCANOpenLoop();
 			}
 			else if (RobotMap.ROBOT_ID == RobotID.BOT_PROTO)
 			{
-				sysDriveTrain = new SysDriveTrainProto();
+//				sysDriveTrain = new SysDriveTrainProto();
 			}
 			else if (RobotMap.ROBOT_ID == RobotID.BOT_FORKLIFT)
 			{
-				sysDriveTrain = new SysDriveTrainForklift();
+//				sysDriveTrain = new SysDriveTrainForklift();
 			}
 
 			sysDriveTrainShifter = new SysDriveTrainShifter();
