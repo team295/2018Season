@@ -17,7 +17,10 @@ import org.usfirst.frc295.GrizzlynatorBase.commands.AutonomousCommand;
 import org.usfirst.frc295.GrizzlynatorBase.subsystems.NavX_Gyro;
 import org.usfirst.frc295.GrizzlynatorBase.subsystems.SysCompressor;
 import org.usfirst.frc295.GrizzlynatorBase.subsystems.SysDriveTrain;
+<<<<<<< HEAD
 import org.usfirst.frc295.GrizzlynatorBase.subsystems.SysDriveTrainCANOpenLoop;
+=======
+>>>>>>> db6d3ee53452b822397ebc566aaf686ba1912aa6
 //import org.usfirst.frc295.GrizzlynatorBase.subsystems.SysDriveTrainCANOpenLoop;
 //import org.usfirst.frc295.GrizzlynatorBase.subsystems.SysDriveTrainForklift;
 //import org.usfirst.frc295.GrizzlynatorBase.subsystems.SysDriveTrainProto;
@@ -74,7 +77,7 @@ public class Robot extends IterativeRobot
 			// INSTANTIATE SUB-SYSTEMS FOR THE ROBOT
 			if (RobotMap.ROBOT_ID == RobotID.BOT_COMP1)
 			{
-				sysDriveTrain = new SysDriveTrainCANOpenLoop();
+//				sysDriveTrain = new SysDriveTrainCANOpenLoop();
 			}
 			else if (RobotMap.ROBOT_ID == RobotID.BOT_PROTO)
 			{
