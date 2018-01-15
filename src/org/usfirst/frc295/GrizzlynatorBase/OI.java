@@ -13,6 +13,8 @@ package org.usfirst.frc295.GrizzlynatorBase;
 import org.usfirst.frc295.GrizzlynatorBase.commands.AutonomousCommand;
 //import org.usfirst.frc295.GrizzlynatorBase.commands.CmdDriveTrainShifterSetHigh;
 //import org.usfirst.frc295.GrizzlynatorBase.commands.CmdDriveTrainShifterSetLow;
+import org.usfirst.frc295.GrizzlynatorBase.commands.CmdDropCube;
+import org.usfirst.frc295.GrizzlynatorBase.commands.CmdIntakeCube;
 
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -106,6 +108,12 @@ public class OI
 		// OPERATOR JOYSTICK BUTTON COMMANDS
 		// =====================================================================
 
+		JoystickButton _btnOpIntakeCube = _joystickOperator.getIntakeCubeButton();
+		_btnOpIntakeCube.whileHeld(new CmdIntakeCube());
+		
+		JoystickButton _btnOpDropCube = _joystickOperator.getDropCubeButton();
+		_btnOpDropCube.whileHeld(new CmdDropCube());
+		
 	}
 
 
