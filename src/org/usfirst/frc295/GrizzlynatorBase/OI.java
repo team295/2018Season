@@ -10,7 +10,7 @@
 
 package org.usfirst.frc295.GrizzlynatorBase;
 
-import org.usfirst.frc295.GrizzlynatorBase.commands.AutonomousCommand;
+import org.usfirst.frc295.GrizzlynatorBase.commands.AutonomousLeft;
 //import org.usfirst.frc295.GrizzlynatorBase.commands.CmdDriveTrainShifterSetHigh;
 //import org.usfirst.frc295.GrizzlynatorBase.commands.CmdDriveTrainShifterSetLow;
 
@@ -65,7 +65,7 @@ public class OI
 		// =====================================================================
 
 		// SmartDashboard Button to start the Autonomous Command
-		SmartDashboard.putData("Autonomous Command", new AutonomousCommand());
+		//SmartDashboard.putData("Autonomous Command", new AutonomousLeft(null));
 
 		// =====================================================================
 		// DRIVER JOYSTICK BUTTON COMMANDS

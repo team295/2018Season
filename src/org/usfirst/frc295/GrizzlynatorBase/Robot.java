@@ -13,7 +13,9 @@ package org.usfirst.frc295.GrizzlynatorBase;
 import org.usfirst.frc295.GrizzlynatorBase.RobotMap.RobotID;
 import org.usfirst.frc295.GrizzlynatorBase.Logger.Logger;
 import org.usfirst.frc295.GrizzlynatorBase.Looper.Looper;
-import org.usfirst.frc295.GrizzlynatorBase.commands.AutonomousCommand;
+import org.usfirst.frc295.GrizzlynatorBase.commands.AutonomousLeft;
+import org.usfirst.frc295.GrizzlynatorBase.commands.AutonomousRight;
+import org.usfirst.frc295.GrizzlynatorBase.commands.AutonomousMiddle;
 import org.usfirst.frc295.GrizzlynatorBase.subsystems.NavX_Gyro;
 import org.usfirst.frc295.GrizzlynatorBase.subsystems.SysCompressor;
 import org.usfirst.frc295.GrizzlynatorBase.subsystems.SysDriveTrain;
@@ -23,7 +25,8 @@ import org.usfirst.frc295.GrizzlynatorBase.subsystems.SysDriveTrainCANOpenLoop;
 //import org.usfirst.frc295.GrizzlynatorBase.subsystems.SysDriveTrainProto;
 import org.usfirst.frc295.GrizzlynatorBase.subsystems.SysDriveTrainShifter;
 
-
+import edu.wpi.first.wpilibj.DriverStation;
+import edu.wpi.first.wpilibj.GamepadBase;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
@@ -96,12 +99,13 @@ public class Robot extends IterativeRobot
 			oi = new OI();
 
 			// TODO: Need to know how SendableChooser work
-			/*
-			 * chooser = new SendableChooser();
-			 * chooser.addDefault("Default Auto", new AutonomousCommand());
-			 * //chooser.addObject("My Auto", new MyAutoCommand());
-			 * SmartDashboard.putData("Auto mode", chooser);
-			 */
+			
+//			  chooser = new SendableChooser();
+//			  chooser.addDefault("Default Auto", new AutonomousMiddle());
+//			  chooser.addObject("Left Auto", new AutonomousLeft());
+//			  chooser.addObject("Right Auto", new AutonomousRight());
+//			  SmartDashboard.putData("Auto mode", chooser);
+//			 
 
 			// Show what command your subsystem is running on the SmartDashboard
 			
@@ -166,12 +170,15 @@ public class Robot extends IterativeRobot
 	@Override
 	public void autonomousInit()
 	{
+		String gameData;
+		gameData = DriverStation.getInstance().getGameSpecificMessage();
+		
 		try
 		{
 			Logger.logAutoInit();
 
 			// Instantiate the command used for the autonomous period
-			autonomousCommand = new AutonomousCommand();
+			autonomousCommand = new AutonomousLeft(gameData);
 
 			// TODO: How does the chooser work?
 			// autonomousCommand = (Command) chooser.getSelected();
@@ -201,6 +208,12 @@ public class Robot extends IterativeRobot
 			Logger.logThrowable(t);
 			throw t;
 		}
+	}
+
+
+	private void AutonomousLeft(String gameData) {
+		// TODO Auto-generated method stub
+		
 	}
 
 

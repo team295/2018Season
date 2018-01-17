@@ -13,8 +13,8 @@ package org.usfirst.frc295.GrizzlynatorBase.subsystems;
 import org.usfirst.frc295.GrizzlynatorBase.Drive.DriveSignal;
 import org.usfirst.frc295.GrizzlynatorBase.commands.CmdDriveWithJoystick;
 
-import com.ctre.CANTalon;
-import com.ctre.CanTalonJNI;
+//import com.ctre.CANTalon;
+//import com.ctre.CanTalonJNI;
 
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
@@ -77,20 +77,19 @@ public abstract class SysDriveTrain extends Subsystem
 	
 	}
 
-
 	public synchronized void stop()
 	{
 		_robotDrive.stopMotor();
 	}
-
-
+	
+	
 	public synchronized void arcadeDrive(double move, double rotation)
 	{
 		_robotDrive.arcadeDrive(move, rotation);
 	}
 
 
-	
+
 	/**
 	 * Reset the robots sensors to the zero states.
 	 */
