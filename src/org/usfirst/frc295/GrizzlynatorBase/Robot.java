@@ -32,6 +32,9 @@ import edu.wpi.first.wpilibj.Encoder;
 
 import org.usfirst.frc295.GrizzlynatorBase.subsystems.SysIntake;
 import org.usfirst.frc295.GrizzlynatorBase.subsystems.SysUltrasonic;
+import org.usfirst.frc295.GrizzlynatorBase.subsystems.*;
+
+
 
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Command;
@@ -71,6 +74,7 @@ public class Robot extends IterativeRobot
 	public static SysDriveTrainShifter sysDriveTrainShifter;
 	public static SysElevator sysElevator;
 	public static SysCompressor sysCompressor;
+	public static SysRamp sysRamp;
 
 	public static SysUltrasonic sysUltrasonic;
 	public static SysIntake sysIntake;
@@ -117,7 +121,7 @@ public class Robot extends IterativeRobot
 			}
 
 			sysDriveTrainShifter = new SysDriveTrainShifter();
-			
+			sysRamp = new SysRamp();
 			// OI must be constructed after subsystems. If the OI creates
 			// Commands
 			// (which it very likely will), subsystems are not guaranteed to be
