@@ -22,6 +22,7 @@ import org.usfirst.frc295.GrizzlynatorBase.subsystems.SysDriveTrainCANOpenLoop;
 //import org.usfirst.frc295.GrizzlynatorBase.subsystems.SysDriveTrainForklift;
 //import org.usfirst.frc295.GrizzlynatorBase.subsystems.SysDriveTrainProto;
 import org.usfirst.frc295.GrizzlynatorBase.subsystems.SysDriveTrainShifter;
+import org.usfirst.frc295.GrizzlynatorBase.subsystems.*;
 
 
 import edu.wpi.first.wpilibj.IterativeRobot;
@@ -57,6 +58,7 @@ public class Robot extends IterativeRobot
 	public static SysDriveTrain sysDriveTrain;
 	public static SysDriveTrainShifter sysDriveTrainShifter;
 	public static SysCompressor sysCompressor;
+	public static SysRamp sysRamp;
 
 
 	/**
@@ -86,7 +88,7 @@ public class Robot extends IterativeRobot
 			}
 
 			sysDriveTrainShifter = new SysDriveTrainShifter();
-			
+			sysRamp = new SysRamp();
 			// OI must be constructed after subsystems. If the OI creates
 			// Commands
 			// (which it very likely will), subsystems are not guaranteed to be
