@@ -42,10 +42,10 @@ public class RobotMap
 	public static final RobotID ROBOT_ID = RobotID.BOT_COMP1;
 
 	// CAN IDs ARE UNIQUE PER DEVICE TYPE
-	public static final short CAN_ESC_DRIVE_LEFT_FRONT = 1;
-	public static final short CAN_ESC_DRIVE_LEFT_BACK = 2;
-	public static final short CAN_ESC_DRIVE_RIGHT_FRONT = 3;
-	public static final short CAN_ESC_DRIVE_RIGHT_BACK = 4;
+	public static final short CAN_ESC_DRIVE_LEFT_FRONT = 5;
+	public static final short CAN_ESC_DRIVE_LEFT_BACK = 6;
+	public static final short CAN_ESC_DRIVE_RIGHT_FRONT = 4;
+	public static final short CAN_ESC_DRIVE_RIGHT_BACK = 3;
 	public static final short CAN_ESC_LIFT_MASTER = 5;
 	public static final short CAN_ESC_LIFT_SLAVE = 6;
 	public static final short CAN_ESC_FLYWHEEL_MASTER = 10;

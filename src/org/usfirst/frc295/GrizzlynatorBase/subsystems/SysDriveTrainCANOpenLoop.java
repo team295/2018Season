@@ -52,9 +52,8 @@ public class SysDriveTrainCANOpenLoop extends SysDriveTrain
 //		_escRightBack = new WPI_TalonSRX(RobotMap.CAN_ESC_DRIVE_RIGHT_BACK);
 //		LiveWindow.addActuator("SysDriveTrain", "Esc Right Back", _escRightBack);
 
-	
-//    	_escLeftBack.follow(_escLeftFront);
-//    	_escRightBack.follow(_escRightFront);
+//	    _escLeftBack.follow(_escLeftFront);
+//	    _escRightBack.follow(_escRightFront);
 		_robotDrive = new DifferentialDrive(_escLeftFront, _escRightFront);
 	
 
@@ -98,13 +97,13 @@ public class SysDriveTrainCANOpenLoop extends SysDriveTrain
 		
 		_encoDriveLeft.setDistancePerPulse(1.0);
 		_encoDriveLeft.setPIDSourceType(PIDSourceType.kRate);
-		LiveWindow.addSensor("SysDriveTrain", "Enco Drive Left", _encoDriveLeft);
+		
 
 		_encoDriveRight = new Encoder(RobotMap.DIO_ENC_DRIVE_RIGHT_CHAN1, RobotMap.DIO_ENC_DRIVE_RIGHT_CHAN2, false,
 				EncodingType.k4X);
 		_encoDriveRight.setDistancePerPulse(1.0);
 		_encoDriveRight.setPIDSourceType(PIDSourceType.kRate);
-		LiveWindow.addSensor("SysDriveTrain", "Enco Drive Right", _encoDriveRight);
+		
 
 	}
 
