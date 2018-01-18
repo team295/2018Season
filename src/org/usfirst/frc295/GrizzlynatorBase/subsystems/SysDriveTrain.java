@@ -74,6 +74,7 @@ public abstract class SysDriveTrain extends Subsystem
 
 		_robotDrive.tankDrive(signal.leftMotor, signal.rightMotor);
 	
+	
 	}
 
 
@@ -89,18 +90,7 @@ public abstract class SysDriveTrain extends Subsystem
 	}
 
 
-	public synchronized void stop()
-	{
-		_robotDrive.stopMotor();
-	}
-
-
-	public synchronized void arcadeDrive(double move, double rotation)
-	{
-		_robotDrive.arcadeDrive(move, rotation);
-	}
-
-
+	
 	/**
 	 * Reset the robots sensors to the zero states.
 	 */
