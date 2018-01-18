@@ -105,6 +105,7 @@ public abstract class SysDriveTrain extends Subsystem
 		_robotDrive.curvatureDrive(move, rotation, isQuickTurn);
 	}
 
+
 	public synchronized void tankDrive(double move)
 	{
 		_robotDrive.tankDrive(move, 0);

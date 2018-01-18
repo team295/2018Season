@@ -27,6 +27,7 @@ import org.usfirst.frc295.GrizzlynatorBase.subsystems.SysIntake;
 import org.usfirst.frc295.GrizzlynatorBase.subsystems.SysRamp;
 
 
+
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.Encoder;
@@ -73,7 +74,7 @@ public class Robot extends IterativeRobot
 	public static SysIntake sysIntake;
 	public static SysDriveTrainShifter sysDriveTrainShifter;
 	public static SysRamp sysRamp;
-	
+
 
 	@Override
 	public void robotInit()
@@ -107,12 +108,11 @@ public class Robot extends IterativeRobot
 				//sysDriveTrain = new SysDriveTrainForklift();
 			}
 			
-			
-			
 			sysCompressor = new SysCompressor();
 			sysElevator = SysElevator.getInstance();
-			
-			
+
+			sysRamp = new SysRamp();
+
 			oi = new OI();
 			ahrs = new NavX_Gyro();
 
