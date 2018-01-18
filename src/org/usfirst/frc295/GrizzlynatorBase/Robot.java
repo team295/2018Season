@@ -23,6 +23,7 @@ import org.usfirst.frc295.GrizzlynatorBase.subsystems.SysDriveTrain;
 import org.usfirst.frc295.GrizzlynatorBase.subsystems.SysDriveTrainCANOpenLoop;
 
 import org.usfirst.frc295.GrizzlynatorBase.subsystems.SysDriveTrainShifter;
+<<<<<<< HEAD
 import org.usfirst.frc295.GrizzlynatorBase.subsystems.SysUltrasonic;
 
 import edu.wpi.first.wpilibj.DigitalInput;
@@ -31,6 +32,9 @@ import edu.wpi.first.wpilibj.Encoder;
 
 import org.usfirst.frc295.GrizzlynatorBase.subsystems.SysIntake;
 
+=======
+import org.usfirst.frc295.GrizzlynatorBase.subsystems.*;
+>>>>>>> Prototype Ramp code, has sys and commands
 
 
 import edu.wpi.first.wpilibj.IterativeRobot;
@@ -70,12 +74,16 @@ public class Robot extends IterativeRobot
 //	public static SysDriveTrainShifter sysDriveTrainShifter;
 	public static SysElevator sysElevator;
 	public static SysCompressor sysCompressor;
+<<<<<<< HEAD
 	public static SysUltrasonic sysUltrasonic;
 	public static SysIntake sysIntake;
 	public static SysDriveTrainShifter sysDriveTrainShifter;
 	
 
 
+=======
+	public static SysRamp sysRamp;
+>>>>>>> Prototype Ramp code, has sys and commands
 
 
 	/**
@@ -115,10 +123,12 @@ public class Robot extends IterativeRobot
 			{
 //				sysDriveTrain = new SysDriveTrainForklift();
 			}
+
 			sysCompressor = new SysCompressor();
-//			sysDriveTrainShifter = new SysDriveTrainShifter();
 			sysElevator = SysElevator.getInstance();
-//			sysDriveTrainShifter = new SysDriveTrainShifter();
+			sysDriveTrainShifter = new SysDriveTrainShifter();
+			sysRamp = new SysRamp();
+
 			// OI must be constructed after subsystems. If the OI creates
 			// Commands
 			// (which it very likely will), subsystems are not guaranteed to be
