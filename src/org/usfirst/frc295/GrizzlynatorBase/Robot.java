@@ -31,6 +31,10 @@ import org.usfirst.frc295.GrizzlynatorBase.subsystems.SysRamp;
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.Encoder;
+import org.usfirst.frc295.GrizzlynatorBase.subsystems.SysIntake;
+import org.usfirst.frc295.GrizzlynatorBase.subsystems.SysUltrasonic;
+import org.usfirst.frc295.GrizzlynatorBase.subsystems.*;
+
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
@@ -70,6 +74,7 @@ public class Robot extends IterativeRobot
 	public static SysDriveTrainCANOpenLoop sysCANLoop;
 	public static SysElevator sysElevator;
 	public static SysCompressor sysCompressor;
+
 	public static SysUltrasonic sysUltrasonic;
 	public static SysIntake sysIntake;
 	public static SysDriveTrainShifter sysDriveTrainShifter;
@@ -107,7 +112,7 @@ public class Robot extends IterativeRobot
 			{
 				//sysDriveTrain = new SysDriveTrainForklift();
 			}
-			
+
 			sysCompressor = new SysCompressor();
 			sysElevator = SysElevator.getInstance();
 
