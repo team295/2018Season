@@ -19,6 +19,7 @@ import org.usfirst.frc295.GrizzlynatorBase.commands.AutonomousMiddle;
 import org.usfirst.frc295.GrizzlynatorBase.subsystems.NavX_Gyro;
 import org.usfirst.frc295.GrizzlynatorBase.subsystems.SysCompressor;
 import org.usfirst.frc295.GrizzlynatorBase.subsystems.SysElevator;
+import org.usfirst.frc295.GrizzlynatorBase.subsystems.SysEncoderDrive;
 import org.usfirst.frc295.GrizzlynatorBase.subsystems.SysDriveTrain;
 import org.usfirst.frc295.GrizzlynatorBase.subsystems.SysDriveTrainCANOpenLoop;
 import org.usfirst.frc295.GrizzlynatorBase.subsystems.SysDriveTrainShifter;
@@ -28,12 +29,12 @@ import org.usfirst.frc295.GrizzlynatorBase.subsystems.SysRamp;
 
 
 
+
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.Encoder;
-import org.usfirst.frc295.GrizzlynatorBase.subsystems.SysIntake;
-import org.usfirst.frc295.GrizzlynatorBase.subsystems.SysUltrasonic;
-import org.usfirst.frc295.GrizzlynatorBase.subsystems.*;
+
+
 
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Command;
@@ -75,7 +76,6 @@ public class Robot extends IterativeRobot
 	public static SysDriveTrainCANOpenLoop sysCANLoop;
 	public static SysElevator sysElevator;
 	public static SysCompressor sysCompressor;
-
 	public static SysRamp sysRamp;
 
 	public static SysUltrasonic sysUltrasonic;
@@ -120,11 +120,9 @@ public class Robot extends IterativeRobot
 
 			sysCompressor = new SysCompressor();
 			sysElevator = SysElevator.getInstance();
-
 			sysRamp = new SysRamp();
 
 			sysEncoderDrive = new SysEncoderDrive();
-
 
 			oi = new OI();
 			ahrs = new NavX_Gyro();
