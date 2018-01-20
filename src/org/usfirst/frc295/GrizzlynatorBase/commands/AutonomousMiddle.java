@@ -33,7 +33,6 @@ public class AutonomousMiddle extends CommandGroup //9 + 10
 			addSequential(new Waypoint(60,0,.8,false));
 			addSequential(new Wait());
 			addSequential(new Waypoint(0,-90,.5,false));
-			addSequential(new Wait());
 			addSequential(new Waypoint(36,0,.8,false));
 			addSequential(new Wait());
 			addSequential(new Waypoint(0,90,.5,false));
@@ -41,7 +40,6 @@ public class AutonomousMiddle extends CommandGroup //9 + 10
 			//addSequential ultrasonic to switch
 			addSequential(new Wait());
 			//addSequential drop cube
-			addSequential(new Wait());
 			addSequential(new Waypoint(-6,0,.8,false));
 			addSequential(new Wait());
 			addSequential(new Waypoint(0,90,.5,false));
@@ -53,7 +51,6 @@ public class AutonomousMiddle extends CommandGroup //9 + 10
 			addSequential(new Waypoint(60,0,.8,false));
 			addSequential(new Wait());
 			addSequential(new Waypoint(0,90,.5,false));
-			addSequential(new Wait());
 			addSequential(new Waypoint(36,0,.8,false));
 			addSequential(new Wait());
 			addSequential(new Waypoint(0,-90,.5,false));
@@ -69,7 +66,7 @@ public class AutonomousMiddle extends CommandGroup //9 + 10
 		}
 		else
 		{
-			addSequential(new Waypoint(144,0,.8,false));
+			addSequential(new Waypoint(144,0,.8,false));// ;) 
 		}
 	}
 

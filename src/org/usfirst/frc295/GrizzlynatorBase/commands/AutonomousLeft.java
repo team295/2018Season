@@ -34,20 +34,18 @@ public class AutonomousLeft extends CommandGroup //9 + 10
 			addSequential(new Waypoint(168,0,.8,false));
 			addSequential(new Wait());
 			addSequential(new Waypoint(0,90,.5,false));//turn left
-			addSequential(new Wait());
-			//addsequential ultra sonic to go to switch
-			addSequential(new Wait());
-			//addsequential drop cube
-			addSequential(new Wait());
+			//addSequential(new Wait());
+			//addSequential ultra sonic to go to switch
+			//addSequential(new Wait());
+			//addSequential drop cube
 			addSequential(new Waypoint(-24,0,.8,false));
 			addSequential(new Wait());
 			addSequential(new Waypoint(0,-90,.5,false));
-			addSequential(new Wait());
 			addSequential(new Waypoint(18,0,.8,false));
 			addSequential(new Wait());
 			addSequential(new Waypoint(0,90,.5,false));
 			addSequential(new Wait());
-			//addsequential pick up cube
+			//addSequential pick up cube
 		}
 		else if(gameData.charAt(1) == 'L')
 		{
@@ -57,9 +55,8 @@ public class AutonomousLeft extends CommandGroup //9 + 10
 			addSequential(new Waypoint(0,90,.5,false));
 			addSequential(new Wait());
 			//add sequential extend elevator
-			addSequential(new Wait());
 			// add sequential drop cube
-			addSequential(new Wait());
+			//addSequential(new Wait());
 			// add sequential retract elevator
 			addSequential(new Wait());
 			addSequential(new Waypoint(0,-90,.5,false));

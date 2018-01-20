@@ -50,8 +50,8 @@ public class Waypoint extends Command
 		SmartDashboard.putNumber("TicksWanted", _dDistanceTarget);
 
 	}
-
-
+	 
+	
 	// Called just before this Command runs the first time
 	@Override
 	protected void initialize()

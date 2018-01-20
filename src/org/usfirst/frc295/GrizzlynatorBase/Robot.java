@@ -25,6 +25,7 @@ import org.usfirst.frc295.GrizzlynatorBase.subsystems.SysDriveTrainCANOpenLoop;
 //import org.usfirst.frc295.GrizzlynatorBase.subsystems.SysDriveTrainProto;
 import org.usfirst.frc295.GrizzlynatorBase.subsystems.SysDriveTrainShifter;
 
+import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.GamepadBase;
 import edu.wpi.first.wpilibj.IterativeRobot;
@@ -56,12 +57,14 @@ public class Robot extends IterativeRobot
 	// Operator Interface from OJ.java
 	public static OI oi;
 	public static NavX_Gyro ahrs;
+	public static DigitalInput dioRobotID1;
+	public static DigitalInput dioRobotID2;
+	
 	// MAJOR SUBSYSTEMS
 	public static SysDriveTrain sysDriveTrain;
 	public static SysDriveTrainShifter sysDriveTrainShifter;
 	public static SysCompressor sysCompressor;
-
-
+	
 	/**
 	 * This function is run when the robot is first started up and should be
 	 * used for any initialization code.
@@ -70,10 +73,11 @@ public class Robot extends IterativeRobot
 	public void robotInit()
 	{
 		try
-		{
+		{ 
 			Logger.logRobotInit();
 			RobotMap.init();
 
+			 			 
 			// INSTANTIATE SUB-SYSTEMS FOR THE ROBOT
 			if (RobotMap.ROBOT_ID == RobotID.BOT_COMP1)
 			{
@@ -146,7 +150,9 @@ public class Robot extends IterativeRobot
 	{
 		try
 		{
+//			System.out.println(input_dio.get());
 			Scheduler.getInstance().run();
+//			input_dio.get();
 		}
 		catch (Throwable t)
 		{
@@ -170,15 +176,15 @@ public class Robot extends IterativeRobot
 	@Override
 	public void autonomousInit()
 	{
-		String gameData;
-		gameData = DriverStation.getInstance().getGameSpecificMessage();
-		
+//		String gameData;
+//		gameData = DriverStation.getInstance().getGameSpecificMessage();
+//		
 		try
 		{
 			Logger.logAutoInit();
 
 			// Instantiate the command used for the autonomous period
-			autonomousCommand = new AutonomousLeft(gameData);
+			autonomousCommand = new AutonomousLeft(null);
 
 			// TODO: How does the chooser work?
 			// autonomousCommand = (Command) chooser.getSelected();
@@ -211,10 +217,10 @@ public class Robot extends IterativeRobot
 	}
 
 
-	private void AutonomousLeft(String gameData) {
-		// TODO Auto-generated method stub
-		
-	}
+//	private void AutonomousLeft(String gameData) {
+//		// TODO Auto-generated method stub
+//		
+//	}
 
 
 	/**
@@ -273,6 +279,11 @@ public class Robot extends IterativeRobot
 	{
 		try
 		{
+			
+			System.out.print(dioRobotID1.get());
+			System.out.print (", ");
+			System.out.println(dioRobotID2.get());
+			
 			Scheduler.getInstance().run();
 			log();
 		}
@@ -292,7 +303,7 @@ public class Robot extends IterativeRobot
 	{
 		try
 		{
-			LiveWindow.run();
+//			LiveWindow.run();
 		}
 		catch (Throwable t)
 		{

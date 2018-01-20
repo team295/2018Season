@@ -65,6 +65,8 @@ public class RobotMap
 	public static final short DIO_ENC_DRIVE_RIGHT_CHAN2 = 1;
 	public static final short DIO_ENC_DRIVE_LEFT_CHAN1 = 2;
 	public static final short DIO_ENC_DRIVE_LEFT_CHAN2 = 3;
+	public static final short DIO_ROBOT_ID1 = 8;
+	public static final short DIO_ROBOT_ID2 = 9;
 
 	// RELAY PINS
 	public static final short RLY_GREENLIGHT = 0;
