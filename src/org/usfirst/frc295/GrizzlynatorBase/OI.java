@@ -72,11 +72,17 @@ public class OI
 		// =====================================================================
 		// OPERATOR JOYSTICK BUTTON COMMANDS
 		// =====================================================================
-		 JoystickButton _btnOperatorA = _joystickOperator.getElevatorTopButton();;
-		 _btnOperatorA.whenPressed(new CmdElevatorPresetUp());
+		 JoystickButton _btnOperator1 = _joystickOperator.getElevatorBottomButton();;
+		 _btnOperator1.whenPressed(new CmdElevatorBottom());
+		
+		 JoystickButton _btnOperator2 = _joystickOperator.getElevatorVaultButton();;
+		 _btnOperator2.whenPressed(new CmdElevatorVault());
 		 
-		 JoystickButton _btnOperatorB = _joystickOperator.getElevatorBottomButton();;
-		 _btnOperatorB.whenPressed(new CmdElevatorPresetDown());
+		 JoystickButton _btnOperator3 = _joystickOperator.getElevatorSwitchButton();;
+		 _btnOperator3.whenPressed(new CmdElevatorSwitch());
+
+		 JoystickButton _btnOperator4 = _joystickOperator.getElevatorScaleButton();;
+		 _btnOperator4.whenPressed(new CmdElevatorScale());
 	}
 
 	public JoystickDriver getJoystickDriver()

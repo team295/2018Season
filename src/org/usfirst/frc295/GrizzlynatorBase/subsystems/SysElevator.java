@@ -15,30 +15,51 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  */
 public class SysElevator extends Subsystem
 {
-	 public static DigitalInput ToplimitSwitch = new DigitalInput(1);
-     public static Counter Topcounter = new Counter(ToplimitSwitch);
+	 public static DigitalInput ScalelimitSwitch = new DigitalInput(4);
+     public static Counter Scalecounter = new Counter(ScalelimitSwitch);
 
-	 public static DigitalInput BottomlimitSwitch = new DigitalInput(1);
+	 public static DigitalInput BottomlimitSwitch = new DigitalInput(2);
      public static Counter Bottomcounter = new Counter(BottomlimitSwitch);
+     
+	 public static DigitalInput VaultlimitSwitch = new DigitalInput(2);
+     public static Counter Vaultcounter = new Counter(VaultlimitSwitch);
+     
+	 public static DigitalInput SwitchlimitSwitch = new DigitalInput(3);
+     public static Counter Switchcounter = new Counter(SwitchlimitSwitch);
+     
+     public static int Location = 0; 
      
 	//Creating ElevatorMotor from Talon with port zero
 	Talon ElevatorMotor = new Talon(RobotMap.ELEVATOR_TALON);
 	
-    public static boolean isSwitchSetTop() 
+    public static boolean isSwitchSetScale() 
     {
-        return Topcounter.get() > 0;
+        return Scalecounter.get() > 0;
     }
+    
+    public static boolean isSwitchSetSwitch() 
+    {
+        return Switchcounter.get() > 0;
+    }
+    
     
     public static boolean isSwitchSetBottom() 
     {
         return Bottomcounter.get() > 0;
     }
     
+    public static boolean isSwitchSetVault() 
+    {
+        return Vaultcounter.get() > 0;
+    }
+    
+    
     public void initializeCounter() 
     {
-        Topcounter.reset();
+        Scalecounter.reset();
         Bottomcounter.reset();
-
+        Switchcounter.reset();
+        Vaultcounter.reset();
     }
 
     
@@ -47,19 +68,72 @@ public class SysElevator extends Subsystem
 		
 	}
 	
-	public void ElevatorRise()
+	public void ELevatorScale()
 	{
-		ElevatorMotor.set(RobotMap.RISE);
+		switch(Location)
+		{
+			case 0 :
+				ElevatorMotor.set(RobotMap.RISE);
+			case 1 :
+				ElevatorMotor.set(RobotMap.RISE);
+			case 2 :
+				ElevatorMotor.set(RobotMap.RISE);
+			case 3 :
+				
+		}	
 	}
 	
-	public void ElevatorLower()
+	public void ELevatorSwitch()
 	{
-		ElevatorMotor.set(RobotMap.LOWER);
+		switch(Location)
+		{
+			case 0 :
+				ElevatorMotor.set(RobotMap.RISE);
+			case 1 :
+				ElevatorMotor.set(RobotMap.RISE);
+			case 2 :
+				
+			case 3 :
+				ElevatorMotor.set(RobotMap.LOWER);
+
+		}	
 	}
 	
-	public void ElevatorReset()
+	public void ELevatorVault()
 	{
-		ElevatorMotor.set(RobotMap.RESET);
+		switch(Location)
+		{
+			case 0 :
+				ElevatorMotor.set(RobotMap.RISE);
+			case 1 :
+				
+			case 2 :
+				ElevatorMotor.set(RobotMap.LOWER);
+			case 3 :
+				ElevatorMotor.set(RobotMap.LOWER);
+
+		}	
+	}
+	
+	public void ELevatorBottom()
+	{
+		switch(Location)
+		{
+			case 0 :
+				
+			case 1 :
+				ElevatorMotor.set(RobotMap.LOWER);
+			case 2 :
+				ElevatorMotor.set(RobotMap.LOWER);
+			case 3 :
+				ElevatorMotor.set(RobotMap.LOWER);
+
+		}	
+	}
+	
+	public void ELevatorZero()
+	{
+		ElevatorMotor.set(RobotMap.ZERO);
 	}
 
 }

@@ -76,7 +76,7 @@ public class RobotMap
 	public static final int ELEVATOR_TALON = 0;
 	public static final int RISE = 1;
 	public static final int LOWER = -1;
-	public static final int RESET = 0;
+	public static final int ZERO = 0;
 
 
 	// SYS FLYWHEEL PARAMETERS
