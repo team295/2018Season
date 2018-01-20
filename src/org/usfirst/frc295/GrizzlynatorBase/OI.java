@@ -13,6 +13,7 @@ package org.usfirst.frc295.GrizzlynatorBase;
 import org.usfirst.frc295.GrizzlynatorBase.commands.AutonomousCommand;
 //import org.usfirst.frc295.GrizzlynatorBase.commands.CmdDriveTrainShifterSetHigh;
 //import org.usfirst.frc295.GrizzlynatorBase.commands.CmdDriveTrainShifterSetLow;
+import org.usfirst.frc295.GrizzlynatorBase.commands.*;
 
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -52,11 +53,7 @@ public class OI
 	// button.whenReleased(new ExampleCommand());
 
 	private JoystickDriver _joystickDriver = new JoystickDriver(0, JoystickDriver.JoystickType.XBOX);
-	// = new JoystickDriver(0, JoystickDriver.JoystickType.LOGITECH);
-	private JoystickOperator _joystickOperator;
-	// = new JoystickOperator(1, JoystickOperator.JoystickType.XBOX);
-	// = new JoystickOperator(1, JoystickOperator.JoystickType.LOGITECH);
-
+	private JoystickOperator _joystickOperator = new JoystickOperator(1, JoystickOperator.JoystickType.XBOX);
 
 	public OI()
 	{
@@ -70,44 +67,17 @@ public class OI
 		// =====================================================================
 		// DRIVER JOYSTICK BUTTON COMMANDS
 		// =====================================================================
-//		JoystickButton _btnDriverA = _joystickDriver.getDriveTrainShifterSetLowButton();
-//		_btnDriverA.whenPressed(new CmdDriveTrainShifterSetLow());
-//		SmartDashboard.putData("CMD Shift Slow", new CmdDriveTrainShifterSetLow());
-//
-//		JoystickButton _btnDriverY = _joystickDriver.getDriveTrainShifterSetHighButton();
-//		_btnDriverY.whenPressed(new CmdDriveTrainShifterSetHigh());
-//		SmartDashboard.putData("CMD Shift Fast", new CmdDriveTrainShifterSetHigh());
 
-		/*
-		 * JoystickButton _btnDriverB = new JoystickButton(_joystickDriver, 3);
-		 * _btnDriverY.whenPressed(new CmdFlywheelSetSpeed(9000));
-		 * SmartDashboard.putData("Cmd Flywheel", new
-		 * CmdFlywheelSetSpeed(2500));
-		 */
-		/*
-		 * 
-		 * JoystickButton _btnDriverB = new JoystickButton(_joystickDriver, 3);
-		 * _btnDriverB.whenPressed(new CmdDriveTrainSetForward());
-		 * SmartDashboard.putData("Cmd Drive Forward Arm", new
-		 * CmdDriveTrainSetForward());
-		 * 
-		 * JoystickButton _btnDriverX = new JoystickButton(_joystickDriver, 4);
-		 * _btnDriverX.whenPressed(new CmdDriveTrainSetBackward());
-		 * SmartDashboard.putData("Cmd Drive Forward Shooter", new
-		 * CmdDriveTrainSetBackward());
-		 */
-
-		// JoystickButton _btnDriver5 = new JoystickButton(_joystickDriver, 1);
-		// _btnDriver5.whenPressed(new CmdFlywheelSetSpeed(0.25));
-		// SmartDashboard.putData("Cmd Flywheel Speed 0.25", new
-		// CmdFlywheelSetSpeed(0.25));
 
 		// =====================================================================
 		// OPERATOR JOYSTICK BUTTON COMMANDS
 		// =====================================================================
-
+		 JoystickButton _btnOperatorA = _joystickOperator.getElevatorTopButton();;
+		 _btnOperatorA.whenPressed(new CmdElevatorPresetUp());
+		 
+		 JoystickButton _btnOperatorB = _joystickOperator.getElevatorBottomButton();;
+		 _btnOperatorB.whenPressed(new CmdElevatorPresetDown());
 	}
-
 
 	public JoystickDriver getJoystickDriver()
 	{

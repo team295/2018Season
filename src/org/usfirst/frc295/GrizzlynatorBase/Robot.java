@@ -27,7 +27,7 @@ import org.usfirst.frc295.GrizzlynatorBase.subsystems.SysDriveTrainForklift;
 import org.usfirst.frc295.GrizzlynatorBase.subsystems.SysDriveTrainProto;
 >>>>>>> Instantiating Elevator
 import org.usfirst.frc295.GrizzlynatorBase.subsystems.SysDriveTrainShifter;
-
+import org.usfirst.frc295.GrizzlynatorBase.subsystems.SysElevator;
 
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Command;
@@ -60,6 +60,7 @@ public class Robot extends IterativeRobot
 	public static NavX_Gyro ahrs;
 	// MAJOR SUBSYSTEMS
 	public static SysDriveTrain sysDriveTrain;
+	public static SysElevator sysElevator;
 	public static SysDriveTrainShifter sysDriveTrainShifter;
 	public static SysCompressor sysCompressor;
 
@@ -103,6 +104,7 @@ public class Robot extends IterativeRobot
 			//}
 
 			sysDriveTrainShifter = new SysDriveTrainShifter();
+			sysElevator = new SysElevator();
 			
 			// OI must be constructed after subsystems. If the OI creates
 			// Commands

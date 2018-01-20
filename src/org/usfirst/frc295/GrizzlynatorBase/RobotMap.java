@@ -10,6 +10,8 @@
 
 package org.usfirst.frc295.GrizzlynatorBase;
 
+import edu.wpi.first.wpilibj.Talon;
+
 /**
  * The RobotMap is used to organize constants used in the program. Provides
  * easily recognizable names for the values Constants will usually map the pins
@@ -69,6 +71,13 @@ public class RobotMap
 	// RELAY PINS
 	public static final short RLY_GREENLIGHT = 0;
 	public static final short RLY_FLASHLIGHT = 1;
+	
+	//SYS ELEVATOR PROPERTIES
+	public static final int ELEVATOR_TALON = 0;
+	public static final int RISE = 1;
+	public static final int LOWER = -1;
+	public static final int RESET = 0;
+
 
 	// SYS FLYWHEEL PARAMETERS
 	public static final double FLYWHEEL_SPEED_KP = 0.12;

@@ -16,11 +16,20 @@ import edu.wpi.first.wpilibj.buttons.JoystickButton;
 public class JoystickOperator extends Joystick
 {
 
-	// X-BOX OPERATOR JOYSTICK BUTTONS
-	public static final short OPERATOR_BUTTON_SHOOT_XBOX = 1;
+	// X-BOX OPERATOR JOYSTICK BUTTONS 
+	//public static final short OPERATOR_BUTTON_SHOOT_XBOX = 1;
+	//public static final short OPERATOR_BUTTON_ELEVATOR_RISE_XBOX = 1; //BUTTON A OPERATOR
+	//public static final short OPERATOR_BUTTON_ELEVATOR_LOWER_XBOX = 2; //BUTTON B OPERATOR
+	public static final short OPERATOR_BUTTON_ELEVATOR_TOPPRESET_XBOX = 1; //BUTTON A OPERATOR
+	public static final short OPERATOR_BUTTON_ELEVATOR_BOTTOMPRESET_XBOX = 2; //BUTTON B OPERATOR
+
 
 	// LOGITECH (IF DIFFERENT FROM XBOX) OPERATOR JOYSTICK BUTTONS
-	public static final short OPERATOR_BUTTON_SHOOT_LOGITECH = 1;
+	//public static final short OPERATOR_BUTTON_SHOOT_LOGITECH = 1;
+	//public static final short OPERATOR_BUTTON_ELEVATOR_RISE_LOGITECH = 1; 
+	//public static final short OPERATOR_BUTTON_ELEVATOR_LOWER_LOGITECH = 2; 
+	public static final short OPERATOR_BUTTON_ELEVATOR_TOPPRESET_LOGITECH = 1; //BUTTON A OPERATOR
+	public static final short OPERATOR_BUTTON_ELEVATOR_BOTTOMPRESET_LOGITECH = 2; //BUTTON B OPERATOR
 
 	public static enum JoystickType
 	{
@@ -44,8 +53,7 @@ public class JoystickOperator extends Joystick
 		_eJoystickType = eType;
 	}
 
-
-	JoystickButton getShooterShootButton()
+	/*JoystickButton getShooterShootButton()
 	{
 		switch (_eJoystickType)
 		{
@@ -54,6 +62,30 @@ public class JoystickOperator extends Joystick
 
 		default:
 			return (new JoystickButton(this, OPERATOR_BUTTON_SHOOT_XBOX));
+		}
+	}*/
+	
+	JoystickButton getElevatorTopButton()
+	{
+		switch (_eJoystickType)
+		{
+		case XBOX:
+			return (new JoystickButton(this, OPERATOR_BUTTON_ELEVATOR_TOPPRESET_LOGITECH));
+
+		default:
+			return (new JoystickButton(this, OPERATOR_BUTTON_ELEVATOR_TOPPRESET_LOGITECH));		
+		}
+	}
+	
+	JoystickButton getElevatorBottomButton()
+	{
+		switch (_eJoystickType)
+		{
+		case XBOX:
+			return (new JoystickButton(this, OPERATOR_BUTTON_ELEVATOR_BOTTOMPRESET_LOGITECH));
+
+		default:
+			return (new JoystickButton(this, OPERATOR_BUTTON_ELEVATOR_BOTTOMPRESET_LOGITECH));		
 		}
 	}
 
