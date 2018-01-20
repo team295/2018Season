@@ -53,7 +53,7 @@ public class OI
 
 	private JoystickDriver _joystickDriver = new JoystickDriver(0, JoystickDriver.JoystickType.XBOX);
 	// = new JoystickDriver(0, JoystickDriver.JoystickType.LOGITECH);
-	private JoystickOperator _joystickOperator;
+	private JoystickOperator _joystickOperator = new JoystickOperator(1, JoystickOperator.JoystickType.XBOX);
 	// = new JoystickOperator(1, JoystickOperator.JoystickType.XBOX);
 	// = new JoystickOperator(1, JoystickOperator.JoystickType.LOGITECH);
 
