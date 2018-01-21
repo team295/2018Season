@@ -7,9 +7,9 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class CmdIntakeCube extends Command {
+public class CmdManualDropCube extends Command {
 
-    public CmdIntakeCube() {
+    public CmdManualDropCube() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     }
@@ -20,8 +20,8 @@ public class CmdIntakeCube extends Command {
     }
 
     // Called repeatedly when this Command is scheduled to run
-    protected void execute() {  	
-    	Robot.sysIntake.IntakeCube();  	
+    protected void execute() {    	
+    	Robot.sysIntake.ManualDropCube();   	
     }
 
     // Make this return true when this Command no longer needs to run execute()
