@@ -156,6 +156,7 @@ public abstract class SysDriveTrain extends Subsystem
 	
 
 
+
 public double getInches() {
 	 
 	_dDistanceTarget = (_encoDriveRight.getDistance() + _encoDriveLeft.getDistance()) / 2;
@@ -188,6 +189,7 @@ public double getInches() {
 		SmartDashboard.putNumber("Drive Encoder: Right Speed", _encoDriveRight.getRate());
 		SmartDashboard.putNumber("Distance Inches",	getInches());
 		SmartDashboard.putNumber("Yaw_Tele",Robot.ahrs.getYaw());
+
 
 	}
 }

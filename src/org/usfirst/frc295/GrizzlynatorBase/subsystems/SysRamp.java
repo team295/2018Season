@@ -16,6 +16,7 @@ public class SysRamp extends Subsystem{
 	private final DoubleSolenoid.Value RETRACT_SOLENOID = DoubleSolenoid.Value.kReverse;
 	private final DoubleSolenoid.Value EXTEND_SOLENOID = DoubleSolenoid.Value.kForward;
 
+
 	
 	
 	public void OpenRamp(){
@@ -36,6 +37,7 @@ public class SysRamp extends Subsystem{
 		RightSideMain.set(EXTEND_SOLENOID);
 		LeftSideMain.set(EXTEND_SOLENOID);
 	}
+
 
 	@Override
 	protected void initDefaultCommand() {

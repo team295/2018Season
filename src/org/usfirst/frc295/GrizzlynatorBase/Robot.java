@@ -82,6 +82,7 @@ public class Robot extends IterativeRobot
 	public static SysEncoderDrive sysEncoderDrive;
 
 
+
 	@Override
 	public void robotInit()
 	{
@@ -119,7 +120,6 @@ public class Robot extends IterativeRobot
 			sysCompressor = new SysCompressor();
 			sysElevator = SysElevator.getInstance();
 			sysRamp = new SysRamp();
-
 			sysEncoderDrive = new SysEncoderDrive();
 
 			oi = new OI();
@@ -177,10 +177,9 @@ public class Robot extends IterativeRobot
 			Logger.logThrowable(t);
 			throw t;
 		}
+
 		sysIntake.IntakeState();
 
-
-		sysDriveTrain.logToSmartDashboard();
 
 //		sysEncoderDrive.getValues();
 
@@ -326,7 +325,7 @@ public class Robot extends IterativeRobot
 
 		sysIntake.IntakeState();
 
-
+//		sysEncoderDrive.getValues();
 
 	}
 
