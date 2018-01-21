@@ -83,6 +83,7 @@ public class SysDriveTrainCANOpenLoop extends SysDriveTrain
 
 
 		// DEFINE DIO ENCODERS FOR THE DRIVETRAIN
+
 		//Wheel size = 6 (diameter)
 		//Math.Pi * 6 / 256 is the distance traveled per inch if 1 revolution of encoder is 1 revolution of wheel
 		//9.6 rev enc = 1 rev wheel
@@ -97,6 +98,8 @@ public class SysDriveTrainCANOpenLoop extends SysDriveTrain
 
 		_encoDriveRight = new Encoder(RobotMap.DIO_ENC_DRIVE_RIGHT_CHAN1, RobotMap.DIO_ENC_DRIVE_RIGHT_CHAN2, false,
 				EncodingType.k4X);
+
+
 
 		_encoDriveRight.setDistancePerPulse((Math.PI*6)/(256*9.5));
 

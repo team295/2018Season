@@ -1,19 +1,24 @@
 package org.usfirst.frc295.GrizzlynatorBase.subsystems;
 
+
 import edu.wpi.first.wpilibj.command.Subsystem;
 import org.usfirst.frc295.GrizzlynatorBase.subsystems.SysDriveTrain;
 import org.usfirst.frc295.GrizzlynatorBase.Robot;
+import edu.wpi.first.wpilibj.Encoder;
+import edu.wpi.first.wpilibj.command.Subsystem;
+
 
 /**
  *
  */
 public class SysEncoderDrive extends Subsystem {
 
-    public void encoderDrive(double speed, double rotation) {
-    	
-    }
+
+    Encoder EncoderR = new Encoder(0, 1, false, Encoder.EncodingType.k4X);
+    Encoder EncoderL = new Encoder(2, 3, false, Encoder.EncodingType.k4X);
 	
-	// Put methods for controlling this subsystem
+
+
     // here. Call these from Commands.
 
     public void initDefaultCommand() {
