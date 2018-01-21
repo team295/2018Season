@@ -18,8 +18,8 @@ public class SysRamp extends Subsystem {
 	private Servo RRamp = new Servo(1);
 	private Servo LRamp = new Servo(2);
 
-	private DoubleSolenoid RDS;
-	private DoubleSolenoid LDS;
+	private DoubleSolenoid RDS = new DoubleSolenoid(1,2);
+	private DoubleSolenoid LDS = new DoubleSolenoid(3,4);
 
 	public boolean hasOpened(short pin) {
 		if (pin == 1) {
@@ -57,7 +57,7 @@ public class SysRamp extends Subsystem {
 	}
 
 	public void initDefaultCommand() {
-		//setDefaultCommand(new CmdRampdflt());
+		setDefaultCommand(new CmdRampdflt());
 	}
 }
 

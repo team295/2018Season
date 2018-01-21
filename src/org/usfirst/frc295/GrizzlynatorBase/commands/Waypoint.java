@@ -62,7 +62,7 @@ public class Waypoint extends Command
 		Robot.sysDriveTrain.reset();
 		Robot.ahrs.reset();
 		// START_TIME = Timer.getFPGATimestamp();
-//		_dDistanceStart = Robot.sysDriveTrain.getDistance();
+		_dDistanceStart = Robot.sysDriveTrain.getDistance();
 		
 	
 		_dInitialAngle = Robot.ahrs.getYaw();
@@ -92,8 +92,8 @@ public class Waypoint extends Command
 		{
 			System.out.println("NO turn");
 			Robot.sysDriveTrain.arcadeDrive(-_dMove, -_dCurvecurve);
-
 			SmartDashboard.putNumber("Encoder Value", Robot.sysDriveTrain.getDistance());
+
 
 		}
 		else
@@ -105,6 +105,7 @@ public class Waypoint extends Command
 				Robot.sysDriveTrain.arcadeDrive(-_dMove, -_dCurvecurve);
 //				Robot.sysDriveTrain.curvatureDrive(_dMove, _dRotation, _disQuickTurn);
 //				Robot.sysDriveTrain.tankDrive(_dMove);
+
 
 			}
 			else
@@ -152,6 +153,7 @@ public class Waypoint extends Command
 //		}
 //		SmartDashboard.putNumber("Real Stop Encoder", Robot.sysDriveTrain.getDistance());
 		return false;
+
 
 	}
 	
