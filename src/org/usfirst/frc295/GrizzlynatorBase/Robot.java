@@ -76,11 +76,11 @@ public class Robot extends IterativeRobot
 	public static SysCompressor sysCompressor;
 
 	public static SysRamp sysRamp;
-	public static SysEncoderDrive sysEncoderDrive;
 
 	public static SysUltrasonic sysUltrasonic;
 	public static SysIntake sysIntake;
 	public static SysDriveTrainShifter sysDriveTrainShifter;
+	public static SysEncoderDrive sysEncoderDrive;
 
 
 	@Override
@@ -121,6 +121,7 @@ public class Robot extends IterativeRobot
 			sysRamp = new SysRamp();
 
 			sysEncoderDrive = new SysEncoderDrive();
+
 
 			oi = new OI();
 			ahrs = new NavX_Gyro();
@@ -179,9 +180,11 @@ public class Robot extends IterativeRobot
 		}
 		sysIntake.IntakeState();
 
+
 		sysDriveTrain.logToSmartDashboard();
 
 //		sysEncoderDrive.getValues();
+
 
 	}
 
@@ -321,7 +324,9 @@ public class Robot extends IterativeRobot
 			throw t;
 		}
 
+
 		sysIntake.IntakeState();
+
 
 	}
 

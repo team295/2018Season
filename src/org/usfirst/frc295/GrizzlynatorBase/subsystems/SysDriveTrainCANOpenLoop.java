@@ -89,7 +89,6 @@ public class SysDriveTrainCANOpenLoop extends SysDriveTrain
 		//9.6 rev enc = 1 rev wheel
 		_encoDriveLeft = new Encoder(RobotMap.DIO_ENC_DRIVE_LEFT_CHAN1, RobotMap.DIO_ENC_DRIVE_LEFT_CHAN2, false,
 				EncodingType.k4X);
-		
 
 		_encoDriveLeft.setDistancePerPulse((Math.PI*6)/(256*9.5));
 
