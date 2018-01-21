@@ -190,6 +190,5 @@ public double getInches() {
 		SmartDashboard.putNumber("Distance Inches",	getInches());
 		SmartDashboard.putNumber("Yaw_Tele",Robot.ahrs.getYaw());
 
-
 	}
 }

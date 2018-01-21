@@ -181,6 +181,9 @@ public class Robot extends IterativeRobot
 		sysIntake.IntakeState();
 
 
+		sysDriveTrain.logToSmartDashboard();
+
+
 //		sysEncoderDrive.getValues();
 
 
@@ -323,9 +326,11 @@ public class Robot extends IterativeRobot
 		}
 
 
+
 		sysIntake.IntakeState();
 
 //		sysEncoderDrive.getValues();
+
 
 	}
 

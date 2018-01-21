@@ -18,7 +18,6 @@ public class SysRamp extends Subsystem{
 
 
 	
-	
 	public void OpenRamp(){
 		PushoutMain.set(EXTEND_SOLENOID);
 
@@ -37,7 +36,6 @@ public class SysRamp extends Subsystem{
 		RightSideMain.set(EXTEND_SOLENOID);
 		LeftSideMain.set(EXTEND_SOLENOID);
 	}
-
 
 	@Override
 	protected void initDefaultCommand() {
