@@ -80,21 +80,11 @@ public class Robot extends IterativeRobot
 //	public static SysDriveTrainShifter sysDriveTrainShifter;
 	public static SysElevator sysElevator;
 	public static SysCompressor sysCompressor;
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
 	public static SysRamp sysRamp;
-
->>>>>>> Prototype Ramp code, has sys and commands
 	public static SysUltrasonic sysUltrasonic;
 	public static SysIntake sysIntake;
 	public static SysDriveTrainShifter sysDriveTrainShifter;
-	
 
-
-=======
-	public static SysRamp sysRamp;
->>>>>>> Prototype Ramp code, has sys and commands
 
 
 	/**
@@ -139,6 +129,7 @@ public class Robot extends IterativeRobot
 			sysElevator = SysElevator.getInstance();
 			sysDriveTrainShifter = new SysDriveTrainShifter();
 			sysRamp = new SysRamp();
+			sysEncoderDrive = new SysEncoderDrive();
 			// OI must be constructed after subsystems. If the OI creates
 			// Commands
 			// (which it very likely will), subsystems are not guaranteed to be
@@ -210,8 +201,15 @@ public class Robot extends IterativeRobot
 			Logger.logThrowable(t);
 			throw t;
 		}
+<<<<<<< HEAD
 		sysIntake.IntakeState();
+=======
+
+>>>>>>> checkpoint, encoder value method calls, but won't update
 		sysDriveTrain.logToSmartDashboard();
+
+//		sysEncoderDrive.getValues();
+
 	}
 
 
@@ -351,7 +349,17 @@ public class Robot extends IterativeRobot
 			Logger.logThrowable(t);
 			throw t;
 		}
+<<<<<<< HEAD
 		sysIntake.IntakeState();
+=======
+
+
+		sysIntake.IntakeState();
+
+//		sysEncoderDrive.getValues();
+
+
+>>>>>>> checkpoint, encoder value method calls, but won't update
 	}
 
 

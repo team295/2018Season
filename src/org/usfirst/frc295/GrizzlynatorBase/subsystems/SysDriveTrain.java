@@ -35,6 +35,7 @@ public abstract class SysDriveTrain extends Subsystem
 	protected DifferentialDrive _robotDrive;
 	protected DifferentialDrive _robotLiftDrive;
 	// SENSORS
+
 	public Encoder _encoDriveRight;
 	public Encoder _encoDriveLeft;
 //	Encoder LiftEnc = new Encoder(6, 7, false, Encoder.EncodingType.k4X);
@@ -43,6 +44,7 @@ public abstract class SysDriveTrain extends Subsystem
 	static int WHEEL_SIZE = 6;
 	private double _dDistanceStart;
 //	protected Encoder _encoElevatorLeft;
+
 //	protected CANTalon _encoDriveRight;
 
 
@@ -141,11 +143,13 @@ public abstract class SysDriveTrain extends Subsystem
 	/**
 	 * @return The distance driven (average of left and right encoders).
 	 */
+
 	public double getDistance()
 	{
 		
 		return ((Math.abs(_encoDriveRight.getDistance())) + Math.abs(_encoDriveLeft.getDistance())) / 2;
 	}
+
 
 public double getInches() {
 	 
@@ -172,11 +176,15 @@ public double getInches() {
 	public void logToSmartDashboard()
 	{
 		// SmartDashboard.putData("vibrate", new CmdHapticFeedback());
+
 		SmartDashboard.putNumber("Drive Encoder: Left Distance", _encoDriveLeft.getDistance());
 		SmartDashboard.putNumber("Drive Encoder: Right Distance", _encoDriveRight.getDistance());
 		SmartDashboard.putNumber("Drive Encoder: Left Speed", _encoDriveLeft.getRate());
 		SmartDashboard.putNumber("Drive Encoder: Right Speed", _encoDriveRight.getRate());
 		SmartDashboard.putNumber("Distance Inches",	getInches());
 		SmartDashboard.putNumber("Yaw_Tele",Robot.ahrs.getYaw());
+
+
+
 	}
 }
