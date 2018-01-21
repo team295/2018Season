@@ -8,6 +8,7 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 
 public class SysRamp extends Subsystem{
 
+
 	private DoubleSolenoid RightSideMain = new DoubleSolenoid(RobotMap.PCM_RIGHT_SOL, RobotMap.PCM_RIGHT_SOL_FOLLOW);
 	private DoubleSolenoid LeftSideMain = new DoubleSolenoid(RobotMap.PCM_LEFT_SOL,RobotMap.PCM_LEFT_SOL_FOLLOW);
 	private DoubleSolenoid PushoutMain = new DoubleSolenoid(RobotMap.PCM_TOP_SOL, RobotMap.PCM_TOP_SOL_FOLLOW);
@@ -17,6 +18,7 @@ public class SysRamp extends Subsystem{
 	
 	public void OpenRamp(){
 		PushoutMain.set(EXTEND_SOLENOID);
+
 	}
 	
 	public void RampRightOpen(){
@@ -39,6 +41,4 @@ public class SysRamp extends Subsystem{
 		
 	}
 
-	
-	
 }
