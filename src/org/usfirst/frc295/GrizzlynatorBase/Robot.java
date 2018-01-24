@@ -53,7 +53,7 @@ public class Robot extends IterativeRobot
 
 	Command autonomousCommand;
 	SendableChooser chooser;
-
+	public static String gameData;
 	// Operator Interface from OJ.java
 	public static OI oi;
 	public static NavX_Gyro ahrs;
@@ -176,15 +176,14 @@ public class Robot extends IterativeRobot
 	@Override
 	public void autonomousInit()
 	{
-//		String gameData;
-//		gameData = DriverStation.getInstance().getGameSpecificMessage();
-//		
+		gameData = DriverStation.getInstance().getGameSpecificMessage();
+		
 		try
 		{
 			Logger.logAutoInit();
 
 			// Instantiate the command used for the autonomous period
-			autonomousCommand = new AutonomousLeft(null);
+			autonomousCommand = new AutonomousLeft();
 
 			// TODO: How does the chooser work?
 			// autonomousCommand = (Command) chooser.getSelected();
@@ -279,10 +278,11 @@ public class Robot extends IterativeRobot
 	{
 		try
 		{
-			
-			System.out.print(dioRobotID1.get());
-			System.out.print (", ");
-			System.out.println(dioRobotID2.get());
+//			System.out.println(sysDriveTrain.getDistance());
+//			System.out.print(dioRobotID1.get());
+//			System.out.print (", ");
+//			System.out.println(dioRobotID2.get());
+	
 			
 			Scheduler.getInstance().run();
 			log();

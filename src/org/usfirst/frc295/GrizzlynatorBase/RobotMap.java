@@ -65,6 +65,9 @@ public class RobotMap
 	public static final short DIO_ENC_DRIVE_RIGHT_CHAN2 = 1;
 	public static final short DIO_ENC_DRIVE_LEFT_CHAN1 = 2;
 	public static final short DIO_ENC_DRIVE_LEFT_CHAN2 = 3;
+	
+	public static final short DIO_ENC_ELEVATOR_RIGHT_CHAN2 = 6;
+	public static final short DIO_ENC_ELEVATOR_LEFT_CHAN1 = 7;
 	public static final short DIO_ROBOT_ID1 = 8;
 	public static final short DIO_ROBOT_ID2 = 9;
 

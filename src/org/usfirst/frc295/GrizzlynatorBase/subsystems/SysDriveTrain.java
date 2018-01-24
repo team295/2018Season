@@ -36,6 +36,7 @@ public abstract class SysDriveTrain extends Subsystem
 	// SENSORS
 	protected Encoder _encoDriveRight;
 	protected Encoder _encoDriveLeft;
+//	protected Encoder _encoElevatorLeft;
 //	protected CANTalon _encoDriveRight;
 
 
@@ -116,6 +117,7 @@ public abstract class SysDriveTrain extends Subsystem
 	 */
 	public double getDistance()
 	{
+		
 		return (_encoDriveRight.getDistance() + _encoDriveLeft.getDistance()) / 2;
 	}
 

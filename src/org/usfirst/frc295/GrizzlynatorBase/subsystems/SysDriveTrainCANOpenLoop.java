@@ -104,7 +104,7 @@ public class SysDriveTrainCANOpenLoop extends SysDriveTrain
 		_encoDriveRight.setDistancePerPulse(1.0);
 		_encoDriveRight.setPIDSourceType(PIDSourceType.kRate);
 		
-
+//		_encoElevatorLeft = new Encoder(RobotMap.DIO_ENC_ELEVATOR_LEFT_CHAN1, RobotMap.DIO_ENC_ELEVATOR_RIGHT_CHAN2, false, EncodingType.k4X);
 	}
 
 }
