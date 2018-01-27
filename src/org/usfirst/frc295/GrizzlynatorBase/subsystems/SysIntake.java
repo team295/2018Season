@@ -2,6 +2,8 @@ package org.usfirst.frc295.GrizzlynatorBase.subsystems;
 
 import java.util.Enumeration;
 
+import org.usfirst.frc295.GrizzlynatorBase.Robot;
+
 import edu.wpi.first.wpilibj.Talon;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
@@ -21,6 +23,8 @@ public class SysIntake extends Subsystem {
 	double Maxvalue = .80;
 	double MaxReversevalue = .50;
 
+	double distancetocube;
+
 	//Automation Variables 
 
 	boolean cubeisIn;
@@ -38,30 +42,22 @@ public class SysIntake extends Subsystem {
 	}
 
 	/*
-	 * Sets motor speed to 0
+	 * Automated intake 
 	 */
 
-	public void MotorSpeedReset() {
+	//AUtomation Components
 
-		LeftMotor.set(0);
-		RightMotor.set(0);
+	public void RunIntake() {
 
-		currentspeed = 0;
-		motorisRunning = false;
-
-		if () {
-			cubeisIn = true;
+		if (!cubeisIn) {
+			CheckIntakeState();
+			IntakeCube();
+		} else {
+			CheckDropState();
+			DropCube();
 		}
-		else {
-			cubeisIn = false;
-		}
-
 	}
-
-	/*
-	 * Automated intake
-	 */
-
+	
 	public void CheckIntakeState() {
 
 		if (!motorisRunning && !cubeisIn) {
@@ -75,6 +71,28 @@ public class SysIntake extends Subsystem {
 		} 
 		else {
 			intakestate = IntakeState.motorOFFcubeIN;
+		}
+	}
+
+	public void IntakeCube() {
+
+		switch (intakestate) {
+
+		case motorOFFcubeOUT:
+			
+			break;
+
+		case motorONcubeOUT:
+			
+			break;
+
+		case motorONcubeIN:
+			
+			break;
+
+		case motorOFFcubeIN:
+			cubeisIn = true;
+			break;
 		}
 	}
 
@@ -93,29 +111,7 @@ public class SysIntake extends Subsystem {
 			dropstate = DropState.motorReverseOFFcubeIN;
 		}
 	}
-
-	public void IntakeCube() {
-
-		switch (intakestate) {
-
-		case motorOFFcubeOUT:
-
-			break;
-
-		case motorONcubeOUT:
-
-			break;
-
-		case motorONcubeIN:
-
-			break;
-
-		case motorOFFcubeIN:
-
-			break;
-		}
-	}
-
+	
 	public void DropCube() {
 
 		switch (dropstate) {
@@ -135,6 +131,29 @@ public class SysIntake extends Subsystem {
 		case motorReverseOFFcubeIN:
 
 			break;
+		}
+
+	}
+
+	/*
+	 * Sets motor speed to 0
+	 */
+
+	public void MotorSpeedReset() {
+
+		LeftMotor.set(0);
+		RightMotor.set(0);
+
+		currentspeed = 0;
+		motorisRunning = false;
+
+		distancetocube = Robot.sysUltrasonic.getAverageDistance();
+
+		if (distancetocube > 5) {
+			cubeisIn = true;
+		}
+		else {
+			cubeisIn = false;
 		}
 
 	}
