@@ -141,21 +141,11 @@ public class SysIntake extends Subsystem {
 
 	public void MotorSpeedReset() {
 
-		LeftMotor.set(0);
-		RightMotor.set(0);
+		LeftMotor.setSpeed(0);
+		RightMotor.setSpeed(0);
 
 		currentspeed = 0;
 		motorisRunning = false;
-
-		distancetocube = Robot.sysUltrasonic.getAverageDistance();
-
-		if (distancetocube > 5) {
-			cubeisIn = true;
-		}
-		else {
-			cubeisIn = false;
-		}
-
 	}
 
 	/*
