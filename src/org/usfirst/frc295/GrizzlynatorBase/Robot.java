@@ -59,7 +59,7 @@ public class Robot extends IterativeRobot
 	public static SysDriveTrainShifter sysDriveTrainShifter;
 	public static SysCompressor sysCompressor;
 
-	public static SysUltrasonic sysUltrasonic;
+//	public static SysUltrasonic sysUltrasonic;
 	public static SysIntake sysIntake;
 	
 
