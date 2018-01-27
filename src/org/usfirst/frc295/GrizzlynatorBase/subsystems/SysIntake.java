@@ -2,6 +2,8 @@ package org.usfirst.frc295.GrizzlynatorBase.subsystems;
 
 import java.util.Enumeration;
 
+import org.usfirst.frc295.GrizzlynatorBase.Robot;
+
 import edu.wpi.first.wpilibj.Talon;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
@@ -49,7 +51,7 @@ public class SysIntake extends Subsystem {
 		currentspeed = 0;
 		motorisRunning = false;
 
-		if () {
+		if (Robot.sysUltrasonic.getAverageDistance() > 1) {
 			cubeisIn = true;
 		}
 		else {

@@ -23,6 +23,7 @@ import org.usfirst.frc295.GrizzlynatorBase.subsystems.SysDriveTrainCANOpenLoop;
 //import org.usfirst.frc295.GrizzlynatorBase.subsystems.SysDriveTrainProto;
 import org.usfirst.frc295.GrizzlynatorBase.subsystems.SysDriveTrainShifter;
 import org.usfirst.frc295.GrizzlynatorBase.subsystems.SysIntake;
+import org.usfirst.frc295.GrizzlynatorBase.subsystems.SysUltrasonic;
 
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Command;
@@ -59,7 +60,7 @@ public class Robot extends IterativeRobot
 	public static SysCompressor sysCompressor;
 
 	public static SysIntake sysIntake;
-	
+	public static SysUltrasonic sysUltrasonic;
 
 	/**
 	 * This function is run when the robot is first started up and should be
