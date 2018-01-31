@@ -21,7 +21,7 @@ public class SysElevator extends Subsystem
 	 public static DigitalInput BottomlimitSwitch = new DigitalInput(2);
      public static Counter Bottomcounter = new Counter(BottomlimitSwitch);
      
-	 public static DigitalInput VaultlimitSwitch = new DigitalInput(2);
+	 public static DigitalInput VaultlimitSwitch = new DigitalInput(1);
      public static Counter Vaultcounter = new Counter(VaultlimitSwitch);
      
 	 public static DigitalInput SwitchlimitSwitch = new DigitalInput(3);
@@ -134,6 +134,16 @@ public class SysElevator extends Subsystem
 	public void ELevatorZero()
 	{
 		ElevatorMotor.set(RobotMap.ZERO);
+	}
+	
+	public void ElevatorManualRise() 
+	{
+		ElevatorMotor.set(RobotMap.RISE);
+	}
+	
+	public void ElevatorManualLower()
+	{
+		ElevatorMotor.set(RobotMap.LOWER);
 	}
 
 }

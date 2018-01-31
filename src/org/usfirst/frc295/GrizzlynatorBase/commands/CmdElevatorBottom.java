@@ -33,7 +33,8 @@ public class CmdElevatorBottom extends Command {
     // Called once after isFinished returns true
     protected void end() {
     	Robot.sysElevator.ELevatorZero();
-    	SysElevator.Location = 0;    
+    	SysElevator.Location = 0;  
+    	Robot.sysElevator.initializeCounter();
     }
 
     // Called when another command which requires one or more of the same

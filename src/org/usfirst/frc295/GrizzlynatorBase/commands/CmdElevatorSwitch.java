@@ -34,6 +34,7 @@ public class CmdElevatorSwitch extends Command {
     protected void end() {
      	Robot.sysElevator.ELevatorZero();
     	SysElevator.Location = 2;    
+    	Robot.sysElevator.initializeCounter();
     }
 
     // Called when another command which requires one or more of the same

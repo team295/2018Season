@@ -34,6 +34,8 @@ public class CmdElevatorVault extends Command {
     protected void end() {
     	Robot.sysElevator.ELevatorZero();
     	SysElevator.Location = 1;
+    	Robot.sysElevator.initializeCounter();
+
     }
 
     // Called when another command which requires one or more of the same

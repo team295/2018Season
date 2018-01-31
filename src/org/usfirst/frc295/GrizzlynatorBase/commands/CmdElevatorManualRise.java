@@ -8,9 +8,9 @@ import org.usfirst.frc295.GrizzlynatorBase.subsystems.SysElevator;
 /**
  *
  */
-public class CmdElevatorScale extends Command {
+public class CmdElevatorManualRise extends Command {
 
-    public CmdElevatorScale() {
+    public CmdElevatorManualRise() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     	// requires(Robot.sysElevator);
@@ -18,27 +18,26 @@ public class CmdElevatorScale extends Command {
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	Robot.sysElevator.ELevatorScale();
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
+        Robot.sysElevator.ElevatorManualRise();
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-      return Robot.sysElevator.isSwitchSetScale();
+    	return true;
     }
 
     // Called once after isFinished returns true
     protected void end() {
     	Robot.sysElevator.ELevatorZero();
-    	SysElevator.Location = 3;
-    	Robot.sysElevator.initializeCounter();
     }
 
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
+    	Robot.sysElevator.ELevatorZero();
     }
 }
