@@ -10,7 +10,7 @@
 
 package org.usfirst.frc295.GrizzlynatorBase.subsystems;
 
-import org.usfirst.frc295.GrizzlynatorBase.RobotMap;
+/* import org.usfirst.frc295.GrizzlynatorBase.RobotMap;
 
 import edu.wpi.first.wpilibj.CounterBase.EncodingType;
 import edu.wpi.first.wpilibj.Encoder;
@@ -20,9 +20,13 @@ import edu.wpi.first.wpilibj.SpeedController;
 import edu.wpi.first.wpilibj.VictorSP;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 
+*/
+ 
 /**
  *
  */
+
+/*
 public class SysDriveTrainProto extends SysDriveTrain
 {
 	// DRIVE
@@ -77,3 +81,4 @@ public class SysDriveTrainProto extends SysDriveTrain
 		_encoDriveLeft.setPIDSourceType(PIDSourceType.kRate);
 	}
 }
+*/
