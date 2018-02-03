@@ -22,6 +22,7 @@ public class RobotMap
 {
 
 	// ALLOW FOR ROBOT SPECIFIC CONFIGURATION
+	//TODO remove static!!!!!!! not good enum != class!!!!!
 	public static enum RobotID
 	{
 		BOT_PROTO(1), BOT_FORKLIFT(2), BOT_COMP1(3), BOT_COMP2(4);
@@ -39,6 +40,18 @@ public class RobotMap
 			return id;
 		}
 	}
+	
+	public enum ElevatorState
+	{
+		bottom(0), vault(1), ;
+
+		public final int value;
+
+
+		private ElevatorState(int value)
+		{
+			this.value = value;
+		}	}
 
 	// SPECIFY WHICH ROBOT WE ARE RUNNING
 	public static final RobotID ROBOT_ID = RobotID.BOT_COMP1;
@@ -73,7 +86,7 @@ public class RobotMap
 	public static final short RLY_FLASHLIGHT = 1;
 	
 	//SYS ELEVATOR PROPERTIES
-	public static final int ELEVATOR_TALON = 0;
+	public static final int ELEVATOR_TALON = 4;
 	public static final int RISE = 1;
 	public static final int LOWER = -1;
 	public static final int ZERO = 0;

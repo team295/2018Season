@@ -23,11 +23,13 @@ public class CmdElevatorVault extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
+    	System.out.println("Going to Vault");
+    
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-      return Robot.sysElevator.isSwitchSetVault();
+      return Robot.sysElevator.isSwitchSetVault(); 
     }
 
     // Called once after isFinished returns true
@@ -35,6 +37,8 @@ public class CmdElevatorVault extends Command {
     	Robot.sysElevator.ELevatorZero();
     	SysElevator.Location = 1;
     	Robot.sysElevator.initializeCounter();
+    	System.out.println("Reached Vault");
+
 
     }
 

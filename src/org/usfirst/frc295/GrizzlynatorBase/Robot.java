@@ -99,7 +99,7 @@ public class Robot extends IterativeRobot
 			//}
 
 			sysDriveTrainShifter = new SysDriveTrainShifter();
-			sysElevator = new SysElevator();
+			sysElevator = SysElevator.getInstance();
 			
 			// OI must be constructed after subsystems. If the OI creates
 			// Commands

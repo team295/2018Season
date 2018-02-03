@@ -23,6 +23,8 @@ public class CmdElevatorScale extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
+    	System.out.println("Going to Scale");
+
     }
 
     // Make this return true when this Command no longer needs to run execute()
@@ -35,6 +37,7 @@ public class CmdElevatorScale extends Command {
     	Robot.sysElevator.ELevatorZero();
     	SysElevator.Location = 3;
     	Robot.sysElevator.initializeCounter();
+    	System.out.println("Reached Scale");
     }
 
     // Called when another command which requires one or more of the same
