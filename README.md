@@ -1,7 +1,7 @@
-# Grizzlynator 2017
+# 2018 Season
 
-## Cloning the Repository - Clone one time to start working on the 2017 Robot Code
-* `git clone https://github.com/team295/2017Robot.git`
+## Cloning the Repository - Clone one time to start working on the 2018 Season Robot Code
+* `git clone https://github.com/team295/2018Season.git`
 * Since you likely cloned the repository to make changes, create a working branch (See next step)
 * Please do not work (i.e. modify files) on the master branch
 
@@ -20,7 +20,7 @@
 * Edit files
 * `git add *`
 * `git add -u  `        (use this if you want to remove deleted files from repo)
-* `git commit -m "Commit Description - What are you commiting"`      (In the editor: `i` = Insert.  Add your comment, then `:wq` to  Write and Quit) 
+* `git commit -m "Commit Description - What are you committing"`      (In the editor: `i` = Insert.  Add your comment, then `:wq` to  Write and Quit) 
 
 ### 4. Save your new branch to github.com
 * `git push`
@@ -43,7 +43,7 @@
 * `git push -f`
 
 ## Merge your changes to master on github.com
-###Before merrging your changes always run the rebase steps!!!! Before
+###Before merging your changes always run the rebase steps!!!! Before
 (Also, do this anytime you need to get the latest code from Github)
 * Retrieve all changes from github (to origin/master) 
 * `git checkout master`
