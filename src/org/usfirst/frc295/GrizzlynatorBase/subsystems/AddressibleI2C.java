@@ -14,6 +14,7 @@ import edu.wpi.first.wpilibj.SensorBase;
 import edu.wpi.first.wpilibj.hal.FRCNetComm.tResourceType;
 import edu.wpi.first.wpilibj.hal.HAL;
 import edu.wpi.first.wpilibj.hal.I2CJNI;
+import edu.wpi.first.wpilibj.smartdashboard.SendableBuilder;
 import edu.wpi.first.wpilibj.util.BoundaryException;
 
 /**
@@ -446,5 +447,12 @@ public class AddressibleI2C extends SensorBase
 			}
 		}
 		return true;
+	}
+
+
+	@Override
+	public void initSendable(SendableBuilder builder) {
+		// TODO Auto-generated method stub
+		
 	}
 }

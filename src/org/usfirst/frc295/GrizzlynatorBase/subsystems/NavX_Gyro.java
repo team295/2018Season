@@ -7,8 +7,8 @@ import edu.wpi.first.wpilibj.GyroBase;
 import edu.wpi.first.wpilibj.PIDSource;
 import edu.wpi.first.wpilibj.SPI;
 import edu.wpi.first.wpilibj.interfaces.Gyro;
-import edu.wpi.first.wpilibj.livewindow.LiveWindow;
-import edu.wpi.first.wpilibj.livewindow.LiveWindowSendable;
+//import edu.wpi.first.wpilibj.livewindow.LiveWindow;
+//import edu.wpi.first.wpilibj.livewindow.LiveWindowSendable;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
@@ -40,7 +40,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  * used within a new environment (e.g., when you arrive at a FTC competition
  * event).
  */
-public class NavX_Gyro extends GyroBase implements Gyro, PIDSource, LiveWindowSendable
+public class NavX_Gyro extends GyroBase implements Gyro, PIDSource
 {
 	private AHRS m_spi;
 
@@ -99,7 +99,6 @@ public class NavX_Gyro extends GyroBase implements Gyro, PIDSource, LiveWindowSe
 		SmartDashboard.putNumber("IMU_TotalYaw", m_spi.getAngle());
 		SmartDashboard.putNumber("IMU_YawRateDPS", m_spi.getRate());
 
-		LiveWindow.addSensor("NavX_Gyro", port.value, this);
 	}
 
 

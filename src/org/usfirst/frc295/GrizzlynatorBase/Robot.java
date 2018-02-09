@@ -14,20 +14,21 @@ import org.usfirst.frc295.GrizzlynatorBase.RobotMap.RobotID;
 import org.usfirst.frc295.GrizzlynatorBase.Logger.Logger;
 import org.usfirst.frc295.GrizzlynatorBase.Looper.Looper;
 import org.usfirst.frc295.GrizzlynatorBase.commands.AutonomousCommand;
+import org.usfirst.frc295.GrizzlynatorBase.subsystems.NavX_Gyro;
 import org.usfirst.frc295.GrizzlynatorBase.subsystems.SysCompressor;
 import org.usfirst.frc295.GrizzlynatorBase.subsystems.SysDriveTrain;
-import org.usfirst.frc295.GrizzlynatorBase.subsystems.SysDriveTrainCANOpenLoop;
-import org.usfirst.frc295.GrizzlynatorBase.subsystems.SysDriveTrainForklift;
-import org.usfirst.frc295.GrizzlynatorBase.subsystems.SysDriveTrainProto;
+//import org.usfirst.frc295.GrizzlynatorBase.subsystems.SysDriveTrainCANOpenLoop;
+//import org.usfirst.frc295.GrizzlynatorBase.subsystems.SysDriveTrainForklift;
+//import org.usfirst.frc295.GrizzlynatorBase.subsystems.SysDriveTrainProto;
 import org.usfirst.frc295.GrizzlynatorBase.subsystems.SysDriveTrainShifter;
-
+import org.usfirst.frc295.GrizzlynatorBase.subsystems.SysElevator;
 
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
-import edu.wpi.first.wpilibj.livewindow.LiveWindow;
+//import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+//import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -50,9 +51,11 @@ public class Robot extends IterativeRobot
 
 	// Operator Interface from OJ.java
 	public static OI oi;
+	public static NavX_Gyro ahrs;
 
 	// MAJOR SUBSYSTEMS
 	public static SysDriveTrain sysDriveTrain;
+	public static SysElevator sysElevator;
 	public static SysDriveTrainShifter sysDriveTrainShifter;
 	public static SysCompressor sysCompressor;
 
@@ -72,18 +75,20 @@ public class Robot extends IterativeRobot
 			// INSTANTIATE SUB-SYSTEMS FOR THE ROBOT
 			if (RobotMap.ROBOT_ID == RobotID.BOT_COMP1)
 			{
-				sysDriveTrain = new SysDriveTrainCANOpenLoop();
+//				sysDriveTrain = new SysDriveTrainCANOpenLoop();
 			}
 			else if (RobotMap.ROBOT_ID == RobotID.BOT_PROTO)
 			{
-				sysDriveTrain = new SysDriveTrainProto();
+//				sysDriveTrain = new SysDriveTrainProto();
 			}
 			else if (RobotMap.ROBOT_ID == RobotID.BOT_FORKLIFT)
 			{
-				sysDriveTrain = new SysDriveTrainForklift();
+//				sysDriveTrain = new SysDriveTrainForklift();
 			}
 
 			sysDriveTrainShifter = new SysDriveTrainShifter();
+			sysElevator = SysElevator.getInstance();
+			
 			
 			// OI must be constructed after subsystems. If the OI creates
 			// Commands
@@ -91,6 +96,7 @@ public class Robot extends IterativeRobot
 			// constructed yet. Thus, their requires() statements may grab null
 			// pointers. Bad news. Don't move it.
 			oi = new OI();
+			ahrs = new NavX_Gyro();
 
 			// TODO: Need to know how SendableChooser work
 			/*
@@ -101,7 +107,7 @@ public class Robot extends IterativeRobot
 			 */
 
 			// Show what command your subsystem is running on the SmartDashboard
-			SmartDashboard.putData(sysDriveTrain);
+			//SmartDashboard.putData(sysDriveTrain);
 		}
 		catch (Throwable t)
 		{
@@ -133,7 +139,6 @@ public class Robot extends IterativeRobot
 		}
 	}
 
-
 	@Override
 	public void disabledPeriodic()
 	{
@@ -146,6 +151,10 @@ public class Robot extends IterativeRobot
 			Logger.logThrowable(t);
 			throw t;
 		}
+    	System.out.print("LimitSwitch0Volts:");
+    	System.out.println(SysElevator.LimitSwitch0.getVoltage());
+     	System.out.print("LimitSwitch0Raw:");
+     	System.out.println(SysElevator.LimitSwitch0.getValue());
 	}
 
 
@@ -276,7 +285,7 @@ public class Robot extends IterativeRobot
 	{
 		try
 		{
-			LiveWindow.run();
+//			LiveWindow.run();
 		}
 		catch (Throwable t)
 		{
@@ -291,7 +300,7 @@ public class Robot extends IterativeRobot
 	 */
 	private void log()
 	{
-		sysDriveTrain.logToSmartDashboard();
+	//	sysDriveTrain.logToSmartDashboard();
 	}
 
 }
