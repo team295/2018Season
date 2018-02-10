@@ -151,10 +151,10 @@ public class Robot extends IterativeRobot
 			Logger.logThrowable(t);
 			throw t;
 		}
-    	System.out.print("LimitSwitch0Volts:");
-    	System.out.println(SysElevator.LimitSwitch0.getVoltage());
-     	System.out.print("LimitSwitch0Raw:");
-     	System.out.println(SysElevator.LimitSwitch0.getValue());
+//    	System.out.print("LimitSwitch0Volts:");
+//		System.out.println(SysElevator.LimitSwitch0.getVoltage());
+//    	System.out.print("LimitSwitch0Raw:");
+//    	System.out.println(SysElevator.LimitSwitch0.getValue());
 	}
 
 
