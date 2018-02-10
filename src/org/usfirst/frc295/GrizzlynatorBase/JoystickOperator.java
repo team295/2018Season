@@ -17,10 +17,18 @@ public class JoystickOperator extends Joystick
 {
 
 	// X-BOX OPERATOR JOYSTICK BUTTONS
-	public static final short OPERATOR_BUTTON_SHOOT_XBOX = 1;
+	//public static final short OPERATOR_BUTTON_SHOOT_XBOX = 1;
+	//public static final short OPERATOR_BUTTON_ELEVATOR_RISE_XBOX = 1; //BUTTON A OPERATOR
+	//public static final short OPERATOR_BUTTON_ELEVATOR_LOWER_XBOX = 2; //BUTTON B OPERATOR
+	public static final short OPERATOR_BUTTON_ELEVATOR_BOTTOM_XBOX = 1; //BUTTON A OPERATOR
+	public static final short OPERATOR_BUTTON_ELEVATOR_VAULT_XBOX = 2; //BUTTON B OPERATOR
+	public static final short OPERATOR_BUTTON_ELEVATOR_SWITCH_XBOX = 3; //BUTTON B OPERATOR
+	public static final short OPERATOR_BUTTON_ELEVATOR_SCALE_XBOX = 4; //BUTTON B OPERATOR
+	
+	
 
 	// LOGITECH (IF DIFFERENT FROM XBOX) OPERATOR JOYSTICK BUTTONS
-	public static final short OPERATOR_BUTTON_SHOOT_LOGITECH = 1;
+	//public static final short OPERATOR_BUTTON_SHOOT_LOGITECH = 1;
 
 	public static enum JoystickType
 	{
@@ -45,16 +53,62 @@ public class JoystickOperator extends Joystick
 	}
 
 
-	JoystickButton getShooterShootButton()
+
+	JoystickButton getElevatorBottomButton()
 	{
 		switch (_eJoystickType)
 		{
 		case XBOX:
-			return (new JoystickButton(this, OPERATOR_BUTTON_SHOOT_XBOX));
+			
+			return (new JoystickButton(this, OPERATOR_BUTTON_ELEVATOR_BOTTOM_XBOX));
+			
+		default:
+			
+			return (new JoystickButton(this, OPERATOR_BUTTON_ELEVATOR_BOTTOM_XBOX));		
+		}
+	}
+
+	JoystickButton getElevatorVaultButton()
+	{
+		switch (_eJoystickType)
+		{
+		case XBOX:
+			
+			return (new JoystickButton(this, OPERATOR_BUTTON_ELEVATOR_VAULT_XBOX));
+		
+		default:
+			
+			return (new JoystickButton(this, OPERATOR_BUTTON_ELEVATOR_VAULT_XBOX));		
+		}
+	}
+
+	JoystickButton getElevatorSwitchButton()
+	{
+		switch (_eJoystickType)
+		{
+		case XBOX:
+		
+			return (new JoystickButton(this, OPERATOR_BUTTON_ELEVATOR_SWITCH_XBOX));
 
 		default:
-			return (new JoystickButton(this, OPERATOR_BUTTON_SHOOT_XBOX));
+			
+			return (new JoystickButton(this, OPERATOR_BUTTON_ELEVATOR_SWITCH_XBOX));		
 		}
+	}
+	
+	JoystickButton getElevatorScaleButton()
+	{
+		switch (_eJoystickType)
+		{
+		case XBOX:
+			
+			return (new JoystickButton(this, OPERATOR_BUTTON_ELEVATOR_SCALE_XBOX));
+		
+		default:
+			
+			return (new JoystickButton(this, OPERATOR_BUTTON_ELEVATOR_SCALE_XBOX));		
+		}
+
 	}
 
 }

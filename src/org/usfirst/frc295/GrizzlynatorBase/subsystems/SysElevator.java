@@ -99,7 +99,8 @@ public class SysElevator extends Subsystem
      private static SysElevator instance;
  
 
-     public void debug() {
+     public void debug_test() {
+    	System.out.println(BottomLimitSwitchvolts);
 /*     	System.out.print("LimitSwitch0Volts:");
      	System.out.println(LimitSwitch0.getVoltage());
      	System.out.print("LimitSwitch0Raw:");
@@ -156,7 +157,7 @@ public class SysElevator extends Subsystem
 */	 
 	public static boolean isSwitchSetScale()
 	{
-		if (ScaleLimitSwitchvolts > 2.5)
+		if (ScaleLimitSwitch.getVoltage() > 2.5)
 		{
 		return true;
 		}
@@ -167,7 +168,7 @@ public class SysElevator extends Subsystem
 	}
 	public static boolean isSwitchSetSwitch()
 	{
-		if (SwitchLimitSwitchvolts > 2.5)
+		if (SwitchLimitSwitch.getVoltage() > 2.5)
 		{
 		return true;
 		}
@@ -178,7 +179,7 @@ public class SysElevator extends Subsystem
 	}
 	public static boolean isSwitchSetVault()
 	{
-		if (VaultLimitSwitchvolts > 2.5)
+		if (VaultLimitSwitch.getVoltage() > 2.5)
 		{
 		return true;
 		}
@@ -189,7 +190,7 @@ public class SysElevator extends Subsystem
 	}
 	public static boolean isSwitchSetBottom()
 	{
-		if (BottomLimitSwitchvolts > 2.5)
+		if (BottomLimitSwitch.getVoltage() > 2.5)
 		{
 		return true;
 		}
