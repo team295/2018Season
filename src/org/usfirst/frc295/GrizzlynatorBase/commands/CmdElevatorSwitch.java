@@ -20,6 +20,7 @@ public class CmdElevatorSwitch extends Command {
 
     // Called just before this Command runs the first time
     protected void initialize() {
+    	Robot.sysElevator.ELevatorSwitch();
     }
 
     // Called repeatedly when this Command is scheduled to run
@@ -34,7 +35,7 @@ public class CmdElevatorSwitch extends Command {
 
     // Called once after isFinished returns true
     protected void end() {
-
+    	Robot.sysElevator.setbreak();
     	Robot.sysElevator.ELevatorZero();
 		System.out.println("Currently at Switch.");
     	SysElevator.Location = 2;  

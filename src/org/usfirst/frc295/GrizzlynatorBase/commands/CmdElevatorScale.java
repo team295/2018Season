@@ -20,6 +20,7 @@ public class CmdElevatorScale extends Command {
 
     // Called just before this Command runs the first time
     protected void initialize() {
+    	Robot.sysElevator.ELevatorScale();
     }
 
     // Called repeatedly when this Command is scheduled to run
@@ -36,7 +37,7 @@ public class CmdElevatorScale extends Command {
     protected void end() {
 
     	Robot.sysElevator.ELevatorZero();
-
+    	Robot.sysElevator.setbreak();
     	SysElevator.Location = 3;  
 		System.out.println("Currently at Scale.");
     }
