@@ -11,6 +11,7 @@
 package org.usfirst.frc295.GrizzlynatorBase;
 
 import org.usfirst.frc295.GrizzlynatorBase.commands.AutonomousCommand;
+import org.usfirst.frc295.GrizzlynatorBase.commands.CmdIntakeCube;
 //import org.usfirst.frc295.GrizzlynatorBase.commands.CmdDriveTrainShifterSetHigh;
 //import org.usfirst.frc295.GrizzlynatorBase.commands.CmdDriveTrainShifterSetLow;
 import org.usfirst.frc295.GrizzlynatorBase.commands.CmdManualIntakeCube;
@@ -107,8 +108,15 @@ public class OI
 		// OPERATOR JOYSTICK BUTTON COMMANDS
 		// =====================================================================
 
-		JoystickButton _btnOpIntakeCube = _joystickOperator.getIntakeCubeButton();
-		_btnOpIntakeCube.whileHeld(new CmdManualIntakeCube());
+		
+		JoystickButton _btnOpIntakeCube = _joystickOperator.getAutoIntake();
+		_btnOpIntakeCube.whileHeld(new CmdIntakeCube());
+		
+		JoystickButton _btnOpManualIntakeCube = _joystickOperator.getManualIntakeCubeButton();
+		_btnOpManualIntakeCube.whileHeld(new CmdManualIntakeCube());
+	
+		JoystickButton _btnOpManualDropCube = _joystickOperator.getManualDropCubeButton();
+		_btnOpManualDropCube.whileHeld(new CmdManualIntakeCube());
 	}
 
 

@@ -59,7 +59,7 @@ public class Robot extends IterativeRobot
 	public static SysDriveTrainShifter sysDriveTrainShifter;
 	public static SysCompressor sysCompressor;
 
-//	public static SysUltrasonic sysUltrasonic;
+	public static SysUltrasonic sysUltrasonic;
 	public static SysIntake sysIntake;
 	
 
@@ -80,6 +80,8 @@ public class Robot extends IterativeRobot
 			{
 
 				sysDriveTrain = new SysDriveTrainCANOpenLoop();
+				sysIntake = SysIntake.getInstance();
+				sysUltrasonic = new SysUltrasonic();
 			}
 			else if (RobotMap.ROBOT_ID == RobotID.BOT_PROTO)
 			{
@@ -253,6 +255,7 @@ public class Robot extends IterativeRobot
 			Logger.logThrowable(t);
 			throw t;
 		}
+		
 	}
 
 
@@ -272,6 +275,7 @@ public class Robot extends IterativeRobot
 			Logger.logThrowable(t);
 			throw t;
 		}
+		sysIntake.IntakeState();
 	}
 
 

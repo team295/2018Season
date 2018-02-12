@@ -19,8 +19,10 @@ public class JoystickOperator extends Joystick
 	// X-BOX OPERATOR JOYSTICK BUTTONS
 	public static final short OPERATOR_BUTTON_SHOOT_XBOX = 1;
 
-	public static final short OPERATOR_BUTTON_INTAKECUBE_XBOX = 7;
-	public static final short OPERATOR_BUTTON_DROPCUBE_XBOX = 8;
+	public static final short OPERATOR_BUTTON_AUTOINTAKE_XBOX = 2;
+	
+	public static final short OPERATOR_BUTTON_MANUALINTAKECUBE_XBOX = 7;
+	public static final short OPERATOR_BUTTON_MANUALDROPCUBE_XBOX = 8;
 	
 	// LOGITECH (IF DIFFERENT FROM XBOX) OPERATOR JOYSTICK BUTTONS
 	public static final short OPERATOR_BUTTON_SHOOT_LOGITECH = 1;
@@ -60,27 +62,39 @@ public class JoystickOperator extends Joystick
 		}
 	}
 
-	JoystickButton getIntakeCubeButton() 
+	JoystickButton getAutoIntake()
 	{
 		switch (_eJoystickType)
 		{
 		case XBOX:
-			return (new JoystickButton(this, OPERATOR_BUTTON_INTAKECUBE_XBOX));
+			return (new JoystickButton(this, OPERATOR_BUTTON_AUTOINTAKE_XBOX));
 
 		default:
-			return (new JoystickButton(this, OPERATOR_BUTTON_INTAKECUBE_XBOX));
+			return (new JoystickButton(this, OPERATOR_BUTTON_AUTOINTAKE_XBOX));
 		}
 	}
 	
-	JoystickButton getDropCubeButton() 
+	JoystickButton getManualIntakeCubeButton() 
 	{
 		switch (_eJoystickType)
 		{
 		case XBOX:
-			return (new JoystickButton(this, OPERATOR_BUTTON_DROPCUBE_XBOX));
+			return (new JoystickButton(this, OPERATOR_BUTTON_MANUALINTAKECUBE_XBOX));
 
 		default:
-			return (new JoystickButton(this, OPERATOR_BUTTON_DROPCUBE_XBOX));
+			return (new JoystickButton(this, OPERATOR_BUTTON_MANUALINTAKECUBE_XBOX));
+		}
+	}
+	
+	JoystickButton getManualDropCubeButton() 
+	{
+		switch (_eJoystickType)
+		{
+		case XBOX:
+			return (new JoystickButton(this, OPERATOR_BUTTON_MANUALDROPCUBE_XBOX));
+
+		default:
+			return (new JoystickButton(this, OPERATOR_BUTTON_MANUALDROPCUBE_XBOX));
 		}
 	}
 	
