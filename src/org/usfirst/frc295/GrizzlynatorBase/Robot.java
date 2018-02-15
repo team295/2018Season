@@ -22,7 +22,7 @@ import org.usfirst.frc295.GrizzlynatorBase.subsystems.SysDriveTrainCANOpenLoop;
 //import org.usfirst.frc295.GrizzlynatorBase.subsystems.SysDriveTrainForklift;
 //import org.usfirst.frc295.GrizzlynatorBase.subsystems.SysDriveTrainProto;
 import org.usfirst.frc295.GrizzlynatorBase.subsystems.SysDriveTrainShifter;
-
+import org.usfirst.frc295.GrizzlynatorBase.subsystems.SysDriveTrainSpark;
 
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Command;
@@ -75,6 +75,11 @@ public class Robot extends IterativeRobot
 			if (RobotMap.ROBOT_ID == RobotID.BOT_COMP1)
 			{
 
+				sysDriveTrain = new SysDriveTrainCANOpenLoop();
+//				sysDriveTrain = new SysDriveTrainSpark();
+			}
+			else if (RobotMap.ROBOT_ID == RobotID.BOT_COMP0)
+			{
 				sysDriveTrain = new SysDriveTrainCANOpenLoop();
 			}
 			else if (RobotMap.ROBOT_ID == RobotID.BOT_PROTO)
