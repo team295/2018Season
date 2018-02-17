@@ -10,6 +10,7 @@
 
 package org.usfirst.frc295.GrizzlynatorBase.subsystems;
 
+import org.usfirst.frc295.GrizzlynatorBase.Robot;
 import org.usfirst.frc295.GrizzlynatorBase.Drive.DriveSignal;
 import org.usfirst.frc295.GrizzlynatorBase.commands.CmdDriveWithJoystick;
 
@@ -32,10 +33,15 @@ public abstract class SysDriveTrain extends Subsystem
 {
 
 	protected DifferentialDrive _robotDrive;
-
+	protected DifferentialDrive _robotLiftDrive;
 	// SENSORS
-	protected Encoder _encoDriveRight;
-	protected Encoder _encoDriveLeft;
+	public Encoder _encoDriveRight;
+	public Encoder _encoDriveLeft;
+	Encoder LiftEnc = new Encoder(6, 7, false, Encoder.EncodingType.k4X);
+	
+	public double _dDistanceTarget;
+	static int WHEEL_SIZE = 6;
+	private double _dDistanceStart;
 //	protected Encoder _encoElevatorLeft;
 //	protected CANTalon _encoDriveRight;
 
@@ -64,6 +70,11 @@ public abstract class SysDriveTrain extends Subsystem
 	}
 
 
+	public void printEnco() {
+//		System.out.println("Raw:" + LiftEnc.getRaw());
+//		System.out.println("Count:" + LiftEnc.get());
+	}
+	
 	public synchronized void setOpenLoop(DriveSignal signal)
 	{
 		if (_stateDriveControl != DriveControlState.OPEN_LOOP)
@@ -89,16 +100,23 @@ public abstract class SysDriveTrain extends Subsystem
 		_robotDrive.arcadeDrive(move, rotation);
 	}
 
+	public synchronized void curvatureDrive(double move, double rotation, boolean isQuickTurn)
+	{
+		_robotDrive.curvatureDrive(move, rotation, isQuickTurn);
+	}
 
-
+	public synchronized void tankDrive(double move)
+	{
+		_robotDrive.tankDrive(move, 0);
+	}
 	/**
 	 * Reset the robots sensors to the zero states.
 	 */
 	public void reset()
 	{
 		// _gyro.reset();
-//		_encoDriveRight.reset();
-//		_encoDriveLeft.reset();
+		_encoDriveRight.reset();
+		_encoDriveLeft.reset();
 	}
 
 
@@ -110,7 +128,10 @@ public abstract class SysDriveTrain extends Subsystem
 		// return gyro.getAngle();
 		return (0);
 	}
-
+	public double getRightEncoder() 
+	{
+		return (_encoDriveRight.getDistance());
+	}
 
 	/**
 	 * @return The distance driven (average of left and right encoders).
@@ -118,10 +139,17 @@ public abstract class SysDriveTrain extends Subsystem
 	public double getDistance()
 	{
 		
-		return (_encoDriveRight.getDistance() + _encoDriveLeft.getDistance()) / 2;
+		return ((Math.abs(_encoDriveRight.getDistance())) + Math.abs(_encoDriveLeft.getDistance())) / 2;
 	}
 
-
+public double getInches() {
+	 
+	_dDistanceTarget = (_encoDriveRight.getDistance() + _encoDriveLeft.getDistance()) / 2;
+	 _dDistanceTarget = _dDistanceTarget /1024;
+	 _dDistanceTarget = _dDistanceTarget * (WHEEL_SIZE * Math.PI);
+	 
+	 return _dDistanceTarget;
+}
 	/**
 	 * @return The distance to the obstacle detected by the rangefinder.
 	 */
@@ -143,5 +171,7 @@ public abstract class SysDriveTrain extends Subsystem
 		SmartDashboard.putNumber("Drive Encoder: Right Distance", _encoDriveRight.getDistance());
 		SmartDashboard.putNumber("Drive Encoder: Left Speed", _encoDriveLeft.getRate());
 		SmartDashboard.putNumber("Drive Encoder: Right Speed", _encoDriveRight.getRate());
+		SmartDashboard.putNumber("Distance Inches",	getInches());
+		SmartDashboard.putNumber("Yaw_Tele",Robot.ahrs.getYaw());
 	}
 }

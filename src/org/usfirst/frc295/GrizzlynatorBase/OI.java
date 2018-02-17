@@ -64,14 +64,14 @@ public class OI
 		// SMART DASHBOARD COMMANDS
 		// =====================================================================
 
-		// SmartDashboard Button to start the Autonomous Command
-		//SmartDashboard.putData("Autonomous Command", new AutonomousLeft(null));
+		 //SmartDashboard Button to start the Autonomous Command
+		SmartDashboard.putData("Autonomous Command", new AutonomousLeft());
 
 		// =====================================================================
 		// DRIVER JOYSTICK BUTTON COMMANDS
 		// =====================================================================
-//		JoystickButton _btnDriverA = _joystickDriver.getDriveTrainShifterSetLowButton();
-//		_btnDriverA.whenPressed(new CmdDriveTrainShifterSetLow());
+//	JoystickButton _btnDriverA = _joystickDriver.driveLift();
+///		_btnDriverA.whenPressed(new CmdDriveTrainShifterSetLow());
 //		SmartDashboard.putData("CMD Shift Slow", new CmdDriveTrainShifterSetLow());
 //
 //		JoystickButton _btnDriverY = _joystickDriver.getDriveTrainShifterSetHighButton();

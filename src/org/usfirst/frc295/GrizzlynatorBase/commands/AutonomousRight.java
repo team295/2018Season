@@ -41,7 +41,7 @@ public class AutonomousRight extends CommandGroup
 			addSequential(new Wait());
 			//addsequential drop cube
 			addSequential(new Wait());
-			addSequential(new Waypoint(-24,0,.8,false));
+			addSequential(new Waypoint(24,0,-.8,false));
 			addSequential(new Wait());
 			addSequential(new Waypoint(0,90,.5,false));
 			addSequential(new Wait());

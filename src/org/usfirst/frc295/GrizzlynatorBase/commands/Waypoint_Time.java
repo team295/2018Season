@@ -8,7 +8,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 /**
 *
 */
-public class Waypoint extends Command
+public class Waypoint_Time extends Command
 {
 
 
@@ -21,40 +21,37 @@ public class Waypoint extends Command
 	static double Kp = .08;
 	static double START_TIME;
 	public boolean _dTrack;
-	public boolean _disQuickTurn;
 
 	public double _dDistanceTarget;
 	static int WHEEL_SIZE;
 	private double _dDistanceStart;
-	double _dDistanceTargetz = 0 ;
 
 	private double _wantedtime;
 
-	public Waypoint(double dDistance/*double time*/, double dRotation, double dMove, boolean disQuickTurn)
+	public Waypoint_Time(double time, double dRotation, double dMove, boolean dTrack)
 	{
 		
 
 		_dMove = dMove;
 		_dRotation = dRotation;
-		_dDistanceTarget = dDistance;
-		//_wantedtime = time;
-		_dTrack = false;
-		_disQuickTurn = disQuickTurn;
+		//_dDistanceTarget = dDistance;
+		_wantedtime = time;
+		_dTrack = dTrack;
 		requires(Robot.sysDriveTrain);
-	
+
 		System.out.println(_dRotation);
 		SmartDashboard.putNumber("Wanted Rotation: ", _dRotation);
 		//ahrs = Robot.ahrs;
-		WHEEL_SIZE = 6;
+		WHEEL_SIZE = 5;
 		
-//		_dDistanceTarget = _dDistanceTarget / (WHEEL_SIZE * Math.PI);
-//		_dDistanceTarget = _dDistanceTarget * 1024;
-//		_dDistanceTarget = _dDistanceTarget;
+		_dDistanceTarget = _dDistanceTarget / (WHEEL_SIZE * Math.PI);
+		_dDistanceTarget = _dDistanceTarget * 1024;
+		_dDistanceTarget =  _dDistanceTarget;
 		SmartDashboard.putNumber("TicksWanted", _dDistanceTarget);
-	
+
 	}
-	 
-	
+
+
 	// Called just before this Command runs the first time
 	@Override
 	protected void initialize()
@@ -67,7 +64,7 @@ public class Waypoint extends Command
 		_dInitialAngle = Robot.ahrs.getYaw();
 		_dTargetAngle = _dRotation;
 		Robot.sysDriveTrain.reset();
-		
+		System.out.println("INITIALIZE WAYPOINT_TIME");
 
 	}
 
@@ -76,45 +73,37 @@ public class Waypoint extends Command
 	@Override
 	protected void execute()
 	{
-		
 		_dCurvecurve = _dTargetAngle - Robot.ahrs.getYaw();
 		_dCurvecurve = (_dCurvecurve) * Kp;
 
-		SmartDashboard.putNumber("Curve", -_dCurvecurve);
-		SmartDashboard.putNumber("Angle", Robot.ahrs.getAngle());
-		SmartDashboard.putNumber("Yaw", Robot.ahrs.getYaw());
-		SmartDashboard.putNumber("_dTargetAngle", _dTargetAngle);
-		System.out.print(Robot.sysDriveTrain.getDistance());
 		// _dCurvecurve = 0.6;
 		// firstvar = move secondvar = move + rotation
 		if (_dTargetAngle == 0)
 		{
-			
 			Robot.sysDriveTrain.arcadeDrive(-_dMove, -_dCurvecurve);
-			SmartDashboard.putNumber("Encoder Value", Robot.sysDriveTrain.getDistance());
-		
+			//SmartDashboard.putNumber("Encoder Value", Robot.sysDriveTrain.getDistance());
 		}
 		else
 		{
-			System.out.println("Fix Left Right Turning");
+			// System.out.println("Fix Left Right Turning");
 			if ((Math.abs(_dCurvecurve / Kp) > 2.0))
 			{
-				
 				Robot.sysDriveTrain.arcadeDrive(-_dMove, -_dCurvecurve);
-//				Robot.sysDriveTrain.curvatureDrive(_dMove, _dRotation, _disQuickTurn);
-//				Robot.sysDriveTrain.tankDrive(_dMove);
-			
+				SmartDashboard.putNumber("Encoder Value", Robot.sysDriveTrain.getDistance());
 			}
 			else
 			{
-				
 				Robot.sysDriveTrain.stop();
 			}
 		}
-		SmartDashboard.putNumber("Error", _dCurvecurve);
-		SmartDashboard.putNumber("Rotation", _dRotation);
-//		System.out.println("Curve is  " + _dCurvecurve);
-//		System.out.print("Target angle is " + _dTargetAngle);
+
+		SmartDashboard.putNumber("Waypoint_Time: Curve", -_dCurvecurve);
+		SmartDashboard.putNumber("Waypoint_Time: Angle", Robot.ahrs.getAngle());
+		SmartDashboard.putNumber("Waypoint_Time: Yaw", Robot.ahrs.getYaw());
+		SmartDashboard.putNumber("Waypoint_Time: _dTargetAngle", _dTargetAngle);
+		SmartDashboard.putNumber("Waypoint_Time: Error", _dCurvecurve);
+		SmartDashboard.putNumber("Waypoint_Time: Rotation", _dRotation);
+		System.out.println("Waypoint_Time: Target/Yaw/Curve: " + _dTargetAngle + ", " + Robot.ahrs.getYaw() + "," + _dCurvecurve);
 
 	}
 
@@ -123,34 +112,44 @@ public class Waypoint extends Command
 	@Override
 	protected boolean isFinished()
 	{
-		
 
+			return(timeSinceInitialized()>_wantedtime);
 		
-//		if (_dTargetAngle != 0)
-//		{
-//			if (Math.abs(_dCurvecurve / Kp) < 2.0)
-//			{
-//				Robot.sysDriveTrain.stop();
-//				return true;
-//			}
-//		}
-//		if (_dTrack)
-//		{
-//			if (Robot.sysUltrasonic.getAverageDistance() <= 15)
-//			{
-//				return true;
-//			}
-//		}
-		SmartDashboard.putNumber("Real Stop Encoder", Robot.sysDriveTrain.getDistance());
-		return ((Math.abs(Robot.sysDriveTrain.getDistance())) >= _dDistanceTarget);
+	/*	
+		if (_dTargetAngle != 0)
+		{
+			if (Math.abs(_dCurvecurve / Kp) < 2.0)
+			{
+				Robot.sysDriveTrain.stop();
+				return true;
+			}
+		}
+		if (_dTrack)
+		{
+			if (Robot.sysUltrasonic.getAverageDistance() <= 15)
+			{
+				return true;
+			}
+		}*/
+//		SmartDashboard.putNumber("Real Stop Encoder", Robot.sysDriveTrain.getDistance());
+//		return ((Robot.sysDriveTrain.getDistance() - _dDistanceStart) >= _dDistanceTarget);
+//	
+
 	}
-	
+
+
+	// Called once after isFinished returns true
 	@Override
 	protected void end()
 	{
 		Robot.sysDriveTrain.stop();
-		Robot.sysDriveTrain.reset();
-		Robot.ahrs.reset();
 	}
-	
+
+
+	// Called when another command which requires one or more of the same
+	// subsystems is scheduled to run
+	@Override
+	protected void interrupted()
+	{
+	}
 }

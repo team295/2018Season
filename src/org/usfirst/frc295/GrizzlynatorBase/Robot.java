@@ -24,9 +24,12 @@ import org.usfirst.frc295.GrizzlynatorBase.subsystems.SysDriveTrainCANOpenLoop;
 //import org.usfirst.frc295.GrizzlynatorBase.subsystems.SysDriveTrainForklift;
 //import org.usfirst.frc295.GrizzlynatorBase.subsystems.SysDriveTrainProto;
 import org.usfirst.frc295.GrizzlynatorBase.subsystems.SysDriveTrainShifter;
+import org.usfirst.frc295.GrizzlynatorBase.subsystems.SysDriveTrainSpark;
+import org.usfirst.frc295.GrizzlynatorBase.subsystems.SysUltrasonic;
 
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.DriverStation;
+import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.GamepadBase;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Command;
@@ -59,9 +62,10 @@ public class Robot extends IterativeRobot
 	public static NavX_Gyro ahrs;
 	public static DigitalInput dioRobotID1;
 	public static DigitalInput dioRobotID2;
-	
+	public static SysUltrasonic sysUltrasonic;
 	// MAJOR SUBSYSTEMS
 	public static SysDriveTrain sysDriveTrain;
+	public static SysDriveTrainCANOpenLoop sysCANLoop;
 	public static SysDriveTrainShifter sysDriveTrainShifter;
 	public static SysCompressor sysCompressor;
 	
@@ -76,12 +80,12 @@ public class Robot extends IterativeRobot
 		{ 
 			Logger.logRobotInit();
 			RobotMap.init();
-
+			
 			 			 
 			// INSTANTIATE SUB-SYSTEMS FOR THE ROBOT
 			if (RobotMap.ROBOT_ID == RobotID.BOT_COMP1)
 			{
-
+//				sysDriveTrain = new SysDriveTrainSpark();
 				sysDriveTrain = new SysDriveTrainCANOpenLoop();
 			}
 			else if (RobotMap.ROBOT_ID == RobotID.BOT_PROTO)
@@ -101,6 +105,7 @@ public class Robot extends IterativeRobot
 			// constructed yet. Thus, their requires() statements may grab null
 			// pointers. Bad news. Don't move it.
 			oi = new OI();
+			ahrs = new NavX_Gyro();
 
 			// TODO: Need to know how SendableChooser work
 			
@@ -142,6 +147,7 @@ public class Robot extends IterativeRobot
 			Logger.logThrowable(t);
 			throw t;
 		}
+		sysDriveTrain.logToSmartDashboard();
 	}
 
 
@@ -150,6 +156,10 @@ public class Robot extends IterativeRobot
 	{
 		try
 		{
+			//System.out.println(ahrs.getYaw());
+			System.out.print(sysDriveTrain.getRightEncoder());
+			System.out.print("  ");
+			System.out.println(sysDriveTrain._encoDriveRight.getRaw());
 //			System.out.println(input_dio.get());
 			Scheduler.getInstance().run();
 //			input_dio.get();
@@ -159,6 +169,7 @@ public class Robot extends IterativeRobot
 			Logger.logThrowable(t);
 			throw t;
 		}
+		sysDriveTrain.logToSmartDashboard();
 	}
 
 
@@ -230,6 +241,11 @@ public class Robot extends IterativeRobot
 	{
 		try
 		{
+			
+			sysDriveTrain.logToSmartDashboard();
+//			System.out.println(sysDriveTrain.getDistance());
+//			System.out.println(sysDriveTrain.getInches());
+//			System.out.println(ahrs.getAngle());
 			Scheduler.getInstance().run();
 			log();
 		}
@@ -277,21 +293,20 @@ public class Robot extends IterativeRobot
 	public void teleopPeriodic()
 	{
 		try
-		{
-//			System.out.println(sysDriveTrain.getDistance());
-//			System.out.print(dioRobotID1.get());
-//			System.out.print (", ");
-//			System.out.println(dioRobotID2.get());
-	
-			
+		{			
 			Scheduler.getInstance().run();
 			log();
+			
 		}
 		catch (Throwable t)
 		{
 			Logger.logThrowable(t);
 			throw t;
 		}
+		
+		
+		sysDriveTrain.printEnco();
+		sysDriveTrain.logToSmartDashboard();
 	}
 
 
