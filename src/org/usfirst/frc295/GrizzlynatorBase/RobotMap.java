@@ -56,8 +56,8 @@ public class RobotMap
 
 	// PWM PINS (0 - 20)
 	public static final short PWM_ESC_DRIVE_LEFT_FRONT = 0;
-	public static final short PWM_ESC_DRIVE_LEFT_BACK = 1;
-	public static final short PWM_ESC_DRIVE_RIGHT_FRONT = 2;
+	public static final short PWM_ESC_LEFT_INTAKE_MOTOR = 1;
+	public static final short PWM_ESC_RIGHT_INTAKE_MOTOR = 2;
 	public static final short PWM_ESC_DRIVE_RIGHT_BACK = 3;
 
 	// DIGITAL IO PINS

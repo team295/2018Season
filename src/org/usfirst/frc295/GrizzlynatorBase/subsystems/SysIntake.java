@@ -1,6 +1,7 @@
 package org.usfirst.frc295.GrizzlynatorBase.subsystems;
 
 import org.usfirst.frc295.GrizzlynatorBase.Robot;
+import org.usfirst.frc295.GrizzlynatorBase.RobotMap;
 
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
@@ -54,8 +55,8 @@ public class SysIntake extends Subsystem {
 	{
 		//MAP CORRECT PORT NUMBER WHEN ELECTRICAL BOARD CONFIGURATION IS FINALIZED
 
-		LeftMotor = new WPI_TalonSRX(5);
-		RightMotor = new WPI_TalonSRX(4);
+		LeftMotor = new WPI_TalonSRX(RobotMap.PWM_ESC_LEFT_INTAKE_MOTOR);
+		RightMotor = new WPI_TalonSRX(RobotMap.PWM_ESC_RIGHT_INTAKE_MOTOR);
 
 		currentstate = IntakeState.motorForwardOFFcubeOUT;
 		nextstate = currentstate;
