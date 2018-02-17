@@ -11,9 +11,9 @@ import edu.wpi.first.wpilibj.command.Command;
 
 //Command is empty for now. Needs to be completed.
 
-public class CmdElevatorSwitch extends Command {
+public class CmdSetSolenoid extends Command {
 
-    public CmdElevatorSwitch() {
+    public CmdSetSolenoid() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     }

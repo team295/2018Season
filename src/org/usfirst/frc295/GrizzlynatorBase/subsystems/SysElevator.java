@@ -1,14 +1,18 @@
 package org.usfirst.frc295.GrizzlynatorBase.subsystems;
 
+import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.Talon;
 
 import org.usfirst.frc295.GrizzlynatorBase.RobotMap;
 //import org.usfirst.frc295.GrizzlynatorBase.RobotMap.RobotID;
 
+import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
+
 //import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 
 import edu.wpi.first.wpilibj.AnalogInput;
+import edu.wpi.first.wpilibj.DoubleSolenoid;
 //import edu.wpi.first.wpilibj.Counter;
 //import edu.wpi.first.wpilibj.Counter.Mode;
 //import edu.wpi.first.wpilibj.DigitalInput;
@@ -26,28 +30,27 @@ public class SysElevator extends Subsystem
 {
 	
 	public static AnalogInput LimitSwitch0 = new AnalogInput(RobotMap.AIN_ELEVATOR_TEST_LIMIT);
-	int LimitSwitch0raw;
-	double LimitSwitch0volts = LimitSwitch0.getVoltage();
-	
+
 	public static AnalogInput BottomLimitSwitch = new AnalogInput(RobotMap.AIN_ELEVATOR_BOTTOM_LIMIT);
-	int BottomLimitSwitchraw;
-	static double BottomLimitSwitchvolts = BottomLimitSwitch.getVoltage();
 
-	
 	public static AnalogInput VaultLimitSwitch = new AnalogInput(RobotMap.AIN_ELEVATOR_VAULT_LIMIT);
-	int VaultLimitSwitchraw;
-	static double VaultLimitSwitchvolts = VaultLimitSwitch.getVoltage();
 
-	
 	public static AnalogInput SwitchLimitSwitch = new AnalogInput(RobotMap.AIN_ELEVATOR_SWITCH_LIMIT);
-	int SwitchLimitSwitchraw;
-	static double SwitchLimitSwitchvolts = SwitchLimitSwitch.getVoltage();
 
-	
 	public static AnalogInput ScaleLimitSwitch = new AnalogInput(RobotMap.AIN_ELEVATOR_SCALE_LIMIT);
-	int ScaleLimitSwitchraw;
-	static double ScaleLimitSwitchvolts = ScaleLimitSwitch.getVoltage();
+	
 
+	private DoubleSolenoid elevatorbreak;
+
+	//Creating ElevatorMotor from Talon with port zero
+	//Talon ElevatorMotor = new Talon(RobotMap.ELEVATOR_TALON);
+    //TODO - Put in and set the correct motor for the code.
+	private WPI_TalonSRX ElevatorMotor;
+
+
+	private final DoubleSolenoid.Value RETRACT_SOLENOID = DoubleSolenoid.Value.kReverse;
+
+	private final DoubleSolenoid.Value EXTEND_SOLENOID = DoubleSolenoid.Value.kForward;
 	
     private boolean debugmode;
     
@@ -67,94 +70,40 @@ public class SysElevator extends Subsystem
 //		public static DigitalInput BottomlimitSwitch = new DigitalInput(RobotMap.DIO_ELEVATOR_BOTTOM_LIMIT);
 //	 	public static Counter Bottomcounter = new Counter(BottomLimitSwitch);
 
-		debugmode = false;
+		debugmode = true;
 		
-		Location = 0; 
+
 		SysElevator instance = null;
+		
+		elevatorbreak  = new DoubleSolenoid(1, 2); //placeholder ports
+		
+		ElevatorMotor = new WPI_TalonSRX(RobotMap.ELEVATOR_TALON);
 
 	}
 	
 
 	public static SysElevator getInstance()
-
 	{
-
 		if (instance == null)
-
 		{
-
 			instance = new SysElevator();
-
 		}
-
-		
-
 		return instance;
-
 	}
 
-     
      public static int Location = 0; 
 //   private ElevatorState currentElevatorState;
      private static SysElevator instance;
  
 
      public void debug_test() {
-    	System.out.println(BottomLimitSwitchvolts);
 /*     	System.out.print("LimitSwitch0Volts:");
      	System.out.println(LimitSwitch0.getVoltage());
      	System.out.print("LimitSwitch0Raw:");
      	System.out.println(LimitSwitch0.getValue());
  */   }
-	//Creating ElevatorMotor from Talon with port zero
-	 Talon ElevatorMotor = new Talon(RobotMap.ELEVATOR_TALON);
-    //TODO - Put in and set the correct motor for the code.
+
 	 
-/*	boolean ScaleLimitswitchcount()
-	{
-		if (ScaleLimitSwitchvolts > 2.5)
-		{
-		return true;
-		}
-		else
-		{
-		return false;
-		}
-	}
-	boolean SwitchLimitSwitchcount()
-	{
-		if (SwitchLimitSwitchvolts > 2.5)
-		{
-		return true;
-		}
-		else
-		{
-		return false;
-		}
-	}
-	boolean VaultLimitSwitchcount()
-	{
-		if (VaultLimitSwitchvolts > 2.5)
-		{
-		return true;
-		}
-		else
-		{
-		return false;
-		}
-	}
-	boolean BottomLimitSwitchcount()
-	{
-		if (BottomLimitSwitchvolts > 2.5)
-		{
-		return true;
-		}
-		else
-		{
-		return false;
-		}
-	}
-*/	 
 	public static boolean isSwitchSetScale()
 	{
 		if (ScaleLimitSwitch.getVoltage() > 2.5)
@@ -181,6 +130,7 @@ public class SysElevator extends Subsystem
 	{
 		if (VaultLimitSwitch.getVoltage() > 2.5)
 		{
+
 		return true;
 		}
 		else
@@ -235,7 +185,84 @@ public class SysElevator extends Subsystem
 	{
 		//TODO operator tells what state to go to, you create state machine that guides that
 	}
-	public void ELevatorScale()
+/*	public void ELevatorScale()
+	{
+		if (Location == 0) {
+			ElevatorMotor.set(RobotMap.RISE);
+			System.out.println("To Scale - From Bottom");
+		}
+		if (Location == 1) {
+			ElevatorMotor.set(RobotMap.RISE);
+			System.out.println("To Scale - From Vault");
+		}
+		if (Location == 2) {
+			ElevatorMotor.set(RobotMap.RISE);
+			System.out.println("To Scale - From Switch");
+		}
+		if (Location == 3) {
+			ElevatorMotor.set(0.0);
+			System.out.println("Already at Scale");
+		}
+	}
+	public void ELevatorSwitch()
+	{
+		if (Location == 0) {
+			ElevatorMotor.set(RobotMap.RISE);
+			System.out.println("To Switch - From Bottom");
+		}
+		if (Location == 1) {
+			ElevatorMotor.set(RobotMap.RISE);
+			System.out.println("To Switch - From Vault");
+		}
+		if (Location == 2) {
+			ElevatorMotor.set(0.0);
+			System.out.println("Already at Switch");
+		}
+		if (Location == 3) {
+			ElevatorMotor.set(RobotMap.LOWER);
+			System.out.println("To Switch - From Scale");
+		}
+	}
+	public void ELevatorVault()
+	{
+		if (Location == 0) {
+			ElevatorMotor.set(RobotMap.RISE);
+			System.out.println("To Vault - From Bottom");
+		}
+		if (Location == 1) {
+			ElevatorMotor.set(0.0);
+			System.out.println("Already at Vault");
+		}
+		if (Location == 2) {
+			ElevatorMotor.set(RobotMap.LOWER);
+			System.out.println("To Vault - From Switch");
+		}
+		if (Location == 3) {
+			ElevatorMotor.set(RobotMap.LOWER);
+			System.out.println("To Vault - From Scale");
+		}
+	}
+	public void ELevatorBottom()
+	{
+		if (Location == 0) {
+			ElevatorMotor.set(0.0);
+			System.out.println("Already at Bottom");
+		}
+		if (Location == 1) {
+			ElevatorMotor.set(RobotMap.LOWER);
+			System.out.println("To Bottom - From Vault");
+		}
+		if (Location == 2) {
+			ElevatorMotor.set(RobotMap.LOWER);
+			System.out.println("To Bottom - From Switch");
+		}
+		if (Location == 3) {
+			ElevatorMotor.set(RobotMap.LOWER);
+			System.out.println("To Bottom - From Scale");
+		}
+	}
+		
+*/	public void ELevatorScale()
 	{
 		switch(Location)
 		{
@@ -243,24 +270,30 @@ public class SysElevator extends Subsystem
 				ElevatorMotor.set(RobotMap.RISE);
 				if (debugmode = true) 
 				{
-				System.out.println("Motor is Running.");
+				System.out.println("To Scale - From Bottom");
 				}
+					break;
 			case 1 :
 				ElevatorMotor.set(RobotMap.RISE);
 				if (debugmode = true) 
 				{
-				System.out.println("Motor is Running.");
+				System.out.println("To Scale - From Vault");
 				}
+					break;
 			case 2 :
 				ElevatorMotor.set(RobotMap.RISE);
 				if (debugmode = true) 
 				{
-				System.out.println("Motor is Running.");
+			System.out.println("To Scale - From Switch");
 				}
+					break;
 			case 3 :
+					System.out.println("Already at Scale");
+					break;
 		}	
 	}
 	
+
 	public void ELevatorSwitch()
 	{
 		switch(Location)
@@ -269,24 +302,29 @@ public class SysElevator extends Subsystem
 				ElevatorMotor.set(RobotMap.RISE);
 				if (debugmode = true) 
 				{
-				System.out.println("Motor is Running.");
+			System.out.println("To Switch - From Bottom");
 				}
+				break;
 			case 1 :
 				ElevatorMotor.set(RobotMap.RISE);
 				if (debugmode = true) 
 				{
-				System.out.println("Motor is Running.");
+			System.out.println("To Switch - From Vault");
 				}
+				break;
 			case 2 :
-				
+			System.out.println("Already at Switch");
+				break;
 			case 3 :
 				ElevatorMotor.set(RobotMap.LOWER);
 				if (debugmode = true) 
 				{
-				System.out.println("Motor is Running.");
+			System.out.println("To Switch - From Scale");
 				}
+				break;
 		}	
 	}
+
 	
 	public void ELevatorVault()
 	{
@@ -296,22 +334,26 @@ public class SysElevator extends Subsystem
 				ElevatorMotor.set(RobotMap.RISE);
 				if (debugmode = true) 
 				{
-				System.out.println("Motor is Running.");
+			System.out.println("To Vault - From Bottom");
 				}
+					break;
 			case 1 :
-
+					System.out.println("Already at Vault");
+						break;
 			case 2 :
 				ElevatorMotor.set(RobotMap.LOWER);
 				if (debugmode = true) 
 				{
-				System.out.println("Motor is Running.");
+			System.out.println("To Vault - From Switch");
 				}
+					break;
 			case 3 :
 				ElevatorMotor.set(RobotMap.LOWER);
 				if (debugmode = true) 
 				{
-				System.out.println("Motor is Running.");
+			System.out.println("To Vault - From Scale");
 				}
+					break;
 		}	
 	}
 
@@ -320,25 +362,29 @@ public class SysElevator extends Subsystem
 		switch(Location)
 		{
 			case 0 :
-				
+				System.out.println("Already at Bottom");
+				break;
 			case 1 :
 				ElevatorMotor.set(RobotMap.LOWER);
 				if (debugmode = true) 
 				{
-				System.out.println("Motor is Running.");
+			System.out.println("To Bottom - From Vault");
 				}
+					break;
 			case 2 :
 				ElevatorMotor.set(RobotMap.LOWER);
 				if (debugmode = true) 
 				{
-				System.out.println("Motor is Running.");
+			System.out.println("To Bottom - From Switch");
 				}
+					break;
 			case 3 :
 				ElevatorMotor.set(RobotMap.LOWER);
 				if (debugmode = true) 
 				{
-				System.out.println("Motor is Running.");
+			System.out.println("To Bottom - From Scale");
 				}
+					break;
 		}	
 	}
 	
@@ -347,12 +393,6 @@ public class SysElevator extends Subsystem
 	{
 		ElevatorMotor.set(RobotMap.ZERO);
 	}
-	
-//	private int rise = 1;
-//	private int lower = -1;
-
-	
-	//Rise and Lower commands left in in case we need to make micro adjustments.
 
     public void ElevatorManualRise()
     {
@@ -366,6 +406,21 @@ public class SysElevator extends Subsystem
     	ElevatorMotor.set(RobotMap.LOWER);
     }
 
+    public void setbreak() {
+
+    	elevatorbreak.set(EXTEND_SOLENOID);
+
+	}
+
+	
+	public void releasebreak() {
+
+		elevatorbreak.set(RETRACT_SOLENOID);
+
+	}
+
+
     }
+
 
 

@@ -24,6 +24,7 @@ package org.usfirst.frc295.GrizzlynatorBase;
 
 import org.usfirst.frc295.GrizzlynatorBase.commands.AutonomousCommand;
 
+
 //import org.usfirst.frc295.GrizzlynatorBase.commands.CmdDriveTrainShifterSetHigh;
 
 //import org.usfirst.frc295.GrizzlynatorBase.commands.CmdDriveTrainShifterSetLow;
@@ -150,23 +151,27 @@ public class OI
 
 		 _btnOperator1.whenPressed(new CmdElevatorBottom());
 
-		
 
 		 JoystickButton _btnOperator2 = _joystickOperator.getElevatorVaultButton();;
 
 		 _btnOperator2.whenPressed(new CmdElevatorVault());
 
-		 
-
+		
 		 JoystickButton _btnOperator3 = _joystickOperator.getElevatorSwitchButton();;
 
 		 _btnOperator3.whenPressed(new CmdElevatorSwitch());
 
-
-
 		 JoystickButton _btnOperator4 = _joystickOperator.getElevatorScaleButton();;
-
+		 
 		 _btnOperator4.whenPressed(new CmdElevatorScale());
+
+	 	 JoystickButton _btnOperator5 = _joystickOperator.getElevatorRiseButton();;
+
+		 _btnOperator5.whileHeld(new CmdManualRise());
+		 
+	 	 JoystickButton _btnOperator6 = _joystickOperator.getElevatorLowerButton();;
+
+		 _btnOperator6.whileHeld(new CmdManualLower());
 
 	}
 

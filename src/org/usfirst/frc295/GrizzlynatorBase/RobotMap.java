@@ -41,18 +41,6 @@
 
 package org.usfirst.frc295.GrizzlynatorBase;
 
-
-
-
-
-
-
-//import edu.wpi.first.wpilibj.Talon;
-
-
-
-
-
 /**
 
  * The RobotMap is used to organize constants used in the program. Provides
@@ -127,25 +115,25 @@ public class RobotMap
 
 
 
-	public static final short CAN_ESC_DRIVE_LEFT_FRONT = 5;
+	public static final short CAN_ESC_DRIVE_LEFT_FRONT = 3;
 
-	public static final short CAN_ESC_DRIVE_LEFT_BACK = 6;
+	public static final short CAN_ESC_DRIVE_LEFT_BACK = 4;
 
-	public static final short CAN_ESC_DRIVE_RIGHT_FRONT = 3;
+	public static final short CAN_ESC_DRIVE_RIGHT_FRONT = 10;
 
-	public static final short CAN_ESC_DRIVE_RIGHT_BACK = 4;
+	public static final short CAN_ESC_DRIVE_RIGHT_BACK = 6;
 
 
 
 	
 
-	public static final short CAN_ESC_LIFT_MASTER = 5;
+//	public static final short CAN_ESC_LIFT_MASTER = 5;
 
-	public static final short CAN_ESC_LIFT_SLAVE = 6;
+//	public static final short CAN_ESC_LIFT_SLAVE = 6;
 
-	public static final short CAN_ESC_FLYWHEEL_MASTER = 10;
+//	public static final short CAN_ESC_FLYWHEEL_MASTER = 10;
 
-	public static final short CAN_ESC_FLYWHEEL_SLAVE = 11;
+//	public static final short CAN_ESC_FLYWHEEL_SLAVE = 11;
 
 
 
@@ -177,13 +165,13 @@ public class RobotMap
 
 	//TODO: Nick - Values need to be adjusted
 
-	public static final int ELEVATOR_TALON = 5;
+	public static final short ELEVATOR_TALON = 5;
 
-	public static final int RISE = 1;
+	public static double RISE = 0.7;
 
-	public static final int LOWER = -1;
+	public static double LOWER = -0.7;
 
-	public static final int ZERO = 0;
+	public static int ZERO = 0;
 
 
 

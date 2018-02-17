@@ -1,13 +1,15 @@
 package org.usfirst.frc295.GrizzlynatorBase.commands;
 
+import org.usfirst.frc295.GrizzlynatorBase.Robot;
+
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
  *
  */
-public class CmdElevatorManualLower extends Command {
+public class CmdManualRise extends Command {
 
-    public CmdElevatorManualLower() {
+    public CmdManualRise() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     }
@@ -18,6 +20,7 @@ public class CmdElevatorManualLower extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
+    	Robot.sysElevator.ElevatorManualRise();
     }
 
     // Make this return true when this Command no longer needs to run execute()
@@ -27,10 +30,14 @@ public class CmdElevatorManualLower extends Command {
 
     // Called once after isFinished returns true
     protected void end() {
+
+    	Robot.sysElevator.ELevatorZero();
     }
 
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
+
+    	Robot.sysElevator.ELevatorZero();
     }
 }

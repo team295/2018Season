@@ -46,11 +46,11 @@ public class SysDriveTrainCANOpenLoop extends SysDriveTrain
 
 	private WPI_TalonSRX _escLeftFront;
 
-//	private WPI_TalonSRX _escLeftBack;
+	private WPI_TalonSRX _escLeftBack;
 
 	private WPI_TalonSRX _escRightFront;
 
-//	private WPI_TalonSRX _escRightBack;
+	private WPI_TalonSRX _escRightBack;
 
 
 
@@ -84,7 +84,7 @@ public class SysDriveTrainCANOpenLoop extends SysDriveTrain
 
 
 
-//		_escLeftBack = new WPI_TalonSRX(RobotMap.CAN_ESC_DRIVE_LEFT_BACK);
+		_escLeftBack = new WPI_TalonSRX(RobotMap.CAN_ESC_DRIVE_LEFT_BACK);
 
 //		
 
@@ -102,7 +102,7 @@ public class SysDriveTrainCANOpenLoop extends SysDriveTrain
 
 //
 
-//		_escRightBack = new WPI_TalonSRX(RobotMap.CAN_ESC_DRIVE_RIGHT_BACK);
+		_escRightBack = new WPI_TalonSRX(RobotMap.CAN_ESC_DRIVE_RIGHT_BACK);
 
 //		LiveWindow.addActuator("SysDriveTrain", "Esc Right Back", _escRightBack);
 

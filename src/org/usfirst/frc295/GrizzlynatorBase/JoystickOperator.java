@@ -18,13 +18,12 @@ public class JoystickOperator extends Joystick
 
 	// X-BOX OPERATOR JOYSTICK BUTTONS
 	//public static final short OPERATOR_BUTTON_SHOOT_XBOX = 1;
-	//public static final short OPERATOR_BUTTON_ELEVATOR_RISE_XBOX = 1; //BUTTON A OPERATOR
-	//public static final short OPERATOR_BUTTON_ELEVATOR_LOWER_XBOX = 2; //BUTTON B OPERATOR
-	public static final short OPERATOR_BUTTON_ELEVATOR_BOTTOM_XBOX = 1; //BUTTON A OPERATOR
-	public static final short OPERATOR_BUTTON_ELEVATOR_VAULT_XBOX = 2; //BUTTON B OPERATOR
-	public static final short OPERATOR_BUTTON_ELEVATOR_SWITCH_XBOX = 3; //BUTTON B OPERATOR
-	public static final short OPERATOR_BUTTON_ELEVATOR_SCALE_XBOX = 4; //BUTTON B OPERATOR
-	
+	public static final short OPERATOR_BUTTON_ELEVATOR_BOTTOM_XBOX = 3; //BUTTON A OPERATOR
+	public static final short OPERATOR_BUTTON_ELEVATOR_VAULT_XBOX = 5; //BUTTON B OPERATOR
+	public static final short OPERATOR_BUTTON_ELEVATOR_SWITCH_XBOX = 7; //BUTTON B OPERATOR
+	public static final short OPERATOR_BUTTON_ELEVATOR_SCALE_XBOX = 8; //BUTTON B OPERATOR
+	public static final short OPERATOR_BUTTON_ELEVATOR_RISE_XBOX = 9;
+	public static final short OPERATOR_BUTTON_ELEVATOR_LOWER_XBOX = 1;
 	
 
 	// LOGITECH (IF DIFFERENT FROM XBOX) OPERATOR JOYSTICK BUTTONS
@@ -110,5 +109,32 @@ public class JoystickOperator extends Joystick
 		}
 
 	}
+	JoystickButton getElevatorRiseButton()
+	{
+		switch (_eJoystickType)
+		{
+		case XBOX:
+			
+			return (new JoystickButton(this, OPERATOR_BUTTON_ELEVATOR_RISE_XBOX));
+		
+		default:
+			
+			return (new JoystickButton(this, OPERATOR_BUTTON_ELEVATOR_RISE_XBOX));		
+		}
 
+	}
+	JoystickButton getElevatorLowerButton()
+	{
+		switch (_eJoystickType)
+		{
+		case XBOX:
+			
+			return (new JoystickButton(this, OPERATOR_BUTTON_ELEVATOR_LOWER_XBOX));
+		
+		default:
+			
+			return (new JoystickButton(this, OPERATOR_BUTTON_ELEVATOR_LOWER_XBOX));		
+		}
+
+	}
 }

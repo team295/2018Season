@@ -21,11 +21,12 @@ public class CmdElevatorBottom extends Command {
     // Called just before this Command runs the first time
     protected void initialize() {
 
-    	Robot.sysElevator.ELevatorBottom();
+
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
+    	Robot.sysElevator.ELevatorBottom();
 		System.out.println("Going to Bottom.");
     }
 
@@ -38,13 +39,16 @@ public class CmdElevatorBottom extends Command {
     protected void end() {
 
     	Robot.sysElevator.ELevatorZero();
+    	Robot.sysElevator.setbreak();
 
     	SysElevator.Location = 0;  
 		System.out.println("Currently at Bottom.");
+    	System.out.println(SysElevator.Location);
     }
 
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
+    	Robot.sysElevator.ELevatorZero();
     }
 }

@@ -232,7 +232,7 @@ public abstract class SysDriveTrain extends Subsystem
 
 	 */
 
-	public double getDistance()
+/*	public double getDistance()
 
 	{
 
@@ -241,7 +241,7 @@ public abstract class SysDriveTrain extends Subsystem
 		return (_encoDriveRight.getDistance() + _encoDriveLeft.getDistance()) / 2;
 
 	}
-
+*/
 
 
 
