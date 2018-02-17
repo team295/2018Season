@@ -21,6 +21,7 @@ import edu.wpi.first.wpilibj.DoubleSolenoid;
 //import edu.wpi.first.wpilibj.command.Subsystem;
 //import edu.wpi.first.wpilibj.PWMSpeedController;
 //import edu.wpi.first.wpilibj.PWMSpeedController;
+import edu.wpi.first.wpilibj.Compressor;
 
 /**
  *
@@ -40,17 +41,15 @@ public class SysElevator extends Subsystem
 	public static AnalogInput ScaleLimitSwitch = new AnalogInput(RobotMap.AIN_ELEVATOR_SCALE_LIMIT);
 	
 
-	private DoubleSolenoid elevatorbreak;
-
 	//Creating ElevatorMotor from Talon with port zero
 	//Talon ElevatorMotor = new Talon(RobotMap.ELEVATOR_TALON);
     //TODO - Put in and set the correct motor for the code.
 	private WPI_TalonSRX ElevatorMotor;
-
-
+	
+	private DoubleSolenoid elevatorbreak;
 	private final DoubleSolenoid.Value RETRACT_SOLENOID = DoubleSolenoid.Value.kReverse;
-
 	private final DoubleSolenoid.Value EXTEND_SOLENOID = DoubleSolenoid.Value.kForward;
+	//private Compressor _elevatorcompressor = new Compressor(RobotMap.CAN_PCM_MODULE);
 	
     private boolean debugmode;
     
@@ -71,13 +70,10 @@ public class SysElevator extends Subsystem
 //	 	public static Counter Bottomcounter = new Counter(BottomLimitSwitch);
 
 		debugmode = true;
-		
-
 		SysElevator instance = null;
-		
-		elevatorbreak  = new DoubleSolenoid(1, 2); //placeholder ports
-		
+		elevatorbreak  = new DoubleSolenoid(0, 7); //placeholder ports
 		ElevatorMotor = new WPI_TalonSRX(RobotMap.ELEVATOR_TALON);
+		Compressor _elevatorcompressor = new Compressor();
 
 	}
 	
@@ -409,18 +405,22 @@ public class SysElevator extends Subsystem
     public void setbreak() {
 
     	elevatorbreak.set(EXTEND_SOLENOID);
-
 	}
 
 	
 	public void releasebreak() {
-
 		elevatorbreak.set(RETRACT_SOLENOID);
-
 	}
+	
+	//public void compressoron() {
+	//	
+	//}
+	
+	//public void compressoroff() {
+	//	
+	//}
 
-
-    }
+}
 
 
 

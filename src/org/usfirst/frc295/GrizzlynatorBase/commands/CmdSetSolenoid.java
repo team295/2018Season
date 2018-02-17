@@ -25,28 +25,23 @@ public class CmdSetSolenoid extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot.sysElevator.ELevatorSwitch();
-		System.out.println("Going to Switch.");
+    	Robot.sysElevator.setbreak();
+
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return SysElevator.isSwitchSetSwitch();
+    	return true;
     }
 
     // Called once after isFinished returns true
     protected void end() {
-
-    	Robot.sysElevator.ELevatorZero();
-    	Robot.sysElevator.setbreak();
-		System.out.println("Currently at Switch.");
-    	SysElevator.Location = 2;  
-    	System.out.println(SysElevator.Location);
+       	Robot.sysElevator.releasebreak();
     }
 
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
-    	Robot.sysElevator.ELevatorZero();
+
     }
 }

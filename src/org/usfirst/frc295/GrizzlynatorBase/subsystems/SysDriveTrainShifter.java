@@ -22,9 +22,9 @@ public class SysDriveTrainShifter extends Subsystem
 	{
 		super();
 
-		_dsolShifter = new DoubleSolenoid(RobotMap.CAN_PCM_MODULE, RobotMap.CAN_PCM_PORT_DRIVE_SHIFTER);
-		LiveWindow.addActuator("SysDriveTrainShifter", "Shifter Solonoid", _dsolShifter);
-		_dsolShifter.set(SOLENOID_GEAR_HIGH);
+//		_dsolShifter = new DoubleSolenoid(RobotMap.CAN_PCM_MODULE, RobotMap.CAN_PCM_PORT_DRIVE_SHIFTER);
+//		LiveWindow.addActuator("SysDriveTrainShifter", "Shifter Solonoid", _dsolShifter);
+//		_dsolShifter.set(SOLENOID_GEAR_HIGH);
 	}
 
 
@@ -37,12 +37,12 @@ public class SysDriveTrainShifter extends Subsystem
 
 	public void setHighGear()
 	{
-		_dsolShifter.set(SOLENOID_GEAR_HIGH);
+	//	_dsolShifter.set(SOLENOID_GEAR_HIGH);
 	}
 
 
 	public void setLowGear()
 	{
-		_dsolShifter.set(SOLENOID_GEAR_LOW);
+		//_dsolShifter.set(SOLENOID_GEAR_LOW);
 	}
 }

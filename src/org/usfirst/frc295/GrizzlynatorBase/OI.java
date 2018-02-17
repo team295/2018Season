@@ -149,8 +149,8 @@ public class OI
 
 		 JoystickButton _btnOperator1 = _joystickOperator.getElevatorBottomButton();;
 
-		 _btnOperator1.whenPressed(new CmdElevatorBottom());
-
+		 _btnOperator1.whileHeld(new CmdSetSolenoid());
+		 //here nick heres the button
 
 		 JoystickButton _btnOperator2 = _joystickOperator.getElevatorVaultButton();;
 
