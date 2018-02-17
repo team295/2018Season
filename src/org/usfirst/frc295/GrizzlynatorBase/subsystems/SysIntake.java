@@ -227,27 +227,40 @@ public class SysIntake extends Subsystem {
 	 * Manual Intake and drop
 	 */
 
-	public void ManualIntakeCube() {
+	public void ManualIntakeCube(double AxisSpeed) {
 
-		LeftMotor.set(currentspeed);
-		RightMotor.set(-currentspeed);
+		LeftMotor.set(AxisSpeed);
+		RightMotor.set(-AxisSpeed);
 
-		if (currentspeed < Maxvalue) {
-			currentspeed = currentspeed + .1;
-		} 
-
-	}
-
-	public void ManualDropCube() {
-
-		LeftMotor.set(-currentspeed);
-		RightMotor.set(currentspeed);
-
-		if (currentspeed > -MaxReversevalue) {
-			currentspeed = currentspeed - .1;
-		} 
+		if (AxisSpeed > Maxvalue) {
+			AxisSpeed = .8;
+		} else if (AxisSpeed < -Maxvalue) {
+			AxisSpeed = -.8;
+		}
 
 	}
+	
+//	public void ManualIntakeCube() {
+//
+//		LeftMotor.set(currentspeed);
+//		RightMotor.set(-currentspeed);
+//
+//		if (currentspeed < Maxvalue) {
+//			currentspeed = currentspeed + .1;
+//		} 
+//
+//	}
+//
+//	public void ManualDropCube() {
+//
+//		LeftMotor.set(-currentspeed);
+//		RightMotor.set(currentspeed);
+//
+//		if (currentspeed > -MaxReversevalue) {
+//			currentspeed = currentspeed - .1;
+//		} 
+//
+//	}
 
 }
 
