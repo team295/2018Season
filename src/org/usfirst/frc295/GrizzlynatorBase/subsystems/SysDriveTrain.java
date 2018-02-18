@@ -132,7 +132,10 @@ public abstract class SysDriveTrain extends Subsystem
 	{
 		return (_encoDriveRight.getDistance());
 	}
-
+	public double getLeftEncoder() 
+	{
+		return (_encoDriveLeft.getDistance());
+	}
 	/**
 	 * @return The distance driven (average of left and right encoders).
 	 */

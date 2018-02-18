@@ -32,10 +32,9 @@ public class AutonomousLeft extends CommandGroup //9 + 10
 	{
 //		addSequential(new Waypoint_Time(10,0,.7,false));
 //		addSequential(new Waypoint_Time(5,90,.2,false));
-		addSequential(new Waypoint(12,0,.5,false));
-	
-		addSequential(new Wait());
 		addSequential(new Waypoint(0,45,.5,false));
+		addSequential(new Wait());
+		addSequential(new Waypoint(0,45,-.5,false));
 //		addSequential(new Wait());
 //		addSequential(new Waypoint(0,22,.5,false));
 //		addSequential(new Wait());

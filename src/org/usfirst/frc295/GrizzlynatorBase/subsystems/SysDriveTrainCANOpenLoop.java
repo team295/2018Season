@@ -52,8 +52,8 @@ public class SysDriveTrainCANOpenLoop extends SysDriveTrain
 ////		_escRightBack = new WPI_TalonSRX(RobotMap.CAN_ESC_DRIVE_RIGHT_BACK);
 ////		LiveWindow.addActuator("SysDriveTrain", "Esc Right Back", _escRightBack);
 //
-//	    _escLeftBack.follow(_escLeftFront);
-//	    _escRightBack.follow(_escRightFront);
+	    _escLeftBack.follow(_escLeftFront);
+	    _escRightBack.follow(_escRightFront);
 		_robotDrive = new DifferentialDrive(_escLeftFront, _escRightFront);
 	
 
@@ -94,17 +94,17 @@ public class SysDriveTrainCANOpenLoop extends SysDriveTrain
 		// DEFINE DIO ENCODERS FOR THE DRIVETRAIN
 		//Wheel size = 6 (diameter)
 		//Math.Pi * 6 / 256 is the distance traveled per inch if 1 revolution of encoder is 1 revolution of wheel
-		//10 rev enc = 1 rev wheel
+		//9.6 rev enc = 1 rev wheel
 		_encoDriveLeft = new Encoder(RobotMap.DIO_ENC_DRIVE_LEFT_CHAN1, RobotMap.DIO_ENC_DRIVE_LEFT_CHAN2, false,
 				EncodingType.k4X);
 		
-		_encoDriveLeft.setDistancePerPulse((Math.PI*6)/2560);
+		_encoDriveLeft.setDistancePerPulse((Math.PI*6)/(256*9.5));
 		_encoDriveLeft.setPIDSourceType(PIDSourceType.kDisplacement);
 		
 
 		_encoDriveRight = new Encoder(RobotMap.DIO_ENC_DRIVE_RIGHT_CHAN1, RobotMap.DIO_ENC_DRIVE_RIGHT_CHAN2, false,
 				EncodingType.k4X);
-		_encoDriveRight.setDistancePerPulse((Math.PI*6)/2560);
+		_encoDriveRight.setDistancePerPulse((Math.PI*6)/(256*9.5));
 		_encoDriveRight.setPIDSourceType(PIDSourceType.kDisplacement);
 		
 //		_encoElevatorLeft = new Encoder(RobotMap.DIO_ENC_ELEVATOR_LEFT_CHAN1, RobotMap.DIO_ENC_ELEVATOR_RIGHT_CHAN2, false, EncodingType.k4X);

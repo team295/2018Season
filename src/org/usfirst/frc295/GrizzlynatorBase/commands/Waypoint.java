@@ -59,14 +59,15 @@ public class Waypoint extends Command
 	@Override
 	protected void initialize()
 	{
-
+		Robot.sysDriveTrain.reset();
+		Robot.ahrs.reset();
 		// START_TIME = Timer.getFPGATimestamp();
 		_dDistanceStart = Robot.sysDriveTrain.getDistance();
 		
-		Robot.ahrs.reset();
+	
 		_dInitialAngle = Robot.ahrs.getYaw();
 		_dTargetAngle = _dRotation;
-		Robot.sysDriveTrain.reset();
+		
 		
 
 	}
@@ -89,7 +90,7 @@ public class Waypoint extends Command
 		// firstvar = move secondvar = move + rotation
 		if (_dTargetAngle == 0)
 		{
-			
+			System.out.println("NO turn");
 			Robot.sysDriveTrain.arcadeDrive(-_dMove, -_dCurvecurve);
 			SmartDashboard.putNumber("Encoder Value", Robot.sysDriveTrain.getDistance());
 		
@@ -99,7 +100,7 @@ public class Waypoint extends Command
 			System.out.println("Fix Left Right Turning");
 			if ((Math.abs(_dCurvecurve / Kp) > 2.0))
 			{
-				
+				System.out.println("YES turn");
 				Robot.sysDriveTrain.arcadeDrive(-_dMove, -_dCurvecurve);
 //				Robot.sysDriveTrain.curvatureDrive(_dMove, _dRotation, _disQuickTurn);
 //				Robot.sysDriveTrain.tankDrive(_dMove);
@@ -126,14 +127,20 @@ public class Waypoint extends Command
 		
 
 		
-//		if (_dTargetAngle != 0)
-//		{
-//			if (Math.abs(_dCurvecurve / Kp) < 2.0)
-//			{
-//				Robot.sysDriveTrain.stop();
-//				return true;
-//			}
-//		}
+		if (_dTargetAngle != 0)
+		{
+			if (Math.abs(_dTargetAngle) == Math.abs(Robot.ahrs.getYaw()))
+			{
+				System.out.println("Turn Logic");
+				Robot.sysDriveTrain.stop();
+				return true;
+			}
+		}
+		else if (_dTargetAngle == 0) 
+		{
+			return ((Math.abs(Robot.sysDriveTrain.getDistance())) >= _dDistanceTarget);
+		}
+		
 //		if (_dTrack)
 //		{
 //			if (Robot.sysUltrasonic.getAverageDistance() <= 15)
@@ -141,8 +148,8 @@ public class Waypoint extends Command
 //				return true;
 //			}
 //		}
-		SmartDashboard.putNumber("Real Stop Encoder", Robot.sysDriveTrain.getDistance());
-		return ((Math.abs(Robot.sysDriveTrain.getDistance())) >= _dDistanceTarget);
+//		SmartDashboard.putNumber("Real Stop Encoder", Robot.sysDriveTrain.getDistance());
+		return false;
 	}
 	
 	@Override

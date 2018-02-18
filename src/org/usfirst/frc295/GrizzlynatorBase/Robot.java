@@ -17,7 +17,7 @@ import org.usfirst.frc295.GrizzlynatorBase.commands.AutonomousLeft;
 import org.usfirst.frc295.GrizzlynatorBase.commands.AutonomousRight;
 import org.usfirst.frc295.GrizzlynatorBase.commands.AutonomousMiddle;
 import org.usfirst.frc295.GrizzlynatorBase.subsystems.NavX_Gyro;
-import org.usfirst.frc295.GrizzlynatorBase.subsystems.SysCompressor;
+//import org.usfirst.frc295.GrizzlynatorBase.subsystems.SysCompressor;
 import org.usfirst.frc295.GrizzlynatorBase.subsystems.SysDriveTrain;
 import org.usfirst.frc295.GrizzlynatorBase.subsystems.SysDriveTrainCANOpenLoop;
 //import org.usfirst.frc295.GrizzlynatorBase.subsystems.SysDriveTrainCANOpenLoop;
@@ -30,7 +30,7 @@ import org.usfirst.frc295.GrizzlynatorBase.subsystems.SysUltrasonic;
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.Encoder;
-import edu.wpi.first.wpilibj.GamepadBase;
+
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
@@ -67,7 +67,7 @@ public class Robot extends IterativeRobot
 	public static SysDriveTrain sysDriveTrain;
 	public static SysDriveTrainCANOpenLoop sysCANLoop;
 	public static SysDriveTrainShifter sysDriveTrainShifter;
-	public static SysCompressor sysCompressor;
+//	public static SysCompressor sysCompressor;
 	
 	/**
 	 * This function is run when the robot is first started up and should be
@@ -156,10 +156,11 @@ public class Robot extends IterativeRobot
 	{
 		try
 		{
-			//System.out.println(ahrs.getYaw());
-			System.out.print(sysDriveTrain.getRightEncoder());
+			System.out.print(ahrs.getYaw());
 			System.out.print("  ");
-			System.out.println(sysDriveTrain._encoDriveRight.getRaw());
+			System.out.print(sysDriveTrain.getLeftEncoder());
+			System.out.print("  ");
+			System.out.println(sysDriveTrain.getRightEncoder());
 //			System.out.println(input_dio.get());
 			Scheduler.getInstance().run();
 //			input_dio.get();

@@ -18,7 +18,7 @@ public class SysCompressor extends Subsystem
 	public SysCompressor()
 	{
 		super();
-		_compPrimary.setClosedLoopControl(true);
+		_compPrimary.setClosedLoopControl(false);
 	}
 
 
