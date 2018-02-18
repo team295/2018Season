@@ -40,7 +40,7 @@ public class SysDriveTrainCANOpenLoop extends SysDriveTrain
 //		
 
 
-//		_escLeftBack = new WPI_TalonSRX(RobotMap.CAN_ESC_DRIVE_LEFT_BACK);
+		_escLeftBack = new WPI_TalonSRX(RobotMap.CAN_ESC_DRIVE_LEFT_BACK);
 //		
 //
 		_escRightFront = new WPI_TalonSRX(RobotMap.CAN_ESC_DRIVE_RIGHT_FRONT);
@@ -49,12 +49,11 @@ public class SysDriveTrainCANOpenLoop extends SysDriveTrain
 ////		_escRightFront.configEncoderCodesPerRev(1024);
 ////		LiveWindow.addActuator("SysDriveTrain", "Esc Right Front", _escRightFront);
 //
-//		_escRightBack = new WPI_TalonSRX(RobotMap.CAN_ESC_DRIVE_RIGHT_BACK);
+		_escRightBack = new WPI_TalonSRX(RobotMap.CAN_ESC_DRIVE_RIGHT_BACK);
 //		LiveWindow.addActuator("SysDriveTrain", "Esc Right Back", _escRightBack);
 
-//	    _escLeftBack.follow(_escLeftFront);
-//
-//	    _escRightBack.follow(_escRightFront);
+	    _escLeftBack.follow(_escLeftFront);
+	    _escRightBack.follow(_escRightFront);
 		_robotDrive = new DifferentialDrive(_escLeftFront, _escRightFront);
 	
 
@@ -97,13 +96,13 @@ public class SysDriveTrainCANOpenLoop extends SysDriveTrain
 				EncodingType.k4X);
 		
 		_encoDriveLeft.setDistancePerPulse(1.0);
-		_encoDriveLeft.setPIDSourceType(PIDSourceType.kRate);
+		_encoDriveLeft.setPIDSourceType(PIDSourceType.kDisplacement);
 		
 
 		_encoDriveRight = new Encoder(RobotMap.DIO_ENC_DRIVE_RIGHT_CHAN1, RobotMap.DIO_ENC_DRIVE_RIGHT_CHAN2, false,
 				EncodingType.k4X);
 		_encoDriveRight.setDistancePerPulse(1.0);
-		_encoDriveRight.setPIDSourceType(PIDSourceType.kRate);
+		_encoDriveRight.setPIDSourceType(PIDSourceType.kDisplacement);
 		
 
 	}
