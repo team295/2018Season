@@ -237,6 +237,7 @@ public class Robot extends IterativeRobot
 		try
 		{
 			Logger.logTeleopInit();
+			sysElevator.compressoron();
 
 			// This makes sure that the autonomous stops running when
 			// teleop starts running. If you want the autonomous to

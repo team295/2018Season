@@ -49,7 +49,7 @@ public class SysElevator extends Subsystem
 	private DoubleSolenoid elevatorbreak;
 	private final DoubleSolenoid.Value RETRACT_SOLENOID = DoubleSolenoid.Value.kReverse;
 	private final DoubleSolenoid.Value EXTEND_SOLENOID = DoubleSolenoid.Value.kForward;
-	//private Compressor _elevatorcompressor = new Compressor(RobotMap.CAN_PCM_MODULE);
+	private Compressor _elevatorcompressor = new Compressor(RobotMap.CAN_PCM_MODULE);
 	
     private boolean debugmode;
     
@@ -71,9 +71,9 @@ public class SysElevator extends Subsystem
 
 		debugmode = true;
 		SysElevator instance = null;
+		_elevatorcompressor.setClosedLoopControl(true);
 		elevatorbreak  = new DoubleSolenoid(0, 7); //placeholder ports
 		ElevatorMotor = new WPI_TalonSRX(RobotMap.ELEVATOR_TALON);
-		Compressor _elevatorcompressor = new Compressor();
 
 	}
 	
@@ -406,15 +406,14 @@ public class SysElevator extends Subsystem
 
     	elevatorbreak.set(EXTEND_SOLENOID);
 	}
-
 	
 	public void releasebreak() {
 		elevatorbreak.set(RETRACT_SOLENOID);
 	}
 	
-	//public void compressoron() {
-	//	
-	//}
+	public void compressoron() {
+		_elevatorcompressor.setClosedLoopControl(true);
+	}
 	
 	//public void compressoroff() {
 	//	

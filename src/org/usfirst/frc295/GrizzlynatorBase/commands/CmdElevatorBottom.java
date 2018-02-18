@@ -28,6 +28,18 @@ public class CmdElevatorBottom extends Command {
     protected void execute() {
     	Robot.sysElevator.ELevatorBottom();
 		System.out.println("Going to Bottom.");
+		if (SysElevator.ScaleLimitSwitch.getVoltage() > 2.5)
+		{
+	    	SysElevator.Location = 3;  
+		}
+		if (SysElevator.SwitchLimitSwitch.getVoltage() > 2.5)
+		{
+	    	SysElevator.Location = 2;  
+		}
+		if (SysElevator.VaultLimitSwitch.getVoltage() > 2.5)
+		{
+	    	SysElevator.Location = 1;  
+		}
     }
 
     // Make this return true when this Command no longer needs to run execute()

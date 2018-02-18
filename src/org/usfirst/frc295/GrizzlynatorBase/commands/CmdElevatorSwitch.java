@@ -27,6 +27,18 @@ public class CmdElevatorSwitch extends Command {
     protected void execute() {
     	Robot.sysElevator.ELevatorSwitch();
 		System.out.println("Going to Switch.");
+		if (SysElevator.ScaleLimitSwitch.getVoltage() > 2.5)
+		{
+	    	SysElevator.Location = 3;  
+		}
+		if (SysElevator.VaultLimitSwitch.getVoltage() > 2.5)
+		{
+	    	SysElevator.Location = 1;  
+		}
+		if (SysElevator.BottomLimitSwitch.getVoltage() > 2.5)
+		{
+	    	SysElevator.Location = 0;  
+		}
     }
 
     // Make this return true when this Command no longer needs to run execute()

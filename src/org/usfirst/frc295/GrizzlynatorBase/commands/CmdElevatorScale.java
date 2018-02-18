@@ -27,6 +27,18 @@ public class CmdElevatorScale extends Command {
     protected void execute() {
     	Robot.sysElevator.ELevatorScale();
 		System.out.println("Going to Scale.");
+		if (SysElevator.VaultLimitSwitch.getVoltage() > 2.5)
+		{
+	    	SysElevator.Location = 1;  
+		}
+		if (SysElevator.SwitchLimitSwitch.getVoltage() > 2.5)
+		{
+	    	SysElevator.Location = 2;  
+		}
+		if (SysElevator.BottomLimitSwitch.getVoltage() > 2.5)
+		{
+	    	SysElevator.Location = 0;  
+		}
     }
 
     // Make this return true when this Command no longer needs to run execute()

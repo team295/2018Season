@@ -119,7 +119,7 @@ public class RobotMap
 
 	public static final short CAN_ESC_DRIVE_LEFT_BACK = 4;
 
-	public static final short CAN_ESC_DRIVE_RIGHT_FRONT = 10;
+	public static final short CAN_ESC_DRIVE_RIGHT_FRONT = 5;
 
 	public static final short CAN_ESC_DRIVE_RIGHT_BACK = 6;
 
@@ -141,7 +141,7 @@ public class RobotMap
 
 	public static final short CAN_PCM_MODULE = 0;
 
-	public static final short CAN_PCM_PORT_DRIVE_SHIFTER = 1;
+	public static final short CAN_PCM_PORT_DRIVE_SHIFTER = 7;
 
 
 
@@ -334,7 +334,7 @@ public class RobotMap
 
 
 
-	public static final double DRIVE_WHEEL_DIAMETER = 5.0;
+	public static final double DRIVE_WHEEL_DIAMETER = 6.0;
 
 
 
