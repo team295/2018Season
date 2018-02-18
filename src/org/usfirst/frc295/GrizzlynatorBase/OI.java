@@ -12,10 +12,12 @@ package org.usfirst.frc295.GrizzlynatorBase;
 
 import org.usfirst.frc295.GrizzlynatorBase.commands.AutonomousCommand;
 import org.usfirst.frc295.GrizzlynatorBase.commands.CmdIntakeCube;
+import org.usfirst.frc295.GrizzlynatorBase.commands.CmdManualDropCube;
 //import org.usfirst.frc295.GrizzlynatorBase.commands.CmdDriveTrainShifterSetHigh;
 //import org.usfirst.frc295.GrizzlynatorBase.commands.CmdDriveTrainShifterSetLow;
 import org.usfirst.frc295.GrizzlynatorBase.commands.CmdManualIntakeCube;
 
+import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
@@ -112,11 +114,12 @@ public class OI
 		JoystickButton _btnOpIntakeCube = _joystickOperator.getAutoIntake();
 		_btnOpIntakeCube.whileHeld(new CmdIntakeCube());
 		
-//		JoystickButton _btnOpManualIntakeCube = _joystickOperator.getManualIntakeCubeButton();
-//		_btnOpManualIntakeCube.whileHeld(new CmdManualIntakeCube());
-//	
-//		JoystickButton _btnOpManualDropCube = _joystickOperator.getManualDropCubeButton();
-//		_btnOpManualDropCube.whileHeld(new CmdManualIntakeCube());
+		JoystickButton _btnOpManualIntakeCube = _joystickOperator.getManualIntakeCubeButton();
+		_btnOpManualIntakeCube.whileHeld(new CmdManualIntakeCube());
+		
+		JoystickButton _btnOpManualDropCube = _joystickOperator.getManualDropCubeButton();
+		_btnOpManualDropCube.whileHeld(new CmdManualDropCube());
+				
 	}
 
 
