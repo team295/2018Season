@@ -10,6 +10,7 @@ import edu.wpi.first.wpilibj.Spark;
 import edu.wpi.first.wpilibj.CounterBase.EncodingType;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 
+
 public class SysDriveTrainSpark extends SysDriveTrain {
 	// DECLARE COMPONENTS OF THE DRIVETRAIN
 	
@@ -77,6 +78,7 @@ public class SysDriveTrainSpark extends SysDriveTrain {
 		
 //		_encoElevatorLeft = new Encoder(RobotMap.DIO_ENC_ELEVATOR_LEFT_CHAN1, RobotMap.DIO_ENC_ELEVATOR_RIGHT_CHAN2, false, EncodingType.k4X);
 	}
+
 
 
 }
