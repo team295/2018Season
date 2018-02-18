@@ -58,7 +58,7 @@ public class JoystickDriver extends Joystick
 	}
 
 
-	public JoystickButton getDriveTrainShifterSetLowButton()
+	public JoystickButton driveLift()
 	{
 		switch (_eJoystickType)
 		{

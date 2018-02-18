@@ -4,7 +4,7 @@ import org.usfirst.frc295.GrizzlynatorBase.Drive.Rotation2d;
 import org.usfirst.frc295.GrizzlynatorBase.Drive.VelocityHeadingSetpoint;
 import org.usfirst.frc295.GrizzlynatorBase.subsystems.NavX_Gyro;
 
-import edu.wpi.first.wpilibj.RobotDrive;
+import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 
 public class DriveSystemHelperVelocityHeading extends DriveSystemHelper
 {
@@ -15,7 +15,7 @@ public class DriveSystemHelperVelocityHeading extends DriveSystemHelper
 	 * @author amind
 	 */
 	// TODO figure out how to use this drive algorithm
-	protected RobotDrive drive;
+	protected DifferentialDrive drive;
 	private NavX_Gyro gyro;
 
 	private double mLastHeadingErrorDegrees;
@@ -29,7 +29,7 @@ public class DriveSystemHelperVelocityHeading extends DriveSystemHelper
 	 * @param gyro
 	 *            a stream of robot heading
 	 */
-	public DriveSystemHelperVelocityHeading(RobotDrive drive, NavX_Gyro gyro)
+	public DriveSystemHelperVelocityHeading(DifferentialDrive drive, NavX_Gyro gyro)
 	{
 		this.drive = drive;
 		this.gyro = gyro;
@@ -53,8 +53,8 @@ public class DriveSystemHelperVelocityHeading extends DriveSystemHelper
 		double deltaSpeed = velocityHeadingPid_.calculate(mLastHeadingErrorDegrees);
 
 		// ADJUST SPEED OF THE MOTOR TO REDUCE THE ERROR
-		drive.setLeftRightMotorOutputs(velocityHeadingSetpoint_.getLeftSpeed() + (deltaSpeed / 2),
-				velocityHeadingSetpoint_.getRightSpeed() - (deltaSpeed / 2));
+//		drive.setLeftRightMotorOutputs(velocityHeadingSetpoint_.getLeftSpeed() + (deltaSpeed / 2),
+//				velocityHeadingSetpoint_.getRightSpeed() - (deltaSpeed / 2));
 	}
 
 
