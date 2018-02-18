@@ -54,11 +54,6 @@ public class RobotMap
 	public static final short CAN_PCM_MODULE = 0;
 	public static final short CAN_PCM_PORT_DRIVE_SHIFTER = 1;
 
-	// PWM PINS (0 - 20)
-	public static final short PWM_ESC_DRIVE_LEFT_FRONT = 0;
-	public static final short PWM_ESC_DRIVE_LEFT_BACK = 1;
-	public static final short PWM_ESC_DRIVE_RIGHT_FRONT = 2;
-	public static final short PWM_ESC_DRIVE_RIGHT_BACK = 3;
 
 	// DIGITAL IO PINS
 	public static final short DIO_ENC_DRIVE_RIGHT_CHAN1 = 0;
@@ -70,22 +65,6 @@ public class RobotMap
 	public static final short RLY_GREENLIGHT = 0;
 	public static final short RLY_FLASHLIGHT = 1;
 
-	// SYS FLYWHEEL PARAMETERS
-	public static final double FLYWHEEL_SPEED_KP = 0.12;
-	public static final double FLYWHEEL_SPEED_KI = 0;
-	public static final double FLYWHEEL_SPEED_KD = 0.5;
-	public static final double FLYWHEEL_SPEED_KF = 0.014;
-	public static final int FLYWHEEL_SPEED_IZONE = (int) (1023.0 / FLYWHEEL_SPEED_KP);
-	public static final double FLYWHEEL_SPEED_RAMP_RATE = 0;
-	public static final double FLYWHEEL_SPEED_ONTARGET_TOLERANCE = 100.0;
-
-	public static final double FLYWHEEL_POSITION_KP = 0.12;
-	public static final double FLYWHEEL_POSITION_KI = 0;
-	public static final double FLYWHEEL_POSITION_KD = 0.5;
-	public static final double FLYWHEEL_POSITION_KF = 0.014;
-	public static final int FLYWHEEL_POSITION_IZONE = (int) (1023.0 / FLYWHEEL_POSITION_KP);
-	public static final double FLYWHEEL_POSITION_RAMP_RATE = 0;
-	public static final double FLYWHEEL_POSITION_ONTARGET_TOLERANCE = 100.0;
 
 	// SYS DRIVETRAIN PARAMETERS
 	public static final double DRIVE_WHEEL_DIAMETER = 5.0;
