@@ -30,8 +30,9 @@ public class JoystickOperator extends Joystick
 	public static final short OPERATOR_BUTTON_MANUALDROPCUBE_XBOX = 0;
 
 	
+	// LOGITECH (IF DIFFERENT FROM XBOX) OPERATOR JOYSTICK BUTTONS
+	public static final short OPERATOR_BUTTON_SHOOT_LOGITECH = 1;
 
-	//public static final short OPERATOR_BUTTON_SHOOT_LOGITECH = 1;
 
 	public static enum JoystickType
 	{
@@ -54,8 +55,6 @@ public class JoystickOperator extends Joystick
 		super(iPort);
 		_eJoystickType = eType;
 	}
-
-
 
 	JoystickButton getElevatorBottomButton()
 	{
@@ -180,6 +179,5 @@ public class JoystickOperator extends Joystick
 	}
 
 
-	
-
 }
+
