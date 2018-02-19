@@ -73,6 +73,8 @@ public abstract class SysDriveTrain extends Subsystem
 	protected Encoder _encoDriveRight;
 
 	protected Encoder _encoDriveLeft;
+	
+	
 
 //	protected Encoder _encoElevatorLeft;
 

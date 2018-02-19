@@ -97,23 +97,11 @@ public class RobotMap
 
 
 
-
-
-
-
 	// SPECIFY WHICH ROBOT WE ARE RUNNING
 
 	public static final RobotID ROBOT_ID = RobotID.BOT_COMP1;
 
-
-
-
-
-
-
 	// CAN IDs ARE UNIQUE PER DEVICE TYPE
-
-
 
 	public static final short CAN_ESC_DRIVE_LEFT_FRONT = 3;
 
@@ -122,10 +110,6 @@ public class RobotMap
 	public static final short CAN_ESC_DRIVE_RIGHT_FRONT = 5;
 
 	public static final short CAN_ESC_DRIVE_RIGHT_BACK = 6;
-
-
-
-	
 
 //	public static final short CAN_ESC_LIFT_MASTER = 5;
 
@@ -145,17 +129,7 @@ public class RobotMap
 
 
 
-	
 
-	// PWM PINS (0 - 20)
-
-	public static final short PWM_ESC_DRIVE_LEFT_FRONT = 0;
-
-	public static final short PWM_ESC_DRIVE_LEFT_BACK = 1;
-
-	public static final short PWM_ESC_DRIVE_RIGHT_FRONT = 2;
-
-	public static final short PWM_ESC_DRIVE_RIGHT_BACK = 3;
 
 
 
@@ -165,47 +139,41 @@ public class RobotMap
 
 	//TODO: Nick - Values need to be adjusted
 
-	public static final short ELEVATOR_TALON = 5;
+	public static final short ELEVATOR_TALON = 0;
 
 	public static double RISE = 0.7;
 
-	public static double LOWER = -0.7;
+	public static double LOWER = -0.1;
 
 	public static int ZERO = 0;
 
 
 
-
-
-
-
-
-
 	// DIGITAL IO PINS
 
-	public static final short DIO_ELEVATOR_SCALE_LIMIT  = 4;
-
-	public static final short DIO_ELEVATOR_SWITCH_LIMIT = 3;
-
-	public static final short DIO_ELEVATOR_VAULT_LIMIT  = 2;
-
-	public static final short DIO_ELEVATOR_BOTTOM_LIMIT = 1;
+	public static final short DIO_ELEVATOR_SCALE_LIMIT  = 6;
+	public static final short DIO_ELEVATOR_SWITCH_LIMIT = 7;
+	public static final short DIO_ELEVATOR_VAULT_LIMIT  = 8;
+	public static final short DIO_ELEVATOR_BOTTOM_LIMIT = 9;
+	
+	public static final short DIO_ENC_ELEVATOR_LEFT_CHAN1  = 4;
+	public static final short DIO_ENC_ELEVATOR_RIGHT_CHAN2  = 5;
 
 	
 
 	// ANALOG TO PINS
 
 	
-
-	public static final short AIN_ELEVATOR_SCALE_LIMIT  = 3;
-
-	public static final short AIN_ELEVATOR_SWITCH_LIMIT = 2;
-
-	public static final short AIN_ELEVATOR_VAULT_LIMIT  = 1;
-
-	public static final short AIN_ELEVATOR_BOTTOM_LIMIT = 0;
-
-	public static final short AIN_ELEVATOR_TEST_LIMIT   = 4;
+//
+//	public static final short AIN_ELEVATOR_SCALE_LIMIT  = 3;
+//
+//	public static final short AIN_ELEVATOR_SWITCH_LIMIT = 2;
+//
+//	public static final short AIN_ELEVATOR_VAULT_LIMIT  = 1;
+//
+//	public static final short AIN_ELEVATOR_BOTTOM_LIMIT = 0;
+//
+//	public static final short AIN_ELEVATOR_TEST_LIMIT   = 4;
 
 
 

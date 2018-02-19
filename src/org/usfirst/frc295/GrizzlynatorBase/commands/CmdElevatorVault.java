@@ -16,18 +16,19 @@ public class CmdElevatorVault extends Command {
     public CmdElevatorVault() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
+    	requires(Robot.sysElevator);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
-
+    	Robot.sysElevator.releasebreak();
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
     	Robot.sysElevator.ELevatorVault();
 		System.out.println("Going to Vault.");
-		if (SysElevator.ScaleLimitSwitch.getVoltage() > 2.5)
+		/*if (SysElevator.ScaleLimitSwitch.getVoltage() > 2.5)
 		{
 	    	SysElevator.Location = 3;  
 		}
@@ -39,16 +40,20 @@ public class CmdElevatorVault extends Command {
 		{
 	    	SysElevator.Location = 0;  
 		}
+		if (SysElevator.VaultLimitSwitch.getVoltage() > 2.5)
+		{
+	    	SysElevator.Location = 0;  
+		}*/
+		
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return SysElevator.isSwitchSetVault();
+        return !Robot.sysElevator.isVaultSet();
     }
 
     // Called once after isFinished returns true
     protected void end() {
-
     	Robot.sysElevator.ELevatorZero();
     	Robot.sysElevator.setbreak();
     	SysElevator.Location = 1;  

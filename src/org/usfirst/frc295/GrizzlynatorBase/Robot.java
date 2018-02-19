@@ -90,7 +90,7 @@ public class Robot extends IterativeRobot
 
 			sysDriveTrainShifter = new SysDriveTrainShifter();
 			sysElevator = SysElevator.getInstance();
-			
+			sysCompressor = new SysCompressor();
 			
 			// OI must be constructed after subsystems. If the OI creates
 			// Commands
@@ -147,6 +147,10 @@ public class Robot extends IterativeRobot
 		try
 		{
 			Scheduler.getInstance().run();
+			//System.out.println(sysElevator.getRaw());
+//			System.out.println("Switch" + " " + SysElevator.Switchcounter.get());
+			sysElevator.releasebreak();
+			System.out.println("Encoder Value" + " " + sysElevator.getEncoderValue());
 		}
 		catch (Throwable t)
 		{
@@ -271,6 +275,7 @@ public class Robot extends IterativeRobot
 		{
 			Scheduler.getInstance().run();
 			log();
+//			System.out.println("ENCODER " + sysElevator.getEncoderValue());
 		}
 		catch (Throwable t)
 		{

@@ -16,21 +16,21 @@ public class CmdElevatorBottom extends Command {
     public CmdElevatorBottom() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
+    	requires(Robot.sysElevator);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
-
-
+    	Robot.sysElevator.releasebreak();
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
     	Robot.sysElevator.ELevatorBottom();
 		System.out.println("Going to Bottom.");
-		if (SysElevator.ScaleLimitSwitch.getVoltage() > 2.5)
+		/*if (Robot.sysElevator.isBottomSet() = false)
 		{
-	    	SysElevator.Location = 3;  
+	    	SysElevator.Location = 0;  
 		}
 		if (SysElevator.SwitchLimitSwitch.getVoltage() > 2.5)
 		{
@@ -39,12 +39,12 @@ public class CmdElevatorBottom extends Command {
 		if (SysElevator.VaultLimitSwitch.getVoltage() > 2.5)
 		{
 	    	SysElevator.Location = 1;  
-		}
+		}*/
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return SysElevator.isSwitchSetBottom();
+        return !Robot.sysElevator.isBottomSet();
     }
 
     // Called once after isFinished returns true

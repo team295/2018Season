@@ -16,18 +16,19 @@ public class CmdElevatorSwitch extends Command {
     public CmdElevatorSwitch() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
+    	requires(Robot.sysElevator);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	
+    	Robot.sysElevator.releasebreak();
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
     	Robot.sysElevator.ELevatorSwitch();
 		System.out.println("Going to Switch.");
-		if (SysElevator.ScaleLimitSwitch.getVoltage() > 2.5)
+		/*if (SysElevator.ScaleLimitSwitch.getVoltage() > 2.5)
 		{
 	    	SysElevator.Location = 3;  
 		}
@@ -38,17 +39,16 @@ public class CmdElevatorSwitch extends Command {
 		if (SysElevator.BottomLimitSwitch.getVoltage() > 2.5)
 		{
 	    	SysElevator.Location = 0;  
-		}
+		}*/
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return SysElevator.isSwitchSetSwitch();
+        return !Robot.sysElevator.isSwitchSet();
     }
 
     // Called once after isFinished returns true
     protected void end() {
-
     	Robot.sysElevator.ELevatorZero();
     	Robot.sysElevator.setbreak();
 		System.out.println("Currently at Switch.");
