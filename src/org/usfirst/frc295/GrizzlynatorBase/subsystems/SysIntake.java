@@ -1,4 +1,3 @@
-
 package org.usfirst.frc295.GrizzlynatorBase.subsystems;
 
 import org.usfirst.frc295.GrizzlynatorBase.Robot;
@@ -22,8 +21,9 @@ public class SysIntake extends Subsystem {
 
 	//General Variables
 
-	Spark LeftMotor;
-	Spark RightMotor;
+
+	private Spark LeftMotor;
+	private Spark RightMotor;
 
 	boolean cubeisIn;
 	boolean Reverse;
@@ -46,8 +46,7 @@ public class SysIntake extends Subsystem {
 	IntakeState nextstate;
 
 	double distancetocube;
-
-	double currentspeed;
+	double currentspeed = .7;
 	double Maxvalue;
 	double MaxReversevalue;
 
@@ -56,9 +55,10 @@ public class SysIntake extends Subsystem {
 	private SysIntake()
 	{
 		//MAP CORRECT PORT NUMBER WHEN ELECTRICAL BOARD CONFIGURATION IS FINALIZED
+// 1 and 2
+		LeftMotor = new Spark(RobotMap.PWM_ESC_LEFT_INTAKE_MOTOR);
+		RightMotor = new Spark(RobotMap.PWM_ESC_RIGHT_INTAKE_MOTOR);
 
-		LeftMotor = new Spark(1);
-		RightMotor = new Spark(2);
 
 		currentstate = IntakeState.motorForwardOFFcubeOUT;
 		nextstate = currentstate;
@@ -241,6 +241,7 @@ public class SysIntake extends Subsystem {
 
 	public void ManualIntakeCube() 
 	{
+
 		if (currentspeed < Maxvalue) 
 		{
 			currentspeed = currentspeed + .1;

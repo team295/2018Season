@@ -10,8 +10,8 @@ import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import edu.wpi.first.wpilibj.CounterBase.EncodingType;
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.PIDSourceType;
+import edu.wpi.first.wpilibj.Spark;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
-import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 
 /**
 *
@@ -34,27 +34,17 @@ public class SysDriveTrainCANOpenLoop extends SysDriveTrain
 		// SYS DRIVE TRAIN
 		// ==========================================================
 		_escLeftFront = new WPI_TalonSRX(RobotMap.CAN_ESC_DRIVE_LEFT_FRONT);
-//		_escLeftFront.setFeedbackDevice(TalonSRX.FeedbackDevice.QuadEncoder);
-//		_escLeftFront.reverseSensor(false);
-//		_escLeftFront.configEncoderCodesPerRev(1024);
-//		
 
+		_escLeftBack = new WPI_TalonSRX(RobotMap.CAN_ESC_DRIVE_LEFT_BACK);
 
-//		_escLeftBack = new WPI_TalonSRX(RobotMap.CAN_ESC_DRIVE_LEFT_BACK);
-//		
-//
 		_escRightFront = new WPI_TalonSRX(RobotMap.CAN_ESC_DRIVE_RIGHT_FRONT);
-////		_escRightFront.setFeedbackDevice(CANTalon.FeedbackDevice.QuadEncoder);
-////		_escRightFront.reverseSensor(false);
-////		_escRightFront.configEncoderCodesPerRev(1024);
-////		LiveWindow.addActuator("SysDriveTrain", "Esc Right Front", _escRightFront);
-//
-//		_escRightBack = new WPI_TalonSRX(RobotMap.CAN_ESC_DRIVE_RIGHT_BACK);
-//		LiveWindow.addActuator("SysDriveTrain", "Esc Right Back", _escRightBack);
 
-//	    _escLeftBack.follow(_escLeftFront);
-//
-//	    _escRightBack.follow(_escRightFront);
+		_escRightBack = new WPI_TalonSRX(RobotMap.CAN_ESC_DRIVE_RIGHT_BACK);
+
+
+
+	    _escLeftBack.follow(_escLeftFront);
+	    _escRightBack.follow(_escRightFront);
 		_robotDrive = new DifferentialDrive(_escLeftFront, _escRightFront);
 	
 
@@ -93,19 +83,26 @@ public class SysDriveTrainCANOpenLoop extends SysDriveTrain
 
 
 		// DEFINE DIO ENCODERS FOR THE DRIVETRAIN
+		//Wheel size = 6 (diameter)
+		//Math.Pi * 6 / 256 is the distance traveled per inch if 1 revolution of encoder is 1 revolution of wheel
+		//9.6 rev enc = 1 rev wheel
 		_encoDriveLeft = new Encoder(RobotMap.DIO_ENC_DRIVE_LEFT_CHAN1, RobotMap.DIO_ENC_DRIVE_LEFT_CHAN2, false,
 				EncodingType.k4X);
 		
-		_encoDriveLeft.setDistancePerPulse(1.0);
-		_encoDriveLeft.setPIDSourceType(PIDSourceType.kRate);
+
+		_encoDriveLeft.setDistancePerPulse((Math.PI*6)/(256*9.5));
+
+		_encoDriveLeft.setPIDSourceType(PIDSourceType.kDisplacement);
 		
 
 		_encoDriveRight = new Encoder(RobotMap.DIO_ENC_DRIVE_RIGHT_CHAN1, RobotMap.DIO_ENC_DRIVE_RIGHT_CHAN2, false,
 				EncodingType.k4X);
-		_encoDriveRight.setDistancePerPulse(1.0);
-		_encoDriveRight.setPIDSourceType(PIDSourceType.kRate);
-		
 
+		_encoDriveRight.setDistancePerPulse((Math.PI*6)/(256*9.5));
+
+		_encoDriveRight.setPIDSourceType(PIDSourceType.kDisplacement);
+		
+//		_encoElevatorLeft = new Encoder(RobotMap.DIO_ENC_ELEVATOR_LEFT_CHAN1, RobotMap.DIO_ENC_ELEVATOR_RIGHT_CHAN2, false, EncodingType.k4X);
 	}
 
 }

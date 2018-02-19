@@ -13,19 +13,24 @@ package org.usfirst.frc295.GrizzlynatorBase;
 import org.usfirst.frc295.GrizzlynatorBase.RobotMap.RobotID;
 import org.usfirst.frc295.GrizzlynatorBase.Logger.Logger;
 import org.usfirst.frc295.GrizzlynatorBase.Looper.Looper;
-import org.usfirst.frc295.GrizzlynatorBase.commands.AutonomousCommand;
+import org.usfirst.frc295.GrizzlynatorBase.commands.AutonomousLeft;
+import org.usfirst.frc295.GrizzlynatorBase.commands.AutonomousRight;
+import org.usfirst.frc295.GrizzlynatorBase.commands.AutonomousMiddle;
 import org.usfirst.frc295.GrizzlynatorBase.subsystems.NavX_Gyro;
+import org.usfirst.frc295.GrizzlynatorBase.subsystems.SysCompressor;
 import org.usfirst.frc295.GrizzlynatorBase.subsystems.SysCompressor;
 import org.usfirst.frc295.GrizzlynatorBase.subsystems.SysDriveTrain;
 import org.usfirst.frc295.GrizzlynatorBase.subsystems.SysDriveTrainCANOpenLoop;
-//import org.usfirst.frc295.GrizzlynatorBase.subsystems.SysDriveTrainCANOpenLoop;
-//import org.usfirst.frc295.GrizzlynatorBase.subsystems.SysDriveTrainForklift;
-//import org.usfirst.frc295.GrizzlynatorBase.subsystems.SysDriveTrainProto;
-import org.usfirst.frc295.GrizzlynatorBase.subsystems.SysDriveTrainShifter;
+
+//import org.usfirst.frc295.GrizzlynatorBase.subsystems.SysDriveTrainShifter;
+import org.usfirst.frc295.GrizzlynatorBase.subsystems.SysUltrasonic;
+
+import edu.wpi.first.wpilibj.DigitalInput;
+import edu.wpi.first.wpilibj.DriverStation;
+import edu.wpi.first.wpilibj.Encoder;
 
 import org.usfirst.frc295.GrizzlynatorBase.subsystems.SysIntake;
 import org.usfirst.frc295.GrizzlynatorBase.subsystems.SysUltrasonic;
-
 
 
 import edu.wpi.first.wpilibj.IterativeRobot;
@@ -53,17 +58,25 @@ public class Robot extends IterativeRobot
 
 	Command autonomousCommand;
 	SendableChooser chooser;
-
+	public static String gameData;
 	// Operator Interface from OJ.java
 	public static OI oi;
 	public static NavX_Gyro ahrs;
+	public static DigitalInput dioRobotID1;
+	public static DigitalInput dioRobotID2;
+
 	// MAJOR SUBSYSTEMS
 	public static SysDriveTrain sysDriveTrain;
-	public static SysDriveTrainShifter sysDriveTrainShifter;
+	public static SysDriveTrainCANOpenLoop sysCANLoop;
+//	public static SysDriveTrainShifter sysDriveTrainShifter;
+//	public static SysElevator sysElevator;
 	public static SysCompressor sysCompressor;
 
 	public static SysUltrasonic sysUltrasonic;
 	public static SysIntake sysIntake;
+	public static SysDriveTrain sysDriveTrainSpark;
+
+
 
 
 	/**
@@ -74,16 +87,16 @@ public class Robot extends IterativeRobot
 	public void robotInit()
 	{
 		try
-		{
+		{ 
 			Logger.logRobotInit();
 			RobotMap.init();
-
+			
+			 			 
 			// INSTANTIATE SUB-SYSTEMS FOR THE ROBOT
 			if (RobotMap.ROBOT_ID == RobotID.BOT_COMP1)
 			{
-
+				//sysDriveTrain = new SysDriveTrainSpark();
 				sysDriveTrain = new SysDriveTrainCANOpenLoop();
-
 				sysIntake = SysIntake.getInstance();
 				sysUltrasonic = new SysUltrasonic();
 
@@ -103,22 +116,24 @@ public class Robot extends IterativeRobot
 //				sysDriveTrain = new SysDriveTrainForklift();
 			}
 
-			sysDriveTrainShifter = new SysDriveTrainShifter();
-			
+//			sysDriveTrainShifter = new SysDriveTrainShifter();
+//			sysElevator = SysElevator.getInstance();
 			// OI must be constructed after subsystems. If the OI creates
 			// Commands
 			// (which it very likely will), subsystems are not guaranteed to be
 			// constructed yet. Thus, their requires() statements may grab null
 			// pointers. Bad news. Don't move it.
 			oi = new OI();
+			ahrs = new NavX_Gyro();
 
 			// TODO: Need to know how SendableChooser work
-			/*
-			 * chooser = new SendableChooser();
-			 * chooser.addDefault("Default Auto", new AutonomousCommand());
-			 * //chooser.addObject("My Auto", new MyAutoCommand());
-			 * SmartDashboard.putData("Auto mode", chooser);
-			 */
+			
+//			  chooser = new SendableChooser();
+//			  chooser.addDefault("Default Auto", new AutonomousMiddle());
+//			  chooser.addObject("Left Auto", new AutonomousLeft());
+//			  chooser.addObject("Right Auto", new AutonomousRight());
+//			  SmartDashboard.putData("Auto mode", chooser);
+//			 
 
 			// Show what command your subsystem is running on the SmartDashboard
 			
@@ -151,6 +166,7 @@ public class Robot extends IterativeRobot
 			Logger.logThrowable(t);
 			throw t;
 		}
+		sysDriveTrain.logToSmartDashboard();
 	}
 
 
@@ -159,13 +175,21 @@ public class Robot extends IterativeRobot
 	{
 		try
 		{
+			System.out.print(ahrs.getYaw());
+			System.out.print("  ");
+			System.out.print(sysDriveTrain.getLeftEncoder());
+			System.out.print("  ");
+			System.out.println(sysDriveTrain.getRightEncoder());
+//			System.out.println(input_dio.get());
 			Scheduler.getInstance().run();
+//			input_dio.get();
 		}
 		catch (Throwable t)
 		{
 			Logger.logThrowable(t);
 			throw t;
 		}
+		sysDriveTrain.logToSmartDashboard();
 	}
 
 
@@ -183,12 +207,14 @@ public class Robot extends IterativeRobot
 	@Override
 	public void autonomousInit()
 	{
+		gameData = DriverStation.getInstance().getGameSpecificMessage();
+		
 		try
 		{
 			Logger.logAutoInit();
 
 			// Instantiate the command used for the autonomous period
-			autonomousCommand = new AutonomousCommand();
+			autonomousCommand = new AutonomousLeft();
 
 			// TODO: How does the chooser work?
 			// autonomousCommand = (Command) chooser.getSelected();
@@ -221,6 +247,12 @@ public class Robot extends IterativeRobot
 	}
 
 
+//	private void AutonomousLeft(String gameData) {
+//		// TODO Auto-generated method stub
+//		
+//	}
+
+
 	/**
 	 * This function is called periodically during autonomous
 	 */
@@ -229,6 +261,11 @@ public class Robot extends IterativeRobot
 	{
 		try
 		{
+			
+			sysDriveTrain.logToSmartDashboard();
+//			System.out.println(sysDriveTrain.getDistance());
+//			System.out.println(sysDriveTrain.getInches());
+//			System.out.println(ahrs.getAngle());
 			Scheduler.getInstance().run();
 			log();
 		}
@@ -246,7 +283,7 @@ public class Robot extends IterativeRobot
 		try
 		{
 			Logger.logTeleopInit();
-
+//			sysElevator.compressoron();
 			// This makes sure that the autonomous stops running when
 			// teleop starts running. If you want the autonomous to
 			// continue until interrupted by another command, remove
@@ -277,9 +314,10 @@ public class Robot extends IterativeRobot
 	public void teleopPeriodic()
 	{
 		try
-		{
+		{			
 			Scheduler.getInstance().run();
 			log();
+			
 		}
 		catch (Throwable t)
 		{
@@ -298,7 +336,7 @@ public class Robot extends IterativeRobot
 	{
 		try
 		{
-			LiveWindow.run();
+//			LiveWindow.run();
 		}
 		catch (Throwable t)
 		{

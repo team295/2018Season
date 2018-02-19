@@ -42,23 +42,52 @@ public class RobotMap
 	public static final RobotID ROBOT_ID = RobotID.BOT_COMP1;
 
 	// CAN IDs ARE UNIQUE PER DEVICE TYPE
-	public static final short CAN_ESC_DRIVE_LEFT_FRONT = 0;
-	public static final short CAN_ESC_DRIVE_LEFT_BACK = 1;
-	public static final short CAN_ESC_DRIVE_RIGHT_FRONT = 2;
-	public static final short CAN_ESC_DRIVE_RIGHT_BACK = 3;
-	public static final short CAN_ESC_LIFT_MASTER = 5;
-	public static final short CAN_ESC_LIFT_SLAVE = 6;
-	public static final short CAN_ESC_FLYWHEEL_MASTER = 10;
-	public static final short CAN_ESC_FLYWHEEL_SLAVE = 11;
+	public static final short CAN_ESC_DRIVE_LEFT_FRONT = 3;
+	public static final short CAN_ESC_DRIVE_LEFT_BACK = 4;
+	public static final short CAN_ESC_DRIVE_RIGHT_FRONT = 5;
+	public static final short CAN_ESC_DRIVE_RIGHT_BACK = 6;
+
+//	public static final short PWM_ESC_LIFT = 0;
+//	public static final short PWM_ESC_BLANK = 11;
+	
+	public static final short PWM_ESC_LEFT_INTAKE_MOTOR = 1;
+	public static final short PWM_ESC_RIGHT_INTAKE_MOTOR = 2;
+//	
+//	public static final short PWM_ESC_INTAKE_LEFT = 1;
+//	public static final short PWM_ESC_INTAKE_RIGHT = 2;
 
 	public static final short CAN_PCM_MODULE = 0;
 	public static final short CAN_PCM_PORT_DRIVE_SHIFTER = 1;
+
+	//TODO: Nick - Values need to be adjusted
+
+		public static final short ELEVATOR_TALON = 0;
+		public static final short ELEVATOR_TALON_BLANK = 11;
+		public static double RISE = 0.7;
+		public static double LOWER = -0.7;
+		public static int ZERO = 0;
+
+// 		public static final short DIO_ELEVATOR_SCALE_LIMIT  = 4;
+// 		public static final short DIO_ELEVATOR_SWITCH_LIMIT = 3;
+// 		public static final short DIO_ELEVATOR_VAULT_LIMIT  = 2;
+// 		public static final short DIO_ELEVATOR_BOTTOM_LIMIT = 1;
+		
+// 		public static final short AIN_ELEVATOR_SCALE_LIMIT  = 3;
+// 		public static final short AIN_ELEVATOR_SWITCH_LIMIT = 2;
+// 		public static final short AIN_ELEVATOR_VAULT_LIMIT  = 1;
+// 		public static final short AIN_ELEVATOR_BOTTOM_LIMIT = 0;
+// 		public static final short AIN_ELEVATOR_TEST_LIMIT   = 4;
 
 	// DIGITAL IO PINS
 	public static final short DIO_ENC_DRIVE_RIGHT_CHAN1 = 0;
 	public static final short DIO_ENC_DRIVE_RIGHT_CHAN2 = 1;
 	public static final short DIO_ENC_DRIVE_LEFT_CHAN1 = 2;
 	public static final short DIO_ENC_DRIVE_LEFT_CHAN2 = 3;
+	
+	public static final short DIO_ENC_ELEVATOR_RIGHT_CHAN2 = 5;
+	public static final short DIO_ENC_ELEVATOR_LEFT_CHAN1 = 4;
+	public static final short DIO_ROBOT_ID1 = 8;
+	public static final short DIO_ROBOT_ID2 = 9;
 
 	// RELAY PINS
 	public static final short RLY_GREENLIGHT = 0;
@@ -78,8 +107,7 @@ public class RobotMap
 
 	public static final short TBD = 0;
 
-	public static final int PWM_ESC_LIFT = 0;
-	public static final int PWM_ESC_BLANK = 11;
+
 
 	public static void init()
 	{

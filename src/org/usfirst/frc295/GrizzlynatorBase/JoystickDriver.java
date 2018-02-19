@@ -17,25 +17,25 @@ public class JoystickDriver extends Joystick
 {
 
 	// X-BOX DRIVER JOYSTICK BUTTONS
-	public static final short DRIVER_AXIS_THROTTLE_XBOX = 1;
-	public static final short DRIVER_AXIS_TURN_XBOX = 4;
+	private final short DRIVER_AXIS_THROTTLE_XBOX = 1;
+	private final short DRIVER_AXIS_TURN_XBOX = 4;
 
-	public static final short DRIVER_BUTTON_SHIFT_HIGH_XBOX = 1;
-	public static final short DRIVER_BUTTON_SHIFT_LOW_XBOX = 2;
-	public static final short DRIVER_BUTTON_QUICKTURN_XBOX = 6;
+	private final short DRIVER_BUTTON_SHIFT_HIGH_XBOX = 1;
+	private final short DRIVER_BUTTON_SHIFT_LOW_XBOX = 2;
+	private final short DRIVER_BUTTON_QUICKTURN_XBOX = 6;
 
 	// TODO: MOVE TO OPERATOR
-	public static final short DRIVER_BUTTON_LIFT_XBOX = 4;
+	private final short DRIVER_BUTTON_LIFT_XBOX = 4;
 
 	// LOGITECH (IF DIFFERENT FROM XBOX) DRIVER JOYSTICK BUTTONS
-	public static final short DRIVER_AXIS_THROTTLE_LOGITECH = 1;
-	public static final short DRIVER_AXIS_TURN_LOGITECH = 4;
+	private final short DRIVER_AXIS_THROTTLE_LOGITECH = 1;
+	private final short DRIVER_AXIS_TURN_LOGITECH = 4;
 
-	public static final short DRIVER_BUTTON_SHIFT_HIGH_LOGITECH = 1;
-	public static final short DRIVER_BUTTON_SHIFT_LOW_LOGITECH = 2;
-	public static final short DRIVER_BUTTON_QUICKTURN_LOGITECH = 6;
+	private final short DRIVER_BUTTON_SHIFT_HIGH_LOGITECH = 1;
+	private final short DRIVER_BUTTON_SHIFT_LOW_LOGITECH = 2;
+	private final short DRIVER_BUTTON_QUICKTURN_LOGITECH = 6;
 
-	public static enum JoystickType
+	public enum JoystickType
 	{
 		XBOX(0), LOGITECH(1);
 
@@ -58,7 +58,7 @@ public class JoystickDriver extends Joystick
 	}
 
 
-	public JoystickButton getDriveTrainShifterSetLowButton()
+	public JoystickButton driveLift()
 	{
 		switch (_eJoystickType)
 		{
