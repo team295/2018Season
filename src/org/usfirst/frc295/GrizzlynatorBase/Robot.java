@@ -32,6 +32,7 @@ import edu.wpi.first.wpilibj.Encoder;
 import org.usfirst.frc295.GrizzlynatorBase.subsystems.SysIntake;
 import org.usfirst.frc295.GrizzlynatorBase.subsystems.SysUltrasonic;
 
+
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
@@ -77,6 +78,7 @@ public class Robot extends IterativeRobot
 
 
 
+
 	/**
 	 * This function is run when the robot is first started up and should be
 	 * used for any initialization code.
@@ -95,7 +97,6 @@ public class Robot extends IterativeRobot
 			{
 				//sysDriveTrain = new SysDriveTrainSpark();
 				sysDriveTrain = new SysDriveTrainCANOpenLoop();
-				
 				sysIntake = SysIntake.getInstance();
 				sysUltrasonic = new SysUltrasonic();
 
@@ -323,9 +324,7 @@ public class Robot extends IterativeRobot
 			Logger.logThrowable(t);
 			throw t;
 		}
-
 		sysIntake.IntakeState();
-
 	}
 
 

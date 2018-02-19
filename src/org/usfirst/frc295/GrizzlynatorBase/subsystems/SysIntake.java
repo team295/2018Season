@@ -21,6 +21,7 @@ public class SysIntake extends Subsystem {
 
 	//General Variables
 
+
 	private Spark LeftMotor;
 	private Spark RightMotor;
 
@@ -45,7 +46,6 @@ public class SysIntake extends Subsystem {
 	IntakeState nextstate;
 
 	double distancetocube;
-
 	double currentspeed = .7;
 	double Maxvalue;
 	double MaxReversevalue;
@@ -55,9 +55,10 @@ public class SysIntake extends Subsystem {
 	private SysIntake()
 	{
 		//MAP CORRECT PORT NUMBER WHEN ELECTRICAL BOARD CONFIGURATION IS FINALIZED
-
+// 1 and 2
 		LeftMotor = new Spark(RobotMap.PWM_ESC_LEFT_INTAKE_MOTOR);
 		RightMotor = new Spark(RobotMap.PWM_ESC_RIGHT_INTAKE_MOTOR);
+
 
 		currentstate = IntakeState.motorForwardOFFcubeOUT;
 		nextstate = currentstate;
@@ -240,7 +241,7 @@ public class SysIntake extends Subsystem {
 
 	public void ManualIntakeCube() 
 	{
-		
+
 		if (currentspeed < Maxvalue) 
 		{
 			currentspeed = currentspeed + .1;

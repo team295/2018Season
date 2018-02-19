@@ -5,7 +5,9 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class SysUltrasonic
 {
-	AnalogInput UltrasonicSensor1 = new AnalogInput(5);
+//Write in a variable
+	AnalogInput UltrasonicSensor1 = new AnalogInput(1);
+
 	
 	double UltrasonicSensor1volts;
 	double USsensor1DistanceInches;
