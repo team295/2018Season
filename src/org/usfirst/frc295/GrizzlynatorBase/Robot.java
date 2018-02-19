@@ -22,8 +22,11 @@ import org.usfirst.frc295.GrizzlynatorBase.subsystems.SysDriveTrainCANOpenLoop;
 //import org.usfirst.frc295.GrizzlynatorBase.subsystems.SysDriveTrainForklift;
 //import org.usfirst.frc295.GrizzlynatorBase.subsystems.SysDriveTrainProto;
 import org.usfirst.frc295.GrizzlynatorBase.subsystems.SysDriveTrainShifter;
+
 import org.usfirst.frc295.GrizzlynatorBase.subsystems.SysIntake;
 import org.usfirst.frc295.GrizzlynatorBase.subsystems.SysUltrasonic;
+
+
 
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Command;
@@ -61,7 +64,7 @@ public class Robot extends IterativeRobot
 
 	public static SysUltrasonic sysUltrasonic;
 	public static SysIntake sysIntake;
-	
+
 
 	/**
 	 * This function is run when the robot is first started up and should be
@@ -80,8 +83,16 @@ public class Robot extends IterativeRobot
 			{
 
 				sysDriveTrain = new SysDriveTrainCANOpenLoop();
+
 				sysIntake = SysIntake.getInstance();
 				sysUltrasonic = new SysUltrasonic();
+
+//				sysDriveTrain = new SysDriveTrainSpark();
+			}
+			else if (RobotMap.ROBOT_ID == RobotID.BOT_COMP0)
+			{
+				sysDriveTrain = new SysDriveTrainCANOpenLoop();
+
 			}
 			else if (RobotMap.ROBOT_ID == RobotID.BOT_PROTO)
 			{
