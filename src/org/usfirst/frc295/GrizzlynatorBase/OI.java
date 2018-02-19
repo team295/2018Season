@@ -68,7 +68,7 @@ public class OI
 			JoystickButton _btnOpManualDropCube = _joystickOperator.getManualDropCubeButton();
 			_btnOpManualDropCube.whileHeld(new CmdManualDropCube());
 					
-
+	}
 	public JoystickDriver getJoystickDriver()
 
 	{
