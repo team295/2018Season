@@ -21,34 +21,27 @@ import org.usfirst.frc295.GrizzlynatorBase.subsystems.SysCompressor;
 import org.usfirst.frc295.GrizzlynatorBase.subsystems.SysElevator;
 import org.usfirst.frc295.GrizzlynatorBase.subsystems.SysDriveTrain;
 import org.usfirst.frc295.GrizzlynatorBase.subsystems.SysDriveTrainCANOpenLoop;
-
 import org.usfirst.frc295.GrizzlynatorBase.subsystems.SysDriveTrainShifter;
-<<<<<<< HEAD
 import org.usfirst.frc295.GrizzlynatorBase.subsystems.SysUltrasonic;
+import org.usfirst.frc295.GrizzlynatorBase.subsystems.SysIntake;
+import org.usfirst.frc295.GrizzlynatorBase.subsystems.SysUltrasonic;
+import org.usfirst.frc295.GrizzlynatorBase.subsystems.*;
 
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.Encoder;
-
-import org.usfirst.frc295.GrizzlynatorBase.subsystems.SysIntake;
-<<<<<<< HEAD
-
-=======
-import org.usfirst.frc295.GrizzlynatorBase.subsystems.*;
->>>>>>> Prototype Ramp code, has sys and commands
-=======
-import org.usfirst.frc295.GrizzlynatorBase.subsystems.SysUltrasonic;
-import org.usfirst.frc295.GrizzlynatorBase.subsystems.*;
-
->>>>>>> Prototype Ramp code, has sys and commands
-
-
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+
+
+
+
+
+
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -75,6 +68,7 @@ public class Robot extends IterativeRobot
 //	public static DigitalInput dioRobotID2;
 
 	// MAJOR SUBSYSTEMS
+	public static SysDriveTrainCANOpenLoop sysDriveTrainCAN;
 	public static SysDriveTrain sysDriveTrain;
 	public static SysDriveTrainCANOpenLoop sysCANLoop;
 //	public static SysDriveTrainShifter sysDriveTrainShifter;
@@ -200,15 +194,9 @@ public class Robot extends IterativeRobot
 			Logger.logThrowable(t);
 			throw t;
 		}
-<<<<<<< HEAD
+
 		sysIntake.IntakeState();
-=======
 
-<<<<<<< HEAD
->>>>>>> checkpoint, encoder value method calls, but won't update
-=======
-
->>>>>>> Revert "checkpoint, encoder value method calls, but won't update"
 		sysDriveTrain.logToSmartDashboard();
 
 //		sysEncoderDrive.getValues();
@@ -353,22 +341,10 @@ public class Robot extends IterativeRobot
 			Logger.logThrowable(t);
 			throw t;
 		}
-<<<<<<< HEAD
-		sysIntake.IntakeState();
-=======
-
-
 
 		sysIntake.IntakeState();
-
 //		sysEncoderDrive.getValues();
 
-
-<<<<<<< HEAD
->>>>>>> checkpoint, encoder value method calls, but won't update
-=======
-
->>>>>>> Revert "checkpoint, encoder value method calls, but won't update"
 	}
 
 

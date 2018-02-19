@@ -107,4 +107,16 @@ public class SysDriveTrainCANOpenLoop extends SysDriveTrain
 //		_encoElevatorLeft = new Encoder(RobotMap.DIO_ENC_ELEVATOR_LEFT_CHAN1, RobotMap.DIO_ENC_ELEVATOR_RIGHT_CHAN2, false, EncodingType.k4X);
 	}
 
+	public void printEncoderValues() {
+		System.out.println(_encoDriveLeft.get());
+		System.out.println(_encoDriveRight.get());
+	}
+	
+//	public double getLEncoderValues() {
+//		return _encoDriveLeft.get();
+//	}
+//	
+//	public double getREncoderValues() {
+//		return _encoDriveRight.get();
+//	}
 }
