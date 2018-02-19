@@ -47,18 +47,22 @@ public class RobotMap
 	public static final short CAN_ESC_DRIVE_RIGHT_FRONT = 5;
 	public static final short CAN_ESC_DRIVE_RIGHT_BACK = 6;
 
-	public static final short PWM_ESC_LIFT = 0;
-	public static final short PWM_ESC_BLANK = 11;
+//	public static final short PWM_ESC_LIFT = 0;
+//	public static final short PWM_ESC_BLANK = 11;
 	
-	public static final short PWM_ESC_INTAKE_LEFT = 1;
-	public static final short PWM_ESC_INTAKE_RIGHT = 2;
+	public static final short PWM_ESC_LEFT_INTAKE_MOTOR = 1;
+	public static final short PWM_ESC_RIGHT_INTAKE_MOTOR = 2;
+//	
+//	public static final short PWM_ESC_INTAKE_LEFT = 1;
+//	public static final short PWM_ESC_INTAKE_RIGHT = 2;
 
 	public static final short CAN_PCM_MODULE = 0;
 	public static final short CAN_PCM_PORT_DRIVE_SHIFTER = 1;
 
 	//TODO: Nick - Values need to be adjusted
 
-		public static final short ELEVATOR_TALON = 5;
+		public static final short ELEVATOR_TALON = 0;
+		public static final short ELEVATOR_TALON_BLANK = 11;
 		public static double RISE = 0.7;
 		public static double LOWER = -0.7;
 		public static int ZERO = 0;

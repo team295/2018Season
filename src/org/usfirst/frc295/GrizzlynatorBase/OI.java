@@ -48,61 +48,6 @@ public class OI
 
 {
 
-	//// CREATING BUTTONS
-
-	// One type of button is a joystick button which is any button on a
-
-	//// joystick.
-
-	// You create one by telling it which joystick it's on and which button
-
-	// number it is.
-
-	// Joystick stick = new Joystick(port);
-
-	// Button button = new JoystickButton(stick, buttonNumber);
-
-
-
-	// There are a few additional built in buttons you can use. Additionally,
-
-	// by subclassing Button you can create custom triggers and bind those to
-
-	// commands the same as any other Button.
-
-
-
-	//// TRIGGERING COMMANDS WITH BUTTONS
-
-	// Once you have a button, it's trivial to bind it to a button in one of
-
-	// three ways:
-
-
-
-	// Start the command when the button is pressed and let it run the command
-
-	// until it is finished as determined by it's isFinished method.
-
-	// button.whenPressed(new ExampleCommand());
-
-
-
-	// Run the command while the button is being held down and interrupt it once
-
-	// the button is released.
-
-	// button.whileHeld(new ExampleCommand());
-
-
-
-	// Start the command when the button is released and let it run the command
-
-	// until it is finished as determined by it's isFinished method.
-
-	// button.whenReleased(new ExampleCommand());
-
-
 
 	private JoystickDriver _joystickDriver = new JoystickDriver(0, JoystickDriver.JoystickType.XBOX);
 
@@ -113,66 +58,16 @@ public class OI
 	public OI()
 
 	{
-
-		// =====================================================================
-
-		// SMART DASHBOARD COMMANDS
-
-		// =====================================================================
-
-
-
-		// SmartDashboard Button to start the Autonomous Command
-
-		SmartDashboard.putData("Autonomous Command", new AutonomousLeft());
-
-
-
-		// =====================================================================
-
-		// DRIVER JOYSTICK BUTTON COMMANDS
-
-		// =====================================================================
-
-
-
-
-
-		// =====================================================================
-
-		// OPERATOR JOYSTICK BUTTON COMMANDS
-
-		// =====================================================================
-
-		 JoystickButton _btnOperator1 = _joystickOperator.getElevatorBottomButton();;
-
-		 _btnOperator1.whileHeld(new CmdSetSolenoid());
-		 //here nick heres the button
-
-		 JoystickButton _btnOperator2 = _joystickOperator.getElevatorVaultButton();;
-
-		 _btnOperator2.whenPressed(new CmdElevatorVault());
-
-		
-		 JoystickButton _btnOperator3 = _joystickOperator.getElevatorSwitchButton();;
-
-		 _btnOperator3.whenPressed(new CmdElevatorSwitch());
-
-		 JoystickButton _btnOperator4 = _joystickOperator.getElevatorScaleButton();;
-		 
-		 _btnOperator4.whenPressed(new CmdElevatorScale());
-
-	 	 JoystickButton _btnOperator5 = _joystickOperator.getElevatorRiseButton();;
-
-		 _btnOperator5.whileHeld(new CmdManualRise());
-		 
-	 	 JoystickButton _btnOperator6 = _joystickOperator.getElevatorLowerButton();;
-
-		 _btnOperator6.whileHeld(new CmdManualLower());
-
-	}
-
-
+	
+			JoystickButton _btnOpIntakeCube = _joystickOperator.getAutoIntake();
+			_btnOpIntakeCube.whileHeld(new CmdIntakeCube());
+			
+			JoystickButton _btnOpManualIntakeCube = _joystickOperator.getManualIntakeCubeButton();
+			_btnOpManualIntakeCube.whileHeld(new CmdManualIntakeCube());
+			
+			JoystickButton _btnOpManualDropCube = _joystickOperator.getManualDropCubeButton();
+			_btnOpManualDropCube.whileHeld(new CmdManualDropCube());
+					
 
 	public JoystickDriver getJoystickDriver()
 
@@ -181,9 +76,6 @@ public class OI
 		return _joystickDriver;
 
 	}
-
-
-
 
 
 	public JoystickOperator getJoystickOperator()

@@ -21,10 +21,9 @@ import org.usfirst.frc295.GrizzlynatorBase.subsystems.SysCompressor;
 import org.usfirst.frc295.GrizzlynatorBase.subsystems.SysCompressor;
 import org.usfirst.frc295.GrizzlynatorBase.subsystems.SysDriveTrain;
 import org.usfirst.frc295.GrizzlynatorBase.subsystems.SysDriveTrainCANOpenLoop;
-import org.usfirst.frc295.GrizzlynatorBase.subsystems.SysDriveTrainShifter;
-import org.usfirst.frc295.GrizzlynatorBase.subsystems.SysDriveTrainSpark;
+
+//import org.usfirst.frc295.GrizzlynatorBase.subsystems.SysDriveTrainShifter;
 import org.usfirst.frc295.GrizzlynatorBase.subsystems.SysUltrasonic;
-import org.usfirst.frc295.GrizzlynatorBase.subsystems.SysElevator;
 
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.DriverStation;
@@ -68,8 +67,8 @@ public class Robot extends IterativeRobot
 	// MAJOR SUBSYSTEMS
 	public static SysDriveTrain sysDriveTrain;
 	public static SysDriveTrainCANOpenLoop sysCANLoop;
-	public static SysDriveTrainShifter sysDriveTrainShifter;
-	public static SysElevator sysElevator;
+//	public static SysDriveTrainShifter sysDriveTrainShifter;
+//	public static SysElevator sysElevator;
 	public static SysCompressor sysCompressor;
 
 	public static SysUltrasonic sysUltrasonic;
@@ -96,7 +95,7 @@ public class Robot extends IterativeRobot
 			{
 				//sysDriveTrain = new SysDriveTrainSpark();
 				sysDriveTrain = new SysDriveTrainCANOpenLoop();
-
+				
 				sysIntake = SysIntake.getInstance();
 				sysUltrasonic = new SysUltrasonic();
 
@@ -116,8 +115,8 @@ public class Robot extends IterativeRobot
 //				sysDriveTrain = new SysDriveTrainForklift();
 			}
 
-			sysDriveTrainShifter = new SysDriveTrainShifter();
-			
+//			sysDriveTrainShifter = new SysDriveTrainShifter();
+//			sysElevator = SysElevator.getInstance();
 			// OI must be constructed after subsystems. If the OI creates
 			// Commands
 			// (which it very likely will), subsystems are not guaranteed to be
@@ -283,7 +282,7 @@ public class Robot extends IterativeRobot
 		try
 		{
 			Logger.logTeleopInit();
-
+//			sysElevator.compressoron();
 			// This makes sure that the autonomous stops running when
 			// teleop starts running. If you want the autonomous to
 			// continue until interrupted by another command, remove

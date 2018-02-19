@@ -8,7 +8,7 @@ import edu.wpi.first.wpilibj.command.Command;
  *
  */
 public class CmdManualIntakeCube extends Command {
-
+	
     public CmdManualIntakeCube() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
@@ -26,7 +26,7 @@ public class CmdManualIntakeCube extends Command {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return true;
+        return false;
     }
 
     // Called once after isFinished returns true
