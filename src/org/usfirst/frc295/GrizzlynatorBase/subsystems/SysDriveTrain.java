@@ -153,6 +153,7 @@ public abstract class SysDriveTrain extends Subsystem
 		return ((Math.abs(_encoDriveRight.getDistance())) + Math.abs(_encoDriveLeft.getDistance())) / 2;
 
 	}
+	
 
 
 public double getInches() {

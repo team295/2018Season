@@ -69,6 +69,7 @@ public class Robot extends IterativeRobot
 	public static DigitalInput dioRobotID2;
 
 	// MAJOR SUBSYSTEMS
+	public static SysDriveTrainCANOpenLoop sysDriveTrainCAN;
 	public static SysDriveTrain sysDriveTrain;
 	public static SysDriveTrainCANOpenLoop sysCANLoop;
 	public static SysDriveTrainShifter sysDriveTrainShifter;
@@ -101,8 +102,10 @@ public class Robot extends IterativeRobot
 				//sysDriveTrain = new SysDriveTrainSpark();
 				sysDriveTrain = new SysDriveTrainCANOpenLoop();
 
+
 				sysIntake = SysIntake.getInstance();
 				sysUltrasonic = new SysUltrasonic();
+
 
 //				sysDriveTrain = new SysDriveTrainSpark();
 			}
@@ -335,13 +338,8 @@ public class Robot extends IterativeRobot
 			throw t;
 		}
 
-
-
 		sysIntake.IntakeState();
-
 //		sysEncoderDrive.getValues();
-
-
 
 	}
 
