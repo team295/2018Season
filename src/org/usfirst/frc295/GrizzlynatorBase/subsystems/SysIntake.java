@@ -46,7 +46,7 @@ public class SysIntake extends Subsystem {
 	IntakeState nextstate;
 
 	double distancetocube;
-	double currentspeed = .7;
+	double currentspeed;
 	double Maxvalue;
 	double MaxReversevalue;
 
@@ -65,7 +65,7 @@ public class SysIntake extends Subsystem {
 
 		motorisRunning = false;
 
-		currentspeed = 0;
+		currentspeed = 0.6;
 		Maxvalue = .5;
 		MaxReversevalue = .50;
 	}
@@ -242,10 +242,10 @@ public class SysIntake extends Subsystem {
 	public void ManualIntakeCube() 
 	{
 
-		if (currentspeed < Maxvalue) 
-		{
-			currentspeed = currentspeed + .1;
-		} 
+//		if (currentspeed < Maxvalue) 
+//		{
+//			currentspeed = currentspeed + .1;
+//		} 
 
 		LeftMotor.setSpeed(-currentspeed);
 		RightMotor.setSpeed(currentspeed);
@@ -253,12 +253,12 @@ public class SysIntake extends Subsystem {
 
 	public void ManualDropCube() 
 	{
-		if (currentspeed > -MaxReversevalue) 
-		{
-			currentspeed = currentspeed - .1;
-		} 
+//		if (currentspeed > -MaxReversevalue) 
+//		{
+//			currentspeed = currentspeed - .1;
+//		} 
 
-		LeftMotor.setSpeed(-currentspeed);
+		LeftMotor.setSpeed(currentspeed);
 		RightMotor.setSpeed(currentspeed);
 	}
 }
