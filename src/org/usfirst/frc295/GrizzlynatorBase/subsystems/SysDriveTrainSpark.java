@@ -24,8 +24,8 @@ public class SysDriveTrainSpark extends SysDriveTrain {
 		// ==========================================================
 		// SYS DRIVE TRAIN
 		// ==========================================================
-		_escMaster = new Spark(RobotMap.PWM_ESC_LIFT);
-		_escBlank = new Spark(RobotMap.PWM_ESC_BLANK);
+		_escMaster = new Spark(RobotMap.PWM_ESC_INTAKE_LEFT);
+		_escBlank = new Spark(RobotMap.PWM_ESC_INTAKE_RIGHT);
 //		_escLeftFront.setFeedbackDevice(TalonSRX.FeedbackDevice.QuadEncoder);
 //		_escLeftFront.reverseSensor(false);
 //		_escLeftFront.configEncoderCodesPerRev(1024);

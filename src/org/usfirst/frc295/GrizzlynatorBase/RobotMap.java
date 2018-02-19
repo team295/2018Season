@@ -49,14 +49,30 @@ public class RobotMap
 
 	public static final short PWM_ESC_LIFT = 0;
 	public static final short PWM_ESC_BLANK = 11;
-//	public static final short CAN_ESC_LIFT_SLAVE = 6;
-//	public static final short CAN_ESC_FLYWHEEL_MASTER = 10;
-//	public static final short CAN_ESC_FLYWHEEL_SLAVE = 11;
-
+	
+	public static final short PWM_ESC_INTAKE_LEFT = 1;
+	public static final short PWM_ESC_INTAKE_RIGHT = 2;
 
 	public static final short CAN_PCM_MODULE = 0;
 	public static final short CAN_PCM_PORT_DRIVE_SHIFTER = 1;
 
+	//TODO: Nick - Values need to be adjusted
+
+		public static final short ELEVATOR_TALON = 5;
+		public static double RISE = 0.7;
+		public static double LOWER = -0.7;
+		public static int ZERO = 0;
+
+		public static final short DIO_ELEVATOR_SCALE_LIMIT  = 4;
+		public static final short DIO_ELEVATOR_SWITCH_LIMIT = 3;
+		public static final short DIO_ELEVATOR_VAULT_LIMIT  = 2;
+		public static final short DIO_ELEVATOR_BOTTOM_LIMIT = 1;
+		
+		public static final short AIN_ELEVATOR_SCALE_LIMIT  = 3;
+		public static final short AIN_ELEVATOR_SWITCH_LIMIT = 2;
+		public static final short AIN_ELEVATOR_VAULT_LIMIT  = 1;
+		public static final short AIN_ELEVATOR_BOTTOM_LIMIT = 0;
+		public static final short AIN_ELEVATOR_TEST_LIMIT   = 4;
 
 	// DIGITAL IO PINS
 	public static final short DIO_ENC_DRIVE_RIGHT_CHAN1 = 0;

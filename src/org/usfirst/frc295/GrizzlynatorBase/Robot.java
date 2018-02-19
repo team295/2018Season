@@ -17,16 +17,14 @@ import org.usfirst.frc295.GrizzlynatorBase.commands.AutonomousLeft;
 import org.usfirst.frc295.GrizzlynatorBase.commands.AutonomousRight;
 import org.usfirst.frc295.GrizzlynatorBase.commands.AutonomousMiddle;
 import org.usfirst.frc295.GrizzlynatorBase.subsystems.NavX_Gyro;
-//import org.usfirst.frc295.GrizzlynatorBase.subsystems.SysCompressor;
+import org.usfirst.frc295.GrizzlynatorBase.subsystems.SysCompressor;
+import org.usfirst.frc295.GrizzlynatorBase.subsystems.SysCompressor;
 import org.usfirst.frc295.GrizzlynatorBase.subsystems.SysDriveTrain;
 import org.usfirst.frc295.GrizzlynatorBase.subsystems.SysDriveTrainCANOpenLoop;
-//import org.usfirst.frc295.GrizzlynatorBase.subsystems.SysDriveTrainCANOpenLoop;
-//import org.usfirst.frc295.GrizzlynatorBase.subsystems.SysDriveTrainForklift;
-//import org.usfirst.frc295.GrizzlynatorBase.subsystems.SysDriveTrainProto;
 import org.usfirst.frc295.GrizzlynatorBase.subsystems.SysDriveTrainShifter;
 import org.usfirst.frc295.GrizzlynatorBase.subsystems.SysDriveTrainSpark;
 import org.usfirst.frc295.GrizzlynatorBase.subsystems.SysUltrasonic;
-
+import org.usfirst.frc295.GrizzlynatorBase.subsystems.SysElevator;
 
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.DriverStation;
@@ -66,16 +64,17 @@ public class Robot extends IterativeRobot
 	public static NavX_Gyro ahrs;
 	public static DigitalInput dioRobotID1;
 	public static DigitalInput dioRobotID2;
-	public static SysUltrasonic sysUltrasonic;
+
 	// MAJOR SUBSYSTEMS
 	public static SysDriveTrain sysDriveTrain;
 	public static SysDriveTrainCANOpenLoop sysCANLoop;
 	public static SysDriveTrainShifter sysDriveTrainShifter;
-
+	public static SysElevator sysElevator;
 	public static SysCompressor sysCompressor;
 
 	public static SysUltrasonic sysUltrasonic;
 	public static SysIntake sysIntake;
+	public static SysDriveTrain sysDriveTrainSpark;
 
 
 
@@ -95,7 +94,7 @@ public class Robot extends IterativeRobot
 			// INSTANTIATE SUB-SYSTEMS FOR THE ROBOT
 			if (RobotMap.ROBOT_ID == RobotID.BOT_COMP1)
 			{
-//				sysDriveTrain = new SysDriveTrainSpark();
+				//sysDriveTrain = new SysDriveTrainSpark();
 				sysDriveTrain = new SysDriveTrainCANOpenLoop();
 
 				sysIntake = SysIntake.getInstance();
