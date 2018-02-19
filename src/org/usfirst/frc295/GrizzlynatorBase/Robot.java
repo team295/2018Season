@@ -70,6 +70,7 @@ public class Robot extends IterativeRobot
 	
 	
 	// MAJOR SUBSYSTEMS
+	public static SysDriveTrainCANOpenLoop sysDriveTrainCAN;
 	public static SysDriveTrain sysDriveTrain;
 	public static SysDriveTrainCANOpenLoop sysCANLoop;
 	public static SysElevator sysElevator;
@@ -96,9 +97,11 @@ public class Robot extends IterativeRobot
 			if (RobotMap.ROBOT_ID == RobotID.BOT_COMP1)
 			{
 				sysDriveTrain = new SysDriveTrainCANOpenLoop();
+
 				sysIntake = SysIntake.getInstance();
 				sysUltrasonic = new SysUltrasonic();
 				sysDriveTrainShifter = new SysDriveTrainShifter();
+
 
 			}
 			else if (RobotMap.ROBOT_ID == RobotID.BOT_COMP0)
@@ -326,6 +329,7 @@ public class Robot extends IterativeRobot
 
 
 		sysIntake.IntakeState();
+
 
 
 	}
