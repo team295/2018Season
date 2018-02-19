@@ -25,15 +25,13 @@ import org.usfirst.frc295.GrizzlynatorBase.subsystems.SysDriveTrainCANOpenLoop;
 import org.usfirst.frc295.GrizzlynatorBase.subsystems.SysDriveTrainShifter;
 import org.usfirst.frc295.GrizzlynatorBase.subsystems.SysUltrasonic;
 import org.usfirst.frc295.GrizzlynatorBase.subsystems.SysIntake;
+
 import org.usfirst.frc295.GrizzlynatorBase.subsystems.SysRamp;
-
-
 
 
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.Encoder;
-
 
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Command;
@@ -41,6 +39,12 @@ import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+
+
+
+
+
+
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -326,9 +330,7 @@ public class Robot extends IterativeRobot
 		}
 
 
-
 		sysIntake.IntakeState();
-
 //		sysEncoderDrive.getValues();
 
 
