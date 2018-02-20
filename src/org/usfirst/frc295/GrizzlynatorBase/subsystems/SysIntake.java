@@ -56,8 +56,8 @@ public class SysIntake extends Subsystem {
 	{
 		//MAP CORRECT PORT NUMBER WHEN ELECTRICAL BOARD CONFIGURATION IS FINALIZED
 // 1 and 2
-		LeftMotor = new Spark(RobotMap.PWM_ESC_LEFT_INTAKE_MOTOR);
-		RightMotor = new Spark(RobotMap.PWM_ESC_RIGHT_INTAKE_MOTOR);
+		LeftMotor = new Spark(1);
+		RightMotor = new Spark(2);
 
 
 		currentstate = IntakeState.motorForwardOFFcubeOUT;
@@ -98,7 +98,7 @@ public class SysIntake extends Subsystem {
 
 		distancetocube = Robot.sysUltrasonic.getDistance();
 
-		if (distancetocube < 26) 
+		if (distancetocube < 15) 
 		{
 			cubeisIn = true;
 		} 
@@ -199,7 +199,7 @@ public class SysIntake extends Subsystem {
 
 	public void AutoIntake() 
 	{
-		if (Reverse) 
+		if (!Reverse) 
 		{	
 			if (currentspeed < Maxvalue) 
 			{
@@ -242,10 +242,10 @@ public class SysIntake extends Subsystem {
 	public void ManualIntakeCube() 
 	{
 
-//		if (currentspeed < Maxvalue) 
-//		{
-//			currentspeed = currentspeed + .1;
-//		} 
+		if (currentspeed < Maxvalue) 
+		{
+			currentspeed = currentspeed + .1;
+		} 
 
 		LeftMotor.setSpeed(-currentspeed);
 		RightMotor.setSpeed(currentspeed);
@@ -253,12 +253,12 @@ public class SysIntake extends Subsystem {
 
 	public void ManualDropCube() 
 	{
-//		if (currentspeed > -MaxReversevalue) 
-//		{
-//			currentspeed = currentspeed - .1;
-//		} 
+		if (currentspeed > -MaxReversevalue) 
+		{
+			currentspeed = currentspeed - .1;
+		} 
 
-		LeftMotor.setSpeed(currentspeed);
+		LeftMotor.setSpeed(-currentspeed);
 		RightMotor.setSpeed(currentspeed);
 	}
 }

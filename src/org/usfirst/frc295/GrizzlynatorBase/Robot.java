@@ -18,7 +18,7 @@ import org.usfirst.frc295.GrizzlynatorBase.commands.AutonomousRight;
 import org.usfirst.frc295.GrizzlynatorBase.commands.AutonomousMiddle;
 import org.usfirst.frc295.GrizzlynatorBase.subsystems.NavX_Gyro;
 import org.usfirst.frc295.GrizzlynatorBase.subsystems.SysCompressor;
-import org.usfirst.frc295.GrizzlynatorBase.subsystems.SysCompressor;
+import org.usfirst.frc295.GrizzlynatorBase.subsystems.SysElevator;
 import org.usfirst.frc295.GrizzlynatorBase.subsystems.SysDriveTrain;
 import org.usfirst.frc295.GrizzlynatorBase.subsystems.SysDriveTrainCANOpenLoop;
 
@@ -30,7 +30,7 @@ import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.Encoder;
 
 import org.usfirst.frc295.GrizzlynatorBase.subsystems.SysIntake;
-import org.usfirst.frc295.GrizzlynatorBase.subsystems.SysUltrasonic;
+
 
 
 import edu.wpi.first.wpilibj.IterativeRobot;
@@ -62,19 +62,18 @@ public class Robot extends IterativeRobot
 	// Operator Interface from OJ.java
 	public static OI oi;
 	public static NavX_Gyro ahrs;
-	public static DigitalInput dioRobotID1;
-	public static DigitalInput dioRobotID2;
+//	public static DigitalInput dioRobotID1;
+//	public static DigitalInput dioRobotID2;
 
 	// MAJOR SUBSYSTEMS
 	public static SysDriveTrain sysDriveTrain;
 	public static SysDriveTrainCANOpenLoop sysCANLoop;
 //	public static SysDriveTrainShifter sysDriveTrainShifter;
-//	public static SysElevator sysElevator;
+	public static SysElevator sysElevator;
 	public static SysCompressor sysCompressor;
-
 	public static SysUltrasonic sysUltrasonic;
 	public static SysIntake sysIntake;
-	public static SysDriveTrain sysDriveTrainSpark;
+	
 
 
 
@@ -97,9 +96,10 @@ public class Robot extends IterativeRobot
 			{
 				//sysDriveTrain = new SysDriveTrainSpark();
 				sysDriveTrain = new SysDriveTrainCANOpenLoop();
+//				sysIntake = new SysIntake();
 				sysIntake = SysIntake.getInstance();
 				sysUltrasonic = new SysUltrasonic();
-
+				
 //				sysDriveTrain = new SysDriveTrainSpark();
 			}
 			else if (RobotMap.ROBOT_ID == RobotID.BOT_COMP0)
@@ -115,9 +115,10 @@ public class Robot extends IterativeRobot
 			{
 //				sysDriveTrain = new SysDriveTrainForklift();
 			}
-
+			sysCompressor = new SysCompressor();
 //			sysDriveTrainShifter = new SysDriveTrainShifter();
-//			sysElevator = SysElevator.getInstance();
+			sysElevator = SysElevator.getInstance();
+//			sysDriveTrainShifter = new SysDriveTrainShifter();
 			// OI must be constructed after subsystems. If the OI creates
 			// Commands
 			// (which it very likely will), subsystems are not guaranteed to be
@@ -189,6 +190,7 @@ public class Robot extends IterativeRobot
 			Logger.logThrowable(t);
 			throw t;
 		}
+		sysIntake.IntakeState();
 		sysDriveTrain.logToSmartDashboard();
 	}
 

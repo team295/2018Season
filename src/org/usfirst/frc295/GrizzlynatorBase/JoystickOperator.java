@@ -18,16 +18,16 @@ public class JoystickOperator extends Joystick
 
 	// X-BOX OPERATOR JOYSTICK BUTTONS
 	//public static final short OPERATOR_BUTTON_SHOOT_XBOX = 1;
-	public static final short OPERATOR_BUTTON_ELEVATOR_BOTTOM_XBOX = 5; //BUTTON A OPERATOR
-	public static final short OPERATOR_BUTTON_ELEVATOR_VAULT_XBOX = 6; //BUTTON B OPERATOR
-	public static final short OPERATOR_BUTTON_ELEVATOR_SWITCH_XBOX = 10; //BUTTON B OPERATOR
-	public static final short OPERATOR_BUTTON_ELEVATOR_SCALE_XBOX = 9; //BUTTON B OPERATOR
-	public static final short OPERATOR_BUTTON_ELEVATOR_RISE_XBOX = 7;
-	public static final short OPERATOR_BUTTON_ELEVATOR_LOWER_XBOX = 8;
+	public static final short OPERATOR_BUTTON_ELEVATOR_BOTTOM_XBOX = 1; //BUTTON A OPERATOR
+	public static final short OPERATOR_BUTTON_ELEVATOR_VAULT_XBOX = 2; //BUTTON B OPERATOR
+	public static final short OPERATOR_BUTTON_ELEVATOR_SWITCH_XBOX = 3; //BUTTON B OPERATOR
+	public static final short OPERATOR_BUTTON_ELEVATOR_SCALE_XBOX = 4; //BUTTON B OPERATOR
+	public static final short OPERATOR_BUTTON_ELEVATOR_RISE_XBOX = 5;
+	public static final short OPERATOR_BUTTON_ELEVATOR_LOWER_XBOX = 6;
 	
-	public static final short OPERATOR_BUTTON_AUTOINTAKE_XBOX = 3;
-	public static final short OPERATOR_BUTTON_MANUALINTAKECUBE_XBOX = 2;
-	public static final short OPERATOR_BUTTON_MANUALDROPCUBE_XBOX = 1;
+	public static final short OPERATOR_BUTTON_AUTOINTAKE_XBOX =      7;
+	public static final short OPERATOR_BUTTON_MANUALINTAKECUBE_XBOX = 8;
+	public static final short OPERATOR_BUTTON_MANUALDROPCUBE_XBOX =   9;
 
 	
 	// LOGITECH (IF DIFFERENT FROM XBOX) OPERATOR JOYSTICK BUTTONS

@@ -7,22 +7,20 @@ public class SysUltrasonic
 {
 //Write in a variable
 	AnalogInput UltrasonicSensor1 = new AnalogInput(1);
-
+	double conversionfactor = .009765625;
 	
 	double UltrasonicSensor1volts;
 	double USsensor1DistanceInches;
 	double FinalSensor1;
-	public double Distance;
 	
 	int _Cycles = 0;
 	int _ErrorCycles = 0;
-
-	double conversionfactor = .009765625;
 	
 	public double getDistance()
 	{
 		UltrasonicSensor1volts = UltrasonicSensor1.getVoltage();
-
+		USsensor1DistanceInches = UltrasonicSensor1volts / conversionfactor;
+		
 		//Filters out any outliers
 		if ((Math.abs(FinalSensor1 - USsensor1DistanceInches)) < 15)
 		{
@@ -36,11 +34,9 @@ public class SysUltrasonic
 		{
 			_ErrorCycles = _ErrorCycles + 1;
 		}
+						
+		System.out.println(FinalSensor1 + " in");
 		
-		Distance = FinalSensor1;
-				
-		System.out.println(Distance + " in");
-		
-		return Distance;
+		return FinalSensor1;
 	}
 }

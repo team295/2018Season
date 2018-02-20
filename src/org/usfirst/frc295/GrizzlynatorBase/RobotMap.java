@@ -63,31 +63,21 @@ public class RobotMap
 
 		public static final short ELEVATOR_TALON = 0;
 		public static final short ELEVATOR_TALON_BLANK = 11;
-		public static double RISE = 0.7;
-		public static double LOWER = -0.7;
+		public static double RISE = 0.8;
+		public static double LOWER = -0.2;
 		public static int ZERO = 0;
 
-// 		public static final short DIO_ELEVATOR_SCALE_LIMIT  = 4;
-// 		public static final short DIO_ELEVATOR_SWITCH_LIMIT = 3;
-// 		public static final short DIO_ELEVATOR_VAULT_LIMIT  = 2;
-// 		public static final short DIO_ELEVATOR_BOTTOM_LIMIT = 1;
-		
-// 		public static final short AIN_ELEVATOR_SCALE_LIMIT  = 3;
-// 		public static final short AIN_ELEVATOR_SWITCH_LIMIT = 2;
-// 		public static final short AIN_ELEVATOR_VAULT_LIMIT  = 1;
-// 		public static final short AIN_ELEVATOR_BOTTOM_LIMIT = 0;
-// 		public static final short AIN_ELEVATOR_TEST_LIMIT   = 4;
+		public static final short DIO_ENC_DRIVE_RIGHT_CHAN1 = 0;
+		public static final short DIO_ENC_DRIVE_RIGHT_CHAN2 = 1;
+		public static final short DIO_ENC_DRIVE_LEFT_CHAN1 = 2;
+		public static final short DIO_ENC_DRIVE_LEFT_CHAN2 = 3;
+		public static final short DIO_ENC_ELEVATOR_RIGHT_CHAN2 = 4;
+		public static final short DIO_ENC_ELEVATOR_LEFT_CHAN1 = 5;
+ 		public static final short DIO_ELEVATOR_SCALE_LIMIT  = 6;
+ 		public static final short DIO_ELEVATOR_SWITCH_LIMIT = 7;
+ 		public static final short DIO_ELEVATOR_VAULT_LIMIT  = 8;
+ 		public static final short DIO_ELEVATOR_BOTTOM_LIMIT = 9;
 
-	// DIGITAL IO PINS
-	public static final short DIO_ENC_DRIVE_RIGHT_CHAN1 = 0;
-	public static final short DIO_ENC_DRIVE_RIGHT_CHAN2 = 1;
-	public static final short DIO_ENC_DRIVE_LEFT_CHAN1 = 2;
-	public static final short DIO_ENC_DRIVE_LEFT_CHAN2 = 3;
-	
-	public static final short DIO_ENC_ELEVATOR_RIGHT_CHAN2 = 5;
-	public static final short DIO_ENC_ELEVATOR_LEFT_CHAN1 = 4;
-	public static final short DIO_ROBOT_ID1 = 8;
-	public static final short DIO_ROBOT_ID2 = 9;
 
 	// RELAY PINS
 	public static final short RLY_GREENLIGHT = 0;

@@ -37,7 +37,7 @@ public abstract class SysDriveTrain extends Subsystem
 	// SENSORS
 	public Encoder _encoDriveRight;
 	public Encoder _encoDriveLeft;
-	Encoder LiftEnc = new Encoder(6, 7, false, Encoder.EncodingType.k4X);
+//	Encoder LiftEnc = new Encoder(6, 7, false, Encoder.EncodingType.k4X);
 	
 	public double _dDistanceTarget;
 	static int WHEEL_SIZE = 6;
