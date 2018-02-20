@@ -22,6 +22,7 @@ import org.usfirst.frc295.GrizzlynatorBase.subsystems.SysCompressor;
 import org.usfirst.frc295.GrizzlynatorBase.subsystems.SysDriveTrain;
 import org.usfirst.frc295.GrizzlynatorBase.subsystems.SysDriveTrainCANOpenLoop;
 import org.usfirst.frc295.GrizzlynatorBase.subsystems.SysDriveTrainShifter;
+
 import org.usfirst.frc295.GrizzlynatorBase.subsystems.SysDriveTrainSpark;
 import org.usfirst.frc295.GrizzlynatorBase.subsystems.SysUltrasonic;
 import org.usfirst.frc295.GrizzlynatorBase.subsystems.SysElevator;
@@ -76,7 +77,6 @@ public class Robot extends IterativeRobot
 	public static SysElevator sysElevator;
 	public static SysCompressor sysCompressor;
 	public static SysRamp sysRamp;
-
 	public static SysUltrasonic sysUltrasonic;
 	public static SysIntake sysIntake;
 	public static SysDriveTrain sysDriveTrainSpark;

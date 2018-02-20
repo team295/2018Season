@@ -2,7 +2,6 @@ package org.usfirst.frc295.GrizzlynatorBase.commands;
 
 import org.usfirst.frc295.GrizzlynatorBase.Robot;
 import org.usfirst.frc295.GrizzlynatorBase.subsystems.SysRamp;
-
 import edu.wpi.first.wpilibj.command.Command;
 
 /**

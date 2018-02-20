@@ -18,11 +18,13 @@ public class SysRamp extends Subsystem {
 	private Servo RRamp = new Servo(1);
 	private Servo LRamp = new Servo(2);
 
+
 //	private DoubleSolenoid RDS = new DoubleSolenoid(5,6);
 //	private DoubleSolenoid LDS = new DoubleSolenoid(7,8);
 
 	private DoubleSolenoid RDS;
 	private DoubleSolenoid LDS;
+
 	public boolean hasOpened(short pin) {
 		if (pin == 1) {
 			if(RRamp.getAngle() > 270) {
