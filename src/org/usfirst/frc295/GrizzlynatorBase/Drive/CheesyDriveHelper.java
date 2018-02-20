@@ -1,4 +1,7 @@
 package org.usfirst.frc295.GrizzlynatorBase.Drive;
+import org.usfirst.frc295.GrizzlynatorBase.subsystems.SysEncoderDrive;
+import org.usfirst.frc295.GrizzlynatorBase.Robot;
+import org.usfirst.frc295.GrizzlynatorBase.Drive.EncoderDrive;
 
 /**
  * Helper class to implement "Cheesy Drive". "Cheesy Drive" simply means that
@@ -26,6 +29,8 @@ public class CheesyDriveHelper
 
 		double overPower;
 		double angularPower;
+		
+		int TOPreverse /*Turn on Point */ = -1;
 
 		if (isQuickTurn)
 		{
@@ -81,9 +86,30 @@ public class CheesyDriveHelper
 			rightPwm = -1.0;
 		}
 
+		
 		mSignal.rightMotor = rightPwm;
 		mSignal.leftMotor = leftPwm;
 
+		if (wheel != 0 && throttle == 0) {
+			mSignal.rightMotor = getSign(wheel) * limit(wheel, 1.0);
+			mSignal.leftMotor = getSign(wheel) * TOPreverse * limit(wheel, 1.0);
+		
+		}
+		if (wheel == 0 && throttle != 0) {
+			double LEnco = Robot.sysDriveTrain._encoDriveLeft.getRate();
+			double REnco = Robot.sysDriveTrain._encoDriveRight.getRate();
+			double EncoDiff = LEnco - REnco;
+			if(Math.abs(EncoDiff) > 3) {
+				if(EncoDiff > 0) {
+					mSignal.leftMotor = mSignal.leftMotor * .95;
+					mSignal.rightMotor = mSignal.rightMotor * 1.05;
+				} else if(EncoDiff < 0) {
+					mSignal.leftMotor = mSignal.leftMotor * 1.05;
+					mSignal.rightMotor = mSignal.rightMotor * .95;
+				}
+			}
+		}
+		
 		return mSignal;
 	}
 
@@ -112,5 +138,13 @@ public class CheesyDriveHelper
 	public double handleTurnDeadband(double val)
 	{
 		return (Math.abs(val) > Math.abs(TURN_DEADBAND)) ? val : 0.0;
+	}
+	
+	public int getSign(double val) {
+		if(val <= 0) {
+			return 1;
+		} else {
+			return -1;
+		}
 	}
 }
