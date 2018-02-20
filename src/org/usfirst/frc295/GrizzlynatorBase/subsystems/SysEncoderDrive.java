@@ -14,8 +14,7 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 public class SysEncoderDrive extends Subsystem {
 
 
-    Encoder EncoderR = new Encoder(0, 1, false, Encoder.EncodingType.k4X);
-    Encoder EncoderL = new Encoder(2, 3, false, Encoder.EncodingType.k4X);
+
 	
 
 
