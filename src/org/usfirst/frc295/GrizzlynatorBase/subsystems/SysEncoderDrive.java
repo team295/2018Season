@@ -24,6 +24,7 @@ public class SysEncoderDrive extends Subsystem {
 	public void setTOPOff() {
 		TOP = false;
 	}
+
 	
 	public boolean getTOP() {
 		return TOP;

@@ -95,25 +95,21 @@ public class CheesyDriveHelper
 
 
 
-//		if (wheel != 0 && throttle == 0) {
-//            mSignal.rightMotor = getSign(wheel) * limit(wheel, 1.0);
-//            mSignal.leftMotor = getSign(wheel) * TOPreverse * limit(wheel, 1.0);
+
+
+
+
+//		public DriveSignal straightCorrect(DriveSignal mSignal, double wheel) {
+//			if (Math.abs(wheel) > .25){
+//				return mSignal;
 //		}
 
 		return mSignal;
 		
 	}
 	
-//	public DriveSignal straightCorrect(DriveSignal mSignal, double wheel)
-//	{
-//		if (Math.abs(wheel) > .25){
-//			
-//			return mSignal;
-//		}
-//		
-//		
-//		return mSignal;
-//	}
+
+
 
 
 	/**
@@ -143,6 +139,7 @@ public class CheesyDriveHelper
 	}
 	
 
+
 	public static int getSign(double val) {
         if(val <= 0) {
             return 1;
@@ -150,5 +147,6 @@ public class CheesyDriveHelper
             return -1;
         }
     }
+
 
 }

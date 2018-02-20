@@ -1,5 +1,9 @@
 package org.usfirst.frc295.GrizzlynatorBase.commands;
 import org.usfirst.frc295.GrizzlynatorBase.Robot;
+
+import org.usfirst.frc295.GrizzlynatorBase.subsystems.SysRamp;
+
+
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
@@ -10,7 +14,9 @@ public class CmdDriveTrainShiftLowGear extends Command {
     public CmdDriveTrainShiftLowGear() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
+
     	requires(Robot.sysDriveTrainShifter);
+
     }
 
     // Called just before this Command runs the first time

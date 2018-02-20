@@ -1,6 +1,7 @@
 package org.usfirst.frc295.GrizzlynatorBase.Drive;
 
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
+import org.usfirst.frc295.GrizzlynatorBase.Drive.CheesyDriveHelper;
 
 import org.usfirst.frc295.GrizzlynatorBase.Drive.CheesyDriveHelper;
 
@@ -67,6 +68,7 @@ public class EncoderDrive {
 		Signal.leftMotor = CheesyDriveHelper.getSign(TurnSpeed) * -1 * CheesyDriveHelper.limit(TurnSpeed, 1.0);
 		return Signal;
 	}
+
 	
 
 
