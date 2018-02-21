@@ -28,18 +28,18 @@ public class CmdElevatorScale extends Command {
     protected void execute() {
     	Robot.sysElevator.ELevatorScale();
 		System.out.println("Going to Scale.");
-		/*if (SysElevator.VaultLimitSwitch.getVoltage() > 2.5)
+		if (Robot.sysElevator.isVaultSet() == false)
 		{
 	    	SysElevator.Location = 1;  
 		}
-		if (SysElevator.SwitchLimitSwitch.getVoltage() > 2.5)
+		if (Robot.sysElevator.isSwitchSet() == false)
 		{
 	    	SysElevator.Location = 2;  
 		}
-		if (SysElevator.BottomLimitSwitch.getVoltage() > 2.5)
+		if (Robot.sysElevator.isBottomSet() == false)
 		{
 	    	SysElevator.Location = 0;  
-		}*/
+		}
     }
 
     // Make this return true when this Command no longer needs to run execute()
@@ -61,5 +61,6 @@ public class CmdElevatorScale extends Command {
     // subsystems is scheduled to run
     protected void interrupted() {
     	Robot.sysElevator.ELevatorZero();
+    	Robot.sysElevator.setbreak();
     }
 }

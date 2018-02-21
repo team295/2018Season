@@ -28,18 +28,18 @@ public class CmdElevatorSwitch extends Command {
     protected void execute() {
     	Robot.sysElevator.ELevatorSwitch();
 		System.out.println("Going to Switch.");
-		/*if (SysElevator.ScaleLimitSwitch.getVoltage() > 2.5)
-		{
-	    	SysElevator.Location = 3;  
-		}
-		if (SysElevator.VaultLimitSwitch.getVoltage() > 2.5)
+		if (Robot.sysElevator.isVaultSet() == false)
 		{
 	    	SysElevator.Location = 1;  
 		}
-		if (SysElevator.BottomLimitSwitch.getVoltage() > 2.5)
+		if (Robot.sysElevator.isScaleSet() == false)
+		{
+	    	SysElevator.Location = 3;  
+		}
+		if (Robot.sysElevator.isBottomSet() == false)
 		{
 	    	SysElevator.Location = 0;  
-		}*/
+		}
     }
 
     // Make this return true when this Command no longer needs to run execute()
@@ -60,5 +60,6 @@ public class CmdElevatorSwitch extends Command {
     // subsystems is scheduled to run
     protected void interrupted() {
     	Robot.sysElevator.ELevatorZero();
+    	Robot.sysElevator.setbreak();
     }
 }

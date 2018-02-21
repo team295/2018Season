@@ -28,18 +28,18 @@ public class CmdElevatorBottom extends Command {
     protected void execute() {
     	Robot.sysElevator.ELevatorBottom();
 		System.out.println("Going to Bottom.");
-		/*if (Robot.sysElevator.isBottomSet() = false)
+		if (Robot.sysElevator.isVaultSet() == false)
 		{
-	    	SysElevator.Location = 0;  
+	    	SysElevator.Location = 1;  
 		}
-		if (SysElevator.SwitchLimitSwitch.getVoltage() > 2.5)
+		if (Robot.sysElevator.isScaleSet() == false)
+		{
+	    	SysElevator.Location = 3;  
+		}
+		if (Robot.sysElevator.isSwitchSet() == false)
 		{
 	    	SysElevator.Location = 2;  
 		}
-		if (SysElevator.VaultLimitSwitch.getVoltage() > 2.5)
-		{
-	    	SysElevator.Location = 1;  
-		}*/
     }
 
     // Make this return true when this Command no longer needs to run execute()
@@ -49,10 +49,8 @@ public class CmdElevatorBottom extends Command {
 
     // Called once after isFinished returns true
     protected void end() {
-
     	Robot.sysElevator.ELevatorZero();
     	Robot.sysElevator.setbreak();
-
     	SysElevator.Location = 0;  
 		System.out.println("Currently at Bottom.");
     	System.out.println(SysElevator.Location);
@@ -62,5 +60,6 @@ public class CmdElevatorBottom extends Command {
     // subsystems is scheduled to run
     protected void interrupted() {
     	Robot.sysElevator.ELevatorZero();
+    	Robot.sysElevator.setbreak();
     }
 }

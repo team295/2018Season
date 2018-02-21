@@ -28,22 +28,19 @@ public class CmdElevatorVault extends Command {
     protected void execute() {
     	Robot.sysElevator.ElevatorVault();
 		System.out.println("Going to Vault.");
-		/*if (SysElevator.ScaleLimitSwitch.getVoltage() > 2.5)
+		
+		if (Robot.sysElevator.isScaleSet() == false)
 		{
 	    	SysElevator.Location = 3;  
 		}
-		if (SysElevator.SwitchLimitSwitch.getVoltage() > 2.5)
+		if (Robot.sysElevator.isSwitchSet() == false)
 		{
 	    	SysElevator.Location = 2;  
 		}
-		if (SysElevator.BottomLimitSwitch.getVoltage() > 2.5)
+		if (Robot.sysElevator.isBottomSet() == false)
 		{
 	    	SysElevator.Location = 0;  
 		}
-		if (SysElevator.VaultLimitSwitch.getVoltage() > 2.5)
-		{
-	    	SysElevator.Location = 0;  
-		}*/
 		
     }
 
@@ -65,5 +62,6 @@ public class CmdElevatorVault extends Command {
     // subsystems is scheduled to run
     protected void interrupted() {
     	Robot.sysElevator.ELevatorZero();
+    	Robot.sysElevator.setbreak();
     }
 }
