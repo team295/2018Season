@@ -232,13 +232,16 @@ public class Robot extends IterativeRobot
 			// CONFIGURE LOOPERS
 			_EnabledLooper.stop();
 			_DisabledLooper.start();
+			
+			sysIntake.initAutoState();
+			sysIntake.IntakeState();
 
 			// schedule the autonomous command (example)
 			if (autonomousCommand != null)
 			{
 				autonomousCommand.start();
 			}
-
+		
 		}
 		catch (Throwable t)
 		{

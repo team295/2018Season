@@ -28,7 +28,7 @@ public class JoystickOperator extends Joystick
 	public static final short OPERATOR_BUTTON_AUTOINTAKE_XBOX =      7;
 	public static final short OPERATOR_BUTTON_MANUALINTAKECUBE_XBOX = 8;
 	public static final short OPERATOR_BUTTON_MANUALDROPCUBE_XBOX =   9;
-
+	public static final short OPERATOR_BUTTON_CORRECTCUBEPLACEMENT_XBOX = 10;
 	
 	// LOGITECH (IF DIFFERENT FROM XBOX) OPERATOR JOYSTICK BUTTONS
 	public static final short OPERATOR_BUTTON_SHOOT_LOGITECH = 1;
@@ -178,6 +178,16 @@ public class JoystickOperator extends Joystick
 		}
 	}
 
+	JoystickButton getCorrectCubePlacement() 
+	{
+		switch (_eJoystickType)
+		{
+		case XBOX:
+			return (new JoystickButton(this, OPERATOR_BUTTON_CORRECTCUBEPLACEMENT_XBOX));
 
+		default:
+			return (new JoystickButton(this, OPERATOR_BUTTON_CORRECTCUBEPLACEMENT_XBOX));
+		}
+	}
 }
 

@@ -82,6 +82,12 @@ public class SysIntake extends Subsystem {
 		return instance;
 	}
 
+	
+	public void initAutoState()
+	{
+		currentstate = SysIntake.motorReverseOFFcubeIN;
+	}
+	
 	public void initDefaultCommand() 
 	{
 
@@ -162,7 +168,7 @@ public class SysIntake extends Subsystem {
 
 			if (!motorisRunning && cubeisIn) 
 			{
-				nextstate = IntakeState.motorReverseOFFcubeIN;
+				nextstate = IntakeState.motorReverseONcubeIN;
 			}
 			
 			break;
@@ -170,7 +176,7 @@ public class SysIntake extends Subsystem {
 		case motorReverseONcubeIN:
 			if (motorisRunning && cubeisIn) 
 			{
-				nextstate = IntakeState.motorReverseONcubeIN;
+				nextstate = IntakeState.motorReverseONcubeOUT;
 			}
 			
 			break;
@@ -178,7 +184,7 @@ public class SysIntake extends Subsystem {
 		case motorReverseONcubeOUT:
 			if (!motorisRunning && cubeisIn) 
 			{
-				nextstate = IntakeState.motorReverseOFFcubeIN;
+				nextstate = IntakeState.motorReverseOFFcubeOUT;
 			}
 			
 			break;
@@ -224,7 +230,7 @@ public class SysIntake extends Subsystem {
 
 	public void AutonomousIntakeCube() 
 	{
-		if (currentstate != motorForwardOFFcubeIN)
+		if (currentstate != motorForwardONcubeIN)
 		{
 			AutoIntake();
 		}
@@ -233,7 +239,7 @@ public class SysIntake extends Subsystem {
 	
 	public void AutonomousDropCube() 
 	{
-		if (currentstate != motorForwardOFFcubeOUT)
+		if (currentstate != motorReverseONcubeOUT)
 		{
 			AutoIntake();
 		}

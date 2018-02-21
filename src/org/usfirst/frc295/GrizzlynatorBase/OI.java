@@ -174,6 +174,8 @@ public class OI
 		JoystickButton _btnOpManualDropCube = _joystickOperator.getManualDropCubeButton();
 		_btnOpManualDropCube.whileHeld(new CmdManualDropCube());
 
+		JoystickButton _btnOpCorrectCubePlacement = _joystickOperator.getCorrectCubePlacement();
+		_btnOpCorrectCubePlacement.whileHeld(new CmdCorrectCubePlacement());
 	}
 
 
