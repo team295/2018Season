@@ -61,8 +61,8 @@ public class SysElevator extends Subsystem
 		debugmode = true;
 		
 		_elevatorcompressor.setClosedLoopControl(true);
-		elevatorbreak  = new DoubleSolenoid(0, 7); 
-		ElevatorMotor = new Spark(0);
+		elevatorbreak  = new DoubleSolenoid(RobotMap.PCM_ELEVATOR_SOL, RobotMap.PCM_ELEVATOR_SOL_FOLLOW); 
+		ElevatorMotor = new Spark(RobotMap.PWM_ELEVATOR_SPARK);
 		SwitchlimitSwitchScale = new DigitalInput(RobotMap.DIO_ELEVATOR_SCALE_LIMIT);
 		SwitchlimitSwitchVault = new DigitalInput(RobotMap.DIO_ELEVATOR_VAULT_LIMIT);
 		SwitchlimitSwitchSwitch = new DigitalInput(RobotMap.DIO_ELEVATOR_SWITCH_LIMIT);

@@ -52,7 +52,6 @@ public class Robot extends IterativeRobot
 
 	// Enabled looper is called at 50Hz whenever the robot is enabled
 	public static Looper _EnabledLooper = new Looper(RobotMap.LOOPER_PERIOD_HZ);
-
 	// Disabled looper is called at 50Hz whenever the robot is disabled
 	public static Looper _DisabledLooper = new Looper(RobotMap.LOOPER_PERIOD_HZ);
 
