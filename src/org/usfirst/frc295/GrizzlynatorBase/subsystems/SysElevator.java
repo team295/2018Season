@@ -68,9 +68,15 @@ public class SysElevator extends Subsystem
 		SwitchlimitSwitchSwitch = new DigitalInput(RobotMap.DIO_ELEVATOR_SWITCH_LIMIT);
 		SwitchlimitSwitchBottom = new DigitalInput(RobotMap.DIO_ELEVATOR_BOTTOM_LIMIT);
 		
+<<<<<<< HEAD
 //		_encoElevator = new Encoder(RobotMap.DIO_ENC_ELEVATOR_LEFT_CHAN1, RobotMap.DIO_ENC_ELEVATOR_RIGHT_CHAN2, false, EncodingType.k4X);
 //		_encoElevator.setDistancePerPulse(1.0);
 //		_encoElevator.setPIDSourceType(PIDSourceType.kDisplacement);
+=======
+		_encoElevator = new Encoder(RobotMap.DIO_ENC_ELEVATOR_CHAN1, RobotMap.DIO_ENC_ELEVATOR_CHAN2, false, EncodingType.k4X);
+		_encoElevator.setDistancePerPulse(1.0);
+		_encoElevator.setPIDSourceType(PIDSourceType.kDisplacement);
+>>>>>>> c997eec94febb9be7e487f52374091ce8b8667dd
 	
 	}
 	//public boolean getRaw() {
