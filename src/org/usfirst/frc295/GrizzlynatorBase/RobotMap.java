@@ -59,12 +59,14 @@ public class RobotMap
 	public static final short DIO_ENC_DRIVE_LEFT_CHAN2 = 1;
 	public static final short DIO_ENC_DRIVE_RIGHT_CHAN1= 2;
 	public static final short DIO_ENC_DRIVE_RIGHT_CHAN2= 3;
+	public static final short DIO_ENC_ELEVATOR_CHAN1 = 4;
+	public static final short DIO_ENC_ELEVATOR_CHAN2=  5;
 	public static final short DIO_ELEVATOR_SCALE_LIMIT=  6;
 	public static final short DIO_ELEVATOR_VAULT_LIMIT=  7;
 	public static final short DIO_ELEVATOR_SWITCH_LIMIT= 8;
 	public static final short DIO_ELEVATOR_BOTTOM_LIMIT= 9;
 	// SYS DRIVETRAIN PARAMETERS
-	public static final double DRIVE_WHEEL_DIAMETER = 5.0;
+	public static final double DRIVE_WHEEL_DIAMETER = 6.0;
 	public static final double DRIVE_LOW_GEAR_MAX_SPEED_INCH_PER_SEC = 12.0 * 7.0;
 	public static final double DRIVE_KP = 0.03;
 	public static final double DRIVE_KI = 0.00;
