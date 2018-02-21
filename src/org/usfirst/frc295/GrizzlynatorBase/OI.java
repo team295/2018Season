@@ -137,8 +137,11 @@ public class OI
 
 		// =====================================================================
 
-
-
+	 	 JoystickButton _btnDriver5 = _joystickDriver.getDriveTrainShifterSetHighButton();
+		 _btnDriver5.whenPressed(new CmdDriveTrainShiftHighGear());
+		 
+	 	 JoystickButton _btnDriver6 = _joystickDriver.getDriveTrainShifterSetLowButton();
+		 _btnDriver6.whenPressed(new CmdDriveTrainShiftLowGear());
 
 
 		// =====================================================================
@@ -147,22 +150,22 @@ public class OI
 
 		// =====================================================================
 
-		 JoystickButton _btnOperator1 = _joystickOperator.getElevatorBottomButton();;
+		 JoystickButton _btnOperator1 = _joystickOperator.getElevatorBottomButton();
 		 _btnOperator1.whenPressed(new CmdElevatorBottom());
 
-		 JoystickButton _btnOperator2 = _joystickOperator.getElevatorVaultButton();;
+		 JoystickButton _btnOperator2 = _joystickOperator.getElevatorVaultButton();
 		 _btnOperator2.whenPressed(new CmdElevatorVault());
 		
-		 JoystickButton _btnOperator3 = _joystickOperator.getElevatorSwitchButton();;
+		 JoystickButton _btnOperator3 = _joystickOperator.getElevatorSwitchButton();
 		 _btnOperator3.whenPressed(new CmdElevatorSwitch());
 
-		 JoystickButton _btnOperator4 = _joystickOperator.getElevatorScaleButton();;
+		 JoystickButton _btnOperator4 = _joystickOperator.getElevatorScaleButton();
 		 _btnOperator4.whenPressed(new CmdElevatorScale());
 
-	 	 JoystickButton _btnOperator5 = _joystickOperator.getElevatorRiseButton();;
+	 	 JoystickButton _btnOperator5 = _joystickOperator.getElevatorRiseButton();
 		 _btnOperator5.whenPressed(new CmdManualRise());
 		 
-	 	 JoystickButton _btnOperator6 = _joystickOperator.getElevatorLowerButton();;
+	 	 JoystickButton _btnOperator6 = _joystickOperator.getElevatorLowerButton();
 		 _btnOperator6.whenPressed(new CmdManualLower());
 		 
 		JoystickButton _btnOpIntakeCube = _joystickOperator.getAutoIntake();
