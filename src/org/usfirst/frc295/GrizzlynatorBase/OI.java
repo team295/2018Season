@@ -137,6 +137,11 @@ public class OI
 
 		// =====================================================================
 
+		 JoystickButton _btnDriver5 = _joystickDriver.getDriveTrainShifterSetHighButton();
+		 _btnDriver5.whenPressed(new CmdDriveTrainShiftHighGear());
+		 
+	 	 JoystickButton _btnDriver6 = _joystickDriver.getDriveTrainShifterSetLowButton();
+		 _btnDriver6.whenPressed(new CmdDriveTrainShiftLowGear());
 
 
 
@@ -166,7 +171,7 @@ public class OI
 		 _btnOperator6.whenPressed(new CmdManualLower());
 		 
 		JoystickButton _btnOpIntakeCube = _joystickOperator.getAutoIntake();
-		_btnOpIntakeCube.whileHeld(new CmdIntakeCube());
+		_btnOpIntakeCube.whenPressed(new CmdIntakeCube());
 				
 		JoystickButton _btnOpManualIntakeCube = _joystickOperator.getManualIntakeCubeButton();
 		_btnOpManualIntakeCube.whileHeld(new CmdManualIntakeCube());
@@ -174,6 +179,8 @@ public class OI
 		JoystickButton _btnOpManualDropCube = _joystickOperator.getManualDropCubeButton();
 		_btnOpManualDropCube.whileHeld(new CmdManualDropCube());
 
+		
+		
 	}
 
 

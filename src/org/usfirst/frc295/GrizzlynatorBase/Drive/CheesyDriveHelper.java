@@ -84,6 +84,18 @@ public class CheesyDriveHelper
 		mSignal.rightMotor = rightPwm;
 		mSignal.leftMotor = leftPwm;
 
+		return straightCorrect(mSignal, wheel);
+		
+	}
+	
+	public DriveSignal straightCorrect(DriveSignal mSignal, double wheel)
+	{
+		if (Math.abs(wheel) > .25){
+			
+			return mSignal;
+		}
+		
+		
 		return mSignal;
 	}
 

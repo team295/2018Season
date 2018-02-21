@@ -22,6 +22,7 @@ public class CmdElevatorScale extends Command {
     // Called just before this Command runs the first time
     protected void initialize() {
     	Robot.sysElevator.releasebreak();
+    	Robot.sysElevator.ResetRise();
     }
 
     // Called repeatedly when this Command is scheduled to run
@@ -40,6 +41,10 @@ public class CmdElevatorScale extends Command {
 		{
 	    	SysElevator.Location = 0;  
 		}
+		//if(Robot.sysElevator._encoElevator.getDistance() > 8000)
+		//{
+		//	
+		//}
     }
 
     // Make this return true when this Command no longer needs to run execute()

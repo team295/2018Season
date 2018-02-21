@@ -20,9 +20,9 @@ public class JoystickDriver extends Joystick
 	private final short DRIVER_AXIS_THROTTLE_XBOX = 1;
 	private final short DRIVER_AXIS_TURN_XBOX = 4;
 
-	private final short DRIVER_BUTTON_SHIFT_HIGH_XBOX = 1;
-	private final short DRIVER_BUTTON_SHIFT_LOW_XBOX = 2;
-	private final short DRIVER_BUTTON_QUICKTURN_XBOX = 6;
+	private final short DRIVER_BUTTON_SHIFT_HIGH_XBOX = 5;
+	private final short DRIVER_BUTTON_SHIFT_LOW_XBOX = 6;
+	private final short DRIVER_BUTTON_QUICKTURN_XBOX = 1;
 
 	// TODO: MOVE TO OPERATOR
 	private final short DRIVER_BUTTON_LIFT_XBOX = 4;
@@ -85,6 +85,21 @@ public class JoystickDriver extends Joystick
 
 		default:
 			return (new JoystickButton(this, DRIVER_BUTTON_SHIFT_HIGH_XBOX));
+		}
+	}
+	
+	public JoystickButton getDriveTrainShifterSetLowButton()
+	{
+		switch (_eJoystickType)
+		{
+		case XBOX:
+			return (new JoystickButton(this, DRIVER_BUTTON_SHIFT_LOW_XBOX));
+
+		case LOGITECH:
+			return (new JoystickButton(this, DRIVER_BUTTON_SHIFT_LOW_LOGITECH));
+
+		default:
+			return (new JoystickButton(this, DRIVER_BUTTON_SHIFT_LOW_XBOX));
 		}
 	}
 

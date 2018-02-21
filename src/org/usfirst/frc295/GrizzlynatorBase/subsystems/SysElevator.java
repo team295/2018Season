@@ -34,7 +34,7 @@ import edu.wpi.first.wpilibj.PIDSourceType;
 public class SysElevator extends Subsystem
 
 {
-	private static Encoder _encoElevator;
+	public static Encoder _encoElevator;
 //	public static AnalogInput BottomLimitSwitch = new AnalogInput(RobotMap.AIN_ELEVATOR_BOTTOM_LIMIT);
 //	public static AnalogInput VaultLimitSwitch = new AnalogInput(RobotMap.AIN_ELEVATOR_VAULT_LIMIT);
 //	//public static AnalogInput SwitchLimitSwitch = new AnalogInput(RobotMap.AIN_ELEVATOR_SWITCH_LIMIT);
@@ -45,6 +45,12 @@ public class SysElevator extends Subsystem
 	private static DigitalInput SwitchlimitSwitchSwitch;
 	private static DigitalInput SwitchlimitSwitchBottom;
     public static  Counter Switchcounter;
+    public double RISE = 0;
+	public double LOWER = -0.3;
+	public double MAXVALUE = .8;
+	public double INC = .04;
+
+
     
 	private Spark ElevatorMotor;
 	public static boolean Switchbolt;
@@ -150,6 +156,11 @@ public class SysElevator extends Subsystem
 //		}
 //	}
 
+     public void ResetRise() {
+     	
+     	RISE = .30;
+     }
+     
     public boolean isScaleSet() 
     {
         return SwitchlimitSwitchScale.get();
@@ -168,6 +179,7 @@ public class SysElevator extends Subsystem
         return SwitchlimitSwitchBottom.get();
     }
     
+
 //    
 //    
 //    
@@ -228,21 +240,34 @@ public class SysElevator extends Subsystem
 		switch(Location)
 		{
 			case 0 :
-				ElevatorMotor.set(RobotMap.RISE);
+				if (RISE < MAXVALUE) 
+				{
+					RISE += INC;
+				} 
+				ElevatorMotor.set(RISE);
+				
 				if (debugmode = true) 
 				{
 				System.out.println("To Scale - From Bottom");
 				}
 					break;
 			case 1 :
-				ElevatorMotor.set(RobotMap.RISE);
+				if (RISE < MAXVALUE) 
+				{
+					RISE += INC;
+				} 
+				ElevatorMotor.set(RISE);
 				if (debugmode = true) 
 				{
 				System.out.println("To Scale - From Vault");
 				}
 					break;
 			case 2 :
-				ElevatorMotor.set(RobotMap.RISE);
+				if (RISE < MAXVALUE) 
+				{
+					RISE += INC;
+				} 
+				ElevatorMotor.set(RISE);
 				if (debugmode = true) 
 				{
 			System.out.println("To Scale - From Switch");
@@ -260,14 +285,22 @@ public class SysElevator extends Subsystem
 		switch(Location)
 		{
 			case 0 :
-				ElevatorMotor.set(RobotMap.RISE);
+				if (RISE < MAXVALUE) 
+				{
+					RISE += INC;
+				} 
+				ElevatorMotor.set(RISE);
 				if (debugmode = true) 
 				{
 			System.out.println("To Switch - From Bottom");
 				}
 				break;
 			case 1 :
-				ElevatorMotor.set(RobotMap.RISE);
+				if (RISE < MAXVALUE) 
+				{
+					RISE += INC;
+				} 
+				ElevatorMotor.set(RISE);
 				if (debugmode = true) 
 				{
 			System.out.println("To Switch - From Vault");
@@ -277,7 +310,7 @@ public class SysElevator extends Subsystem
 			System.out.println("Already at Switch");
 				break;
 			case 3 :
-				ElevatorMotor.set(RobotMap.LOWER);
+				ElevatorMotor.set(LOWER);
 				if (debugmode = true) 
 				{
 			System.out.println("To Switch - From Scale");
@@ -292,7 +325,11 @@ public class SysElevator extends Subsystem
 		switch(Location)
 		{
 			case 0 :
-				ElevatorMotor.set(RobotMap.RISE);
+				if (RISE < MAXVALUE) 
+				{
+					RISE += INC;
+				} 
+				ElevatorMotor.set(RISE);
 				if (debugmode = true) 
 				{
 			System.out.println("To Vault - From Bottom");
@@ -302,14 +339,14 @@ public class SysElevator extends Subsystem
 					System.out.println("Already at Vault");
 						break;
 			case 2 :
-				ElevatorMotor.set(RobotMap.LOWER);
+				ElevatorMotor.set(LOWER);
 				if (debugmode = true) 
 				{
 			System.out.println("To Vault - From Switch");
 				}
 					break;
 			case 3 :
-				ElevatorMotor.set(RobotMap.LOWER);
+				ElevatorMotor.set(LOWER);
 				if (debugmode = true) 
 				{
 			System.out.println("To Vault - From Scale");
@@ -326,21 +363,21 @@ public class SysElevator extends Subsystem
 				System.out.println("Already at Bottom");
 				break;
 			case 1 :
-				ElevatorMotor.set(RobotMap.LOWER);
+				ElevatorMotor.set(LOWER);
 				if (debugmode = true) 
 				{
 			System.out.println("To Bottom - From Vault");
 				}
 					break;
 			case 2 :
-				ElevatorMotor.set(RobotMap.LOWER);
+				ElevatorMotor.set(LOWER);
 				if (debugmode = true) 
 				{
 			System.out.println("To Bottom - From Switch");
 				}
 					break;
 			case 3 :
-				ElevatorMotor.set(RobotMap.LOWER);
+				ElevatorMotor.set(LOWER);
 				if (debugmode = true) 
 				{
 			System.out.println("To Bottom - From Scale");
@@ -353,23 +390,32 @@ public class SysElevator extends Subsystem
 	{
 		ElevatorMotor.set(RobotMap.ZERO);
 	}
+	
+	public void ElevatorSlowRise()
+	{
+		ElevatorMotor.set(RobotMap.SLOWRISE);
+	}
+	
+	public void ElevatorSlowLower()
+	{
+		ElevatorMotor.set(RobotMap.SLOWLOWER);
+	}
 
     public void ElevatorManualRise()
     {
-    	ElevatorMotor.set(RobotMap.RISE);
+    	ElevatorMotor.set(RISE);
     }
     public void ElevatorManualLower()
     {
-    	ElevatorMotor.set(RobotMap.LOWER);
+    	ElevatorMotor.set(LOWER);
     }
 
     public void setbreak() {
-
-    	elevatorbreak.set(EXTEND_SOLENOID);
+    	elevatorbreak.set(RETRACT_SOLENOID);
 	}
 	
 	public void releasebreak() {
-		elevatorbreak.set(RETRACT_SOLENOID);
+    	elevatorbreak.set(EXTEND_SOLENOID);
 	}
 	
 	public void compressoron() {

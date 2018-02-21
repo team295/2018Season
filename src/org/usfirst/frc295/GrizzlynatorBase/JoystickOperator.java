@@ -25,9 +25,9 @@ public class JoystickOperator extends Joystick
 	public static final short OPERATOR_BUTTON_ELEVATOR_RISE_XBOX = 5;
 	public static final short OPERATOR_BUTTON_ELEVATOR_LOWER_XBOX = 6;
 	
-	public static final short OPERATOR_BUTTON_AUTOINTAKE_XBOX =      7;
-	public static final short OPERATOR_BUTTON_MANUALINTAKECUBE_XBOX = 8;
-	public static final short OPERATOR_BUTTON_MANUALDROPCUBE_XBOX =   9;
+	public static final short OPERATOR_BUTTON_AUTOINTAKE_XBOX =      9;//THUMP 
+	public static final short OPERATOR_BUTTON_MANUALINTAKECUBE_XBOX = 8; //START
+	public static final short OPERATOR_BUTTON_MANUALDROPCUBE_XBOX =   7; // BACK
 
 	
 	// LOGITECH (IF DIFFERENT FROM XBOX) OPERATOR JOYSTICK BUTTONS

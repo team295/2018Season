@@ -22,7 +22,7 @@ import org.usfirst.frc295.GrizzlynatorBase.subsystems.SysElevator;
 import org.usfirst.frc295.GrizzlynatorBase.subsystems.SysDriveTrain;
 import org.usfirst.frc295.GrizzlynatorBase.subsystems.SysDriveTrainCANOpenLoop;
 
-//import org.usfirst.frc295.GrizzlynatorBase.subsystems.SysDriveTrainShifter;
+import org.usfirst.frc295.GrizzlynatorBase.subsystems.SysDriveTrainShifter;
 import org.usfirst.frc295.GrizzlynatorBase.subsystems.SysUltrasonic;
 
 import edu.wpi.first.wpilibj.DigitalInput;
@@ -72,6 +72,7 @@ public class Robot extends IterativeRobot
 	public static SysCompressor sysCompressor;
 	public static SysUltrasonic sysUltrasonic;
 	public static SysIntake sysIntake;
+	public static SysDriveTrainShifter sysDriveTrainShifter;
 	
 
 
@@ -98,7 +99,7 @@ public class Robot extends IterativeRobot
 //				sysIntake = new SysIntake();
 				sysIntake = SysIntake.getInstance();
 				sysUltrasonic = new SysUltrasonic();
-				
+				sysDriveTrainShifter = new SysDriveTrainShifter();
 //				sysDriveTrain = new SysDriveTrainSpark();
 			}
 			else if (RobotMap.ROBOT_ID == RobotID.BOT_COMP0)
@@ -229,6 +230,9 @@ public class Robot extends IterativeRobot
 			 * ExampleCommand(); break; }
 			 */
 
+			sysIntake.initAutoState();
+			sysIntake.IntakeState();
+			
 			// CONFIGURE LOOPERS
 			_EnabledLooper.stop();
 			_DisabledLooper.start();
@@ -264,6 +268,7 @@ public class Robot extends IterativeRobot
 		{
 			
 			sysDriveTrain.logToSmartDashboard();
+			sysIntake.IntakeState();
 //			System.out.println(sysDriveTrain.getDistance());
 //			System.out.println(sysDriveTrain.getInches());
 //			System.out.println(ahrs.getAngle());
@@ -284,7 +289,8 @@ public class Robot extends IterativeRobot
 		try
 		{
 			Logger.logTeleopInit();
-//			sysElevator.compressoron();
+			sysElevator.compressoron();
+			sysIntake.IntakeState();
 			// This makes sure that the autonomous stops running when
 			// teleop starts running. If you want the autonomous to
 			// continue until interrupted by another command, remove

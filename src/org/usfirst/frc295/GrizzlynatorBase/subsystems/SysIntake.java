@@ -22,6 +22,9 @@ public class SysIntake extends Subsystem {
 	//General Variables
 
 
+	private boolean isManualIntakeOn = false;
+	private boolean isManualIntakeOff = false;
+	
 	private Spark LeftMotor;
 	private Spark RightMotor;
 
@@ -65,9 +68,9 @@ public class SysIntake extends Subsystem {
 
 		motorisRunning = false;
 
-		currentspeed = 0.6;
-		Maxvalue = .5;
-		MaxReversevalue = .50;
+		currentspeed = 0.0;
+		Maxvalue = .6;
+		MaxReversevalue = .6;
 	}
 
 	//ensures only 1 instance is created
@@ -82,6 +85,12 @@ public class SysIntake extends Subsystem {
 		return instance;
 	}
 
+	
+	public void initAutoState()
+	{
+		currentstate = IntakeState.motorReverseOFFcubeIN;
+	}
+	
 	public void initDefaultCommand() 
 	{
 
@@ -128,7 +137,7 @@ public class SysIntake extends Subsystem {
 			if (motorisRunning && !cubeisIn) 
 			{
 				nextstate = IntakeState.motorForwardONcubeOUT;
-			} 
+			}
 			
 			break;
 
@@ -137,18 +146,27 @@ public class SysIntake extends Subsystem {
 			{
 				nextstate = IntakeState.motorForwardONcubeIN;
 			} 
+			else if(!motorisRunning && !cubeisIn)
+			{
+				nextstate = IntakeState.motorForwardOFFcubeOUT;
+			}
 			
 			break;
 
 		case motorForwardONcubeIN:
 			if (!motorisRunning && cubeisIn) 
 			{
-				nextstate = IntakeState.motorForwardOFFcubeIN;
+				nextstate = IntakeState.motorReverseOFFcubeIN;
+			}
+			else if (!motorisRunning && !cubeisIn) 
+			{
+				nextstate = IntakeState.motorForwardOFFcubeOUT;
 			}
 			
 			break;
 
 		case motorForwardOFFcubeIN:
+			//Don't Like this state
 			if (!motorisRunning && cubeisIn) 
 			{
 				nextstate = IntakeState.motorReverseOFFcubeIN;
@@ -160,14 +178,6 @@ public class SysIntake extends Subsystem {
 
 			Reverse = true;
 
-			if (!motorisRunning && cubeisIn) 
-			{
-				nextstate = IntakeState.motorReverseOFFcubeIN;
-			}
-			
-			break;
-
-		case motorReverseONcubeIN:
 			if (motorisRunning && cubeisIn) 
 			{
 				nextstate = IntakeState.motorReverseONcubeIN;
@@ -175,15 +185,34 @@ public class SysIntake extends Subsystem {
 			
 			break;
 
-		case motorReverseONcubeOUT:
-			if (!motorisRunning && cubeisIn) 
+		case motorReverseONcubeIN:
+			if (motorisRunning && !cubeisIn) 
+			{
+				nextstate = IntakeState.motorReverseONcubeOUT;
+			}
+			else if (!motorisRunning && cubeisIn)
 			{
 				nextstate = IntakeState.motorReverseOFFcubeIN;
 			}
 			
 			break;
 
+		case motorReverseONcubeOUT:
+			if (!motorisRunning && !cubeisIn) 
+			{
+				nextstate = IntakeState.motorForwardOFFcubeOUT;
+			}
+			else if (!motorisRunning && cubeisIn) 
+			{
+				nextstate = IntakeState.motorReverseOFFcubeIN;
+			}
+			
+			
+			break;
+
 		case motorReverseOFFcubeOUT:
+			
+			//I dont like this state
 			if (!motorisRunning && !cubeisIn) 
 			{
 				nextstate = IntakeState.motorForwardOFFcubeOUT;
@@ -194,7 +223,7 @@ public class SysIntake extends Subsystem {
 
 		currentstate = nextstate;
 
-		System.out.println(currentstate);
+		//System.out.println(currentstate);
 	}
 
 	public void AutoIntake() 
@@ -203,7 +232,7 @@ public class SysIntake extends Subsystem {
 		{	
 			if (currentspeed < Maxvalue) 
 			{
-				currentspeed = currentspeed + .01;
+				currentspeed = currentspeed + .1;
 			} 
 
 			LeftMotor.setSpeed(currentspeed);
@@ -214,7 +243,7 @@ public class SysIntake extends Subsystem {
 		{
 			if (currentspeed > -MaxReversevalue) 
 			{
-				currentspeed = currentspeed - .01;
+				currentspeed = currentspeed - .1;
 			} 
 
 			LeftMotor.setSpeed(-currentspeed);
@@ -222,6 +251,30 @@ public class SysIntake extends Subsystem {
 		}
 	}
 
+	public boolean hasCube()
+	{
+		return cubeisIn;
+	}
+	
+	
+	public void AutonomousIntakeCube() 
+	{
+		if (currentstate != IntakeState.motorForwardONcubeIN)
+		{
+			AutoIntake();
+		}
+		IntakeState();
+	}
+	
+	public void AutonomousDropCube() 
+	{
+		if (currentstate != IntakeState.motorReverseONcubeOUT)
+		{
+			AutoIntake();
+		}
+		IntakeState();
+	}
+	
 	/*
 	 * Resets motor speed to 0
 	 */
@@ -235,10 +288,62 @@ public class SysIntake extends Subsystem {
 		motorisRunning = false;
 	}
 
+	
+	/*public boolean isManualIntakeOn()
+	{
+		return isManualIntakeOn;
+	}
+	
+	public boolean isManualIntakeOff()
+	{
+		return isManualIntakeOn;
+	}*/
+	
 	/*
 	 * Manual Intake and drop
 	 */
 
+	
+	/*public boolean ManualIntake(boolean Intake, boolean Drop, boolean firstTime)
+	{
+		if(Intake)
+		{
+			if(isManualIntakeOn && isManualIntakeOff == false)
+			{
+				ManualIntakeCube();
+			}
+			
+			if(firstTime)
+			{
+				if(isManualIntakeOn == false && isManualIntakeOff == true)
+				{
+					isManualIntakeOn = true;
+					isManualIntakeOff = false;
+					ManualIntakeCube();
+				}
+				else if(isManualIntakeOn == true && isManualIntakeOff == false)
+				{
+					isManualIntakeOn = false;
+					return true;
+				}
+			}
+			else
+			{
+				if(isManualIntakeOn == false && isManualIntakeOff == true)
+				{
+					return true;
+				}
+			}
+		}
+		else if(Drop)
+		{
+			
+		}
+			
+			
+		return false
+	}*/
+	
 	public void ManualIntakeCube() 
 	{
 
@@ -261,5 +366,10 @@ public class SysIntake extends Subsystem {
 		LeftMotor.setSpeed(-currentspeed);
 		RightMotor.setSpeed(currentspeed);
 	}
+	
+	public void CorrectCubePlacement() 
+	{
+		LeftMotor.setSpeed(currentspeed);
+		RightMotor.setSpeed(currentspeed);
+	}
 }
-
