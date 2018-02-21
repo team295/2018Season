@@ -22,7 +22,7 @@ import org.usfirst.frc295.GrizzlynatorBase.subsystems.SysElevator;
 import org.usfirst.frc295.GrizzlynatorBase.subsystems.SysDriveTrain;
 import org.usfirst.frc295.GrizzlynatorBase.subsystems.SysDriveTrainCANOpenLoop;
 
-//import org.usfirst.frc295.GrizzlynatorBase.subsystems.SysDriveTrainShifter;
+import org.usfirst.frc295.GrizzlynatorBase.subsystems.SysDriveTrainShifter;
 import org.usfirst.frc295.GrizzlynatorBase.subsystems.SysUltrasonic;
 
 import edu.wpi.first.wpilibj.DigitalInput;
@@ -72,6 +72,7 @@ public class Robot extends IterativeRobot
 	public static SysCompressor sysCompressor;
 	public static SysUltrasonic sysUltrasonic;
 	public static SysIntake sysIntake;
+	public static SysDriveTrainShifter sysDriveTrainShifter;
 	
 
 
@@ -98,6 +99,7 @@ public class Robot extends IterativeRobot
 //				sysIntake = new SysIntake();
 				sysIntake = SysIntake.getInstance();
 				sysUltrasonic = new SysUltrasonic();
+				sysDriveTrainShifter = new SysDriveTrainShifter();
 				
 //				sysDriveTrain = new SysDriveTrainSpark();
 			}

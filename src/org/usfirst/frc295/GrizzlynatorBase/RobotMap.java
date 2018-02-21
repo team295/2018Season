@@ -39,6 +39,9 @@ public class RobotMap
 	// SPECIFY WHICH ROBOT WE ARE RUNNING
 	public static final RobotID ROBOT_ID = RobotID.BOT_COMP1;
 	
+	public static final short PCM_DRIVE_SHIFT_1 = 3;
+	public static final short PCM_DRIVE_SHIFT_2 = 4;
+	
 	public static final short PCM_ELEVATOR_SOL_FOLLOW = 7;
 	public static final short PCM_ELEVATOR_SOL        = 0;
 	
