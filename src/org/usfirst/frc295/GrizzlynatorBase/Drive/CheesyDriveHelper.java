@@ -17,6 +17,9 @@ public class CheesyDriveHelper
 	private static final double TURN_DEADBAND = 0.02;
 	private static final double TURN_SENSITIVITY = 1.0;
 
+	private final double CorrectionPara = .95;	
+	private double EncoDiff = Robot.sysDriveTrain._encoDriveLeft.getRate() - Robot.sysDriveTrain._encoDriveRight.getRate();
+	private double EncoAvg = (Robot.sysDriveTrain._encoDriveLeft.getRate() + Robot.sysDriveTrain._encoDriveRight.getRate())/2;
 	private double mQuickStopAccumulator;
 	private DriveSignal mSignal = new DriveSignal(0, 0);
 
@@ -91,23 +94,10 @@ public class CheesyDriveHelper
 		mSignal.leftMotor = leftPwm;
 
 		if (wheel != 0 && throttle == 0) {
-			mSignal.rightMotor = getSign(wheel) * limit(wheel, 1.0);
-			mSignal.leftMotor = getSign(wheel) * TOPreverse * limit(wheel, 1.0);
-		
+			mSignal = EncoderDrive.EncoderDriveTOP(mSignal, wheel);
 		}
 		if (wheel == 0 && throttle != 0) {
-			double LEnco = Robot.sysDriveTrain._encoDriveLeft.getRate();
-			double REnco = Robot.sysDriveTrain._encoDriveRight.getRate();
-			double EncoDiff = LEnco - REnco;
-			if(Math.abs(EncoDiff) > 3) {
-				if(EncoDiff > 0) {
-					mSignal.leftMotor = mSignal.leftMotor * .95;
-					mSignal.rightMotor = mSignal.rightMotor * 1.05;
-				} else if(EncoDiff < 0) {
-					mSignal.leftMotor = mSignal.leftMotor * 1.05;
-					mSignal.rightMotor = mSignal.rightMotor * .95;
-				}
-			}
+			mSignal = EncoderDrive.EncoderDriveStraight(EncoDiff, EncoAvg, mSignal);
 		}
 		
 		return mSignal;
@@ -117,7 +107,7 @@ public class CheesyDriveHelper
 	/**
 	 * Limits the given input to the given magnitude.
 	 */
-	public double limit(double v, double limit)
+	public static double limit(double v, double limit)
 	{
 		return (Math.abs(v) < limit) ? v : limit * (v < 0 ? -1 : 1);
 	}
@@ -140,7 +130,7 @@ public class CheesyDriveHelper
 		return (Math.abs(val) > Math.abs(TURN_DEADBAND)) ? val : 0.0;
 	}
 	
-	public int getSign(double val) {
+	public static int getSign(double val) {
 		if(val <= 0) {
 			return 1;
 		} else {
