@@ -22,14 +22,13 @@ import org.usfirst.frc295.GrizzlynatorBase.subsystems.SysElevator;
 import org.usfirst.frc295.GrizzlynatorBase.subsystems.SysDriveTrain;
 import org.usfirst.frc295.GrizzlynatorBase.subsystems.SysDriveTrainCANOpenLoop;
 import org.usfirst.frc295.GrizzlynatorBase.subsystems.SysDriveTrainShifter;
-import org.usfirst.frc295.GrizzlynatorBase.subsystems.SysUltrasonic;
+//import org.usfirst.frc295.GrizzlynatorBase.subsystems.SysDriveTrainSpark;
 import org.usfirst.frc295.GrizzlynatorBase.subsystems.SysIntake;
-import org.usfirst.frc295.GrizzlynatorBase.subsystems.SysUltrasonic;
 import org.usfirst.frc295.GrizzlynatorBase.subsystems.*;
-
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.Encoder;
+import org.usfirst.frc295.GrizzlynatorBase.subsystems.SysUltrasonic;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
@@ -195,8 +194,8 @@ public class Robot extends IterativeRobot
 			throw t;
 		}
 
-		sysIntake.IntakeState();
 
+		sysIntake.IntakeState();
 		sysDriveTrain.logToSmartDashboard();
 
 //		sysEncoderDrive.getValues();
