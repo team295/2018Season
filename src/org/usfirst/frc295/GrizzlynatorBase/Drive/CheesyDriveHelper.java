@@ -94,15 +94,12 @@ public class CheesyDriveHelper
 		mSignal.leftMotor = leftPwm;
 
 
-
-
-
-
-
-//		public DriveSignal straightCorrect(DriveSignal mSignal, double wheel) {
-//			if (Math.abs(wheel) > .25){
-//				return mSignal;
-//		}
+		if (wheel != 0 && throttle == 0) {
+			mSignal = EncoderDrive.EncoderDriveTOP(mSignal, wheel);
+		}
+		if (wheel == 0 && throttle != 0) {
+			mSignal = EncoderDrive.EncoderDriveStraight(EncoDiff, EncoAvg, mSignal);
+		}
 
 		return mSignal;
 		
@@ -140,6 +137,7 @@ public class CheesyDriveHelper
 	
 
 
+
 	public static int getSign(double val) {
         if(val <= 0) {
             return 1;
@@ -147,6 +145,7 @@ public class CheesyDriveHelper
             return -1;
         }
     }
+
 
 
 }
