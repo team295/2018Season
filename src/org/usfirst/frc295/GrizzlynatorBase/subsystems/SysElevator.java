@@ -14,8 +14,6 @@ import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
 import edu.wpi.first.wpilibj.AnalogInput;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
-import edu.wpi.first.wpilibj.Counter;
-import edu.wpi.first.wpilibj.Counter.Mode;
 import edu.wpi.first.wpilibj.CounterBase.EncodingType;
 import edu.wpi.first.wpilibj.DigitalInput;
 
@@ -35,32 +33,31 @@ public class SysElevator extends Subsystem
 
 {
 	public static Encoder _encoElevator;
-//	public static AnalogInput BottomLimitSwitch = new AnalogInput(RobotMap.AIN_ELEVATOR_BOTTOM_LIMIT);
-//	public static AnalogInput VaultLimitSwitch = new AnalogInput(RobotMap.AIN_ELEVATOR_VAULT_LIMIT);
-//	//public static AnalogInput SwitchLimitSwitch = new AnalogInput(RobotMap.AIN_ELEVATOR_SWITCH_LIMIT);
-//	public static AnalogInput ScaleLimitSwitch = new AnalogInput(RobotMap.AIN_ELEVATOR_SCALE_LIMIT);
-//	
+
 	private static DigitalInput SwitchlimitSwitchScale;
 	private static DigitalInput SwitchlimitSwitchVault;
 	private static DigitalInput SwitchlimitSwitchSwitch;
 	private static DigitalInput SwitchlimitSwitchBottom;
-    public static  Counter Switchcounter;
-    public double RISE = 0;
-	public double LOWER = -0.3;
-	public double MAXVALUE = .8;
-	public double INC = .04;
-
-
-    
-	private Spark ElevatorMotor;
+	
+    private double RISE = 0;
+	private double LOWER = -0.3;
+	private double MAXVALUE = .8;
+	private double INC = .04;
 	public static boolean Switchbolt;
+    private boolean debugmode;
+	
+	private Spark ElevatorMotor;
+	
+	
 	private DoubleSolenoid elevatorbreak;
 	private final DoubleSolenoid.Value RETRACT_SOLENOID = DoubleSolenoid.Value.kReverse;
 	private final DoubleSolenoid.Value EXTEND_SOLENOID = DoubleSolenoid.Value.kForward;
+	
+	
 	private Compressor _elevatorcompressor = new Compressor(RobotMap.CAN_PCM_MODULE);
+	
 	private static SysElevator _instance = null;
 	
-    private boolean debugmode;
     
 	private SysElevator()
 	{
@@ -79,10 +76,6 @@ public class SysElevator extends Subsystem
 		_encoElevator.setPIDSourceType(PIDSourceType.kDisplacement);
 	
 	}
-	//public boolean getRaw() {
-	//	
-	//	return SwitchlimitSwitch.get();
-	//}
 
 	public static SysElevator getInstance()
 	{
@@ -108,54 +101,6 @@ public class SysElevator extends Subsystem
     	 return _encoElevator.getDistance();
      }
 	 
-//	public static boolean isSwitchSetScale()
-//	{
-//		if (ScaleLimitSwitch.getVoltage() > 2.5)
-//		{
-//		return true;		
-//		}
-//		else
-//		{
-//		return false;
-//		}
-//	}
-//	
-//	public static boolean isSwitchSetScaleEnco()
-//	{
-//		if (_encoElevator.getDistance() == 12000)
-//		{
-//		return true;		
-//		}
-//		else
-//		{
-//		return false;
-//		}
-//	}
-//	
-//	/*public static boolean isSwitchSetSwitch()
-//	{
-//		if (SwitchLimitSwitch.getVoltage() > 2.5)
-//		{
-//		return true;
-//		}
-//		else	
-//		{
-//		return false;
-//		}
-//	}*/
-//	
-//	public static boolean isSwitchSetSwitchEnco()
-//	{
-//		if (_encoElevator.getDistance() == 8000)
-//		{
-//		return true;
-//		}
-//		else
-//		{
-//		return false;
-//		}
-//	}
-
      public void ResetRise() {
      	
      	RISE = .30;
@@ -180,56 +125,7 @@ public class SysElevator extends Subsystem
     }
     
 
-//    
-//    
-//    
-//	public static boolean isSwitchSetVault()
-//	{
-//		if (VaultLimitSwitch.getVoltage() > 2.5)
-//		{
-//		return true;
-//		}
-//		else
-//		{
-//		return false;
-//		}
-//	}
-//    
-//	public static boolean isSwitchSetVaultEnco()
-//	{
-//		if (_encoElevator.getDistance() == 4000)
-//		{
-//		return true;
-//		}
-//		else
-//		{
-//		return false;
-//		}
-//	}   
-//	public static boolean isSwitchSetBottom()
-//	{
-//		if (BottomLimitSwitch.getVoltage() > 2.5)
-//		{
-//		return true;
-//		}
-//		else
-//		{
-//		return false;
-//		}
-//	}
-//    
-//	public static boolean isSwitchSetBottomEnco()
-//	{
-//		if (_encoElevator.getDistance() == 0000)
-//		{
-//		return true;
-//		}
-//		else
-//		{
-//		return false;
-//		}
-//	}
-//	
+
 	protected void initDefaultCommand()
 	{
 		

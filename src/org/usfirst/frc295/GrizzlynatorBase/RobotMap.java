@@ -39,6 +39,8 @@ public class RobotMap
 	// SPECIFY WHICH ROBOT WE ARE RUNNING
 	public static final RobotID ROBOT_ID = RobotID.BOT_COMP1;
 	
+	
+	// MAPPED VALUES
 	public static final short PCM_DRIVE_SHIFT_1 = 3;
 	public static final short PCM_DRIVE_SHIFT_2 = 4;
 	
@@ -65,23 +67,21 @@ public class RobotMap
 	public static final short DIO_ENC_DRIVE_RIGHT_CHAN2= 3;
 	public static final short DIO_ENC_ELEVATOR_CHAN1   = 4;
 	public static final short DIO_ENC_ELEVATOR_CHAN2   = 5;
-	public static final short DIO_ELEVATOR_SCALE_LIMIT=  6;
-	public static final short DIO_ELEVATOR_VAULT_LIMIT=  8;
+	public static final short DIO_ELEVATOR_SCALE_LIMIT = 6;
+	public static final short DIO_ELEVATOR_VAULT_LIMIT = 8;
 	public static final short DIO_ELEVATOR_SWITCH_LIMIT= 7;
 	public static final short DIO_ELEVATOR_BOTTOM_LIMIT= 9;
-	// SYS DRIVETRAIN PARAMETERS
+
 	public static final double DRIVE_WHEEL_DIAMETER = 5.0;
 	public static final double DRIVE_LOW_GEAR_MAX_SPEED_INCH_PER_SEC = 12.0 * 7.0;
-	public static final double DRIVE_KP = 0.03;
-	public static final double DRIVE_KI = 0.00;
-	public static final double DRIVE_KD = 0.00;
-	public static final double DRIVE_KF = 0.00;
-	public static final double SLOWRISE = 0.5;
+	public static final double DRIVE_KP  =  0.03;
+	public static final double DRIVE_KI  =  0.00;
+	public static final double DRIVE_KD  =  0.00;
+	public static final double DRIVE_KF  =  0.00;
+	public static final double SLOWRISE  =  0.50;
 	public static final double SLOWLOWER = -0.05;
-	
 	public static final double ZERO = 0.0;
-	
-	// LOOPER PARAMETERS
+
 	public static final double LOOPER_PERIOD_HZ = 50;
 	public static final short TBD = 0;
 

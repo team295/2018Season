@@ -21,18 +21,14 @@ import org.usfirst.frc295.GrizzlynatorBase.subsystems.SysCompressor;
 import org.usfirst.frc295.GrizzlynatorBase.subsystems.SysElevator;
 import org.usfirst.frc295.GrizzlynatorBase.subsystems.SysDriveTrain;
 import org.usfirst.frc295.GrizzlynatorBase.subsystems.SysDriveTrainCANOpenLoop;
-
 import org.usfirst.frc295.GrizzlynatorBase.subsystems.SysDriveTrainShifter;
 import org.usfirst.frc295.GrizzlynatorBase.subsystems.SysUltrasonic;
+import org.usfirst.frc295.GrizzlynatorBase.subsystems.SysIntake;
+
 
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.Encoder;
-
-import org.usfirst.frc295.GrizzlynatorBase.subsystems.SysIntake;
-
-
-
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
@@ -47,6 +43,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  * creating this project, you must also update the manifest file in the resource
  * directory.
  */
+
 public class Robot extends IterativeRobot
 {
 
@@ -57,17 +54,18 @@ public class Robot extends IterativeRobot
 
 	Command autonomousCommand;
 	SendableChooser chooser;
+	
+	
 	public static String gameData;
-	// Operator Interface from OJ.java
 	public static OI oi;
 	public static NavX_Gyro ahrs;
-//	public static DigitalInput dioRobotID1;
-//	public static DigitalInput dioRobotID2;
 
+
+	
+	
 	// MAJOR SUBSYSTEMS
 	public static SysDriveTrain sysDriveTrain;
 	public static SysDriveTrainCANOpenLoop sysCANLoop;
-//	public static SysDriveTrainShifter sysDriveTrainShifter;
 	public static SysElevator sysElevator;
 	public static SysCompressor sysCompressor;
 	public static SysUltrasonic sysUltrasonic;
@@ -75,13 +73,6 @@ public class Robot extends IterativeRobot
 	public static SysDriveTrainShifter sysDriveTrainShifter;
 	
 
-
-
-
-	/**
-	 * This function is run when the robot is first started up and should be
-	 * used for any initialization code.
-	 */
 	@Override
 	public void robotInit()
 	{
@@ -94,13 +85,11 @@ public class Robot extends IterativeRobot
 			// INSTANTIATE SUB-SYSTEMS FOR THE ROBOT
 			if (RobotMap.ROBOT_ID == RobotID.BOT_COMP1)
 			{
-				//sysDriveTrain = new SysDriveTrainSpark();
 				sysDriveTrain = new SysDriveTrainCANOpenLoop();
-//				sysIntake = new SysIntake();
 				sysIntake = SysIntake.getInstance();
 				sysUltrasonic = new SysUltrasonic();
 				sysDriveTrainShifter = new SysDriveTrainShifter();
-//				sysDriveTrain = new SysDriveTrainSpark();
+
 			}
 			else if (RobotMap.ROBOT_ID == RobotID.BOT_COMP0)
 			{
@@ -109,34 +98,22 @@ public class Robot extends IterativeRobot
 			}
 			else if (RobotMap.ROBOT_ID == RobotID.BOT_PROTO)
 			{
-//				sysDriveTrain = new SysDriveTrainProto();
+				//sysDriveTrain = new SysDriveTrainProto();
 			}
 			else if (RobotMap.ROBOT_ID == RobotID.BOT_FORKLIFT)
 			{
-//				sysDriveTrain = new SysDriveTrainForklift();
+				//sysDriveTrain = new SysDriveTrainForklift();
 			}
+			
+			
+			
 			sysCompressor = new SysCompressor();
-//			sysDriveTrainShifter = new SysDriveTrainShifter();
 			sysElevator = SysElevator.getInstance();
-//			sysDriveTrainShifter = new SysDriveTrainShifter();
-			// OI must be constructed after subsystems. If the OI creates
-			// Commands
-			// (which it very likely will), subsystems are not guaranteed to be
-			// constructed yet. Thus, their requires() statements may grab null
-			// pointers. Bad news. Don't move it.
+			
+			
 			oi = new OI();
 			ahrs = new NavX_Gyro();
 
-			// TODO: Need to know how SendableChooser work
-			
-//			  chooser = new SendableChooser();
-//			  chooser.addDefault("Default Auto", new AutonomousMiddle());
-//			  chooser.addObject("Left Auto", new AutonomousLeft());
-//			  chooser.addObject("Right Auto", new AutonomousRight());
-//			  SmartDashboard.putData("Auto mode", chooser);
-//			 
-
-			// Show what command your subsystem is running on the SmartDashboard
 			
 		}
 		catch (Throwable t)
@@ -145,7 +122,6 @@ public class Robot extends IterativeRobot
 			throw t;
 		}
 	}
-
 
 	/**
 	 * This function is called when the disabled button is hit. You can use it
@@ -180,7 +156,7 @@ public class Robot extends IterativeRobot
 			System.out.print("  ");
 			System.out.print(sysDriveTrain.getLeftEncoder());
 			System.out.print("  ");
-			System.out.println(sysDriveTrain.getRightEncoder());
+			System.out.print(sysDriveTrain.getRightEncoder());
 //			System.out.println(input_dio.get());
 			Scheduler.getInstance().run();
 //			input_dio.get();
@@ -269,9 +245,7 @@ public class Robot extends IterativeRobot
 			
 			sysDriveTrain.logToSmartDashboard();
 			sysIntake.IntakeState();
-//			System.out.println(sysDriveTrain.getDistance());
-//			System.out.println(sysDriveTrain.getInches());
-//			System.out.println(ahrs.getAngle());
+			
 			Scheduler.getInstance().run();
 			log();
 		}
