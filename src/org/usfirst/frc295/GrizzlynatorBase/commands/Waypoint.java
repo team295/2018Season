@@ -18,7 +18,7 @@ public class Waypoint extends Command
 	private double _dRotation;
 	private double _dTime;
 	public double _dCurvecurve;
-	static double Kp = .08;
+	static double Kp = .023;//.023
 	static double START_TIME;
 	public boolean _dTrack;
 	public boolean _disQuickTurn;
@@ -85,7 +85,7 @@ public class Waypoint extends Command
 		SmartDashboard.putNumber("Angle", Robot.ahrs.getAngle());
 		SmartDashboard.putNumber("Yaw", Robot.ahrs.getYaw());
 		SmartDashboard.putNumber("_dTargetAngle", _dTargetAngle);
-		System.out.print(Robot.sysDriveTrain.getDistance());
+//		System.out.print(Robot.sysDriveTrain.getDistance());
 		// _dCurvecurve = 0.6;
 		// firstvar = move secondvar = move + rotation
 		if (_dTargetAngle == 0)
@@ -98,9 +98,13 @@ public class Waypoint extends Command
 		else
 		{
 			System.out.println("Fix Left Right Turning");
-			if ((Math.abs(_dCurvecurve / Kp) > 2.0))
+			if ((Math.abs(_dTargetAngle) > 2.0))
 			{
-				System.out.println("YES turn");
+				System.out.print("Waypoint: dCurveCurve");
+				System.out.print(_dCurvecurve);
+				System.out.print("  Math.abs(_dCurvecurve / Kp)=");
+				System.out.println(Math.abs(_dCurvecurve / Kp));
+				
 				Robot.sysDriveTrain.arcadeDrive(-_dMove, -_dCurvecurve);
 //				Robot.sysDriveTrain.curvatureDrive(_dMove, _dRotation, _disQuickTurn);
 //				Robot.sysDriveTrain.tankDrive(_dMove);
@@ -124,23 +128,25 @@ public class Waypoint extends Command
 	@Override
 	protected boolean isFinished()
 	{
-		
-
-		
 		if (_dTargetAngle != 0)
 		{
-			if (Math.abs(_dTargetAngle) == Math.abs(Robot.ahrs.getYaw()))
+			if (Math.abs(_dTargetAngle - (Robot.ahrs.getYaw())) <= 2)
 			{
 				System.out.println("Turn Logic");
 				Robot.sysDriveTrain.stop();
 				return true;
+			}
+			else {
+				return false;
 			}
 		}
 		else if (_dTargetAngle == 0) 
 		{
 			return ((Math.abs(Robot.sysDriveTrain.getDistance())) >= _dDistanceTarget);
 		}
-		
+		else {
+			return false;
+		}
 //		if (_dTrack)
 //		{
 //			if (Robot.sysUltrasonic.getAverageDistance() <= 15)
@@ -149,7 +155,7 @@ public class Waypoint extends Command
 //			}
 //		}
 //		SmartDashboard.putNumber("Real Stop Encoder", Robot.sysDriveTrain.getDistance());
-		return false;
+		
 	}
 	
 	@Override

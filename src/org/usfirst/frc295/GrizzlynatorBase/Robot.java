@@ -152,7 +152,7 @@ public class Robot extends IterativeRobot
 	{
 		try
 		{
-			System.out.print(ahrs.getYaw());
+//			System.out.print(ahrs.getYaw());
 			System.out.print("  ");
 			System.out.print(sysDriveTrain.getLeftEncoder());
 			System.out.print("  ");
@@ -298,6 +298,9 @@ public class Robot extends IterativeRobot
 		{			
 			Scheduler.getInstance().run();
 			log();
+			System.out.print(sysDriveTrain.getLeftEncoder());
+			System.out.print("  ");
+			System.out.print(sysDriveTrain.getRightEncoder());
 			
 		}
 		catch (Throwable t)
