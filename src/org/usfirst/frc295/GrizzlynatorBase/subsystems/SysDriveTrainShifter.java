@@ -14,9 +14,11 @@ public class SysDriveTrainShifter extends Subsystem
 {
 	private final DoubleSolenoid.Value SOLENOID_GEAR_HIGH = DoubleSolenoid.Value.kReverse;
 	private final DoubleSolenoid.Value SOLENOID_GEAR_LOW = DoubleSolenoid.Value.kForward;
-//
+
 //	private DoubleSolenoid _dsolShifter = new DoubleSolenoid(RobotMap.PCM_DRIVE_SHIFT_1, RobotMap.PCM_DRIVE_SHIFT_2);
-//
+	private DoubleSolenoid _dsolShifter;
+
+
 
 	public SysDriveTrainShifter()
 	{

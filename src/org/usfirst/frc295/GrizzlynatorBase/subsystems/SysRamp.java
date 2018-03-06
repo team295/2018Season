@@ -17,6 +17,7 @@ public class SysRamp extends Subsystem{
 	private final DoubleSolenoid.Value EXTEND_SOLENOID = DoubleSolenoid.Value.kForward;
 
 
+
 	
 	public void OpenRamp(){
 		PushoutMain.set(EXTEND_SOLENOID);
