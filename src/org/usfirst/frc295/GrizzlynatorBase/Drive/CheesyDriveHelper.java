@@ -97,7 +97,7 @@ public class CheesyDriveHelper
 			mSignal = EncoderDrive.EncoderDriveTOP(mSignal, wheel);
 		}
 		if (wheel == 0 && throttle != 0) {
-			mSignal = EncoderDrive.EncoderDriveStraight(EncoDiff, EncoAvg, mSignal);
+//			mSignal = EncoderDrive.EncoderDriveStraight(EncoDiff, EncoAvg, mSignal);
 		}
 		
 		return mSignal;

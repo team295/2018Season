@@ -15,8 +15,11 @@ public class SysRamp extends Subsystem {
 	private final DoubleSolenoid.Value RETRACT_SOLENOID = DoubleSolenoid.Value.kReverse;
 	private final DoubleSolenoid.Value EXTEND_SOLENOID = DoubleSolenoid.Value.kForward;
 
-	private Servo RRamp = new Servo(1);
-	private Servo LRamp = new Servo(2);
+//	private Servo RRamp = new Servo(1);
+//	private Servo LRamp = new Servo(2);
+	
+	private Servo RRamp;
+	private Servo LRamp;
 
 //	private DoubleSolenoid RDS = new DoubleSolenoid(5,6);
 //	private DoubleSolenoid LDS = new DoubleSolenoid(7,8);
