@@ -135,8 +135,11 @@ public class OI
 		JoystickButton _btnOperator5 = new JoystickButton(_joystickOperator, 5);
 		_btnOperator5.whenPressed(new CmdHStepSize());
 		SmartDashboard.putData("HStepSize", new CmdHStepSize());
+		
+	
 	}
 
+	
 
 	public JoystickDriver getJoystickDriver()
 	{

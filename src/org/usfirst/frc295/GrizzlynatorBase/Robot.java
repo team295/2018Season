@@ -15,6 +15,7 @@ import org.usfirst.frc295.GrizzlynatorBase.Logger.Logger;
 import org.usfirst.frc295.GrizzlynatorBase.Looper.Looper;
 import org.usfirst.frc295.GrizzlynatorBase.commands.AutonomousLeft;
 import org.usfirst.frc295.GrizzlynatorBase.commands.AutonomousRight;
+import org.usfirst.frc295.GrizzlynatorBase.commands.TestDriveStraight;
 import org.usfirst.frc295.GrizzlynatorBase.commands.AutonomousMiddle;
 import org.usfirst.frc295.GrizzlynatorBase.subsystems.NavX_Gyro;
 import org.usfirst.frc295.GrizzlynatorBase.subsystems.SysCompressor;
@@ -225,7 +226,8 @@ public class Robot extends IterativeRobot
 			Logger.logAutoInit();
 
 			// Instantiate the command used for the autonomous period
-			autonomousCommand = new AutonomousLeft();
+//			autonomousCommand = new AutonomousLeft();
+			autonomousCommand = new TestDriveStraight();
 
 			// TODO: How does the chooser work?
 			// autonomousCommand = (Command) chooser.getSelected();
@@ -247,10 +249,10 @@ public class Robot extends IterativeRobot
 			_DisabledLooper.start();
 
 			// schedule the autonomous command (example)
-			if (autonomousCommand != null)
-			{
-				autonomousCommand.start();
-			}
+//			if (autonomousCommand != null)
+//			{
+//				autonomousCommand.start();
+//			}
 
 		}
 		catch (Throwable t)
