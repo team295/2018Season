@@ -10,14 +10,26 @@
 
 package org.usfirst.frc295.GrizzlynatorBase.subsystems;
 
-import org.usfirst.frc295.GrizzlynatorBase.Robot;
-import org.usfirst.frc295.GrizzlynatorBase.Drive.DriveSignal;
-import org.usfirst.frc295.GrizzlynatorBase.commands.CmdDriveWithJoystick;
+import java.util.LinkedList;
+import java.util.Queue;
 
-//import com.ctre.CANTalon;
-//import com.ctre.CanTalonJNI;
+import org.usfirst.frc295.GrizzlynatorBase.RobotMap;
+import org.usfirst.frc295.GrizzlynatorBase.Drive.DriveSignal;
+import org.usfirst.frc295.GrizzlynatorBase.commands.CmdLDecrement;
+import org.usfirst.frc295.GrizzlynatorBase.commands.CmdDStepSize;
+import org.usfirst.frc295.GrizzlynatorBase.commands.CmdDriveWithJoystick;
+import org.usfirst.frc295.GrizzlynatorBase.commands.CmdHStepSize;
+import org.usfirst.frc295.GrizzlynatorBase.commands.CmdLIncrement;
+import org.usfirst.frc295.GrizzlynatorBase.commands.CmdRDecrement;
+import org.usfirst.frc295.GrizzlynatorBase.commands.CmdRIncrement;
+
+import com.ctre.CANTalon;
+import com.ctre.CanTalonJNI;
+import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
 import edu.wpi.first.wpilibj.Encoder;
+import edu.wpi.first.wpilibj.Preferences;
+import edu.wpi.first.wpilibj.CounterBase.EncodingType;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -33,23 +45,109 @@ public abstract class SysDriveTrain extends Subsystem
 {
 
 	protected DifferentialDrive _robotDrive;
-	protected DifferentialDrive _robotLiftDrive;
+
 	// SENSORS
-
-
 	public Encoder _encoDriveRight;
 	public Encoder _encoDriveLeft;
-//	Encoder LiftEnc = new Encoder(6, 7, false, Encoder.EncodingType.k4X);
-	
-	public double _dDistanceTarget;
-	static int WHEEL_SIZE = 6;
-	private double _dDistanceStart;
-//	protected Encoder _encoElevatorLeft;
-
-
+	protected Encoder _encoClimb;
+	protected double QueueFull;
 //	protected CANTalon _encoDriveRight;
+	// Testing variables for encoders
+	protected double LCount = 0;
+	protected double CCount = 0;
+	
+	Preferences prefs = Preferences.getInstance();
 
+	protected Queue<Double> LEncoRate = new LinkedList<Double>();
+	protected Queue<Double> REncoRate = new LinkedList<Double>();
+	protected Queue<Double> VoltageRate = new LinkedList<Double>();
+	protected double RCount = 0;
 
+	double VoltageSum = 0;
+	double Voltage = 0;
+	double LRateSum = 0;
+	double RRateSum = 0;
+	double LRate = 0;
+	double RRate = 0;
+	int AverageSize = 100;
+	
+	private int EncoCount = 0;
+	
+	private WPI_TalonSRX _escLeftFront;
+	private WPI_TalonSRX _escLeftBack;
+	private WPI_TalonSRX _escRightFront;
+	private WPI_TalonSRX _escRightBack;
+	
+	private double StepSize = .05;
+	
+	public void Dstepsize() {
+		StepSize = 0;
+	}
+	
+	public void Hstepsize() {
+		StepSize =0;
+	}
+	
+
+		private double LTalonSpeedEnco = 0;
+	
+		public double LgetSpeed() {
+			return LTalonSpeedEnco;
+		}
+		public void LDecrement() {
+			LTalonSpeedEnco -= StepSize;
+		}
+	
+		public void LIncrement() {
+			LTalonSpeedEnco += StepSize;
+		}
+		
+		private double RTalonSpeedEnco = 0;
+		
+		public double RgetSpeed() {
+			return RTalonSpeedEnco;
+		}
+		public void RDecrement() {
+			RTalonSpeedEnco -= StepSize;
+		}
+	
+		public void RIncrement() {
+			RTalonSpeedEnco += StepSize;
+		}
+	
+		public void setLTalonSpeed() {
+			_escLeftFront.set(LTalonSpeedEnco);
+		}
+		
+		public void setRTalonSpeed() {
+			_escRightFront.set(-1 * RTalonSpeedEnco);
+		}
+	
+	public SysDriveTrain()
+	{
+		super();
+		
+		// ==========================================================
+		// SYS DRIVE TRAIN
+		// ==========================================================
+		_escLeftFront = new WPI_TalonSRX(RobotMap.CAN_ESC_DRIVE_LEFT_FRONT);
+		_escLeftBack = new WPI_TalonSRX(RobotMap.CAN_ESC_DRIVE_LEFT_BACK);
+		_escRightFront = new WPI_TalonSRX(RobotMap.CAN_ESC_DRIVE_RIGHT_FRONT);
+		_escRightBack = new WPI_TalonSRX(RobotMap.CAN_ESC_DRIVE_RIGHT_BACK);
+	    _escLeftBack.follow(_escLeftFront);
+	    _escRightBack.follow(_escRightFront);
+		_robotDrive = new DifferentialDrive(_escLeftFront, _escRightFront);
+		_robotDrive.setSafetyEnabled(true);
+		_robotDrive.setExpiration(0.25);
+		_robotDrive.setMaxOutput(1.0);
+		_encoClimb = new Encoder(4, 5, false,
+				EncodingType.k4X);
+		_encoDriveLeft = new Encoder(2, 3, false, Encoder.EncodingType.k4X);
+		_encoDriveLeft.setDistancePerPulse(1.0);
+		_encoDriveRight = new Encoder(0, 1, false, Encoder.EncodingType.k4X);
+		
+		_encoDriveRight.setDistancePerPulse(1.0);
+	}
 	// THE ROBOT DRIVETRAIN'S VARIOUS STATES
 	protected enum DriveControlState
 	{
@@ -59,10 +157,7 @@ public abstract class SysDriveTrain extends Subsystem
 	protected DriveControlState _stateDriveControl = DriveControlState.OPEN_LOOP;
 
 
-	public SysDriveTrain()
-	{
-		super();
-	}
+
 
 
 	@Override
@@ -74,10 +169,7 @@ public abstract class SysDriveTrain extends Subsystem
 	}
 
 
-	public void printEnco() {
-//		System.out.println("Raw:" + LiftEnc.getRaw());
-//		System.out.println("Count:" + LiftEnc.get());
-	}
+
 	
 	public synchronized void setOpenLoop(DriveSignal signal)
 	{
@@ -93,27 +185,90 @@ public abstract class SysDriveTrain extends Subsystem
 	
 	}
 
+
 	public synchronized void stop()
 	{
 		_robotDrive.stopMotor();
 	}
-	
-	
+
+
 	public synchronized void arcadeDrive(double move, double rotation)
 	{
 		_robotDrive.arcadeDrive(move, rotation);
 	}
+	public void printEncoData() {
 
-	public synchronized void curvatureDrive(double move, double rotation, boolean isQuickTurn)
-	{
-		_robotDrive.curvatureDrive(move, rotation, isQuickTurn);
+		SmartDashboard.putNumber("LTalonSpeedEnco", LTalonSpeedEnco);
+		SmartDashboard.putNumber("RTalonSpeedEnco", RTalonSpeedEnco);
+		SmartDashboard.putNumber("LRate", LRate);
+		SmartDashboard.putNumber("RRate", RRate);
+
+		System.out.println("L:" + LTalonSpeedEnco +  " " + LRate + " |R:" + RTalonSpeedEnco + " " + RRate);
+	  /*==================================================================================
+	   * These are the commands that need to be called to precisely change the motor speed
+	    ==================================================================================*/	
+		SmartDashboard.putData("LIncrement", new CmdLIncrement());
+		SmartDashboard.putData("LDecrement", new CmdLDecrement());
+		SmartDashboard.putData("RIncrement", new CmdRIncrement());
+		SmartDashboard.putData("RDecrement", new CmdRDecrement());
+		SmartDashboard.putData("Increase Step Size", new CmdDStepSize());
+		SmartDashboard.putData("Decrease Step Size", new CmdHStepSize());
+//		SmartDashboard.putNumber("Count", EncoCount);
+		if(EncoCount < AverageSize) {
+			LRateSum += _encoDriveLeft.getRate();
+			RRate += _encoDriveRight.getRate();
+			LEncoRate.add(_encoDriveLeft.getRate());
+			REncoRate.add(_encoDriveRight.getRate());
+//			VoltageSum += _escLeftFront.getBusVoltage();
+//			VoltageRate.add(_escLeftFront.getBusVoltage());
+			EncoCount++;
+//			QueueFull = 0;
+		} else {
+			LRateSum -= LEncoRate.remove();
+			RRateSum -= REncoRate.remove();
+			LRateSum += _encoDriveLeft.getRate();
+			RRateSum += _encoDriveRight.getRate();
+			LEncoRate.add(_encoDriveLeft.getRate());
+			REncoRate.add(_encoDriveRight.getRate());
+//			VoltageSum -= VoltageRate.remove();
+//			VoltageSum += _escLeftFront.getBusVoltage();
+//			VoltageRate.add(_escLeftFront.getBusVoltage());
+//			QueueFull = 1;
+		}
+//		SmartDashboard.putNumber("Is Full" , QueueFull);
+		Voltage = VoltageSum/AverageSize;
+		LRate = LRateSum/AverageSize;
+		RRate = RRateSum/AverageSize;
+		
+		if(LRate < .000001 && LRate > -.000001) {
+			LRate = 0;
+		}
+		
+		
+//		System.out.println("Speed: " + getSpeed() + " | Rate: " + LRate + " | Voltage: " + Voltage + " | Inst: "+ _encoDriveLeft.getRate());
+//		System.out.println("Raw" + _encoDriveLeft.get());
+		
+//		SmartDashboard.putNumber("Voltage", Voltage);
+//		SmartDashboard.putNumber("Rate", LRate);
+//		SmartDashboard.putNumber(, );
+//		SmartDashboard.putNumber("Speed", getSpeed());
+
+//		RRaw = _encoDriveRight.getRaw();
+		RCount =  _encoDriveRight.get();
+//		RDist = _encoDriveRight.getDistance();
+		LCount = _encoDriveLeft.get();
+		CCount = _encoClimb.get();
+//		RRawA += _encoDriveRight.getRaw();
+//		RCountA +=  _encoDriveRight.get();
+//		RDistA += _encoDriveRight.getDistance();
+		
+		
+
+//		System.out.println("L Rate is:" + LRate);
+//		System.out.println("LCount is:" + LCount);
+
 	}
 
-
-	public synchronized void tankDrive(double move)
-	{
-		_robotDrive.tankDrive(move, 0);
-	}
 
 	/**
 	 * Reset the robots sensors to the zero states.
@@ -121,8 +276,8 @@ public abstract class SysDriveTrain extends Subsystem
 	public void reset()
 	{
 		// _gyro.reset();
-		_encoDriveRight.reset();
-		_encoDriveLeft.reset();
+//		_encoDriveRight.reset();
+//		_encoDriveLeft.reset();
 	}
 
 
@@ -134,36 +289,17 @@ public abstract class SysDriveTrain extends Subsystem
 		// return gyro.getAngle();
 		return (0);
 	}
-	public double getRightEncoder() 
-	{
-		return (_encoDriveRight.getDistance());
-	}
-	public double getLeftEncoder() 
-	{
-		return (_encoDriveLeft.getDistance());
-	}
+
+
 	/**
 	 * @return The distance driven (average of left and right encoders).
 	 */
-
-
 	public double getDistance()
 	{
-		
-		return ((Math.abs(_encoDriveRight.getDistance())) + Math.abs(_encoDriveLeft.getDistance())) / 2;
-
+		return (_encoDriveRight.getDistance() + _encoDriveLeft.getDistance()) / 2;
 	}
-	
 
 
-public double getInches() {
-	 
-	_dDistanceTarget = (_encoDriveRight.getDistance() + _encoDriveLeft.getDistance()) / 2;
-	 _dDistanceTarget = _dDistanceTarget /1024;
-	 _dDistanceTarget = _dDistanceTarget * (WHEEL_SIZE * Math.PI);
-	 
-	 return _dDistanceTarget;
-}
 	/**
 	 * @return The distance to the obstacle detected by the rangefinder.
 	 */
@@ -178,16 +314,12 @@ public double getInches() {
 	/**
 	 * The log method puts interesting information to the SmartDashboard.
 	 */
-	public void logToSmartDashboard()
-	{
-		// SmartDashboard.putData("vibrate", new CmdHapticFeedback());
-
-		SmartDashboard.putNumber("Drive Encoder: Left Distance", _encoDriveLeft.getDistance());
-		SmartDashboard.putNumber("Drive Encoder: Right Distance", _encoDriveRight.getDistance());
-		SmartDashboard.putNumber("Drive Encoder: Left Speed", _encoDriveLeft.getRate());
-		SmartDashboard.putNumber("Drive Encoder: Right Speed", _encoDriveRight.getRate());
-		SmartDashboard.putNumber("Distance Inches",	getInches());
-		SmartDashboard.putNumber("Yaw_Tele",Robot.ahrs.getYaw());
-
-	}
+//	public void logToSmartDashboard()
+//	{
+//		// SmartDashboard.putData("vibrate", new CmdHapticFeedback());
+//		SmartDashboard.putNumber("Drive Encoder: Left Distance", _encoDriveLeft.getDistance());
+//		SmartDashboard.putNumber("Drive Encoder: Right Distance", _encoDriveRight.getDistance());
+//		SmartDashboard.putNumber("Drive Encoder: Left Speed", _encoDriveLeft.getRate());
+//		SmartDashboard.putNumber("Drive Encoder: Right Speed", _encoDriveRight.getRate());
+//	}
 }

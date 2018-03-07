@@ -17,25 +17,25 @@ public class JoystickDriver extends Joystick
 {
 
 	// X-BOX DRIVER JOYSTICK BUTTONS
-	private final short DRIVER_AXIS_THROTTLE_XBOX = 1;
-	private final short DRIVER_AXIS_TURN_XBOX = 4;
+	public static final short DRIVER_AXIS_THROTTLE_XBOX = 1;
+	public static final short DRIVER_AXIS_TURN_XBOX = 4;
 
-	private final short DRIVER_BUTTON_SHIFT_HIGH_XBOX = 5;
-	private final short DRIVER_BUTTON_SHIFT_LOW_XBOX = 6;
-	private final short DRIVER_BUTTON_QUICKTURN_XBOX = 1;
+	public static final short DRIVER_BUTTON_SHIFT_HIGH_XBOX = 1;
+	public static final short DRIVER_BUTTON_SHIFT_LOW_XBOX = 2;
+	public static final short DRIVER_BUTTON_QUICKTURN_XBOX = 6;
 
 	// TODO: MOVE TO OPERATOR
-	private final short DRIVER_BUTTON_LIFT_XBOX = 4;
+	public static final short DRIVER_BUTTON_LIFT_XBOX = 4;
 
 	// LOGITECH (IF DIFFERENT FROM XBOX) DRIVER JOYSTICK BUTTONS
-	private final short DRIVER_AXIS_THROTTLE_LOGITECH = 1;
-	private final short DRIVER_AXIS_TURN_LOGITECH = 4;
+	public static final short DRIVER_AXIS_THROTTLE_LOGITECH = 1;
+	public static final short DRIVER_AXIS_TURN_LOGITECH = 4;
 
-	private final short DRIVER_BUTTON_SHIFT_HIGH_LOGITECH = 1;
-	private final short DRIVER_BUTTON_SHIFT_LOW_LOGITECH = 2;
-	private final short DRIVER_BUTTON_QUICKTURN_LOGITECH = 6;
+	public static final short DRIVER_BUTTON_SHIFT_HIGH_LOGITECH = 1;
+	public static final short DRIVER_BUTTON_SHIFT_LOW_LOGITECH = 2;
+	public static final short DRIVER_BUTTON_QUICKTURN_LOGITECH = 6;
 
-	public enum JoystickType
+	public static enum JoystickType
 	{
 		XBOX(0), LOGITECH(1);
 
@@ -58,7 +58,7 @@ public class JoystickDriver extends Joystick
 	}
 
 
-	public JoystickButton driveLift()
+	public JoystickButton getDriveTrainShifterSetLowButton()
 	{
 		switch (_eJoystickType)
 		{
@@ -85,21 +85,6 @@ public class JoystickDriver extends Joystick
 
 		default:
 			return (new JoystickButton(this, DRIVER_BUTTON_SHIFT_HIGH_XBOX));
-		}
-	}
-	
-	public JoystickButton getDriveTrainShifterSetLowButton()
-	{
-		switch (_eJoystickType)
-		{
-		case XBOX:
-			return (new JoystickButton(this, DRIVER_BUTTON_SHIFT_LOW_XBOX));
-
-		case LOGITECH:
-			return (new JoystickButton(this, DRIVER_BUTTON_SHIFT_LOW_LOGITECH));
-
-		default:
-			return (new JoystickButton(this, DRIVER_BUTTON_SHIFT_LOW_XBOX));
 		}
 	}
 

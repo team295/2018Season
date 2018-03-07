@@ -170,7 +170,7 @@ public class Robot extends IterativeRobot
 			Logger.logThrowable(t);
 			throw t;
 		}
-		sysDriveTrain.logToSmartDashboard();
+//		sysDriveTrain.logToSmartDashboard();
 	}
 
 
@@ -179,11 +179,11 @@ public class Robot extends IterativeRobot
 	{
 		try
 		{
-			System.out.print(ahrs.getYaw());
-			System.out.print("  ");
-			System.out.print(sysDriveTrain.getLeftEncoder());
-			System.out.print("  ");
-			System.out.println(sysDriveTrain.getRightEncoder());
+//			System.out.print(ahrs.getYaw());
+//			System.out.print("  ");
+//			System.out.print(sysDriveTrain.getLeftEncoder());
+//			System.out.print("  ");
+//			System.out.println(sysDriveTrain.getRightEncoder());
 //			System.out.println(input_dio.get());
 			Scheduler.getInstance().run();
 //			input_dio.get();
@@ -196,7 +196,7 @@ public class Robot extends IterativeRobot
 
 
 		sysIntake.IntakeState();
-		sysDriveTrain.logToSmartDashboard();
+//		sysDriveTrain.logToSmartDashboard();
 
 //		sysEncoderDrive.getValues();
 
@@ -276,7 +276,7 @@ public class Robot extends IterativeRobot
 		try
 		{
 			
-			sysDriveTrain.logToSmartDashboard();
+//			sysDriveTrain.logToSmartDashboard();
 			sysIntake.IntakeState();
 //			System.out.println(sysDriveTrain.getDistance());
 //			System.out.println(sysDriveTrain.getInches());
