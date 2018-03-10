@@ -48,16 +48,16 @@ public class EncoderDrive {
 //	}
 	public static DriveSignal EncoderDriveStraight(double SDiff, double Speed, DriveSignal Signal) {
 		//NT = Needs Tweaking/Testing
-		final double CC = .95; //CC = Correction Constant - NT
+		final double CC = .95; //CC = Correction Constant - NT //May need to be a piecewise function
 		final double EncoCC = .25; // Encoder Correction Constant - NT
 		final double PerDis = .05; //Threshold of difference between motor speeds
 		if(Math.abs(SDiff) > Speed * PerDis) {
 			if(SDiff > 0) {
-				Signal.leftMotor *= CC * EncoCC * Math.abs(SDiff);
-				Signal.rightMotor /= CC * EncoCC * Math.abs(SDiff);
+				Signal.leftMotor = CheesyDriveHelper.limit(Signal.leftMotor * CC * EncoCC * Math.abs(SDiff), 1);
+				Signal.rightMotor = CheesyDriveHelper.limit(Signal.rightMotor / (CC * EncoCC * Math.abs(SDiff)), 1);
 			} else if(SDiff < 0) {
-				Signal.leftMotor /= CC * EncoCC * Math.abs(SDiff);
-				Signal.rightMotor *= CC * EncoCC * Math.abs(SDiff);
+				Signal.rightMotor = CheesyDriveHelper.limit(Signal.rightMotor * CC * EncoCC * Math.abs(SDiff), 1);
+				Signal.leftMotor = CheesyDriveHelper.limit(Signal.leftMotor / (CC * EncoCC * Math.abs(SDiff)), 1);
 			}
 		}
 		return Signal;
