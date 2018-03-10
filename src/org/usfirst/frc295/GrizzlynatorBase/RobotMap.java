@@ -41,11 +41,19 @@ public class RobotMap
 	
 	
 	// MAPPED VALUES
-	public static final short PCM_DRIVE_SHIFT_1 = 3;
-	public static final short PCM_DRIVE_SHIFT_2 = 4;
-	
-	public static final short PCM_ELEVATOR_SOL_FOLLOW = 7;
+	//INCORRECT SHIGONH CHANGE VALUES
+//	public static final short PCM_DRIVE_SHIFT_1 	  = 8;
+//	public static final short PCM_DRIVE_SHIFT_2 	  = 9;
 	public static final short PCM_ELEVATOR_SOL        = 0;
+	public static final short PCM_ELEVATOR_SOL_FOLLOW = 7;
+	public static final short PCM_RIGHT_SOL			  = 1;
+	public static final short PCM_RIGHT_SOL_FOLLOW	  = 6; 
+	public static final short PCM_LEFT_SOL 			  = 2;
+	public static final short PCM_LEFT_SOL_FOLLOW 	  = 5;
+	public static final short PCM_TOP_SOL			  = 3;
+	public static final short PCM_TOP_SOL_FOLLOW      = 4;
+	
+	
 	
 	public static final short CAN_PCM_MODULE = 0;
 	public static final short CAN_PCM_PORT_DRIVE_SHIFTER = 1;

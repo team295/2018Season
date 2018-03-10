@@ -24,6 +24,7 @@ import org.usfirst.frc295.GrizzlynatorBase.subsystems.SysDriveTrainCANOpenLoop;
 import org.usfirst.frc295.GrizzlynatorBase.subsystems.SysDriveTrainShifter;
 import org.usfirst.frc295.GrizzlynatorBase.subsystems.SysUltrasonic;
 import org.usfirst.frc295.GrizzlynatorBase.subsystems.SysIntake;
+import org.usfirst.frc295.GrizzlynatorBase.subsystems.SysRamp;
 
 
 import edu.wpi.first.wpilibj.DigitalInput;
@@ -71,6 +72,7 @@ public class Robot extends IterativeRobot
 	public static SysUltrasonic sysUltrasonic;
 	public static SysIntake sysIntake;
 	public static SysDriveTrainShifter sysDriveTrainShifter;
+	public static SysRamp sysRamp;
 	
 
 	@Override
