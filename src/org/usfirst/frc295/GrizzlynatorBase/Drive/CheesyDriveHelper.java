@@ -116,6 +116,10 @@ public class CheesyDriveHelper
 	{
 		return (Math.abs(v) < limit) ? v : limit * (v < 0 ? -1 : 1);
 	}
+	
+	public static double percent(double v, double total) {
+		return Math.abs(v)/total;
+	}
 
 
 	public double handleDeadband(double val, double deadband)
