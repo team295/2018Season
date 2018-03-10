@@ -100,15 +100,8 @@ public abstract class SysDriveTrain extends Subsystem
 		_robotDrive.arcadeDrive(move, rotation);
 	}
 
-	public synchronized void curvatureDrive(double move, double rotation, boolean isQuickTurn)
-	{
-		_robotDrive.curvatureDrive(move, rotation, isQuickTurn);
-	}
 
-	public synchronized void tankDrive(double move)
-	{
-		_robotDrive.tankDrive(move, 0);
-	}
+	
 	/**
 	 * Reset the robots sensors to the zero states.
 	 */
@@ -130,15 +123,19 @@ public abstract class SysDriveTrain extends Subsystem
 	}
 	public double getRightEncoder() 
 	{
-		return (_encoDriveRight.getDistance());
+//		return (_encoDriveRight.getDistance());
+		
+		return (_encoDriveRight.getRaw());
 	}
 	public double getLeftEncoder() 
 	{
-		return (_encoDriveLeft.getDistance());
+//		return (_encoDriveLeft.getDistance());
+		return (_encoDriveLeft.getRaw());
 	}
 	/**
 	 * @return The distance driven (average of left and right encoders).
 	 */
+	
 	public double getDistance()
 	{
 		

@@ -39,11 +39,14 @@ public class AutonomousMiddle extends CommandGroup //9 + 10
 			addSequential(new Wait());
 			addSequential(new Waypoint(0,90,.5,false));
 			addSequential(new Wait());
-			//addSequential ultrasonic to switch
+			addSequential(new Waypoint(12,0,.7,false));
 			addSequential(new Wait());
-			//addSequential drop cube
+			addSequential(new CmdElevatorSwitch());
+			addSequential(new Wait());
+			addSequential(new CmdAutoDetake());
 			addSequential(new Waypoint(6,0,-.8,false));
 			addSequential(new Wait());
+			addSequential(new CmdElevatorBottom());
 			addSequential(new Waypoint(0,90,.5,false));
 			addSequential(new Wait());
 			//addSequential pick up cube
@@ -57,14 +60,16 @@ public class AutonomousMiddle extends CommandGroup //9 + 10
 			addSequential(new Wait());
 			addSequential(new Waypoint(0,-90,.5,false));
 			addSequential(new Wait());
-			//addSequential ultrasonic to switch
+			addSequential(new Waypoint(12,0,.7,false));
 			addSequential(new Wait());
-			//addSequential drop cube
+			addSequential(new CmdElevatorSwitch());
+			addSequential(new Wait());
+			addSequential(new CmdAutoDetake());
 			addSequential(new Waypoint(6,0,-.8,false));
 			addSequential(new Wait());
+			addSequential(new CmdElevatorBottom());
 			addSequential(new Waypoint(0,-90,.5,false));
 			addSequential(new Wait());
-			//addSequential pick up cube
 		}
 		else
 		{

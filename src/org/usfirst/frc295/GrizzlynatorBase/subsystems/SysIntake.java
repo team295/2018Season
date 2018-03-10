@@ -38,7 +38,6 @@ public class SysIntake extends Subsystem {
 		motorForwardONcubeOUT, 
 		motorForwardONcubeIN, 
 		motorForwardOFFcubeIN, 
-
 		motorReverseOFFcubeIN, 
 		motorReverseONcubeIN, 
 		motorReverseONcubeOUT, 
@@ -259,20 +258,25 @@ public class SysIntake extends Subsystem {
 	
 	public void AutonomousIntakeCube() 
 	{
-		if (currentstate != IntakeState.motorForwardONcubeIN)
-		{
-			AutoIntake();
-		}
-		IntakeState();
+//		if (currentstate != IntakeState.motorForwardONcubeIN)
+//		{
+//			AutoIntake();
+//		}
+//		IntakeState();
+		
+		LeftMotor.setSpeed(-currentspeed);
+		RightMotor.setSpeed(currentspeed);
 	}
 	
 	public void AutonomousDropCube() 
 	{
-		if (currentstate != IntakeState.motorReverseONcubeOUT)
-		{
-			AutoIntake();
-		}
-		IntakeState();
+//		if (currentstate != IntakeState.motorReverseONcubeOUT)
+//		{
+//			AutoIntake();
+//		}
+//		IntakeState();
+		LeftMotor.setSpeed(-currentspeed);
+		RightMotor.setSpeed(-currentspeed);
 	}
 	
 	/*

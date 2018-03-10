@@ -18,7 +18,7 @@ public class Waypoint extends Command
 	private double _dRotation;
 	private double _dTime;
 	public double _dCurvecurve;
-	static double Kp = .023;//.023
+	static double Kp = .023;//.08
 	static double START_TIME;
 	public boolean _dTrack;
 	public boolean _disQuickTurn;

@@ -37,9 +37,10 @@ public class AutonomousRight extends CommandGroup
 			addSequential(new Wait());
 			addSequential(new Waypoint(0,-90,.5,false));//turn left
 			addSequential(new Wait());
-			//addsequential ultra sonic to go to switch
+			addSequential(new CmdElevatorSwitch());
+			addSequential(new Waypoint(12,0,.8,false));
 			addSequential(new Wait());
-			//addsequential drop cube
+			addSequential(new CmdAutoDetake());
 			addSequential(new Wait());
 			addSequential(new Waypoint(24,0,-.8,false));
 			addSequential(new Wait());
@@ -58,11 +59,10 @@ public class AutonomousRight extends CommandGroup
 			addSequential(new Wait());
 			addSequential(new Waypoint(0,-90,.5,false));
 			addSequential(new Wait());
-			//add sequential extend elevator
+			addSequential(new CmdElevatorScale());
+			addSequential(new CmdAutoDetake());
 			addSequential(new Wait());
-			// add sequential drop cube
-			addSequential(new Wait());
-			// add sequential retract elevator
+			addSequential(new CmdElevatorBottom());
 			addSequential(new Wait());
 			addSequential(new Waypoint(0,90,.5,false));
 		}
