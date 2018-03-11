@@ -117,8 +117,8 @@ public class CheesyDriveHelper
 		return (Math.abs(v) < limit) ? v : limit * (v < 0 ? -1 : 1);
 	}
 	
-	public static double percent(double v, double total) {
-		return Math.abs(v)/total;
+	public static double percent(double v, double total, double scale) {
+		return scale * Math.abs(v)/total;
 	}
 
 
