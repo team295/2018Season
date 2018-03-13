@@ -27,6 +27,7 @@ public class Waypoint extends Command
 	static int WHEEL_SIZE;
 	private double _dDistanceStart;
 	double _dDistanceTargetz = 0 ;
+	public double _dAutoDiff;
 
 	private double _wantedtime;
 
@@ -77,7 +78,8 @@ public class Waypoint extends Command
 	@Override
 	protected void execute()
 	{
-		
+		_dAutoDiff  = 0;
+		_dAutoDiff  = Robot.sysDriveTrain.getAutoDiff();
 		_dCurvecurve = _dTargetAngle - Robot.ahrs.getYaw();
 		_dCurvecurve = (_dCurvecurve) * Kp;
 

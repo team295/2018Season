@@ -125,7 +125,7 @@ public abstract class SysDriveTrain extends Subsystem
 	{
 //		return (_encoDriveRight.getDistance());
 		
-		return (_encoDriveRight.getRaw());
+		return (-_encoDriveRight.getRaw());
 	}
 	public double getLeftEncoder() 
 	{
@@ -139,10 +139,26 @@ public abstract class SysDriveTrain extends Subsystem
 	public double getDistance()
 	{
 		
-		return ((Math.abs(_encoDriveRight.getDistance())) + Math.abs(_encoDriveLeft.getDistance())) / 2;
+		return ((Math.abs(_encoDriveRight.getDistance())) + Math.abs(_encoDriveLeft.getDistance())/2) ;
 	}
 
-public double getInches() {
+	public double getAutoDiff()
+	{
+		return ((Math.abs(_encoDriveRight.getDistance())) - Math.abs(_encoDriveLeft.getDistance())); 
+	}
+	
+	public double getRightSpeed() 
+	{
+//		return (_encoDriveRight.getDistance());
+		
+		return (-_encoDriveRight.getRate());
+	}
+	public double getLeftSpeed() 
+	{
+//		return (_encoDriveLeft.getDistance());
+		return (_encoDriveLeft.getRate());
+	}
+	public double getInches() {
 	 
 	_dDistanceTarget = (_encoDriveRight.getDistance() + _encoDriveLeft.getDistance()) / 2;
 	 _dDistanceTarget = _dDistanceTarget /1024;

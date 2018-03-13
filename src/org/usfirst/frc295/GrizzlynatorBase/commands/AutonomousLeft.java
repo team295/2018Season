@@ -31,9 +31,9 @@ public class AutonomousLeft extends CommandGroup //9 + 10
 	public AutonomousLeft()
 	{
 		addSequential(new Waypoint(30,0,.7,false));
-		addSequential(new CmdElevatorSwitch());
-		addSequential(new CmdAutoDetake());
-		addSequential(new CmdElevatorBottom());
+//		addSequential(new CmdElevatorSwitch());
+//		addSequential(new CmdAutoDetake());
+//		addSequential(new CmdElevatorBottom());
 //		addSequential(new CmdIntakeCube());
 //		addSequential(new Waypoint(0,45,.5,false));
 //		addSequential(new Wait());
