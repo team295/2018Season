@@ -62,8 +62,9 @@ public class EncoderDrive {
 	}
 	//The motors may need to be corrected for any speed differences
 	public static DriveSignal EncoderDriveTOP(DriveSignal Signal, double TurnSpeed) {
-		Signal.rightMotor = CheesyDriveHelper.getSign(TurnSpeed) * CheesyDriveHelper.limit(TurnSpeed, 1.0);
-		Signal.leftMotor = CheesyDriveHelper.getSign(TurnSpeed) * -1 * CheesyDriveHelper.limit(TurnSpeed, 1.0);
+		Signal.rightMotor = /*CheesyDriveHelper.getSign(TurnSpeed)* */ CheesyDriveHelper.limit(TurnSpeed, 1.0);
+		Signal.leftMotor = /*CheesyDriveHelper.getSign(TurnSpeed)* */ -1 * CheesyDriveHelper.limit(TurnSpeed, 1.0);
+		System.out.print(" | Right: " + Signal.rightMotor + " | Left: " + Signal.leftMotor);
 		return Signal;
 	}
 	

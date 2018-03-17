@@ -137,11 +137,35 @@ public class OI
 
 		// =====================================================================
 
-		 JoystickButton _btnDriver5 = _joystickDriver.getDriveTrainShifterSetHighButton();
+//		JoystickButton _btnDriver1 = _joystickDriver.get();
+//		 _btnDriver1.whenPressed(new );
+		 
+//		JoystickButton _btnDriver2 = _joystickDriver.get();
+//		 _btnDriver2.whenPressed(new );
+		
+//		JoystickButton _btnDriver3 = _joystickDriver.get();
+//		 _btnDriver3.whenPressed(new );
+		 
+//		JoystickButton _btnDriver4 = _joystickDriver.get();
+//		 _btnDriver4.whenPressed(new );
+		
+		JoystickButton _btnDriver5 = _joystickDriver.getDriveTrainShifterSetHighButton();
 		 _btnDriver5.whenPressed(new CmdDriveTrainShiftHighGear());
 		 
 	 	 JoystickButton _btnDriver6 = _joystickDriver.getDriveTrainShifterSetLowButton();
 		 _btnDriver6.whenPressed(new CmdDriveTrainShiftLowGear());
+		 
+//		JoystickButton _btnDriver7 = _joystickDriver.get();
+//		 _btnDriver7.whenPressed(new );
+		 
+//		JoystickButton _btnDriver8 = _joystickDriver.get();
+//		 _btnDriver8.whenPressed(new );
+		 
+		JoystickButton _btnDriver9 = _joystickDriver.getTOPButton();
+		 _btnDriver9.whenPressed(new CmdTurnOnPoint());
+		 
+		JoystickButton _btnDriver10 = _joystickDriver.getDriveStraightButton();
+		 _btnDriver10.whenPressed(new CmdDriveStraight());
 
 
 
