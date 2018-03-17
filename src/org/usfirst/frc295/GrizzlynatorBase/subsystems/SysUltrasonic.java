@@ -35,7 +35,7 @@ public class SysUltrasonic
 			_ErrorCycles = _ErrorCycles + 1;
 		}
 						
-		System.out.println(FinalSensor1 + " in");
+//		System.out.println(FinalSensor1 + " in");
 		
 		return FinalSensor1;
 	}

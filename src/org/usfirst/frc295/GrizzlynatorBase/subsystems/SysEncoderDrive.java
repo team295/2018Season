@@ -20,12 +20,10 @@ public class SysEncoderDrive extends Subsystem {
 		TOP = true;
 	}
 
-
 	public void setTOPOff() {
 		TOP = false;
 	}
 
-	
 	public boolean getTOP() {
 		return TOP;
 	}
@@ -44,7 +42,6 @@ public class SysEncoderDrive extends Subsystem {
 	public boolean getDS() {
 		return DS;
 	}
-
     // here. Call these from Commands.
 
     public void initDefaultCommand() {

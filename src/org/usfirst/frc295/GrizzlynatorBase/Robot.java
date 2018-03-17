@@ -105,6 +105,8 @@ public class Robot extends IterativeRobot
 				sysUltrasonic = new SysUltrasonic();
 				sysDriveTrainShifter = new SysDriveTrainShifter();
 
+//				sysDriveTrain = new SysDriveTrainSpark();
+				sysEncoderDrive = new SysEncoderDrive();
 
 			}
 			else if (RobotMap.ROBOT_ID == RobotID.BOT_COMP0)
@@ -167,11 +169,13 @@ public class Robot extends IterativeRobot
 	{
 		try
 		{
-			System.out.print(ahrs.getYaw());
-			System.out.print("  ");
-			System.out.print(sysDriveTrain.getLeftEncoder());
-			System.out.print("  ");
-			System.out.print(sysDriveTrain.getRightEncoder());
+
+//			System.out.print(ahrs.getYaw());
+//			System.out.print("  ");
+//			System.out.print(sysDriveTrain.getLeftEncoder());
+//			System.out.print("  ");
+//			System.out.println(sysDriveTrain.getRightEncoder());
+
 //			System.out.println(input_dio.get());
 			Scheduler.getInstance().run();
 //			input_dio.get();

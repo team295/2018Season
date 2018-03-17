@@ -108,8 +108,8 @@ public class SysDriveTrainCANOpenLoop extends SysDriveTrain
 	}
 
 	public void printEncoderValues() {
-		System.out.println(_encoDriveLeft.get());
-		System.out.println(_encoDriveRight.get());
+//		System.out.println(_encoDriveLeft.get());
+//		System.out.println(_encoDriveRight.get());
 	}
 	
 //	public double getLEncoderValues() {

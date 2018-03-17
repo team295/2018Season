@@ -7,9 +7,9 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class DfltEncoderDrive extends Command {
+public class CmdTurnOnPoint extends Command {
 
-    public DfltEncoderDrive() {
+    public CmdTurnOnPoint() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     	requires(Robot.sysEncoderDrive);
@@ -21,8 +21,7 @@ public class DfltEncoderDrive extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot.sysEncoderDrive.setTOPOff();
-    	Robot.sysEncoderDrive.setDSOff();
+    	Robot.sysEncoderDrive.setTOPOn();
     }
 
     // Make this return true when this Command no longer needs to run execute()
@@ -38,6 +37,4 @@ public class DfltEncoderDrive extends Command {
     // subsystems is scheduled to run
     protected void interrupted() {
     }
-
 }
-
