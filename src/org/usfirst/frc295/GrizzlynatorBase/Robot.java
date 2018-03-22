@@ -82,8 +82,6 @@ public class Robot extends IterativeRobot
 	public static SysDriveTrainShifter sysDriveTrainShifter;
 	public static SysEncoderDrive sysEncoderDrive;
 
-
-
 	@Override
 	public void robotInit()
 	{
@@ -101,6 +99,7 @@ public class Robot extends IterativeRobot
 				sysIntake = SysIntake.getInstance();
 				sysUltrasonic = new SysUltrasonic();
 				sysDriveTrainShifter = new SysDriveTrainShifter();
+				sysEncoderDrive = new SysEncoderDrive();
 
 //				sysDriveTrain = new SysDriveTrainSpark();
 				sysEncoderDrive = new SysEncoderDrive();

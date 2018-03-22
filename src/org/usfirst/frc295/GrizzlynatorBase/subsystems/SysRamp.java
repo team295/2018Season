@@ -13,15 +13,16 @@ public class SysRamp extends Subsystem{
 
 	private DoubleSolenoid RightSideMain = new DoubleSolenoid(RobotMap.PCM_RIGHT_SOL, RobotMap.PCM_RIGHT_SOL_FOLLOW);
 	private DoubleSolenoid LeftSideMain = new DoubleSolenoid(RobotMap.PCM_LEFT_SOL,RobotMap.PCM_LEFT_SOL_FOLLOW);
-	private DoubleSolenoid PushoutMain = new DoubleSolenoid(RobotMap.PCM_TOP_SOL, RobotMap.PCM_TOP_SOL_FOLLOW);
-	private final DoubleSolenoid.Value RETRACT_SOLENOID = DoubleSolenoid.Value.kReverse;
+	private Servo PushoutMain = new Servo(RobotMap.PWM_SERVO_RAMP);
+//	private final DoubleSolenoid.Value RETRACT_SOLENOID = DoubleSolenoid.Value.kReverse;
 	private final DoubleSolenoid.Value EXTEND_SOLENOID = DoubleSolenoid.Value.kForward;
 
 
 
 	
 	public void OpenRamp(){
-		PushoutMain.set(EXTEND_SOLENOID);
+
+		PushoutMain.set(1);
 
 	}
 	

@@ -38,6 +38,7 @@ public class JoystickDriver extends Joystick
 	private final short DRIVER_BUTTON_SHIFT_LOW_LOGITECH = 2;
 	private final short DRIVER_BUTTON_QUICKTURN_LOGITECH = 6;
 
+
 	public enum JoystickType
 	{
 		XBOX(0), LOGITECH(1);
@@ -74,6 +75,7 @@ public class JoystickDriver extends Joystick
 			return (new JoystickButton(this, DRIVER_BUTTON_SHIFT_LOW_XBOX));
 		}
 	}
+
 
 
 	public JoystickButton getDriveTrainShifterSetHighButton()

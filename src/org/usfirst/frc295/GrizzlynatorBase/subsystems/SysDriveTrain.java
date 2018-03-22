@@ -109,12 +109,16 @@ public abstract class SysDriveTrain extends Subsystem
 		_robotDrive.curvatureDrive(move, rotation, isQuickTurn);
 	}
 
-
+	//this method is clearly wrong, but I'll leave it here for now
 	public synchronized void tankDrive(double move)
 	{
 		_robotDrive.tankDrive(move, 0);
 	}
 
+	
+	public synchronized void getTankDrive(double leftmotor, double rightmotor) {
+		_robotDrive.tankDrive(leftmotor, rightmotor);
+	}
 	/**
 	 * Reset the robots sensors to the zero states.
 	 */
@@ -154,7 +158,10 @@ public abstract class SysDriveTrain extends Subsystem
 
 	}
 	
-
+	public double getAutoDiff()
+    {
+        return ((Math.abs(_encoDriveRight.getDistance())) - Math.abs(_encoDriveLeft.getDistance())); 
+    }
 
 
 public double getInches() {
@@ -164,6 +171,10 @@ public double getInches() {
 	 _dDistanceTarget = _dDistanceTarget * (WHEEL_SIZE * Math.PI);
 	 
 	 return _dDistanceTarget;
+}
+public synchronized void tankDrive(double left, double right)
+{
+    _robotDrive.tankDrive(left, right);
 }
 	/**
 	 * @return The distance to the obstacle detected by the rangefinder.
