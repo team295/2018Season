@@ -6,6 +6,7 @@ import org.usfirst.frc295.GrizzlynatorBase.RobotMap;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
 import edu.wpi.first.wpilibj.PWM;
+import edu.wpi.first.wpilibj.Servo;
 import edu.wpi.first.wpilibj.Spark;
 import edu.wpi.first.wpilibj.SpeedController;
 import edu.wpi.first.wpilibj.command.Subsystem;
@@ -27,7 +28,7 @@ public class SysIntake extends Subsystem {
 	
 	private Spark LeftMotor;
 	private Spark RightMotor;
-
+	private Servo PushOutMain = new Servo(RobotMap.PWM_SERVO_INTAKE);
 	boolean cubeisIn;
 	boolean Reverse;
 	boolean motorisRunning;
@@ -91,6 +92,9 @@ public class SysIntake extends Subsystem {
 		currentstate = IntakeState.motorReverseOFFcubeIN;
 	}
 	
+	public void PushOutIntake() {
+		PushOutMain.set(1);
+	}
 	public void initDefaultCommand() 
 	{
 
