@@ -2,6 +2,7 @@ package org.usfirst.frc295.GrizzlynatorBase.subsystems;
 
 import org.usfirst.frc295.GrizzlynatorBase.Robot;
 import org.usfirst.frc295.GrizzlynatorBase.RobotMap;
+
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.Servo;
 import edu.wpi.first.wpilibj.command.Subsystem;
@@ -43,6 +44,7 @@ public class SysRamp extends Subsystem{
 		// TODO Auto-generated method stub
 
 	}
+
 
 }
 

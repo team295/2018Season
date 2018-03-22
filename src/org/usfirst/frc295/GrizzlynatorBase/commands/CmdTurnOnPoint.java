@@ -29,3 +29,5 @@ public class CmdTurnOnPoint extends Command {
     protected void interrupted() {
     }
 }
+
+
