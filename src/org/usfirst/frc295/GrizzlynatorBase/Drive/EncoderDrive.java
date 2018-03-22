@@ -3,8 +3,6 @@ package org.usfirst.frc295.GrizzlynatorBase.Drive;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import org.usfirst.frc295.GrizzlynatorBase.Drive.CheesyDriveHelper;
 
-import org.usfirst.frc295.GrizzlynatorBase.Drive.CheesyDriveHelper;
-
 public class EncoderDrive {
 //	public static double motorCorrect(double DSpeed) {
 //		double DVoltage = 0;
@@ -69,6 +67,6 @@ public class EncoderDrive {
 		System.out.print(" | Right: " + Signal.rightMotor + " | Left: " + Signal.leftMotor);
 		return Signal;
 	}
-
+	
 
 }

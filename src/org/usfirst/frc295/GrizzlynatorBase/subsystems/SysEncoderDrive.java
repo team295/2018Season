@@ -5,6 +5,7 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 import org.usfirst.frc295.GrizzlynatorBase.subsystems.SysDriveTrain;
 import org.usfirst.frc295.GrizzlynatorBase.Robot;
 import org.usfirst.frc295.GrizzlynatorBase.commands.DfltEncoderDrive;
+
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
@@ -23,7 +24,7 @@ public class SysEncoderDrive extends Subsystem {
 	public void setTOPOff() {
 		TOP = false;
 	}
-
+	
 	public boolean getTOP() {
 		return TOP;
 	}
