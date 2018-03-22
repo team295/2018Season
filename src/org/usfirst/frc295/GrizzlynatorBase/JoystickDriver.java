@@ -34,6 +34,7 @@ public class JoystickDriver extends Joystick
 	private final short DRIVER_BUTTON_SHIFT_HIGH_LOGITECH = 1;
 	private final short DRIVER_BUTTON_SHIFT_LOW_LOGITECH = 2;
 	private final short DRIVER_BUTTON_QUICKTURN_LOGITECH = 6;
+	private final short DRIVER_BUTTON_TURN_ON_POINT_XBOX = 9;
 
 	public enum JoystickType
 	{
@@ -72,6 +73,18 @@ public class JoystickDriver extends Joystick
 		}
 	}
 
+	public JoystickButton getTOPButton() {
+		switch (_eJoystickType) {
+		case XBOX:
+			return (new JoystickButton(this, DRIVER_BUTTON_TURN_ON_POINT_XBOX));
+			
+		case LOGITECH:
+			return (new JoystickButton(this, DRIVER_BUTTON_TURN_ON_POINT_XBOX));
+			
+		default:
+			return (new JoystickButton(this, DRIVER_BUTTON_TURN_ON_POINT_XBOX));
+		}
+	}
 
 	public JoystickButton getDriveTrainShifterSetHighButton()
 	{

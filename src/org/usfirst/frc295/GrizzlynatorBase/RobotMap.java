@@ -65,6 +65,8 @@ public class RobotMap
 	public static final short PWM_ESC_LEFT_INTAKE_MOTOR  = 1;
 	public static final short PWM_ESC_RIGHT_INTAKE_MOTOR = 2;
 	public static final short PWM_ELEVATOR_SPARK         = 0;
+	public static final short PWM_SERVO_RAMP			 = 4;
+	public static final short PWM_SERVO_INTAKE			 = 3;
 	
 	public static final short RLY_GREENLIGHT             = 0;
 	public static final short RLY_FLASHLIGHT             = 1;

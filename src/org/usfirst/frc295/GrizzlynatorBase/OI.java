@@ -88,6 +88,9 @@ private JoystickDriver _joystickDriver = new JoystickDriver(0, JoystickDriver.Jo
 		 
 	 	 JoystickButton _btnDriver6 = _joystickDriver.getDriveTrainShifterSetLowButton();
 		 _btnDriver6.whenPressed(new CmdDriveTrainShiftLowGear());
+		 
+		 JoystickButton _btnDriver9 = _joystickDriver.getTOPButton();
+		 _btnDriver9.whenPressed(new CmdTurnOnPoint());
 
 		// OPERATOR  BUTTON 
 

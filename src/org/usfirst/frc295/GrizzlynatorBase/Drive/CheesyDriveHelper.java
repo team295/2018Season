@@ -1,4 +1,7 @@
 package org.usfirst.frc295.GrizzlynatorBase.Drive;
+import org.usfirst.frc295.GrizzlynatorBase.subsystems.SysEncoderDrive;
+import org.usfirst.frc295.GrizzlynatorBase.Robot;
+import org.usfirst.frc295.GrizzlynatorBase.Drive.EncoderDrive;
 
 /**
  * Helper class to implement "Cheesy Drive". "Cheesy Drive" simply means that
@@ -14,18 +17,23 @@ public class CheesyDriveHelper
 	private static final double TURN_DEADBAND = 0.02;
 	private static final double TURN_SENSITIVITY = 1.0;
 
+	private final double CorrectionPara = .95;	
+	private double EncoDiff = Robot.sysDriveTrain._encoDriveLeft.getRate() - Robot.sysDriveTrain._encoDriveRight.getRate();
+	private double EncoAvg = (Robot.sysDriveTrain._encoDriveLeft.getRate() + Robot.sysDriveTrain._encoDriveRight.getRate())/2;
 	private double mQuickStopAccumulator;
 	private DriveSignal mSignal = new DriveSignal(0, 0);
+	
 
 
 	public DriveSignal cheesyDrive(double throttle, double wheel, boolean isQuickTurn)
 	{
-
 		throttle = handleDeadband(throttle, THROTTLE_DEADBAND);
 		wheel = handleDeadband(wheel, TURN_DEADBAND);
 
 		double overPower;
 		double angularPower;
+		
+		int TOPreverse /*Turn on Point */ = -1;
 
 		if (isQuickTurn)
 		{
@@ -81,35 +89,30 @@ public class CheesyDriveHelper
 			rightPwm = -1.0;
 		}
 
-		mSignal.rightMotor = rightPwm;
-		mSignal.leftMotor = leftPwm;
-
-//		if (wheel != 0 && throttle == 0) {
-//            mSignal.rightMotor = getSign(wheel) * limit(wheel, 1.0);
-//            mSignal.leftMotor = getSign(wheel) * TOPreverse * limit(wheel, 1.0);
-//		}
-		return mSignal;
 		
-	}
-	
-//	public DriveSignal straightCorrect(DriveSignal mSignal, double wheel)
-//	{
-//		if (Math.abs(wheel) > .25){
-//			
-//			return mSignal;
+		if (Robot.sysEncoderDrive.getTOP()) {// Only runs when the Left joystick button(10) is held down
+//			System.out.print(" | TOP");
+			mSignal = EncoderDrive.EncoderDriveTOP(mSignal, wheel);
+		}
+//		if (Math.abs(wheel) < 0.13 && Math.abs(throttle) > 0.11) {// Only calls when throttle joystick is pushed, but turning is not
+//			System.out.print(" | DriveStraight");
+//						mSignal = EncoderDrive.EncoderDriveStraight(EncoDiff, EncoAvg, mSignal);
 //		}
-//		
-//		
-//		return mSignal;
-//	}
+		
+		return mSignal;
+	}
 
 
 	/**
 	 * Limits the given input to the given magnitude.
 	 */
-	public double limit(double v, double limit)
+	public static double limit(double v, double limit)
 	{
 		return (Math.abs(v) < limit) ? v : limit * (v < 0 ? -1 : 1);
+	}
+	
+	public static double percent(double v, double total, double scale) {
+		return scale * Math.abs(v)/total;
 	}
 
 
@@ -130,14 +133,12 @@ public class CheesyDriveHelper
 		return (Math.abs(val) > Math.abs(TURN_DEADBAND)) ? val : 0.0;
 	}
 	
-	public int getSign(double val) {
-        if(val <= 0) {
-            return 1;
-        } else {
-            return -1;
-        }
-    }
-
-
-
+	public static int getSign(double val) {
+		System.out.println(val);
+		if(val <= 0) {
+			return -1;
+		} else {
+			return 1;
+		}
+	}
 }
