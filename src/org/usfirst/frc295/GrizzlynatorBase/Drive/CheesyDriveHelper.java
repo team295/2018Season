@@ -90,17 +90,14 @@ public class CheesyDriveHelper
 		}
 
 		
-		mSignal.rightMotor = rightPwm;
-		mSignal.leftMotor = leftPwm;
-		System.out.println("Wheel: " + wheel + " | throttle: " + throttle);
 		if (Robot.sysEncoderDrive.getTOP()) {// Only runs when the Left joystick button(10) is held down
 //			System.out.print(" | TOP");
 			mSignal = EncoderDrive.EncoderDriveTOP(mSignal, wheel);
 		}
-		if (Math.abs(wheel) < 0.13 && Math.abs(throttle) > 0.11) {// Only calls when throttle joystick is pushed, but turning is not
+//		if (Math.abs(wheel) < 0.13 && Math.abs(throttle) > 0.11) {// Only calls when throttle joystick is pushed, but turning is not
 //			System.out.print(" | DriveStraight");
-						mSignal = EncoderDrive.EncoderDriveStraight(EncoDiff, EncoAvg, mSignal);
-		}
+//						mSignal = EncoderDrive.EncoderDriveStraight(EncoDiff, EncoAvg, mSignal);
+//		}
 		
 		return mSignal;
 	}
