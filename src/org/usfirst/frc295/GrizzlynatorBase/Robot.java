@@ -23,20 +23,25 @@ import org.usfirst.frc295.GrizzlynatorBase.subsystems.SysEncoderDrive;
 import org.usfirst.frc295.GrizzlynatorBase.subsystems.SysDriveTrain;
 import org.usfirst.frc295.GrizzlynatorBase.subsystems.SysDriveTrainCANOpenLoop;
 import org.usfirst.frc295.GrizzlynatorBase.subsystems.SysDriveTrainShifter;
-import org.usfirst.frc295.GrizzlynatorBase.subsystems.SysUltrasonic;
+//import org.usfirst.frc295.GrizzlynatorBase.subsystems.SysDriveTrainSpark;
 import org.usfirst.frc295.GrizzlynatorBase.subsystems.SysIntake;
-import org.usfirst.frc295.GrizzlynatorBase.subsystems.SysRamp;
-
-
+import org.usfirst.frc295.GrizzlynatorBase.subsystems.*;
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.Encoder;
+import org.usfirst.frc295.GrizzlynatorBase.subsystems.SysUltrasonic;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+
+
+
+
+
+
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -66,14 +71,15 @@ public class Robot extends IterativeRobot
 	
 	
 	// MAJOR SUBSYSTEMS
+	public static SysDriveTrainCANOpenLoop sysDriveTrainCAN;
 	public static SysDriveTrain sysDriveTrain;
 	public static SysDriveTrainCANOpenLoop sysCANLoop;
 	public static SysElevator sysElevator;
 	public static SysCompressor sysCompressor;
+	public static SysRamp sysRamp;
 	public static SysUltrasonic sysUltrasonic;
 	public static SysIntake sysIntake;
 	public static SysDriveTrainShifter sysDriveTrainShifter;
-	public static SysRamp sysRamp;
 	public static SysEncoderDrive sysEncoderDrive;
 
 	@Override
@@ -89,9 +95,13 @@ public class Robot extends IterativeRobot
 			if (RobotMap.ROBOT_ID == RobotID.BOT_COMP1)
 			{
 				sysDriveTrain = new SysDriveTrainCANOpenLoop();
+
 				sysIntake = SysIntake.getInstance();
 				sysUltrasonic = new SysUltrasonic();
 				sysDriveTrainShifter = new SysDriveTrainShifter();
+				sysEncoderDrive = new SysEncoderDrive();
+
+//				sysDriveTrain = new SysDriveTrainSpark();
 				sysEncoderDrive = new SysEncoderDrive();
 
 			}
@@ -108,13 +118,12 @@ public class Robot extends IterativeRobot
 			{
 				//sysDriveTrain = new SysDriveTrainForklift();
 			}
-			
-			
-			
+
 			sysCompressor = new SysCompressor();
 			sysElevator = SysElevator.getInstance();
-			
-			
+			sysRamp = new SysRamp();
+			sysEncoderDrive = new SysEncoderDrive();
+
 			oi = new OI();
 			ahrs = new NavX_Gyro();
 
@@ -156,11 +165,13 @@ public class Robot extends IterativeRobot
 	{
 		try
 		{
-			System.out.print(ahrs.getYaw());
-			System.out.print("  ");
-			System.out.print(sysDriveTrain.getLeftEncoder());
-			System.out.print("  ");
-			System.out.print(sysDriveTrain.getRightEncoder());
+
+//			System.out.print(ahrs.getYaw());
+//			System.out.print("  ");
+//			System.out.print(sysDriveTrain.getLeftEncoder());
+//			System.out.print("  ");
+//			System.out.println(sysDriveTrain.getRightEncoder());
+
 //			System.out.println(input_dio.get());
 			Scheduler.getInstance().run();
 //			input_dio.get();
@@ -170,8 +181,17 @@ public class Robot extends IterativeRobot
 			Logger.logThrowable(t);
 			throw t;
 		}
+
+
 		sysIntake.IntakeState();
+
+
 		sysDriveTrain.logToSmartDashboard();
+
+
+//		sysEncoderDrive.getValues();
+
+
 	}
 
 
@@ -309,7 +329,11 @@ public class Robot extends IterativeRobot
 			Logger.logThrowable(t);
 			throw t;
 		}
+
+
 		sysIntake.IntakeState();
+//		sysEncoderDrive.getValues();
+
 	}
 
 

@@ -68,7 +68,7 @@ public class CmdDriveWithJoystick extends Command
 		Robot.sysDriveTrain.setOpenLoop(oDriveSignal);
 		
 		
-		SmartDashboard.putNumber("Drivetrain Distance", Robot.sysDriveTrain.getDistance());
+
 	}
 
 

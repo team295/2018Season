@@ -23,6 +23,9 @@ public class JoystickDriver extends Joystick
 	private final short DRIVER_BUTTON_SHIFT_HIGH_XBOX = 5;
 	private final short DRIVER_BUTTON_SHIFT_LOW_XBOX = 6;
 	private final short DRIVER_BUTTON_QUICKTURN_XBOX = 1;
+	
+	private final short DRIVER_BUTTON_TURN_ON_POINT_XBOX = 9;
+	private final short DRIVER_BUTTON_DRIVE_STRAIGHT_XBOX = 10;
 
 	// TODO: MOVE TO OPERATOR
 	private final short DRIVER_BUTTON_LIFT_XBOX = 4;
@@ -34,7 +37,7 @@ public class JoystickDriver extends Joystick
 	private final short DRIVER_BUTTON_SHIFT_HIGH_LOGITECH = 1;
 	private final short DRIVER_BUTTON_SHIFT_LOW_LOGITECH = 2;
 	private final short DRIVER_BUTTON_QUICKTURN_LOGITECH = 6;
-	private final short DRIVER_BUTTON_TURN_ON_POINT_XBOX = 9;
+
 
 	public enum JoystickType
 	{
@@ -73,18 +76,7 @@ public class JoystickDriver extends Joystick
 		}
 	}
 
-	public JoystickButton getTOPButton() {
-		switch (_eJoystickType) {
-		case XBOX:
-			return (new JoystickButton(this, DRIVER_BUTTON_TURN_ON_POINT_XBOX));
-			
-		case LOGITECH:
-			return (new JoystickButton(this, DRIVER_BUTTON_TURN_ON_POINT_XBOX));
-			
-		default:
-			return (new JoystickButton(this, DRIVER_BUTTON_TURN_ON_POINT_XBOX));
-		}
-	}
+
 
 	public JoystickButton getDriveTrainShifterSetHighButton()
 	{
@@ -117,6 +109,32 @@ public class JoystickDriver extends Joystick
 	}
 
 
+	public JoystickButton getTOPButton() {
+		switch (_eJoystickType) {
+		case XBOX:
+			return (new JoystickButton(this, DRIVER_BUTTON_TURN_ON_POINT_XBOX));
+			
+		case LOGITECH:
+			return (new JoystickButton(this, DRIVER_BUTTON_TURN_ON_POINT_XBOX));
+			
+		default:
+			return (new JoystickButton(this, DRIVER_BUTTON_TURN_ON_POINT_XBOX));
+		}
+	}
+	
+	public JoystickButton getDriveStraightButton() {
+		switch (_eJoystickType) {
+		case XBOX:
+			return (new JoystickButton(this, DRIVER_BUTTON_DRIVE_STRAIGHT_XBOX));
+			
+		case LOGITECH:
+			return (new JoystickButton(this, DRIVER_BUTTON_DRIVE_STRAIGHT_XBOX));
+			
+		default:
+			return (new JoystickButton(this, DRIVER_BUTTON_DRIVE_STRAIGHT_XBOX));
+		}
+	}
+	
 	public double getDriveTrainThrottleValue()
 	{
 		switch (_eJoystickType)

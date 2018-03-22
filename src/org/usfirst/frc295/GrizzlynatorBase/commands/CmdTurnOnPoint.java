@@ -28,4 +28,6 @@ public class CmdTurnOnPoint extends Command {
     // subsystems is scheduled to run
     protected void interrupted() {
     }
+
 }
+

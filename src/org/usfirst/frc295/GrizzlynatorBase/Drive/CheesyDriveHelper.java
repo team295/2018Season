@@ -89,6 +89,8 @@ public class CheesyDriveHelper
 			rightPwm = -1.0;
 		}
 
+		mSignal.leftMotor = leftPwm;
+		mSignal.rightMotor = rightPwm;
 		
 		if (Robot.sysEncoderDrive.getTOP()) {// Only runs when the Left joystick button(10) is held down
 //			System.out.print(" | TOP");
@@ -112,7 +114,7 @@ public class CheesyDriveHelper
 	}
 	
 	public static double percent(double v, double total, double scale) {
-		return scale * Math.abs(v)/total;
+		return scale * v/total;
 	}
 
 
@@ -142,3 +144,4 @@ public class CheesyDriveHelper
 		}
 	}
 }
+

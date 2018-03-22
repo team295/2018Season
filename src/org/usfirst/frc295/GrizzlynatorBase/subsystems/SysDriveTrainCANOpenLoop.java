@@ -83,12 +83,12 @@ public class SysDriveTrainCANOpenLoop extends SysDriveTrain
 
 
 		// DEFINE DIO ENCODERS FOR THE DRIVETRAIN
+
 		//Wheel size = 6 (diameter)
 		//Math.Pi * 6 / 256 is the distance traveled per inch if 1 revolution of encoder is 1 revolution of wheel
 		//9.6 rev enc = 1 rev wheel
 		_encoDriveLeft = new Encoder(RobotMap.DIO_ENC_DRIVE_LEFT_CHAN1, RobotMap.DIO_ENC_DRIVE_LEFT_CHAN2, false,
 				EncodingType.k4X);
-		
 
 		_encoDriveLeft.setDistancePerPulse((Math.PI*6)/(256*9.5));
 
@@ -98,6 +98,8 @@ public class SysDriveTrainCANOpenLoop extends SysDriveTrain
 		_encoDriveRight = new Encoder(RobotMap.DIO_ENC_DRIVE_RIGHT_CHAN1, RobotMap.DIO_ENC_DRIVE_RIGHT_CHAN2, false,
 				EncodingType.k4X);
 
+
+
 		_encoDriveRight.setDistancePerPulse((Math.PI*6)/(256*9.5));
 
 		_encoDriveRight.setPIDSourceType(PIDSourceType.kDisplacement);
@@ -105,4 +107,16 @@ public class SysDriveTrainCANOpenLoop extends SysDriveTrain
 //		_encoElevatorLeft = new Encoder(RobotMap.DIO_ENC_ELEVATOR_LEFT_CHAN1, RobotMap.DIO_ENC_ELEVATOR_RIGHT_CHAN2, false, EncodingType.k4X);
 	}
 
+	public void printEncoderValues() {
+//		System.out.println(_encoDriveLeft.get());
+//		System.out.println(_encoDriveRight.get());
+	}
+	
+//	public double getLEncoderValues() {
+//		return _encoDriveLeft.get();
+//	}
+//	
+//	public double getREncoderValues() {
+//		return _encoDriveRight.get();
+//	}
 }

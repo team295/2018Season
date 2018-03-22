@@ -7,6 +7,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 */
 public class Waypoint extends Command
 {
+
     private double _dInitialAngle;
     private double _dTargetAngle;
     private double _dMove;
@@ -193,4 +194,5 @@ public class Waypoint extends Command
         Robot.ahrs.reset();
     }
     
+
 }

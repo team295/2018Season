@@ -50,4 +50,6 @@ public class SysEncoderDrive extends Subsystem {
         //setDefaultCommand(new MySpecialCommand());
     	setDefaultCommand(new DfltEncoderDrive());
     }
+
 }
+

@@ -35,6 +35,8 @@ public abstract class SysDriveTrain extends Subsystem
 	protected DifferentialDrive _robotDrive;
 	protected DifferentialDrive _robotLiftDrive;
 	// SENSORS
+
+
 	public Encoder _encoDriveRight;
 	public Encoder _encoDriveLeft;
 //	Encoder LiftEnc = new Encoder(6, 7, false, Encoder.EncodingType.k4X);
@@ -43,6 +45,8 @@ public abstract class SysDriveTrain extends Subsystem
 	static int WHEEL_SIZE = 6;
 	private double _dDistanceStart;
 //	protected Encoder _encoElevatorLeft;
+
+
 //	protected CANTalon _encoDriveRight;
 
 
@@ -105,9 +109,15 @@ public abstract class SysDriveTrain extends Subsystem
 		_robotDrive.curvatureDrive(move, rotation, isQuickTurn);
 	}
 
+	//this method is clearly wrong, but I'll leave it here for now
 	public synchronized void tankDrive(double move)
 	{
 		_robotDrive.tankDrive(move, 0);
+	}
+
+	
+	public synchronized void getTankDrive(double leftmotor, double rightmotor) {
+		_robotDrive.tankDrive(leftmotor, rightmotor);
 	}
 	/**
 	 * Reset the robots sensors to the zero states.
@@ -139,11 +149,20 @@ public abstract class SysDriveTrain extends Subsystem
 	/**
 	 * @return The distance driven (average of left and right encoders).
 	 */
+
+
 	public double getDistance()
 	{
 		
 		return ((Math.abs(_encoDriveRight.getDistance())) + Math.abs(_encoDriveLeft.getDistance())) / 2;
+
 	}
+	
+	public double getAutoDiff()
+    {
+        return ((Math.abs(_encoDriveRight.getDistance())) - Math.abs(_encoDriveLeft.getDistance())); 
+    }
+
 
 public double getInches() {
 	 
@@ -152,6 +171,10 @@ public double getInches() {
 	 _dDistanceTarget = _dDistanceTarget * (WHEEL_SIZE * Math.PI);
 	 
 	 return _dDistanceTarget;
+}
+public synchronized void tankDrive(double left, double right)
+{
+    _robotDrive.tankDrive(left, right);
 }
 	/**
 	 * @return The distance to the obstacle detected by the rangefinder.
@@ -170,11 +193,13 @@ public double getInches() {
 	public void logToSmartDashboard()
 	{
 		// SmartDashboard.putData("vibrate", new CmdHapticFeedback());
+
 		SmartDashboard.putNumber("Drive Encoder: Left Distance", _encoDriveLeft.getDistance());
 		SmartDashboard.putNumber("Drive Encoder: Right Distance", _encoDriveRight.getDistance());
 		SmartDashboard.putNumber("Drive Encoder: Left Speed", _encoDriveLeft.getRate());
 		SmartDashboard.putNumber("Drive Encoder: Right Speed", _encoDriveRight.getRate());
 		SmartDashboard.putNumber("Distance Inches",	getInches());
 		SmartDashboard.putNumber("Yaw_Tele",Robot.ahrs.getYaw());
+
 	}
 }
