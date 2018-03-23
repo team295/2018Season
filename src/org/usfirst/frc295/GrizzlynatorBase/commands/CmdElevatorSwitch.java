@@ -31,7 +31,7 @@ public class CmdElevatorSwitch extends Command {
 		System.out.println("Going to Switch.");
 		if (Robot.sysElevator.isVaultSet() == false)
 		{
-	    	SysElevator.Location = 1;  
+	   	SysElevator.Location = 1;  
 		}
 		if (Robot.sysElevator.isScaleSet() == false)
 		{
@@ -39,13 +39,14 @@ public class CmdElevatorSwitch extends Command {
 		}
 		if (Robot.sysElevator.isBottomSet() == false)
 		{
-	    	SysElevator.Location = 0;  
+	   	SysElevator.Location = 0;  
 		}
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
         return !Robot.sysElevator.isSwitchSet();
+    	//return true;
     }
 
     // Called once after isFinished returns true

@@ -80,7 +80,7 @@ private JoystickDriver _joystickDriver = new JoystickDriver(0, JoystickDriver.Jo
 	{
 
 
-		SmartDashboard.putData("Autonomous Command", new AutonomousLeft());
+		//SmartDashboard.putData("Autonomous Command", new AutonomousLeft());
 		
 		// DRIVER BUTTONS
 		 JoystickButton _btnDriver5 = _joystickDriver.getDriveTrainShifterSetHighButton();
@@ -91,6 +91,7 @@ private JoystickDriver _joystickDriver = new JoystickDriver(0, JoystickDriver.Jo
 		 
 		 JoystickButton _btnDriver9 = _joystickDriver.getTOPButton();
 		 _btnDriver9.whenPressed(new CmdTurnOnPoint());
+		 _btnDriver9.whileHeld(new CmdTurnOnPoint());
 
 		// OPERATOR  BUTTON 
 

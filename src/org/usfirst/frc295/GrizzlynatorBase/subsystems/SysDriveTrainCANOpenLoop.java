@@ -88,9 +88,10 @@ public class SysDriveTrainCANOpenLoop extends SysDriveTrain
 		//9.6 rev enc = 1 rev wheel
 		_encoDriveLeft = new Encoder(RobotMap.DIO_ENC_DRIVE_LEFT_CHAN1, RobotMap.DIO_ENC_DRIVE_LEFT_CHAN2, false,
 				EncodingType.k4X);
-		
+		//xd
 
-		_encoDriveLeft.setDistancePerPulse((Math.PI*6)/(256*9.5));
+//		_encoDriveLeft.setDistancePerPulse((Math.PI*5)/(256*12));
+		_encoDriveLeft.setDistancePerPulse((Math.PI*5)/(256*9.6));
 
 		_encoDriveLeft.setPIDSourceType(PIDSourceType.kDisplacement);
 		
@@ -98,7 +99,8 @@ public class SysDriveTrainCANOpenLoop extends SysDriveTrain
 		_encoDriveRight = new Encoder(RobotMap.DIO_ENC_DRIVE_RIGHT_CHAN1, RobotMap.DIO_ENC_DRIVE_RIGHT_CHAN2, false,
 				EncodingType.k4X);
 
-		_encoDriveRight.setDistancePerPulse((Math.PI*6)/(256*9.5));
+//		_encoDriveRight.setDistancePerPulse((Math.PI*5)/(256*12));
+		_encoDriveRight.setDistancePerPulse((Math.PI*5)/(256*9.6));
 
 		_encoDriveRight.setPIDSourceType(PIDSourceType.kDisplacement);
 		

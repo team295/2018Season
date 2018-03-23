@@ -16,6 +16,7 @@ public class CmdTurnOnPoint extends Command {
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
         Robot.sysEncoderDrive.setTOPOn();
+        System.out.println("TOP is pressed");
     }
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {

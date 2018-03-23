@@ -144,7 +144,15 @@ public abstract class SysDriveTrain extends Subsystem
 		
 		return ((Math.abs(_encoDriveRight.getDistance())) + Math.abs(_encoDriveLeft.getDistance())) / 2;
 	}
+	public synchronized void tankDrive(double left, double right)
+	{
+		_robotDrive.tankDrive(left, right);
+	}
 
+	public double getAutoDiff()
+	{
+		return ((Math.abs(_encoDriveRight.getDistance())) - Math.abs(_encoDriveLeft.getDistance())); 
+	}
 public double getInches() {
 	 
 	_dDistanceTarget = (_encoDriveRight.getDistance() + _encoDriveLeft.getDistance()) / 2;

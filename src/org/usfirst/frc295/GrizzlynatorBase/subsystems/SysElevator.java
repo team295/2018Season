@@ -41,8 +41,8 @@ public class SysElevator extends Subsystem
 	
     private double RISE = 0;
 	private double LOWER = -0.3;
-	private double MAXVALUE = .8;
-	private double INC = .04;
+	private double MAXVALUE = .95;
+	private double INC = .06;
 	public static boolean Switchbolt;
     private boolean debugmode;
 	
@@ -54,7 +54,7 @@ public class SysElevator extends Subsystem
 	private final DoubleSolenoid.Value EXTEND_SOLENOID = DoubleSolenoid.Value.kForward;
 	
 	
-	private Compressor _elevatorcompressor = new Compressor(RobotMap.CAN_PCM_MODULE);
+	//private Compressor _elevatorcompressor = new Compressor(RobotMap.CAN_PCM_MODULE);
 	
 	private static SysElevator _instance = null;
 	
@@ -63,7 +63,7 @@ public class SysElevator extends Subsystem
 	{
 		debugmode = true;
 		
-		_elevatorcompressor.setClosedLoopControl(true);
+		//_elevatorcompressor.setClosedLoopControl(true);
 		elevatorbreak  = new DoubleSolenoid(RobotMap.PCM_ELEVATOR_SOL, RobotMap.PCM_ELEVATOR_SOL_FOLLOW); 
 		ElevatorMotor = new Spark(RobotMap.PWM_ELEVATOR_SPARK);
 		SwitchlimitSwitchScale = new DigitalInput(RobotMap.DIO_ELEVATOR_SCALE_LIMIT);
@@ -103,7 +103,7 @@ public class SysElevator extends Subsystem
 	 
      public void ResetRise() {
      	
-     	RISE = .30;
+     	RISE = .20;
      }
      
     public boolean isScaleSet() 
@@ -314,9 +314,9 @@ public class SysElevator extends Subsystem
     	elevatorbreak.set(EXTEND_SOLENOID);
 	}
 	
-	public void compressoron() {
-		_elevatorcompressor.setClosedLoopControl(true);
-	}
+	//public void compressoron() {
+	//	_elevatorcompressor.setClosedLoopControl(true);
+	//}
 }
 
 

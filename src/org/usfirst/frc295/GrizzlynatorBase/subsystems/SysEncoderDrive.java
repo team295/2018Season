@@ -26,6 +26,9 @@ public class SysEncoderDrive extends Subsystem {
 	}
 	
 	public boolean getTOP() {
+		if (TOP) {
+			System.out.println("TOP is ON");
+		}
 		return TOP;
 	}
 

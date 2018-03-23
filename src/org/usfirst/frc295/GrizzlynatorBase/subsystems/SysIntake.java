@@ -93,7 +93,8 @@ public class SysIntake extends Subsystem {
 	}
 	
 	public void PushOutIntake() {
-		PushOutMain.set(1);
+		PushOutMain.set(.5);
+		PushOutMain.setAngle(0);
 	}
 	public void initDefaultCommand() 
 	{

@@ -112,6 +112,7 @@ public class Robot extends IterativeRobot
 			
 			
 			sysCompressor = new SysCompressor();
+
 			sysElevator = SysElevator.getInstance();
 			
 			
@@ -137,7 +138,7 @@ public class Robot extends IterativeRobot
 		try
 		{
 			Logger.logDisabledInit();
-
+			sysDriveTrain.reset();
 			// CONFIGURE LOOPERS
 			_EnabledLooper.stop();
 			_DisabledLooper.start();
@@ -156,7 +157,7 @@ public class Robot extends IterativeRobot
 	{
 		try
 		{
-			System.out.print(ahrs.getYaw());
+//			System.out.print(ahrs.getYaw());
 			System.out.print("  ");
 			System.out.print(sysDriveTrain.getLeftEncoder());
 			System.out.print("  ");
@@ -212,6 +213,7 @@ public class Robot extends IterativeRobot
 
 			sysIntake.initAutoState();
 			sysIntake.IntakeState();
+			sysDriveTrain.reset();
 			
 			// CONFIGURE LOOPERS
 			_EnabledLooper.stop();
@@ -267,8 +269,9 @@ public class Robot extends IterativeRobot
 		try
 		{
 			Logger.logTeleopInit();
-			sysElevator.compressoron();
+			//sysElevator.compressoron();
 			sysIntake.IntakeState();
+			sysDriveTrain.reset();
 			// This makes sure that the autonomous stops running when
 			// teleop starts running. If you want the autonomous to
 			// continue until interrupted by another command, remove
